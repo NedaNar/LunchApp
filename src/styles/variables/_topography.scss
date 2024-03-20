@@ -1,0 +1,187 @@
+// Use case:
+// .selected-header {
+//   @each $property, $value in $headline-l {
+//     #{$property}: $value;
+//   }
+// }
+
+// .selected-header {
+//      font-family: "Poppins",
+//      'sans-serif';
+//      font-weight: 700;
+//      font-style: normal;
+//      font-size: calc(3.2rem * 1.25);
+//      line-height: 2.5rem;
+//      letter-spacing: 0
+// }
+
+$headline-l: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 700,
+    font-style: normal,
+    font-size: calc(2rem * 1.25),
+    line-height: 2.5rem,
+    letter-spacing: 0,
+    padding: 2rem
+);
+
+$headline-m: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 700,
+    font-style: normal,
+    font-size: calc(1.5rem * 1.25),
+    line-height: 1.875rem,
+    letter-spacing: 0,
+    padding: 1.5rem
+);
+
+$headline-s: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 700,
+    font-style: normal,
+    font-size: calc(1.125rem * 1.5),
+    line-height: 1.6875rem,
+    letter-spacing: 0,
+    padding: 1.125rem
+);
+
+$title-xl: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 500,
+    font-style: normal,
+    font-size: calc(1.5rem * 1.25),
+    line-height: 1.875rem,
+    letter-spacing: 0,
+    padding: 1.5rem
+);
+
+$title-l: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 500,
+    font-style: normal,
+    font-size: calc(1.125rem * 1.5),
+    line-height: 1.6875rem,
+    letter-spacing: 0,
+    padding: 1.125rem
+);
+
+$title-m: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 500,
+    font-style: normal,
+    font-size: calc(1rem * 1.5),
+    line-height: 1.5rem,
+    letter-spacing: 0,
+    padding: 1rem
+);
+
+$title-s: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 500,
+    font-style: normal,
+    font-size: calc(0.875rem * 1.5),
+    line-height: 1.3125rem,
+    letter-spacing: 0,
+    padding: 0.875rem
+);
+
+$title-xs: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 500,
+    font-style: normal,
+    font-size: calc(0.625rem * 1.5),
+    line-height: 0.9375rem,
+    letter-spacing: 0,
+    padding: 0.625rem
+);
+
+$label-l: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 600,
+    font-style: normal,
+    font-size: calc(1.25rem * 1.5),
+    line-height: 1.875rem,
+    letter-spacing: 0.015625rem
+);
+
+$label-m: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 600,
+    font-style: normal,
+    font-size: calc(1rem * 1.5),
+    line-height: 1.5rem,
+    letter-spacing: 0.015625rem
+);
+
+$label-s: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 600,
+    font-style: normal,
+    font-size: calc(0.875rem * 1.5),
+    line-height: 1.3125rem,
+    letter-spacing: 0.015625rem
+);
+
+$label-xs: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 600,
+    font-style: normal,
+    font-size: calc(0.75rem * 1.5),
+    line-height: 1.125rem,
+    letter-spacing: 0.015625rem
+);
+
+$label-xxs: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 600,
+    font-style: normal,
+    font-size: calc(0.625rem * 1.5),
+    line-height: 0.9375rem,
+    letter-spacing: 0.015625rem
+);
+
+$body-l: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 400,
+    font-style: normal,
+    font-size: calc(1rem * 1.5),
+    line-height: 1.5rem,
+    letter-spacing: 0,
+    padding: 1rem
+);
+
+$body-m: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 400,
+    font-style: normal,
+    font-size: calc(0.875rem * 1.5),
+    line-height: 1.3125rem,
+    letter-spacing: 0,
+    padding: 0.875rem
+);
+
+$body-s: (
+    font-family: "Poppins",
+    'sans-serif',
+    font-weight: 400,
+    font-style: normal,
+    font-size: calc(0.75rem * 1.5),
+    line-height: 1.125rem,
+    letter-spacing: 0,
+    padding: 0.75rem
+);
