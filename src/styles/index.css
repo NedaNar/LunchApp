@@ -1,1 +1,6 @@
 /* Imports for global variables and styles */
+
+body {
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+}
