@@ -1,5 +1,12 @@
 /* Imports for global variables and styles */
 
+/* stylelint-disable scale-unlimited/declaration-strict-value */
+
+html {
+  font-size: 10px;
+}
+/* stylelint-enable scale-unlimited/declaration-strict-value */
+
 body {
   font-family: Poppins, sans-serif;
   font-style: normal;
