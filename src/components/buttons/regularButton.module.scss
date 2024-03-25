@@ -1,0 +1,117 @@
+@import '../../styles/variables/index';
+
+.btn {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.btn:disabled {
+    opacity: 0.4;
+}
+
+.btn--primary {
+    background-color: $color-primary-800;
+    color: $color-white;
+    border: none;
+}
+
+.btn--primary:hover {
+    background-color: $color-primary-600;
+}
+
+.btn--primary:active {
+    background-color: $color-primary-400;
+}
+
+.btn--secondary {
+    background-color: $color-white;
+    color: $color-primary-600;
+    border: $color-secondary-300 1px solid;
+}
+
+.btn--secondary:hover {
+    background-color: $color-secondary-100;
+}
+.btn--secondary:active {
+    background-color: $color-secondary-200;
+}
+
+.btn--tertiary {
+    background-color: transparent;
+    color: $color-primary-600;
+    border: none;
+}
+
+.btn--tertiary:hover {
+    background-color: $color-secondary-100;
+}
+
+.btn--tertiary:active {
+    background-color: $color-secondary-200;
+}
+
+.btn--large{
+    padding: $space-XXXXS;
+    @each $property, $value in $label-L {
+        #{$property}: $value;
+    }
+    span {
+        margin: 0rem $space-XXXXS;
+    }
+    img {
+        height: 24px;
+    }
+}
+
+.btn--medium{
+    padding: $space-XXXXS;
+    @each $property, $value in $label-M {
+        #{$property}: $value;
+    }
+    span {
+        margin: 0rem $space-XXXXS;
+    }
+    img {
+        height: 24px;
+    }
+}
+
+.btn--small{
+    padding: $space-XXXXXS $space-XXXXS;
+    @each $property, $value in $label-S {
+        #{$property}: $value;
+    }
+    img {
+        height: 18px;
+    }
+}
+
+.btn--xsmall{
+    padding: 7px $space-XXXXS;
+    @each $property, $value in $label-XS {
+        #{$property}: $value;
+    }
+    img {
+        height: 14px;
+    }
+}
+
+
+.btn--add {
+    &.btn-small span{
+        margin-left: $space-XXXXS;
+    }
+    &.btn-xsmall span {
+        margin-left: $space-XXXXXS;
+    }
+}
+
+.btn--arrow {
+    &.btn-small span{
+        margin-right: $space-XXXXS;
+    }
+    &.btn-xsmall span {
+        margin-right: $space-XXXXXS;
+    }
+}
