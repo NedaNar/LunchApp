@@ -1,5 +1,9 @@
 import { AccentButtonM } from './components/iconbuttons/AccentButtonM';
 import { AccentButtonS } from './components/iconbuttons/AccentButtonS';
+import { OutlinedButtonM } from './components/iconbuttons/OutlinedButtonM';
+import { OutlinedButtonS } from './components/iconbuttons/OutlinedButtonS';
+import { TertiaryButtonM } from './components/iconbuttons/TertiaryButtonM';
+import { TertiaryButtonS } from './components/iconbuttons/TertiaryButtonS';
 import styles from './App.module.css';
 
 export function App() {
@@ -9,6 +13,10 @@ export function App() {
       <p>You can delete all this HTML code and start working on your Lunch App</p>
       <AccentButtonM />
       <AccentButtonS />
+      <OutlinedButtonM />
+      <OutlinedButtonS />
+      <TertiaryButtonM />
+      <TertiaryButtonS />
     </div>
   );
 }
