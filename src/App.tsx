@@ -4,7 +4,7 @@ import { OutlinedButtonM } from './components/iconbuttons/OutlinedButtonM';
 import { OutlinedButtonS } from './components/iconbuttons/OutlinedButtonS';
 import { TertiaryButtonM } from './components/iconbuttons/TertiaryButtonM';
 import { TertiaryButtonS } from './components/iconbuttons/TertiaryButtonS';
-import styles from './App.module.css';
+import styles from './index.module.scss';
 
 export function App() {
   return (
@@ -17,6 +17,24 @@ export function App() {
       <OutlinedButtonS />
       <TertiaryButtonM />
       <TertiaryButtonS />
+      <button type="submit" className={styles.accentButtonM}>
+        +
+      </button>
+      <button type="submit" className={styles.accentButtonS}>
+        +
+      </button>
+      <button type="submit" className={styles.outlinedButtonM}>
+        +
+      </button>
+      <button type="submit" className={styles.outlinedButtonS}>
+        +
+      </button>
+      <button type="submit" className={styles.tertiaryButtonM}>
+        +
+      </button>
+      <button type="submit" className={styles.tertiaryButtonS}>
+        +
+      </button>
     </div>
   );
 }
