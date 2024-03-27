@@ -33,13 +33,6 @@
       #{$property}: $value;
     }
   }
-
-  &.disabled {
-    $disabled-styles: map-get($accent-button-M, disabled);
-    @each $property, $value in $disabled-styles {
-      #{$property}: $value;
-    }
-  }
 }
   
 .accentButtonS {
@@ -65,13 +58,6 @@
   &:focus {
     $focus-styles: map-get($accent-button-S, focus);
     @each $property, $value in $focus-styles {
-      #{$property}: $value;
-    }
-  }
-
-  &.disabled {
-    $disabled-styles: map-get($accent-button-S, disabled);
-    @each $property, $value in $disabled-styles {
       #{$property}: $value;
     }
   }
@@ -103,13 +89,6 @@
       #{$property}: $value;
     }
   }
-
-  &.disabled {
-    $disabled-styles: map-get($outlined-button-M, disabled);
-    @each $property, $value in $disabled-styles {
-      #{$property}: $value;
-    }
-  }
 }
   
 .outlinedButtonS {
@@ -135,13 +114,6 @@
   &:focus {
     $focus-styles: map-get($outlined-button-S, focus);
     @each $property, $value in $focus-styles {
-      #{$property}: $value;
-    }
-  }
-  
-  &.disabled {
-    $disabled-styles: map-get($outlined-button-S, disabled);
-    @each $property, $value in $disabled-styles {
       #{$property}: $value;
     }
   }
@@ -173,13 +145,6 @@
       #{$property}: $value;
     }
   }
-
-  &.disabled {
-    $disabled-styles: map-get($tertiary-button-M, disabled);
-    @each $property, $value in $disabled-styles {
-      #{$property}: $value;
-    }
-  }
 }
   
 .tertiaryButtonS {
@@ -205,13 +170,6 @@
   &:focus {
     $focus-styles: map-get($tertiary-button-S, focus);
     @each $property, $value in $focus-styles {
-      #{$property}: $value;
-    }
-  }
-  
-  &.disabled {
-    $disabled-styles: map-get($tertiary-button-S, disabled);
-    @each $property, $value in $disabled-styles {
       #{$property}: $value;
     }
   }
