@@ -1,3 +1,5 @@
+@import '_border-radius.scss';
+
 $accent-button-M: (
     base: (
         display: flex,
@@ -6,7 +8,7 @@ $accent-button-M: (
         align-items: center,
         padding: $space-XXXXXS,
         border: none,
-        border-radius: 0.8rem,
+        border-radius: $border-radius-regular,
         width: 3.2rem,
         height: 3.2rem,
         background-color: $color-secondary-400,
@@ -21,6 +23,9 @@ $accent-button-M: (
     focus: (
         background-color: $color-secondary-400,
         border: 0.2rem solid $color-purple-500,
+    ),
+    disabled: (
+        opacity: 0.4,
     )
 );
 
@@ -32,7 +37,7 @@ $accent-button-S: (
         align-items: center,
         padding: $space-XXXXXS,
         border: none,
-        border-radius: 0.8rem,
+        border-radius: $border-radius-regular,
         width: 2.6rem,
         height: 2.6rem,
         background-color: $color-secondary-400,
@@ -47,6 +52,9 @@ $accent-button-S: (
     focus: (
         background-color: $color-secondary-400,
         border: 0.2rem solid $color-purple-500,
+    ),
+    disabled: (
+        opacity: 0.4,
     )
 );
 
@@ -58,7 +66,7 @@ $outlined-button-M: (
         align-items: center,
         padding: $space-XXXXXS,
         border: 0.1rem solid $color-secondary-300,
-        border-radius: 0.8rem,
+        border-radius: $border-radius-regular,
         width: 3.2rem,
         height: 3.2rem,
         background-color: $color-white,
@@ -72,6 +80,9 @@ $outlined-button-M: (
     focus: (
         background-color: $color-white,
         border: 0.2rem solid $color-purple-500,
+    ),
+    disabled: (
+        opacity: 0.4,
     )
 );
 
@@ -83,7 +94,7 @@ $outlined-button-S: (
         align-items: center,
         padding: $space-XXXXXS,
         border: 0.1rem solid $color-secondary-300,
-        border-radius: 0.8rem,
+        border-radius: $border-radius-regular,
         width: 2.6rem,
         height: 2.6rem,
         background-color: $color-white,
@@ -97,6 +108,9 @@ $outlined-button-S: (
     focus: (
         background-color: $color-white,
         border: 0.2rem solid $color-purple-500,
+    ),
+    disabled: (
+        opacity: 0.4,
     )
 );
 
@@ -108,7 +122,7 @@ $tertiary-button-M: (
         align-items: center,
         padding: $space-XXXXXS,
         border: none,
-        border-radius: 0.8rem,
+        border-radius: $border-radius-regular,
         width: 3.2rem,
         height: 3.2rem,
         background-color: $color-white,
@@ -122,6 +136,9 @@ $tertiary-button-M: (
     focus: (
         background-color: $color-white,
         border: 0.2rem solid $color-purple-500,
+    ),
+    disabled: (
+        opacity: 0.4,
     )
 );
 
@@ -133,7 +150,7 @@ $tertiary-button-S: (
         align-items: center,
         padding: $space-XXXXXS,
         border: none,
-        border-radius: 0.8rem,
+        border-radius: $border-radius-regular,
         width: 2.6rem,
         height: 2.6rem,
         background-color: $color-white,
@@ -147,5 +164,8 @@ $tertiary-button-S: (
     focus: (
         background-color: $color-white,
         border: 0.2rem solid $color-purple-500,
+    ),
+    disabled: (
+        opacity: 0.4,
     )
 );
