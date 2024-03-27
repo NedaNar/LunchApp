@@ -4,7 +4,12 @@
     border-radius: 8px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
+
+.btn:focus {
+    outline: 2px solid $color-purple-500;
+  }
 
 .btn:disabled {
     opacity: 0.4;

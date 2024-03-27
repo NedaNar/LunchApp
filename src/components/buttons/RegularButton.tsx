@@ -8,11 +8,13 @@ interface ButtonProps {
   size: 'large' | 'medium' | 'small' | 'xsmall';
   icon?: 'add' | 'arrow' | 'none';
   disabled?: boolean;
+  onClick: () => void;
 }
 
-function Button({ text, color, size, icon = 'none', disabled }: ButtonProps) {
+function Button({ text, color, size, onClick, icon = 'none', disabled }: ButtonProps) {
   return (
     <button
+      onClick={onClick}
       type="button"
       className={`${styles.btn} ${styles[`btn--${color}`]} ${styles[`btn--${size}`]} ${styles[`btn--${icon}`]}`}
       disabled={disabled}>
