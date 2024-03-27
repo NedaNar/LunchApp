@@ -174,3 +174,10 @@
     }
   }
 }
+
+.accentButtonMDisabled {
+  $base-styles: map-get($accent-button-M-disabled, base);
+  @each $property, $value in $base-styles {
+    #{$property}: $value;
+  }
+}

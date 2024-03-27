@@ -24,9 +24,6 @@ $accent-button-M: (
         background-color: $color-secondary-400,
         border: 0.2rem solid $color-purple-500,
     ),
-    disabled: (
-        opacity: 0.4,
-    )
 );
 
 $accent-button-S: (
@@ -169,3 +166,20 @@ $tertiary-button-S: (
         opacity: 0.4,
     )
 );
+
+$accent-button-M-disabled: (
+    base: (
+        display: flex,
+        flex-direction: column,
+        justify-content: center,
+        align-items: center,
+        padding: $space-XXXXXS,
+        border: none,
+        border-radius: 0.8rem,
+        width: 3.2rem,
+        height: 3.2rem,
+        background-color: $color-secondary-400,
+        color: $color-white,
+        opacity: 0.4
+    )
+)
