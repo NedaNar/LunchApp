@@ -1,15 +1,21 @@
 @import '../../styles/variables/index';
 
 .btn {
-    border-radius: 8px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    @each $property, $value in $border-radius-regular {
+        #{$property}: $value;
+    }
 }
 
 .btn:focus {
     outline: 2px solid $color-purple-500;
-  }
+}
+
+.btn:focus:not(:focus-visible) {
+    outline: 0;
+}
 
 .btn:disabled {
     opacity: 0.4;
@@ -64,9 +70,6 @@
     span {
         margin: 0rem $space-XXXXS;
     }
-    img {
-        height: 24px;
-    }
 }
 
 .btn--medium{
@@ -77,9 +80,6 @@
     span {
         margin: 0rem $space-XXXXS;
     }
-    img {
-        height: 24px;
-    }
 }
 
 .btn--small{
@@ -87,36 +87,30 @@
     @each $property, $value in $label-S {
         #{$property}: $value;
     }
-    img {
-        height: 18px;
-    }
 }
 
 .btn--xsmall{
-    padding: 7px $space-XXXXS;
+    padding: 0.7rem $space-XXXXS;
     @each $property, $value in $label-XS {
         #{$property}: $value;
-    }
-    img {
-        height: 14px;
     }
 }
 
 
 .btn--add {
-    &.btn-small span{
+    &.btn--small span{
         margin-left: $space-XXXXS;
     }
-    &.btn-xsmall span {
+    &.btn--xsmall span {
         margin-left: $space-XXXXXS;
     }
 }
 
 .btn--arrow {
-    &.btn-small span{
+    &.btn--small span{
         margin-right: $space-XXXXS;
     }
-    &.btn-xsmall span {
+    &.btn--xsmall span {
         margin-right: $space-XXXXXS;
     }
 }
