@@ -1,6 +1,5 @@
 import styles from './App.module.scss';
 import './styles/index.scss';
-import './styles/iconButtons.scss';
 
 export function App() {
   return (
