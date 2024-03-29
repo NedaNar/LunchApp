@@ -15,7 +15,7 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-function Button({ text, color, size, onClick, icon = 'none', disabled }: ButtonProps) {
+function RegularButton({ text, color, size, onClick, icon = 'none', disabled }: ButtonProps) {
   let iconSize = 24;
   if (size === 'small') {
     iconSize = 18;
@@ -29,7 +29,9 @@ function Button({ text, color, size, onClick, icon = 'none', disabled }: ButtonP
       type="button"
       className={`${styles.btn} ${styles[`btn--${color}`]} ${styles[`btn--${size}`]} ${styles[`btn--${icon}`]}`}
       disabled={disabled}>
-      {icon === 'add' && <AddIcon fill={colorSecondary300.colorSecondary300} height={iconSize} />}
+      {icon === 'add' && (
+        <AddIcon fill={colorSecondary300.colorSecondary300} height={iconSize} width={iconSize} />
+      )}
       <span>{text}</span>
       {icon === 'arrow' && (
         <ArrowIcon fill={colorSecondary300.colorSecondary300} height={iconSize} width={iconSize} />
@@ -38,4 +40,4 @@ function Button({ text, color, size, onClick, icon = 'none', disabled }: ButtonP
   );
 }
 
-export default Button;
+export default RegularButton;
