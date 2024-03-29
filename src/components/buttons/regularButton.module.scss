@@ -17,6 +17,7 @@
 
 .btn:disabled {
     opacity: 0.4;
+    cursor: auto;
 }
 
 .btn--primary {
@@ -25,11 +26,11 @@
     border: none;
 }
 
-.btn--primary:hover {
+.btn--primary:hover:enabled {
     background-color: $color-primary-600;
 }
 
-.btn--primary:active {
+.btn--primary:active:enabled {
     background-color: $color-primary-400;
 }
 
@@ -39,10 +40,10 @@
     border: $color-secondary-300 1px solid;
 }
 
-.btn--secondary:hover {
+.btn--secondary:hover:enabled {
     background-color: $color-secondary-100;
 }
-.btn--secondary:active {
+.btn--secondary:active:enabled {
     background-color: $color-secondary-200;
 }
 
@@ -52,11 +53,11 @@
     border: none;
 }
 
-.btn--tertiary:hover {
+.btn--tertiary:hover:enabled {
     background-color: $color-secondary-100;
 }
 
-.btn--tertiary:active {
+.btn--tertiary:active:enabled {
     background-color: $color-secondary-200;
 }
 
