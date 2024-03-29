@@ -3,10 +3,8 @@
 .btn {
     display: flex;
     align-items: center;
+    border-radius: $border-radius-regular;
     cursor: pointer;
-    @each $property, $value in $border-radius-regular {
-        #{$property}: $value;
-    }
 }
 
 .btn:focus {

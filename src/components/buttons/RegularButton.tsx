@@ -3,6 +3,9 @@ import AddIcon from '../../assets/static/icons/icon_add.svg?react';
 import ArrowIcon from '../../assets/static/icons/icon_arrow-forward.svg?react';
 import colorSecondary300 from '../../styles/variables/_colors.module.scss';
 
+// USE CASE
+// <RegularButton text="Button" color="primary" size="large" icon="add" onClick={() => {}} />
+
 interface ButtonProps {
   text: string;
   color: 'primary' | 'secondary' | 'tertiary';
