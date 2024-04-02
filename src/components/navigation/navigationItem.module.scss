@@ -1,0 +1,70 @@
+@import '/src/styles/_tools';
+
+$space-6: 0.6rem;
+$border-radius-navItem: 1.2rem;
+
+
+.list__item {
+    width: 18.1rem; 
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    border-radius: $border-radius-navItem;
+    // laikina spalva kol nepakeista iconos spalva
+    background-color: grey;
+    // background-color: $color-primary-800;
+    color: $color-white;
+    padding: $space-6 $space-XXXS;
+    gap: $space-XXXS;
+    
+    @each $property, $value in $label-S {
+        #{$property}: $value;
+    }
+   
+    transition: 0.4s;
+    
+    &:hover {
+        background-color: $color-primary-600;
+    }
+
+    &:active {
+        background-color: $color-primary-400;
+    }
+     
+    &:focus, &--active {
+        background-color: $color-primary-800;
+        border-color: $color-secondary-400;
+
+
+        border-width: 0.2rem;
+        border-style: solid;
+
+        // :focus takes above hover style
+        // &:hover {
+        //     background-color: $color-primary-600;
+        // }
+    }
+}
+
+.navigation__item__title {
+    display: flex;
+    gap: $space-XXXS;
+    align-items: center;
+
+    @each $property, $value in $label-S {
+        #{$property}: $value;
+    }
+}
+
+span {
+    min-height: 2.8rem;
+    align-content: center;
+}
+
+
+// neveikia iconos spalva, dydis uzsiduoda tiesiogiai img tage, o per scss taipogi neveikia
+.nav_icon{
+    width: 2rem;
+    color: $color-white;
+}

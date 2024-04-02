@@ -1,0 +1,44 @@
+@import '/src/styles/_tools';
+
+$space-10: 1rem;
+$space-14: 1.4rem;
+$border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
+
+.sidebar {
+    height: 97rem;
+    display: flex;
+    position: fixed;
+    left: 0;
+    top:$space-S; 
+    background-color: $color-primary-800;
+    border-radius: $border-radius-sidebar;
+    padding: $space-10;
+    gap: $space-10;
+}
+
+.nav {
+    width: 19.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    gap:  $space-S; 
+}
+
+.nav__logo {
+    cursor: pointer; 
+    padding: $space-14;
+    gap: $space-10;
+}
+
+.nav__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-XXS;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
