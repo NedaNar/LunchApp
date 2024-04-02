@@ -1,9 +1,11 @@
 /* Imports for global variables and styles */
 @import './_tools.scss';
+
 /* stylelint-disable scale-unlimited/declaration-strict-value */
 html {
   font-size: 10px;
 }
+
 /* stylelint-enable scale-unlimited/declaration-strict-value */
 
 body {
@@ -13,4 +15,11 @@ body {
 
 button {
   cursor: pointer;
+}
+
+.positioning {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
