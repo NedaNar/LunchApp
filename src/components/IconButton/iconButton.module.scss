@@ -1,9 +1,5 @@
 @import '../../styles/tools';
 
-.positioning {
-    @include centered-aligned-flexbox
-}
-
 .iconButton {
     padding: $space-XXXXXS;
     border-radius: $border-radius-regular;
@@ -87,10 +83,9 @@
 
 .profile-button {
     padding: 0;
-    gap: 1rem;
     width: 2rem;
     height: 2rem;
   
     border: 0.15rem solid $color-white;
-    border-radius: 6.4rem;
+    border-radius: 50%;
 }

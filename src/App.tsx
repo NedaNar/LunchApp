@@ -4,20 +4,14 @@ import ProfileButton from './components/IconButton/ProfileButton';
 import './styles/index.scss';
 
 export function App() {
+  const handleClick = () => {};
+
   return (
     <div className={styles.container}>
       <h1>Welcome to Sourcery for FrontEnd 2024</h1>
       <p>You can delete all this HTML code and start working on your Lunch App</p>
-      <IconButton
-        type={IconButtonType.ACCENT}
-        size={IconButtonSize.MEDIUM}
-        icon={IconButtonType.ACCENT}
-      />
-      <IconButton
-        type={IconButtonType.ACCENT}
-        size={IconButtonSize.SMALL}
-        icon={IconButtonType.ACCENT}
-      />
+      <IconButton icon={IconButtonType.ACCENT} />
+      <IconButton size={IconButtonSize.SMALL} icon={IconButtonType.ACCENT} />
       <IconButton
         type={IconButtonType.OUTLINED}
         size={IconButtonSize.MEDIUM}
@@ -38,7 +32,7 @@ export function App() {
         size={IconButtonSize.SMALL}
         icon={IconButtonType.TERTIARY}
       />
-      <ProfileButton />
+      <ProfileButton onClick={handleClick} />
     </div>
   );
 }

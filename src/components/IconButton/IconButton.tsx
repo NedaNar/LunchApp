@@ -1,6 +1,3 @@
-/// <reference types="vite-plugin-svgr/client" />
-
-import React from 'react';
 import styles from './iconButton.module.scss';
 import AccentIcon from '../../assets/iconbuttonsvg/AccentIcon.svg?react';
 import OutlinedIcon from '../../assets/iconbuttonsvg/OutlinedIcon.svg?react';
@@ -25,14 +22,13 @@ export interface IconButtonProps {
   onClick?: () => void;
 }
 
-// const IconButton: React.FC<IconButtonProps> = ({ size = IconButtonSize.MEDIUM, type = IconButtonType.ACCENT, icon, disabled, onClick }) =>
-const IconButton: React.FC<IconButtonProps> = function IconButton({
+function IconButton({
   size = IconButtonSize.MEDIUM,
   type = IconButtonType.ACCENT,
   icon,
   disabled,
   onClick,
-}) {
+}: IconButtonProps) {
   const buttonClassName = `${styles.iconButton} ${styles[type]} ${styles[size]} ${disabled ? styles.disabled : ''}`;
 
   const showIcon = (iconType: IconButtonType) => {
@@ -72,15 +68,14 @@ const IconButton: React.FC<IconButtonProps> = function IconButton({
       {showIcon(icon)}
     </button>
   );
-};
+}
 
 export default IconButton;
 
 // Use CASE:
 // import IconButton, { IconButtonSize, IconButtonType } from './components/IconButton/IconButton';
 
-// <IconButton type={IconButtonType.ACCENT} size={IconButtonSize.MEDIUM} icon={IconButtonType.ACCENT} />
-// <IconButton type={IconButtonType.ACCENT} size={IconButtonSize.SMALL} icon={IconButtonType.ACCENT} />
+// <IconButton size={IconButtonSize.SMALL} icon={IconButtonType.ACCENT} />
 // <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.MEDIUM} icon={IconButtonType.OUTLINED} />
 // <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.SMALL} icon={IconButtonType.OUTLINED} />
 // <IconButton type={IconButtonType.TERTIARY} size={IconButtonSize.MEDIUM} icon={IconButtonType.TERTIARY} />
