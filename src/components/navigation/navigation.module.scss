@@ -14,7 +14,67 @@ $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
     border-radius: $border-radius-sidebar;
     padding: $space-10;
     gap: $space-10;
+
+    transition: 0.5s;
+
+    // .accent-button-S
+    &__toggle {
+        position: absolute;
+        top: 50%;
+        left: 85%;
+        transform: translateY(-50%);
+    }
+
+    &--collapsed {
+        width: 7.2rem;
+        display: flex;
+        justify-content: center;
+        gap: $space-XXXXS;
+        
+       
+        .nav{
+            width: 6.3rem; 
+        }
+
+        .nav__logo {
+            cursor: pointer; 
+            padding: $space-10;
+        }
+        .logo{
+            width: 2.5rem
+        }
+
+        .nav__list{
+            flex-direction:column;
+        }
+
+        :global(#list__item) {
+            width: 6rem;
+            display: flex;
+            justify-content: center;
+            padding: 0;            
+        }
+        
+        :global(#navigation__item__title) {
+            display: flex;           
+            flex-direction: column;
+            gap: 0; 
+            padding: 0; 
+            margin: 0;
+            
+        
+            & > span {
+                width: 6rem;            
+                
+                @each $property, $value in $label-XXS {
+                    #{$property}: $value;                    
+                }
+            }
+        }
+    }
+
 }
+
 
 .nav {
     width: 19.4rem;
@@ -29,6 +89,10 @@ $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
     cursor: pointer; 
     padding: $space-14;
     gap: $space-10;
+}
+
+.logo{
+    width: 7.7rem
 }
 
 .nav__list {
