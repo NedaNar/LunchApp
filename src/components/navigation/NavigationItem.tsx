@@ -27,7 +27,7 @@ export default function NavigationItem({ id, name, to }: NavigationItemProps) {
       iconComponent = <img src={icon_grading} alt="Grading Icon" className="nav_icon" />;
       break;
     case 'ratings':
-      iconComponent = <img src={icon_star} alt="Star Icon" className="nav_icon" width={20} />;
+      iconComponent = <img src={icon_star} alt="Star Icon" className="nav_icon" />;
       break;
     default:
       break;

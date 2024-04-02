@@ -1,7 +1,7 @@
 @import '/src/styles/_tools';
 
 $space-6: 0.6rem;
-$border-radius-navItem: 1.2rem;
+$border-radius-navItem-expanded: 1.2rem;
 
 
 .list__item {
@@ -10,7 +10,7 @@ $border-radius-navItem: 1.2rem;
     align-items: center;
     justify-content: flex-start;
     box-sizing: border-box;
-    border-radius: $border-radius-navItem;
+    border-radius: $border-radius-navItem-expanded;
     // laikina spalva kol nepakeista iconos spalva
     background-color: grey;
     // background-color: $color-primary-800;
@@ -25,7 +25,13 @@ $border-radius-navItem: 1.2rem;
     transition: 0.4s;
     
     &:hover {
-        background-color: $color-primary-600;
+        // background-color: $color-primary-600;
+        
+        // laikina spalva ir remelis greitai vizualzacijai
+        background-color: $color-primary-800;
+        border-color: $color-secondary-400;
+        border-width: 0.2rem;
+        border-style: solid;
     }
 
     &:active {
@@ -35,12 +41,10 @@ $border-radius-navItem: 1.2rem;
     &:focus, &--active {
         background-color: $color-primary-800;
         border-color: $color-secondary-400;
-
-
         border-width: 0.2rem;
         border-style: solid;
 
-        // :focus takes above hover style
+        // :focus takes above hover style, should I delete these lines?
         // &:hover {
         //     background-color: $color-primary-600;
         // }
@@ -59,11 +63,11 @@ $border-radius-navItem: 1.2rem;
 
 span {
     min-height: 2.8rem;
-    align-content: center;
+    align-content: center;  
 }
 
 
-// neveikia iconos spalva, dydis uzsiduoda tiesiogiai img tage, o per scss taipogi neveikia
+// neveikia iconos spalva
 .nav_icon{
     width: 2rem;
     color: $color-white;

@@ -12,7 +12,7 @@ export default function Navigation() {
         type="button"
         className={styles.sidebar__toggle}
         onClick={() => setCollapsed((left) => !left)}>
-        {`${collapsed ? 'to right' : 'to left'}`}
+        {`${collapsed ? '->' : '<-'}`}
       </button>
 
       <nav className={styles.nav}>

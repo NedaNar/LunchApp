@@ -3,6 +3,7 @@
 $space-10: 1rem;
 $space-14: 1.4rem;
 $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
+$border-radius-navItem-collapsed: 0.5rem;
 
 .sidebar {
     height: 97rem;
@@ -21,7 +22,7 @@ $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
     &__toggle {
         position: absolute;
         top: 50%;
-        left: 85%;
+        right:-1.3rem;
         transform: translateY(-50%);
     }
 
@@ -52,7 +53,8 @@ $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
             width: 6rem;
             display: flex;
             justify-content: center;
-            padding: 0;            
+            padding: 0;
+            border-radius: $border-radius-navItem-collapsed;          
         }
         
         :global(#navigation__item__title) {
@@ -62,12 +64,12 @@ $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
             padding: 0; 
             margin: 0;
             
-        
             & > span {
-                width: 6rem;            
+                width: 6rem;  
+                min-height: 1.7rem;         
                 
                 @each $property, $value in $label-XXS {
-                    #{$property}: $value;                    
+                    #{$property}: $value;                     
                 }
             }
         }
