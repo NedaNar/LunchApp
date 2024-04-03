@@ -68,7 +68,7 @@ span {
 
 
 // neveikia iconos spalva
-.nav_icon{
+:global(.nav_icon){
     width: 2rem;
     color: $color-white;
 }
