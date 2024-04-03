@@ -1,5 +1,9 @@
 import styles from './App.module.scss';
-import IconButton, { IconButtonSize, IconButtonType } from './components/IconButton/IconButton';
+import IconButton, {
+  IconButtonSize,
+  IconButtonType,
+  IconButtonIcon,
+} from './components/IconButton/IconButton';
 import ProfileButton from './components/IconButton/ProfileButton';
 import './styles/index.scss';
 
@@ -10,27 +14,27 @@ export function App() {
     <div className={styles.container}>
       <h1>Welcome to Sourcery for FrontEnd 2024</h1>
       <p>You can delete all this HTML code and start working on your Lunch App</p>
-      <IconButton icon={IconButtonType.ACCENT} />
-      <IconButton size={IconButtonSize.SMALL} icon={IconButtonType.ACCENT} />
+      <IconButton />
+      <IconButton size={IconButtonSize.SMALL} />
       <IconButton
         type={IconButtonType.OUTLINED}
         size={IconButtonSize.MEDIUM}
-        icon={IconButtonType.OUTLINED}
+        icon={IconButtonIcon.LOOP}
       />
       <IconButton
         type={IconButtonType.OUTLINED}
         size={IconButtonSize.SMALL}
-        icon={IconButtonType.OUTLINED}
+        icon={IconButtonIcon.LOOP}
       />
       <IconButton
         type={IconButtonType.TERTIARY}
         size={IconButtonSize.MEDIUM}
-        icon={IconButtonType.TERTIARY}
+        icon={IconButtonIcon.CLOSE}
       />
       <IconButton
         type={IconButtonType.TERTIARY}
         size={IconButtonSize.SMALL}
-        icon={IconButtonType.TERTIARY}
+        icon={IconButtonIcon.CLOSE}
       />
       <ProfileButton onClick={handleClick} />
     </div>

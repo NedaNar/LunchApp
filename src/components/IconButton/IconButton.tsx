@@ -14,10 +14,16 @@ export enum IconButtonType {
   TERTIARY = 'tertiary',
 }
 
+export enum IconButtonIcon {
+  ARROW,
+  LOOP,
+  CLOSE,
+}
+
 export interface IconButtonProps {
   size?: IconButtonSize;
   type?: IconButtonType;
-  icon: IconButtonType;
+  icon?: IconButtonIcon;
   disabled?: boolean;
   onClick?: () => void;
 }
@@ -25,29 +31,29 @@ export interface IconButtonProps {
 function IconButton({
   size = IconButtonSize.MEDIUM,
   type = IconButtonType.ACCENT,
-  icon,
+  icon = IconButtonIcon.ARROW,
   disabled,
   onClick,
 }: IconButtonProps) {
   const buttonClassName = `${styles.iconButton} ${styles[type]} ${styles[size]} ${disabled ? styles.disabled : ''}`;
 
-  const showIcon = (iconType: IconButtonType) => {
+  const showIcon = (iconType: IconButtonIcon) => {
     switch (iconType) {
-      case IconButtonType.ACCENT:
+      case IconButtonIcon.ARROW:
         return (
           <AccentIcon
             width={size === IconButtonSize.MEDIUM ? 8 : 6}
             height={size === IconButtonSize.MEDIUM ? 12 : 10}
           />
         );
-      case IconButtonType.OUTLINED:
+      case IconButtonIcon.LOOP:
         return (
           <OutlinedIcon
             width={size === IconButtonSize.MEDIUM ? 22 : 18}
             height={size === IconButtonSize.MEDIUM ? 16 : 12}
           />
         );
-      case IconButtonType.TERTIARY:
+      case IconButtonIcon.CLOSE:
         return (
           <TertiaryIcon
             width={size === IconButtonSize.MEDIUM ? 14 : 12}
@@ -73,10 +79,12 @@ function IconButton({
 export default IconButton;
 
 // Use CASE:
-// import IconButton, { IconButtonSize, IconButtonType } from './components/IconButton/IconButton';
+// import IconButton, { IconButtonSize, IconButtonType, IconButtonIcon } from './components/IconButton/IconButton';
 
-// <IconButton size={IconButtonSize.SMALL} icon={IconButtonType.ACCENT} />
-// <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.MEDIUM} icon={IconButtonType.OUTLINED} />
-// <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.SMALL} icon={IconButtonType.OUTLINED} />
-// <IconButton type={IconButtonType.TERTIARY} size={IconButtonSize.MEDIUM} icon={IconButtonType.TERTIARY} />
-// <IconButton type={IconButtonType.TERTIARY} size={IconButtonSize.SMALL} icon={IconButtonType.TERTIARY} />
+// <IconButton />
+// <IconButton disabled />
+// <IconButton size={IconButtonSize.SMALL} />
+// <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.MEDIUM} icon={IconButtonIcon.LOOP} />
+// <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.SMALL} icon={IconButtonIcon.LOOP} />
+// <IconButton type={IconButtonType.TERTIARY} size={IconButtonSize.MEDIUM} icon={IconButtonIcon.CLOSE} />
+// <IconButton type={IconButtonType.TERTIARY} size={IconButtonSize.SMALL} icon={IconButtonIcon.CLOSE} />
