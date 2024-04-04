@@ -3,7 +3,7 @@ import AddIcon from '../../assets/static/icons/icon_add.svg?react';
 import ArrowIcon from '../../assets/static/icons/icon_arrow-forward.svg?react';
 
 // USE CASE
-// import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from './components/buttons/Button';
+// import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from './components/RegularButton/Button';
 // <Button
 //   text="Click me"
 //   appearance={ButtonAppearance.PRIMARY}
