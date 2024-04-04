@@ -16,21 +16,13 @@ export function App() {
       <p>You can delete all this HTML code and start working on your Lunch App</p>
       <IconButton />
       <IconButton size={IconButtonSize.SMALL} />
-      <IconButton
-        type={IconButtonType.OUTLINED}
-        size={IconButtonSize.MEDIUM}
-        icon={IconButtonIcon.LOOP}
-      />
+      <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.LOOP} />
       <IconButton
         type={IconButtonType.OUTLINED}
         size={IconButtonSize.SMALL}
         icon={IconButtonIcon.LOOP}
       />
-      <IconButton
-        type={IconButtonType.TERTIARY}
-        size={IconButtonSize.MEDIUM}
-        icon={IconButtonIcon.CLOSE}
-      />
+      <IconButton type={IconButtonType.TERTIARY} icon={IconButtonIcon.CLOSE} />
       <IconButton
         type={IconButtonType.TERTIARY}
         size={IconButtonSize.SMALL}

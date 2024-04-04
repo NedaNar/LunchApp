@@ -1,7 +1,7 @@
 import styles from './iconButton.module.scss';
-import AccentIcon from '../../assets/iconbuttonsvg/AccentIcon.svg?react';
-import OutlinedIcon from '../../assets/iconbuttonsvg/OutlinedIcon.svg?react';
-import TertiaryIcon from '../../assets/iconbuttonsvg/TertiaryIcon.svg?react';
+import ArrowIcon from '../../assets/iconbuttonsvg/ArrowIcon.svg?react';
+import LoopIcon from '../../assets/iconbuttonsvg/LoopIcon.svg?react';
+import CloseIcon from '../../assets/iconbuttonsvg/CloseIcon.svg?react';
 
 export enum IconButtonSize {
   SMALL = 'small',
@@ -41,21 +41,21 @@ function IconButton({
     switch (iconType) {
       case IconButtonIcon.ARROW:
         return (
-          <AccentIcon
+          <ArrowIcon
             width={size === IconButtonSize.MEDIUM ? 8 : 6}
             height={size === IconButtonSize.MEDIUM ? 12 : 10}
           />
         );
       case IconButtonIcon.LOOP:
         return (
-          <OutlinedIcon
+          <LoopIcon
             width={size === IconButtonSize.MEDIUM ? 22 : 18}
             height={size === IconButtonSize.MEDIUM ? 16 : 12}
           />
         );
       case IconButtonIcon.CLOSE:
         return (
-          <TertiaryIcon
+          <CloseIcon
             width={size === IconButtonSize.MEDIUM ? 14 : 12}
             height={size === IconButtonSize.MEDIUM ? 14 : 12}
           />
@@ -68,7 +68,7 @@ function IconButton({
   return (
     <button
       type="button"
-      className={`positioning ${buttonClassName}`}
+      className={`centered-flexbox ${buttonClassName}`}
       onClick={onClick}
       disabled={disabled}>
       {showIcon(icon)}
@@ -84,7 +84,7 @@ export default IconButton;
 // <IconButton />
 // <IconButton disabled />
 // <IconButton size={IconButtonSize.SMALL} />
-// <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.MEDIUM} icon={IconButtonIcon.LOOP} />
+// <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.LOOP} />
 // <IconButton type={IconButtonType.OUTLINED} size={IconButtonSize.SMALL} icon={IconButtonIcon.LOOP} />
-// <IconButton type={IconButtonType.TERTIARY} size={IconButtonSize.MEDIUM} icon={IconButtonIcon.CLOSE} />
+// <IconButton type={IconButtonType.TERTIARY} icon={IconButtonIcon.CLOSE} />
 // <IconButton type={IconButtonType.TERTIARY} size={IconButtonSize.SMALL} icon={IconButtonIcon.CLOSE} />
