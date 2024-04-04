@@ -1,0 +1,90 @@
+@import '../../styles/tools';
+
+.iconButton {
+    padding: $space-XXXXXS;
+    border-radius: $border-radius-regular;
+    border: none;
+
+    &.accent {
+        background-color: $color-secondary-400;
+        color: $color-white;
+
+        &:hover:not(:disabled) {
+            background-color: $color-secondary-600;
+        }
+      
+        &:active:not(:disabled) {
+            background-color: $color-secondary-300;
+        }
+      
+        &:focus:not(:disabled) {
+            background-color: $color-secondary-400;
+            border: 0.2rem solid $color-purple-500;
+        }
+      
+        &:disabled {
+            opacity: 0.4;
+        }
+    }
+
+    &.outlined {
+        border: 0.1rem solid $color-secondary-300;
+        background-color: $color-white;
+
+        &:hover:not(:disabled) {
+            background-color: $color-secondary-100;
+        }
+    
+        &:active:not(:disabled) {
+            background-color: $color-secondary-200;
+        }
+    
+        &:focus:not(:disabled) {
+            background-color: $color-white;
+            border: 0.2rem solid $color-purple-500;
+        }
+    
+        &:disabled {
+            opacity: 0.4;
+        }
+    }
+
+    &.tertiary {
+        background-color: $color-white;
+
+        &:hover:not(:disabled) {
+            background-color: rgba(255, 127, 15, 0.1);
+        }
+        
+        &:active:not(:disabled) {
+            background-color: rgba(255, 127, 15, 0.2);
+        }
+        
+        &:focus:not(:disabled) {
+            background-color: $color-white;
+            border: 0.2rem solid $color-purple-500;
+        }
+        
+        &:disabled {
+            opacity: 0.4;
+        }
+    }
+
+    &.small {
+        width: 2.6rem;
+        height: 2.6rem;   
+    }
+
+    &.medium {
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+}
+
+.profile-button {
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    border: 0.15rem solid $color-white;
+    border-radius: 50%;
+}
