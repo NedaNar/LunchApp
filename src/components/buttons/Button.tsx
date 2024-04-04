@@ -54,9 +54,9 @@ function Button({
       type="button"
       className={`${styles.btn} ${styles[appearance]} ${styles[size]} ${styles[icon]}`}
       disabled={disabled}>
-      {icon === ButtonIcon.ADD && <AddIcon />}
-      <span>{text}</span>
-      {icon === ButtonIcon.ARROW && <ArrowIcon />}
+      {icon === ButtonIcon.ADD && <AddIcon className={styles.icon} />}
+      <span className={styles.text}>{text}</span>
+      {icon === ButtonIcon.ARROW && <ArrowIcon className={styles.icon} />}
     </button>
   );
 }
