@@ -26,7 +26,8 @@
     ".eslintrc.cjs",
     "./jest.config.cjs",
     "./jest.setup.js",
-    "./postcss.config.cjs"
+    "./postcss.config.cjs",
+    "vite.config.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
