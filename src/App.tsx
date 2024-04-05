@@ -6,6 +6,7 @@ import IconButton, {
 } from './components/IconButton/IconButton';
 import ProfileButton from './components/IconButton/ProfileButton';
 import './styles/index.scss';
+import UserProfile from './components/UserProfile/UserProfile';
 
 export function App() {
   const handleClick = () => {};
@@ -29,6 +30,7 @@ export function App() {
         icon={IconButtonIcon.CLOSE}
       />
       <ProfileButton onClick={handleClick} />
+      <UserProfile/>
     </div>
   );
 }
