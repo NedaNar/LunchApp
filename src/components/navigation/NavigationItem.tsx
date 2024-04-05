@@ -1,33 +1,31 @@
-// import React from 'react';
 import styles from './navigationItem.module.scss';
-import icon_menu from '../../assets/static/icons/icon_menu.svg';
-import icon_restaurant from '../../assets/static/icons/icon_restaurant.svg';
-import icon_grading from '../../assets/static/icons/icon_grading.svg';
-import icon_star from '../../assets/static/icons/icon_star.svg';
+import IconMenu from '../../assets/static/icons/icon_menu.svg?react';
+import IconRestaurant from '../../assets/static/icons/icon_restaurant.svg?react';
+import IconGrading from '../../assets/static/icons/icon_grading.svg?react';
+import IconStar from '../../assets/static/icons/icon_star.svg?react';
 
 interface NavigationItemProps {
-  id: 'menu' | 'lunch' | 'orders' | 'ratings';
-  // icon?: 'icon_menu' | 'icon_restaurant' | 'icon_grading' | 'icon_star';
   name: string;
   to: string;
+  id: 'menu' | 'lunch' | 'orders' | 'ratings';
 }
 
-export default function NavigationItem({ id, name, to }: NavigationItemProps) {
-  const active = to === '/';
-  let iconComponent: JSX.Element | null = null;
+export default function NavigationItem({ name, to, id }: NavigationItemProps) {
+  const selected = to === '/';
+  let Icon: JSX.Element | null = null;
 
   switch (id) {
     case 'menu':
-      iconComponent = <img src={icon_menu} alt="Menu Icon" className="nav_icon" />;
+      Icon = <IconMenu title="icon" />;
       break;
     case 'lunch':
-      iconComponent = <img src={icon_restaurant} alt="Restaurant Icon" className="nav_icon" />;
+      Icon = <IconRestaurant title="icon" />;
       break;
     case 'orders':
-      iconComponent = <img src={icon_grading} alt="Grading Icon" className="nav_icon" />;
+      Icon = <IconGrading title="icon" />;
       break;
     case 'ratings':
-      iconComponent = <img src={icon_star} alt="Star Icon" className="nav_icon" />;
+      Icon = <IconStar title="icon" />;
       break;
     default:
       break;
@@ -35,10 +33,10 @@ export default function NavigationItem({ id, name, to }: NavigationItemProps) {
 
   return (
     <div
-      id="list__item"
-      className={`${styles.list__item} ${active ? styles['list__item--active'] : ''}`}>
-      <div id="navigation__item__title" className={styles.navigation__item__title}>
-        {iconComponent}
+      id="navItem__component"
+      className={`${styles.navItem__component} ${selected ? styles['navItem__component--selected'] : ''}`}>
+      <div id="navItem__component__title" className={styles.navItem__component__title}>
+        {Icon}
         <span>{name}</span>
       </div>
     </div>

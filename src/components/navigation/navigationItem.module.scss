@@ -3,72 +3,54 @@
 $space-6: 0.6rem;
 $border-radius-navItem-expanded: 1.2rem;
 
+.navItem__component {
+  width: 18.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border-radius: $border-radius-navItem-expanded;
+  background-color: $color-primary-800;
+  color: $color-white;
+  padding: $space-6 $space-XXXS;
+  gap: $space-XXXS;
 
-.list__item {
-    width: 18.1rem; 
-    display:flex;
-    align-items: center;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    border-radius: $border-radius-navItem-expanded;
-    // laikina spalva kol nepakeista iconos spalva
-    background-color: grey;
-    // background-color: $color-primary-800;
-    color: $color-white;
-    padding: $space-6 $space-XXXS;
-    gap: $space-XXXS;
-    
-    @each $property, $value in $label-S {
-        #{$property}: $value;
-    }
-   
-    transition: 0.4s;
-    
-    &:hover {
-        // background-color: $color-primary-600;
-        
-        // laikina spalva ir remelis greitai vizualzacijai
-        background-color: $color-primary-800;
-        border-color: $color-secondary-400;
-        border-width: 0.2rem;
-        border-style: solid;
-    }
+  &:hover {
+    background-color: $color-primary-600;
+  }
 
-    &:active {
-        background-color: $color-primary-400;
-    }
-     
-    &:focus, &--active {
-        background-color: $color-primary-800;
-        border-color: $color-secondary-400;
-        border-width: 0.2rem;
-        border-style: solid;
+  &:active {
+    background-color: $color-primary-400;
+  }
 
-        // :focus takes above hover style, should I delete these lines?
-        // &:hover {
-        //     background-color: $color-primary-600;
-        // }
-    }
+  &:focus,
+  &--selected {
+    background-color: $color-primary-800;
+    border-color: $color-secondary-400;
+    border-width: 0.2rem;
+    border-style: solid;
+  }
 }
 
-.navigation__item__title {
-    display: flex;
-    gap: $space-XXXS;
-    align-items: center;
+.navItem__component__title {
+  display: flex;
+  gap: $space-XXXS;
+  align-items: center;
 
-    @each $property, $value in $label-S {
-        #{$property}: $value;
+  @each $property, $value in $label-S {
+    #{$property}: $value;
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    path {
+      fill: $color-white;
     }
+  }
 }
 
 span {
-    min-height: 2.8rem;
-    align-content: center;  
-}
-
-
-// neveikia iconos spalva
-:global(.nav_icon){
-    width: 2rem;
-    color: $color-white;
+  min-height: 2.8rem;
+  align-content: center;
 }

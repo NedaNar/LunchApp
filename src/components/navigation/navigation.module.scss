@@ -6,98 +6,35 @@ $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
 $border-radius-navItem-collapsed: 0.5rem;
 
 .sidebar {
-    height: 97rem;
-    display: flex;
-    position: fixed;
-    left: 0;
-    top:$space-S; 
-    background-color: $color-primary-800;
-    border-radius: $border-radius-sidebar;
-    padding: $space-10;
-    gap: $space-10;
+  height: 97rem;
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: $space-S;
+  background-color: $color-primary-800;
+  border-radius: $border-radius-sidebar;
+  padding: $space-10;
+  gap: $space-10;
 
-    transition: 0.5s;
-
-    // .accent-button-S
-    &__toggle {
-        position: absolute;
-        top: 50%;
-        right:-1.3rem;
-        transform: translateY(-50%);
-    }
-
-    &--collapsed {
-        width: 7.2rem;
-        display: flex;
-        justify-content: center;
-        gap: $space-XXXXS;
-        
-       
-        .nav{
-            width: 6.3rem; 
-        }
-
-        .nav__logo {
-            cursor: pointer; 
-            padding: $space-10;
-        }
-        .logo{
-            width: 2.5rem
-        }
-
-        .nav__list{
-            flex-direction:column;
-        }
-
-        :global(#list__item) {
-            width: 6rem;
-            display: flex;
-            justify-content: center;
-            padding: 0;
-            border-radius: $border-radius-navItem-collapsed;          
-        }
-        
-        :global(#navigation__item__title) {
-            display: flex;           
-            flex-direction: column;
-            gap: 0; 
-            padding: 0; 
-            margin: 0;
-            
-            & > span {
-                width: 6rem;  
-                min-height: 1.7rem;         
-                
-                @each $property, $value in $label-XXS {
-                    #{$property}: $value;                     
-                }
-            }
-        }
-    }
-
-}
-
-
-.nav {
+  .nav {
+    transition: 0.8s;
     width: 19.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    gap:  $space-S; 
-}
-
-.nav__logo {
-    cursor: pointer; 
+    gap: $space-S;
+  }
+  .nav__logo {
+    cursor: pointer;
     padding: $space-14;
     gap: $space-10;
-}
-
-.logo{
-    width: 7.7rem
-}
-
-.nav__list {
+  }
+  .logo {
+    width: 7.7rem;
+    height: 3.8rem;
+  }
+  .nav__list {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,6 +42,56 @@ $border-radius-navItem-collapsed: 0.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+
+  // button"toggle" pakeisti į  .accent-button-S
+  &__toggle {
+    position: absolute;
+    top: 50%;
+    right: -1.3rem;
+    transform: translateY(-50%);
+  }
+
+  &--collapsed {
+    width: 7.2rem;
+    display: flex;
+    justify-content: center;
+    gap: $space-XXXXS;
+
+    .nav {
+      width: 6.3rem;
+    }
+    .logo {
+      width: 2.52rem;
+      height: 4.78rem;
+    }
+    .nav__list {
+      flex-direction: column;
+    }
+
+    :global(#navItem__component) {
+      width: 6rem;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      border-radius: $border-radius-navItem-collapsed;
+    }
+
+    :global(#navItem__component__title) {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      margin: 0;
+
+      & > span {
+        width: 6rem;
+        min-height: 1.7rem;
+
+        @each $property, $value in $label-XXS {
+          #{$property}: $value;
+        }
+      }
+    }
+  }
 }
-
-

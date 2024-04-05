@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './navigation.module.scss';
 import NavigationItem from './NavigationItem';
-import logo_horizontal from '../../assets/static/logo/logo_horizontal.svg';
-import logo_vertical from '../../assets/static/logo/logo_vertical.svg';
+import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
+import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 
 export default function Navigation() {
   const [collapsed, setCollapsed] = useState(true);
@@ -11,30 +11,30 @@ export default function Navigation() {
       <button
         type="button"
         className={styles.sidebar__toggle}
-        onClick={() => setCollapsed((left) => !left)}>
+        onClick={() => setCollapsed((old) => !old)}>
         {`${collapsed ? '->' : '<-'}`}
       </button>
 
       <nav className={styles.nav}>
         <div className={styles.nav__logo}>
-          <img
-            src={collapsed ? logo_vertical : logo_horizontal}
-            alt="Logo"
-            className={styles.logo}
-          />
+          {collapsed ? (
+            <LogoVertical className={styles.logo} title="Logo" />
+          ) : (
+            <LogoHorizontal className={styles.logo} title="Logo" />
+          )}
         </div>
         <ul className={styles.nav__list}>
-          <li className={styles.nav__item}>
-            <NavigationItem id="menu" name="Food Menu" to="#" />
+          <li>
+            <NavigationItem id="menu" name="Food Menu" to="/menu" />
           </li>
-          <li className={styles.nav__item}>
-            <NavigationItem id="lunch" name="Available Lunch" to="#" />
+          <li>
+            <NavigationItem id="lunch" name="Available Lunch" to="/lunch" />
           </li>
-          <li className={styles.nav__item}>
-            <NavigationItem id="orders" name="Your Orders" to="#" />
+          <li>
+            <NavigationItem id="orders" name="Your Orders" to="/orders" />
           </li>
-          <li className={styles.nav__item}>
-            <NavigationItem id="ratings" name="Ratings" to="#" />
+          <li>
+            <NavigationItem id="ratings" name="Ratings" to="/ratings" />
           </li>
         </ul>
       </nav>
