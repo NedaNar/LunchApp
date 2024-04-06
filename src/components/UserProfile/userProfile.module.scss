@@ -4,10 +4,10 @@
     width: 28.3rem;
     height: 11.2rem;
     padding: 1.6rem;
-    gap:1,6rem;
+    gap: 1.6rem;
     margin-top: 2.4rem;
     background-color: $color-white;
-    border:$color-grey-100 0.05rem;
+    border: $color-grey-100 0.05rem;
     box-shadow: $box-shadow-m;
     border-bottom-left-radius: $border-radius-regular;
     border-top-left-radius: $border-radius-regular;
@@ -17,15 +17,65 @@
 }
 
 .profileSection {
-    display:flex;
-    gap:1.2rem;
+    position: relative;
+    display: flex;
+    gap: 1.2rem;
     flex-direction: row;
+    @each $property, $value in $title-S {
+        #{$property}: $value;
+    }
+
+    button{
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    img{
+        height: 3.2rem;
+        width: 3.2rem;
+    }
 }
+
 
 .balanceSection {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     gap: 1rem;
+    @each $property, $value in $title-S {
+        #{$property}: $value;
+    }
+}
+.line {
+    width: 3.2rem;
+    height: 0.1rem; 
+    transform: rotate(-90deg);
+    background-color: $color-grey-100; 
 }
 
+
+.cartOrders{
+    position: relative;
+
+   
+
+    .circle {
+        position: absolute;
+        top: 0.9rem;
+        left: 2rem;
+        background-color: $color-red-500;
+        @each $property, $value in $label-XS {
+            #{$property}: $value;
+        }
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+        border: 0.15rem solid $color-white;
+        border-radius: 50%;
+        text-align: center;
+        color: $color-white;
+        line-height: 20px;
+    }
+}

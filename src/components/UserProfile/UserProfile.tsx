@@ -1,30 +1,29 @@
 import styles from "./userProfile.module.scss";
 import ProfileButton from "../IconButton/ProfileButton";
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
-import { useEffect, useState } from "react";
-
+import db from "../../../data/db.json";
 
 const UserProfile = () => {
-
-
-    // const [data,setData] = useState(null);
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
-
-    // useEffect = () => { }
+    const { name, surname, balance, img, orders } = db.user;
+    const orderCount = orders.length;
 
     const handleClick = () => { }
 
     return (
         <div className={styles.userProfile}>
             <div className={styles.profileSection}>
-                <ProfileButton onClick={handleClick}/>
-                <p className={styles.username}>Ernestas Grabliauskas</p>
+            <img src={img} alt="User Avatar" />
+                <ProfileButton onClick={handleClick} className={styles.profileButton} />
+                <p className={styles.username}>{name} {surname}</p>
             </div>
             <div className={styles.balanceSection}>
                 <h2>Balance</h2>
-                <h2>€64,32</h2>
-            <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.CART} />
+                <h2>€{balance}</h2>
+                <div className={styles.line}></div>
+                <div className={styles.cartOrders}>
+                    <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.CART} />
+                    <p className={styles.circle}> {orderCount}</p>
+                </div>
             </div>
         </div>
     )
