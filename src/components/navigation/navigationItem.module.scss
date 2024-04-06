@@ -26,9 +26,9 @@ $border-radius-navItem-expanded: 1.2rem;
   &:focus,
   &--selected {
     background-color: $color-primary-800;
-    border-color: $color-secondary-400;
-    border-width: 0.2rem;
-    border-style: solid;
+    outline-color: $color-secondary-400;
+    outline-width: 0.2rem;
+    outline-style: solid;
   }
 }
 
@@ -48,9 +48,9 @@ $border-radius-navItem-expanded: 1.2rem;
       fill: $color-white;
     }
   }
-}
 
-span {
-  min-height: 2.8rem;
-  align-content: center;
+  span {
+    min-height: 2.8rem;
+    align-content: center;
+  }
 }

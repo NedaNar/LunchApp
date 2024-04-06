@@ -7,7 +7,8 @@ import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 export default function Navigation() {
   const [collapsed, setCollapsed] = useState(true);
   return (
-    <aside className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : ''}`}>
+    <aside
+      className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : styles['sidebar--expanded']}`}>
       <button
         type="button"
         className={styles.sidebar__toggle}

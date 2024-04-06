@@ -1,9 +1,11 @@
 @import '/src/styles/_tools';
 
+$space-5: 0.5rem;
 $space-10: 1rem;
 $space-14: 1.4rem;
 $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
 $border-radius-navItem-collapsed: 0.5rem;
+$transition-sidebar: 0.2s;
 
 .sidebar {
   height: 97rem;
@@ -13,11 +15,12 @@ $border-radius-navItem-collapsed: 0.5rem;
   top: $space-S;
   background-color: $color-primary-800;
   border-radius: $border-radius-sidebar;
+  box-sizing: border-box;
   padding: $space-10;
   gap: $space-10;
 
   .nav {
-    transition: 0.8s;
+    transition: $transition-sidebar;
     width: 19.4rem;
     display: flex;
     flex-direction: column;
@@ -25,15 +28,18 @@ $border-radius-navItem-collapsed: 0.5rem;
     box-sizing: border-box;
     gap: $space-S;
   }
+
   .nav__logo {
     cursor: pointer;
     padding: $space-14;
     gap: $space-10;
   }
+
   .logo {
     width: 7.7rem;
     height: 3.8rem;
   }
+
   .nav__list {
     display: flex;
     flex-direction: column;
@@ -52,19 +58,30 @@ $border-radius-navItem-collapsed: 0.5rem;
     transform: translateY(-50%);
   }
 
+  &--expanded {
+    :global(#navItem__component) {
+      transition: $transition-sidebar;
+    }
+  }
+
   &--collapsed {
-    width: 7.2rem;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
     gap: $space-XXXXS;
+    padding: $space-5;
+    padding-top: $space-10;
 
     .nav {
+      transition: $transition-sidebar;
       width: 6.3rem;
     }
+
     .logo {
       width: 2.52rem;
       height: 4.78rem;
     }
+
     .nav__list {
       flex-direction: column;
     }
