@@ -1,5 +1,6 @@
+import styles from './App.module.scss';
 import Navigation from './components/navigation/Navigation';
-import styles from './App.module.css';
+import './styles/index.scss';
 
 export function App() {
   return (

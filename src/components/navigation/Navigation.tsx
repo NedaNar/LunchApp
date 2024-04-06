@@ -3,18 +3,21 @@ import styles from './navigation.module.scss';
 import NavigationItem from './NavigationItem';
 import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
 import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
+import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
 
 export default function Navigation() {
   const [collapsed, setCollapsed] = useState(true);
   return (
     <aside
       className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : styles['sidebar--expanded']}`}>
-      <button
-        type="button"
-        className={styles.sidebar__toggle}
-        onClick={() => setCollapsed((old) => !old)}>
-        {`${collapsed ? '->' : '<-'}`}
-      </button>
+      <div
+        className={`${styles.sidebar__toggle} ${collapsed ? styles['sidebar__toggle--collapsed'] : styles['sidebar__toggle--expanded']}`}>
+        <IconButton
+          onClick={() => setCollapsed((old) => !old)}
+          size={IconButtonSize.SMALL}
+          type={IconButtonType.ACCENT}
+        />
+      </div>
 
       <nav className={styles.nav}>
         <div className={styles.nav__logo}>

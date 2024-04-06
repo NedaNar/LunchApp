@@ -5,7 +5,7 @@ $space-10: 1rem;
 $space-14: 1.4rem;
 $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
 $border-radius-navItem-collapsed: 0.5rem;
-$transition-sidebar: 0.2s;
+$transition-s: 0.5s;
 
 .sidebar {
   height: 97rem;
@@ -20,7 +20,7 @@ $transition-sidebar: 0.2s;
   gap: $space-10;
 
   .nav {
-    transition: $transition-sidebar;
+    transition: $transition-s;
     width: 19.4rem;
     display: flex;
     flex-direction: column;
@@ -50,17 +50,29 @@ $transition-sidebar: 0.2s;
     margin: 0;
   }
 
-  // button"toggle" pakeisti į  .accent-button-S
-  &__toggle {
-    position: absolute;
-    top: 50%;
-    right: -1.3rem;
-    transform: translateY(-50%);
-  }
-
   &--expanded {
     :global(#navItem__component) {
-      transition: $transition-sidebar;
+      transition: $transition-s;
+    }
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 51%;
+    right: -1.3rem;
+    transform: translateY(-50%);
+
+    button {
+      border-color: $color-white;
+      border-width: 0.2rem;
+      border-style: solid;
+    }
+    &--collapsed > button > svg {
+      transition: $transition-s;
+      transform: rotate(180deg);
+    }
+    &--expanded > button > svg {
+      transition: $transition-s;
     }
   }
 
@@ -73,7 +85,7 @@ $transition-sidebar: 0.2s;
     padding-top: $space-10;
 
     .nav {
-      transition: $transition-sidebar;
+      transition: $transition-s;
       width: 6.3rem;
     }
 

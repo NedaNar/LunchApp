@@ -12,6 +12,9 @@ interface NavigationItemProps {
 
 export default function NavigationItem({ name, to, id }: NavigationItemProps) {
   const selected = to === '/';
+  // 16 row is for visual style test (need to comment 14row)
+  // const selected = true;
+
   let Icon: JSX.Element | null = null;
 
   switch (id) {
