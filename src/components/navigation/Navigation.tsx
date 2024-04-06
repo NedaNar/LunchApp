@@ -22,9 +22,9 @@ export default function Navigation() {
       <nav className={styles.nav}>
         <div className={styles.nav__logo}>
           {collapsed ? (
-            <LogoVertical className={styles.logo} title="Logo" />
+            <LogoVertical className={styles.logo} title="logo" />
           ) : (
-            <LogoHorizontal className={styles.logo} title="Logo" />
+            <LogoHorizontal className={styles.logo} title="logo" />
           )}
         </div>
         <ul className={styles.nav__list}>
