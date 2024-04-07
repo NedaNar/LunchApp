@@ -4,7 +4,7 @@
     width: 28.3rem;
     height: 11.2rem;
     padding: 1.6rem;
-    gap: 1.6rem;
+    gap: $space-XXS;
     margin-top: 2.4rem;
     background-color: $color-white;
     border: $color-grey-100 0.05rem;
@@ -19,8 +19,7 @@
 .profileSection {
     position: relative;
     display: flex;
-    gap: 1.2rem;
-    flex-direction: row;
+    gap: $space-XXXS;
     @each $property, $value in $title-S {
         #{$property}: $value;
     }
@@ -43,8 +42,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    @each $property, $value in $title-S {
+    margin-top: -4rem;
+    margin-bottom: -2rem;
+    @each $property, $value in $title-M {
         #{$property}: $value;
     }
 }
@@ -58,8 +58,6 @@
 
 .cartOrders{
     position: relative;
-
-   
 
     .circle {
         position: absolute;

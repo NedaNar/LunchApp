@@ -13,7 +13,7 @@ export function App() {
 
   return (
     <div className={styles.container}>
-      <h1>Welcome to Sourcery for FrontEnd 2024</h1>
+      {/* <h1>Welcome to Sourcery for FrontEnd 2024</h1>
       <p>You can delete all this HTML code and start working on your Lunch App</p>
       <IconButton />
       <IconButton size={IconButtonSize.SMALL} />
@@ -28,8 +28,8 @@ export function App() {
         type={IconButtonType.TERTIARY}
         size={IconButtonSize.SMALL}
         icon={IconButtonIcon.CLOSE}
-      />
-      <ProfileButton onClick={handleClick} />
+      /> */}
+      {/* <ProfileButton onClick={handleClick} /> */}
       <UserProfile/>
     </div>
   );

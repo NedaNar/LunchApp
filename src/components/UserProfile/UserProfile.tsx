@@ -17,8 +17,8 @@ const UserProfile = () => {
                 <p className={styles.username}>{name} {surname}</p>
             </div>
             <div className={styles.balanceSection}>
-                <h2>Balance</h2>
-                <h2>€{balance}</h2>
+                <p>Balance</p>
+                <p>€{balance}</p>
                 <div className={styles.line}></div>
                 <div className={styles.cartOrders}>
                     <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.CART} />
