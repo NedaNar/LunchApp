@@ -1,0 +1,96 @@
+@import '../../styles/tools';
+
+.foodCard {
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    width: 263px;
+    height: 318px;
+
+    background: $color-white;
+    border: 1px solid $color-grey-100;
+    box-shadow: $box-shadow-m;
+    border-radius: $border-radius-regular;
+
+    position: relative;
+
+    .cardHeader {
+        .cardHeaderLogo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 28px 57px;
+
+            position: absolute;
+            width: 103px;
+            height: 104px;
+            left: -8px;
+            top: -7px;
+
+            background: $color-orange-gradient;
+            box-shadow: 1.1px 2.7px 3.8px -1.2px rgba(187, 187, 187, 0.26), 0.5px 1.3px 1.8px -0.6px rgba(187, 187, 187, 0.18), 0.3px 0.8px 1.1px rgba(187, 187, 187, 0.11);
+            border-radius: $border-radius-regular $border-radius-large 80px $border-radius-regular;
+
+            // /* Inside auto layout */
+            // flex: none;
+            // order: 1;
+            // flex-grow: 0;
+            // z-index: 1;
+
+            svg {
+                width: 97px; 
+                height: 77px; 
+            }
+        }
+
+        .cardSubHeader {
+
+
+            .titleS {
+                @each $property, $value in $title-S {
+                    #{$property}: $value;
+                }
+            }
+
+            .titleXS {
+                @each $property, $value in $title-XS {
+                    #{$property}: $value;
+                }
+            }
+        }
+    }
+
+
+
+
+
+    .cardFooter {
+        // display: flex;
+        // flex-direction: row;
+        // align-items: flex-end;
+        // justify-content: space-between;
+        // padding: 0px 16px 16px;
+
+        // width: 263px;
+        // height: 61px;
+
+        .cardFooterText {
+
+            .bodyS {
+                @each $property, $value in $body-S {
+                    #{$property}: $value;
+                }
+            }
+
+            .titleL {
+                @each $property, $value in $title-L {
+                    #{$property}: $value;
+                }
+            }
+        }
+    }
+}
