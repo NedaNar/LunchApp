@@ -4,11 +4,14 @@
 /* stylelint-disable scale-unlimited/declaration-strict-value */
 html {
   font-size: 10px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 /* stylelint-enable scale-unlimited/declaration-strict-value */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: Poppins, sans-serif;

@@ -8,6 +8,8 @@ export function App() {
       <h1>Welcome to Sourcery for FrontEnd 2024</h1>
       <p>You can delete all this HTML code and start working on your Lunch App</p>
       <hr />
+      <br />
+      <br />
       <FoodCard />
     </div>
   );

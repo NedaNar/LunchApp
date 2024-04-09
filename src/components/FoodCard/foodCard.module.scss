@@ -1,84 +1,169 @@
 @import '../../styles/tools';
 
 .foodCard {
-    margin: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px;
-    width: 263px;
-    height: 318px;
-
+    padding: 0rem;
+    width: 26.3rem;
+    height: 31.8rem;
     background: $color-white;
-    border: 1px solid $color-grey-100;
+    border: 0.1rem solid $color-grey-100;
     box-shadow: $box-shadow-m;
     border-radius: $border-radius-regular;
-
     position: relative;
 
     .cardHeader {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
         .cardHeaderLogo {
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0;
-            padding: 28px 57px;
+            padding: 0;
+            width: 10.3rem;
+            height: 10.4rem;
 
             position: absolute;
-            width: 103px;
-            height: 104px;
-            left: -8px;
-            top: -7px;
+            left: -0.8rem;
+            top: -0.7rem;
 
             background: $color-orange-gradient;
-            box-shadow: 1.1px 2.7px 3.8px -1.2px rgba(187, 187, 187, 0.26), 0.5px 1.3px 1.8px -0.6px rgba(187, 187, 187, 0.18), 0.3px 0.8px 1.1px rgba(187, 187, 187, 0.11);
-            border-radius: $border-radius-regular $border-radius-large 80px $border-radius-regular;
+            box-shadow: 0.11rem 0.27rem 0.38rem -0.12rem rgba(187, 187, 187, 0.26), 0.05rem 0.13rem 0.18rem -0.06rem rgba(187, 187, 187, 0.18), 0.03rem 0.08rem 0.11rem rgba(187, 187, 187, 0.11);
+            border-radius: $border-radius-regular $border-radius-large 8rem $border-radius-large;
 
-            // /* Inside auto layout */
-            // flex: none;
-            // order: 1;
-            // flex-grow: 0;
-            // z-index: 1;
-
-            svg {
-                width: 97px; 
-                height: 77px; 
+            svg rect {
+                x: 0rem;
+                y: 0rem;
+                width: 9.1rem;
+                height: 7.7rem;
             }
         }
 
         .cardSubHeader {
-
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 1.6rem 0.8rem 0.8rem;
+            width: 16.3rem;
+            height: 10.1rem;
+            text-align: left;
 
             .titleS {
                 @each $property, $value in $title-S {
                     #{$property}: $value;
                 }
+
+                color: $color-primary-600;
             }
 
             .titleXS {
                 @each $property, $value in $title-XS {
                     #{$property}: $value;
                 }
+
+                color: $color-grey-500;
+            }
+
+            .cardSubHeaderFigures {
+                .plant {
+                    width: 2.0rem;
+                    height: 2.0rem;
+
+                    path {
+                        fill: $color-green-500;
+                    }
+                }
+
+                .chili {
+                    width: 2.0rem;
+                    height: 2.0rem;
+
+                    path {
+                        fill: $color-red-500;
+                    }
+                }
             }
         }
     }
 
+    .cardBody {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.6rem;
+        gap: 0.8rem;
 
+        width: 26.3rem;
+        height: 15.6rem;
 
+        .bodyM {
+            @each $property, $value in $body-M {
+                #{$property}: $value;
+            }
 
+            color: $color-grey-500;
+            text-align: left;
+        }
+
+        .cardSubBody {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0rem;
+            gap: 0.8rem;
+
+            width: 23.1rem;
+            height: 3.2rem;
+
+            .evaluation {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+
+                .evaluationFigure {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .evaluationLogo {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+
+                .labelXS {
+                    @each $property, $value in $label-XS {
+                        #{$property}: $value;
+                    }
+
+                    color: $color-primary-600;
+                }
+            }
+        }
+    }
 
     .cardFooter {
-        // display: flex;
-        // flex-direction: row;
-        // align-items: flex-end;
-        // justify-content: space-between;
-        // padding: 0px 16px 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 0rem 1.6rem 1.6rem;
 
-        // width: 263px;
-        // height: 61px;
+        width: 26.3rem;
+        height: 6.1rem;
 
         .cardFooterText {
+            text-align: left;
+            color: $color-primary-600;
 
             .bodyS {
                 @each $property, $value in $body-S {
