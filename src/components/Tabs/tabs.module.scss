@@ -1,0 +1,19 @@
+@import '../../styles/tools';
+
+.container {
+  position: relative;
+}
+
+.tabs {
+  margin: 0rem;
+  padding: 0rem;
+  text-align: left;
+}
+
+.separator {
+  border-top: 0.1rem solid $color-grey-300;
+  margin: 0rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
