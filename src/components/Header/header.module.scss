@@ -12,12 +12,13 @@
 }
 
 .headerSubtitle {
-    @each $property, $value in title-L {
+    @each $property, $value in $title-L {
         #{$property}: $value;
     }
 
     color: $color-primary-600;
     text-align: left;
+    padding: 0;
     margin: $space-XXXXXS 0 0 0;
 }
 
