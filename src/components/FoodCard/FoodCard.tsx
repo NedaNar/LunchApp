@@ -5,6 +5,10 @@ import RamenIcon from '../../assets/static/food-images/food-image_ramen.svg?reac
 import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
 
+// export interface FoodCardProps {
+
+// }
+
 function FoodCard() {
   return (
     <article className={styles.foodCard}>
