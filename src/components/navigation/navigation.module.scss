@@ -1,11 +1,69 @@
 @import '/src/styles/_tools';
 
 $space-5: 0.5rem;
+$space-6: 0.6rem;
 $space-10: 1rem;
 $space-14: 1.4rem;
 $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
 $border-radius-navItem-collapsed: 0.5rem;
-$transition-s: 0.5s;
+$border-radius-navItem-expanded: 1.2rem;
+$transition: 0.3s;
+$transition-delay: 0.1s;
+
+// ________NAVIGATION ITEM STYLE_________________
+
+.navItem {
+  width: 18.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border-radius: $border-radius-navItem-expanded;
+  background-color: $color-primary-800;
+  color: $color-white;
+  padding: $space-6 $space-XXXS;
+  gap: $space-XXXS;
+  // transition: $transition;
+
+  &:hover {
+    background-color: $color-primary-600;
+  }
+
+  &:active {
+    background-color: $color-primary-400;
+  }
+
+  &:focus,
+  &--selected {
+    background-color: $color-primary-800;
+    outline-color: $color-secondary-400;
+    outline-width: 0.2rem;
+    outline-style: solid;
+  }
+
+  .navTitle {
+    display: flex;
+    gap: $space-XXXS;
+    align-items: center;
+
+    & svg {
+      width: 2rem;
+      height: 2rem;
+      path {
+        fill: $color-white;
+      }
+    }
+
+    span {
+      min-height: 2.8rem;
+      align-content: center;
+      @each $property, $value in $label-S {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+// _________NAVIGATION SIDEBAR STYLE______________
 
 .sidebar {
   height: 97rem;
@@ -20,16 +78,16 @@ $transition-s: 0.5s;
   gap: $space-10;
 
   .nav {
-    transition: $transition-s;
     width: 19.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
     gap: $space-S;
+    transition: $transition;
   }
 
-  .nav__logo {
+  .navLogo {
     cursor: pointer;
     padding: $space-14;
     gap: $space-10;
@@ -40,7 +98,7 @@ $transition-s: 0.5s;
     height: 3.8rem;
   }
 
-  .nav__list {
+  .navList {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,28 +109,8 @@ $transition-s: 0.5s;
   }
 
   &--expanded {
-    :global(#navItem__component) {
-      transition: $transition-s;
-    }
-  }
-
-  &__toggle {
-    position: absolute;
-    top: 51%;
-    right: -1.3rem;
-    transform: translateY(-50%);
-
-    button {
-      border-color: $color-white;
-      border-width: 0.2rem;
-      border-style: solid;
-    }
-    &--collapsed > button > svg {
-      transition: $transition-s;
-      transform: rotate(180deg);
-    }
-    &--expanded > button > svg {
-      transition: $transition-s;
+    .navItem {
+      transition-delay: $transition-delay;
     }
   }
 
@@ -85,8 +123,8 @@ $transition-s: 0.5s;
     padding-top: $space-10;
 
     .nav {
-      transition: $transition-s;
       width: 6.3rem;
+      transition: $transition;
     }
 
     .logo {
@@ -94,11 +132,11 @@ $transition-s: 0.5s;
       height: 4.78rem;
     }
 
-    .nav__list {
+    .navList {
       flex-direction: column;
     }
 
-    :global(#navItem__component) {
+    .navItem {
       width: 6rem;
       display: flex;
       justify-content: center;
@@ -106,7 +144,7 @@ $transition-s: 0.5s;
       border-radius: $border-radius-navItem-collapsed;
     }
 
-    :global(#navItem__component__title) {
+    .navTitle {
       display: flex;
       flex-direction: column;
       gap: 0;
@@ -122,5 +160,27 @@ $transition-s: 0.5s;
         }
       }
     }
+  }
+}
+
+// _____________SIDEBAR TOGGLE STYLE______________
+
+.sidebarToggle {
+  position: absolute;
+  top: 51%;
+  right: -1.3rem;
+  transform: translateY(-50%);
+
+  button {
+    border-color: $color-white;
+    border-width: 0.2rem;
+    border-style: solid;
+  }
+  &--collapsed > button > svg {
+    transition: $transition;
+    transform: rotate(180deg);
+  }
+  &--expanded > button > svg {
+    transition: $transition;
   }
 }

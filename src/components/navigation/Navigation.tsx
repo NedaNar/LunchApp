@@ -1,6 +1,14 @@
+// Use CASE:
+// import Navigation from './components/navigation/Navigation';
+// <Navigation />
 import { useState } from 'react';
 import styles from './navigation.module.scss';
 import NavigationItem from './NavigationItem';
+import {
+  NavigationItemId,
+  NavigationItemPath,
+  NavigationItemTitle,
+} from '../../utils/navigationEnums';
 import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
 import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
@@ -11,34 +19,50 @@ export default function Navigation() {
     <aside
       className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : styles['sidebar--expanded']}`}>
       <div
-        className={`${styles.sidebar__toggle} ${collapsed ? styles['sidebar__toggle--collapsed'] : styles['sidebar__toggle--expanded']}`}>
+        className={`${styles.sidebarToggle} ${collapsed ? styles['sidebarToggle--collapsed'] : styles['sidebarToggle--expanded']}`}>
         <IconButton
-          onClick={() => setCollapsed((old) => !old)}
+          onClick={() => setCollapsed((prev) => !prev)}
           size={IconButtonSize.SMALL}
           type={IconButtonType.ACCENT}
         />
       </div>
 
       <nav className={styles.nav}>
-        <div className={styles.nav__logo}>
+        <div className={styles.navLogo}>
           {collapsed ? (
             <LogoVertical className={styles.logo} title="logo" />
           ) : (
             <LogoHorizontal className={styles.logo} title="logo" />
           )}
         </div>
-        <ul className={styles.nav__list}>
+        <ul className={styles.navList}>
           <li>
-            <NavigationItem id="menu" name="Food Menu" to="/menu" />
+            <NavigationItem
+              id={NavigationItemId.MENU}
+              title={NavigationItemTitle.MENU}
+              to={NavigationItemPath.MENU}
+            />
           </li>
           <li>
-            <NavigationItem id="lunch" name="Available Lunch" to="/lunch" />
+            <NavigationItem
+              id={NavigationItemId.LUNCH}
+              title={NavigationItemTitle.LUNCH}
+              to={NavigationItemPath.LUNCH}
+            />
           </li>
           <li>
-            <NavigationItem id="orders" name="Your Orders" to="/orders" />
+            <NavigationItem
+              id={NavigationItemId.ORDERS}
+              title={NavigationItemTitle.ORDERS}
+              to={NavigationItemPath.ORDERS}
+            />
           </li>
           <li>
-            <NavigationItem id="ratings" name="Ratings" to="/ratings" />
+            <NavigationItem
+              id={NavigationItemId.RATINGS}
+              title={NavigationItemTitle.RATINGS}
+              to={NavigationItemPath.RATINGS}
+            />
           </li>
         </ul>
       </nav>

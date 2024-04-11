@@ -1,33 +1,36 @@
-import styles from './navigationItem.module.scss';
+import styles from './navigation.module.scss';
 import IconMenu from '../../assets/static/icons/icon_menu.svg?react';
 import IconRestaurant from '../../assets/static/icons/icon_restaurant.svg?react';
 import IconGrading from '../../assets/static/icons/icon_grading.svg?react';
 import IconStar from '../../assets/static/icons/icon_star.svg?react';
+import {
+  NavigationItemId,
+  NavigationItemPath,
+  NavigationItemTitle,
+} from '../../utils/navigationEnums';
 
 interface NavigationItemProps {
-  name: string;
-  to: string;
-  id: 'menu' | 'lunch' | 'orders' | 'ratings';
+  id: NavigationItemId;
+  title: NavigationItemTitle;
+  to: NavigationItemPath;
 }
 
-export default function NavigationItem({ name, to, id }: NavigationItemProps) {
-  const selected = to === '/';
-  // 16 row is for visual style test (need to comment 14row)
-  // const selected = true;
+export default function NavigationItem({ title, to, id }: NavigationItemProps) {
+  const selected = to === NavigationItemPath.HOME;
 
   let Icon: JSX.Element | null = null;
 
   switch (id) {
-    case 'menu':
+    case NavigationItemId.MENU:
       Icon = <IconMenu title="icon" />;
       break;
-    case 'lunch':
+    case NavigationItemId.LUNCH:
       Icon = <IconRestaurant title="icon" />;
       break;
-    case 'orders':
+    case NavigationItemId.ORDERS:
       Icon = <IconGrading title="icon" />;
       break;
-    case 'ratings':
+    case NavigationItemId.RATINGS:
       Icon = <IconStar title="icon" />;
       break;
     default:
@@ -35,12 +38,10 @@ export default function NavigationItem({ name, to, id }: NavigationItemProps) {
   }
 
   return (
-    <div
-      id="navItem__component"
-      className={`${styles.navItem__component} ${selected ? styles['navItem__component--selected'] : ''}`}>
-      <div id="navItem__component__title" className={styles.navItem__component__title}>
+    <div className={`${styles.navItem} ${selected ? styles['navItem--selected'] : ''}`}>
+      <div className={styles.navTitle}>
         {Icon}
-        <span>{name}</span>
+        <span>{title}</span>
       </div>
     </div>
   );
