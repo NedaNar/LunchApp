@@ -7,7 +7,7 @@ import {
   NavigationItemId,
   NavigationItemPath,
   NavigationItemTitle,
-} from '../../utils/navigationEnums';
+} from '../../types/navigationEnums';
 
 interface NavigationItemProps {
   id: NavigationItemId;

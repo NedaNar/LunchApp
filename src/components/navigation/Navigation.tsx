@@ -8,7 +8,7 @@ import {
   NavigationItemId,
   NavigationItemPath,
   NavigationItemTitle,
-} from '../../utils/navigationEnums';
+} from '../../types/navigationEnums';
 import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
 import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
