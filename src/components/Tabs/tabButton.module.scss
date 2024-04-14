@@ -4,16 +4,16 @@
   position: relative;
   display: inline-block;
 
-  &:hover .overlay {
+  &:hover:not(.disabled) .overlay {
     opacity: 0.05;
   }
 }
 
 .btn {
-  padding: 9px 16px;
-  color: #5a5c5e;
+  padding: 0.9rem 1.6rem;
+  color: $color-grey-500;
   border: none;
-  border-bottom: transparent 0.2rem solid;
+  border-bottom: $color-grey-300 0.2rem solid;
   background-color: transparent;
   @each $property, $value in $label-S {
     #{$property}: $value;
@@ -30,6 +30,11 @@
 
   &:focus:not(:focus-visible) {
     outline: 0;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: auto;
   }
 }
 

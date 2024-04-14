@@ -11,7 +11,8 @@
 }
 
 .separator {
-  border-top: 0.1rem solid $color-grey-300;
+  border-top: 0rem;
+  border-bottom: $color-grey-300 0.2rem solid;
   margin: 0rem;
   position: absolute;
   bottom: 0;
