@@ -40,12 +40,10 @@ export default function NavigationItem({ title, to, id }: NavigationItemProps) {
   }
 
   return (
-    <Link to={to}>
-      <div className={`${styles.navItem} ${selected ? styles['navItem--selected'] : ''}`}>
-        <div className={styles.navTitle}>
-          {Icon}
-          <span>{title}</span>
-        </div>
+    <Link to={to} className={`${styles.navItem} ${selected ? styles['navItem--selected'] : ''}`}>
+      <div className={styles.navTitle}>
+        {Icon}
+        <span>{title}</span>
       </div>
     </Link>
   );

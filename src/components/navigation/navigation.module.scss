@@ -36,9 +36,7 @@ $transition-delay: 0.1s;
   &:focus,
   &--selected {
     background-color: $color-primary-800;
-    outline-color: $color-secondary-400;
-    outline-width: 0.2rem;
-    outline-style: solid;
+    outline: $color-secondary-400 0.2rem solid;
   }
 
   .navTitle {

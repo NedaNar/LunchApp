@@ -30,15 +30,14 @@ export default function Navigation() {
       </div>
 
       <nav className={styles.nav}>
-        <Link to={NavigationItemPath.HOME}>
-          <div className={styles.navLogo}>
-            {collapsed ? (
-              <LogoVertical className={styles.logo} title="logo" />
-            ) : (
-              <LogoHorizontal className={styles.logo} title="logo" />
-            )}
-          </div>
+        <Link to={NavigationItemPath.HOME} className={styles.navLogo}>
+          {collapsed ? (
+            <LogoVertical className={styles.logo} title="logo" />
+          ) : (
+            <LogoHorizontal className={styles.logo} title="logo" />
+          )}
         </Link>
+
         <ul className={styles.navList}>
           <li>
             <NavigationItem
