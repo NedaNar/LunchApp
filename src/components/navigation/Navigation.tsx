@@ -2,6 +2,7 @@
 // import Navigation from './components/navigation/Navigation';
 // <Navigation />
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './navigation.module.scss';
 import NavigationItem from './NavigationItem';
 import {
@@ -14,6 +15,7 @@ import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
 
 export default function Navigation() {
+  // const location = useLocation();
   const [collapsed, setCollapsed] = useState(true);
   return (
     <aside
@@ -28,13 +30,15 @@ export default function Navigation() {
       </div>
 
       <nav className={styles.nav}>
-        <div className={styles.navLogo}>
-          {collapsed ? (
-            <LogoVertical className={styles.logo} title="logo" />
-          ) : (
-            <LogoHorizontal className={styles.logo} title="logo" />
-          )}
-        </div>
+        <Link to={NavigationItemPath.HOME}>
+          <div className={styles.navLogo}>
+            {collapsed ? (
+              <LogoVertical className={styles.logo} title="logo" />
+            ) : (
+              <LogoHorizontal className={styles.logo} title="logo" />
+            )}
+          </div>
+        </Link>
         <ul className={styles.navList}>
           <li>
             <NavigationItem

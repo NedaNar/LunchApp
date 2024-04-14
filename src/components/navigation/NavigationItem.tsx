@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'react-router-dom';
 import styles from './navigation.module.scss';
 import IconMenu from '../../assets/static/icons/icon_menu.svg?react';
 import IconRestaurant from '../../assets/static/icons/icon_restaurant.svg?react';
@@ -16,7 +17,8 @@ interface NavigationItemProps {
 }
 
 export default function NavigationItem({ title, to, id }: NavigationItemProps) {
-  const selected = to === NavigationItemPath.HOME;
+  const location = useLocation();
+  const selected = to === location.pathname;
 
   let Icon: JSX.Element | null = null;
 
@@ -38,11 +40,13 @@ export default function NavigationItem({ title, to, id }: NavigationItemProps) {
   }
 
   return (
-    <div className={`${styles.navItem} ${selected ? styles['navItem--selected'] : ''}`}>
-      <div className={styles.navTitle}>
-        {Icon}
-        <span>{title}</span>
+    <Link to={to}>
+      <div className={`${styles.navItem} ${selected ? styles['navItem--selected'] : ''}`}>
+        <div className={styles.navTitle}>
+          {Icon}
+          <span>{title}</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
