@@ -1,27 +1,25 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function useFetch(endpoint:string) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+function useFetch<T>(endpoint: string): { data: T | null; loading: boolean } {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`http://localhost:3002/${endpoint}`)
-      .then((response) => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get<T>(`http://localhost:3002/${endpoint}`);
         setData(response.data);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
-  }, [endpoint]); 
+      }
+    };
 
-  return { data, loading, error };
+    fetchData();
+  }, [endpoint]);
+
+  return { data, loading };
 }
 
 export default useFetch;

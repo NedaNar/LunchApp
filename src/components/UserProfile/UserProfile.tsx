@@ -1,46 +1,64 @@
-import React from 'react';
-import styles from "./userProfile.module.scss";
-import ProfileButton from "../IconButton/ProfileButton";
+import ProfileButton from '../IconButton/ProfileButton';
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
-import useDataFetching from "../DataFetching/useDataFetching";
+import useDataFetching from '../DataFetching/useDataFetching';
+import styles from './userProfile.module.scss';
 
-const UserProfile = () => {
-    const { data, loading, error } = useDataFetching("user");
+interface Order {
+  weekDay: string;
+  mealIds: number[];
+}
 
+interface OrderHistoryItem {
+  date: string;
+  mealIds: number[];
+}
 
-    if (loading) return <h1>LOADING...</h1>;
+interface UserData {
+  name: string;
+  surname: string;
+  img?: string;
+  balance: number;
+  orders: Order[];
+  orderHistory: OrderHistoryItem[];
+}
 
-    if (error) {
-        console.log(error);
-        return <h1>Error fetching data</h1>;
-    }
+function UserProfile() {
+  const { data, loading } = useDataFetching<UserData>('user');
 
+  if (loading) return <h1>LOADING...</h1>;
 
-    if (!data) return null;
+  if (!data) return null;
 
+  const orderCount = data.orders.length;
 
-    const orderCount = data.orders.length;
+  const handleClick = () => {};
 
-    const handleClick = () => {};
-
-    return (
-        <div className={styles.userProfile}>
-            <div className={styles.profileSection}>
-                {data.img && <img src={data.img} alt="User Avatar" />}
-                <ProfileButton onClick={handleClick} className={styles.profileButton} />
-                <p className={styles.username}>{data.name} {data.surname}</p>
-            </div>
-            <div className={styles.balanceSection}>
-                <p>Balance</p>
-                <p>€{data.balance}</p>
-                <div className={styles.line}></div>
-                <div className={styles.cartOrders}>
-                    <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.CART} />
-                    <p className={styles.circle}> {orderCount}</p>
-                </div>
-            </div>
+  return (
+    <div className={styles.userProfile}>
+      <div className={styles.profileSection}>
+        {data.img && (
+          <div className={styles.profileAvatar}>
+            <img src={data.img} style={{ borderRadius: '50%' }} alt="User Avatar" />
+          </div>
+        )}
+        <ProfileButton onClick={handleClick} />
+        <p className={styles.username}>
+          {data.name} {data.surname}
+        </p>
+      </div>
+      <div className={styles.balanceSection}>
+        <div className={styles.balance}>
+          <p>Balance</p>
+          <p>€{data.balance}</p>
         </div>
-    );
-};
+        <div className={styles.line} />
+        <div className={styles.cartOrders}>
+          <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.CART} />
+          <p className={styles.circle}> {orderCount}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default UserProfile;

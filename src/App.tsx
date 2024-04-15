@@ -6,7 +6,7 @@ export function App() {
   return (
     <div className={styles.container}>
       <h1>Welcome to Sourcery for FrontEnd 2024</h1>
-      {<UserProfile /> }
+      <UserProfile />
     </div>
   );
 }

@@ -62,13 +62,8 @@ function IconButton({
             height={size === IconButtonSize.MEDIUM ? 14 : 12}
           />
         );
-        case IconButtonIcon.CART:
-          return (
-            <ShoppingCartIcon
-              width={24}
-              height={24}
-            />
-          );
+      case IconButtonIcon.CART:
+        return <ShoppingCartIcon width={24} height={24} />;
       default:
         return null;
     }
