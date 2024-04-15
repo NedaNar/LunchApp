@@ -1,4 +1,5 @@
-import styles from './App.module.css';
+import styles from './App.module.scss';
+import './styles/index.scss';
 
 export function App() {
   return (

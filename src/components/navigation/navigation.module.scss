@@ -1,0 +1,186 @@
+@import '/src/styles/_tools';
+
+$space-5: 0.5rem;
+$space-6: 0.6rem;
+$space-10: 1rem;
+$space-14: 1.4rem;
+$border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
+$border-radius-navItem-collapsed: 0.5rem;
+$border-radius-navItem-expanded: 1.2rem;
+$transition: 0.3s;
+$transition-delay: 0.1s;
+
+// ________NAVIGATION ITEM STYLE_________________
+
+.navItem {
+  width: 18.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border-radius: $border-radius-navItem-expanded;
+  background-color: $color-primary-800;
+  color: $color-white;
+  padding: $space-6 $space-XXXS;
+  gap: $space-XXXS;
+  // transition: $transition;
+
+  &:hover {
+    background-color: $color-primary-600;
+  }
+
+  &:active {
+    background-color: $color-primary-400;
+  }
+
+  &:focus,
+  &--selected {
+    background-color: $color-primary-800;
+    outline-color: $color-secondary-400;
+    outline-width: 0.2rem;
+    outline-style: solid;
+  }
+
+  .navTitle {
+    display: flex;
+    gap: $space-XXXS;
+    align-items: center;
+
+    & svg {
+      width: 2rem;
+      height: 2rem;
+      path {
+        fill: $color-white;
+      }
+    }
+
+    span {
+      min-height: 2.8rem;
+      align-content: center;
+      @each $property, $value in $label-S {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+// _________NAVIGATION SIDEBAR STYLE______________
+
+.sidebar {
+  height: 97rem;
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: $space-S;
+  background-color: $color-primary-800;
+  border-radius: $border-radius-sidebar;
+  box-sizing: border-box;
+  padding: $space-10;
+  gap: $space-10;
+
+  .nav {
+    width: 19.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    gap: $space-S;
+    transition: $transition;
+  }
+
+  .navLogo {
+    cursor: pointer;
+    padding: $space-14;
+    gap: $space-10;
+  }
+
+  .logo {
+    width: 7.7rem;
+    height: 3.8rem;
+  }
+
+  .navList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-XXS;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &--expanded {
+    .navItem {
+      transition-delay: $transition-delay;
+    }
+  }
+
+  &--collapsed {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: $space-XXXXS;
+    padding: $space-5;
+    padding-top: $space-10;
+
+    .nav {
+      width: 6.3rem;
+      transition: $transition;
+    }
+
+    .logo {
+      width: 2.52rem;
+      height: 4.78rem;
+    }
+
+    .navList {
+      flex-direction: column;
+    }
+
+    .navItem {
+      width: 6rem;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      border-radius: $border-radius-navItem-collapsed;
+    }
+
+    .navTitle {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      margin: 0;
+
+      & > span {
+        width: 6rem;
+        min-height: 1.7rem;
+
+        @each $property, $value in $label-XXS {
+          #{$property}: $value;
+        }
+      }
+    }
+  }
+}
+
+// _____________SIDEBAR TOGGLE STYLE______________
+
+.sidebarToggle {
+  position: absolute;
+  top: 51%;
+  right: -1.3rem;
+  transform: translateY(-50%);
+
+  button {
+    border-color: $color-white;
+    border-width: 0.2rem;
+    border-style: solid;
+  }
+  &--collapsed > button > svg {
+    transition: $transition;
+    transform: rotate(180deg);
+  }
+  &--expanded > button > svg {
+    transition: $transition;
+  }
+}
