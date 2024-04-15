@@ -1,5 +1,6 @@
 import styles from './App.module.scss';
 import FoodCard from './components/FoodCard/FoodCard';
+import { DishType } from './components/FoodCard/helpers';
 import './styles/index.scss';
 
 export function App() {
@@ -11,13 +12,14 @@ export function App() {
       <br />
       <br />
       <FoodCard
+        vendor="Tasty Bites"
         title="Pho Rice Noodle Soup with Tofu"
         description="Rice udon noodles in  shiitake stock, fried shredded tofu. Garnish..."
         price={5.65}
-        picture="bowl"
+        picture={DishType.Bowl}
         isVegetarian
         isSpicy
-        evaluation={5.0}
+        rating={5.0}
       />
     </div>
   );

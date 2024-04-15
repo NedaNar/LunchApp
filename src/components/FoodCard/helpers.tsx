@@ -9,33 +9,48 @@ import ThaiIcon from '../../assets/static/food-images/food-image_pretzel.svg?rea
 import PastaIcon from '../../assets/static/food-images/food-image_hamburger-and-fries.svg?react';
 import SoupIcon from '../../assets/static/food-images/food-image_soup.svg?react';
 import WrapIcon from '../../assets/static/food-images/food-image_kebab.svg?react';
+import LogoIcon from '../../assets/static/logo/logo_without-text.svg?react';
 
-const helpers = (picture: string) => {
+export enum DishType {
+  Thai = 'thai',
+  Burger = 'burger',
+  Bowl = 'bowl',
+  Sandwich = 'sandwich',
+  Steak = 'steak',
+  Tacos = 'tacos',
+  Salad = 'salad',
+  Pizza = 'pizza',
+  Soup = 'soup',
+  Pasta = 'pasta',
+  Wrap = 'wrap',
+}
+
+const helpers = (picture: DishType) => {
   switch (picture) {
-    case 'thai':
+    case DishType.Thai:
       return <ThaiIcon />;
-    case 'burger':
+    case DishType.Burger:
       return <BurgerIcon />;
-    case 'bowl':
+    case DishType.Bowl:
       return <BowlIcon />;
-    case 'sandwich':
+    case DishType.Sandwich:
       return <SandwichIcon />;
-    case 'steak':
+    case DishType.Steak:
       return <SteakIcon />;
-    case 'tacos':
+    case DishType.Tacos:
       return <TacosIcon />;
-    case 'salad':
+    case DishType.Salad:
       return <SaladIcon />;
-    case 'pizza':
+    case DishType.Pizza:
       return <PizzaIcon />;
-    case 'soup':
+    case DishType.Soup:
       return <SoupIcon />;
-    case 'pasta':
+    case DishType.Pasta:
       return <PastaIcon />;
-    case 'wrap':
+    case DishType.Wrap:
       return <WrapIcon />;
     default:
-      return <BurgerIcon />;
+      return <LogoIcon />;
   }
 };
 

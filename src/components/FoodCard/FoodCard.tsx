@@ -3,16 +3,17 @@ import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from '../RegularButt
 import SolarStarIcon from '../../assets/static/icons/icon_solar-star.svg?react';
 import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
-import helpers from './helpers';
+import helpers, { DishType } from './helpers';
 
 export interface FoodCardProps {
   title: string;
   description: string;
   price: number;
-  picture: string;
-  isVegetarian: boolean;
-  isSpicy: boolean;
-  evaluation: number;
+  picture: DishType;
+  isVegetarian?: boolean;
+  isSpicy?: boolean;
+  rating: number;
+  vendor: string;
 }
 
 function FoodCard({
@@ -22,32 +23,42 @@ function FoodCard({
   picture,
   isVegetarian = false,
   isSpicy = false,
-  evaluation,
+  rating,
+  vendor,
 }: FoodCardProps) {
   const formattedPrice = price.toFixed(2).replace('.', ',');
+  const formattedRating = rating.toFixed(1);
 
   return (
     <article className={styles.foodCard}>
       <header className={styles.cardHeader}>
         <figure className={styles.cardHeaderLogo}>{helpers(picture)}</figure>
         <div className={styles.cardSubHeader}>
-          <p className={styles.titleXS}>SKOMI</p>
+          <p className={styles.titleXS}>{vendor}</p>
           <p className={styles.titleS}>{title}</p>
-          <figure className={styles.cardSubHeaderFigures}>
-            {isVegetarian && <PlantIcon className={styles.plant} />}
-            {isSpicy && <ChiliIcon className={styles.chili} />}
-          </figure>
+          <div className={styles.cardSubHeaderFiguresWrap}>
+            {isVegetarian && (
+              <figure className={styles.cardSubHeaderFigures}>
+                <PlantIcon className={styles.plant} />
+              </figure>
+            )}
+            {isSpicy && (
+              <figure className={styles.cardSubHeaderFigures}>
+                <ChiliIcon className={styles.chili} />
+              </figure>
+            )}
+          </div>
         </div>
       </header>
 
       <section className={styles.cardBody}>
         <p className={styles.bodyM}>{description}</p>
         <div className={styles.cardSubBody}>
-          <div className={styles.evaluation}>
-            <figure className={styles.evaluationFigure}>
-              <SolarStarIcon className={styles.evaluationLogo} />
+          <div className={styles.rating}>
+            <figure className={styles.ratingFigure}>
+              <SolarStarIcon className={styles.ratingLogo} />
             </figure>
-            <p className={styles.labelXS}>{evaluation}</p>
+            <p className={styles.labelXS}>{formattedRating}</p>
           </div>
           <Button
             text="More Info"
@@ -80,10 +91,11 @@ export default FoodCard;
 
 // Use case:
 // <FoodCard
+//      vendor='Tasty Bites'
 //      title='Pho Rice Noodle Soup with Tofu'
 //      description='Rice udon noodles in  shiitake stock, fried shredded tofu. Garnish...'
 //      price={5.65}
-//      picture='bowl'
+//      picture={DishType.Bowl}
 //      isVegetarian={true}
 //      isSpicy={true}
-//      evaluation={5.0}/>
+//      rating={5.0}/>
