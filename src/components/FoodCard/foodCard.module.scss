@@ -56,18 +56,12 @@
             text-align: left;
 
             .titleS {
-                @each $property, $value in $title-S {
-                    #{$property}: $value;
-                }
-
+                @include title-S;
                 color: $color-primary-600;
             }
 
             .titleXS {
-                @each $property, $value in $title-XS {
-                    #{$property}: $value;
-                }
-
+                @include title-XS;
                 color: $color-grey-500;
             }
 
@@ -103,10 +97,7 @@
         height: 12rem;
 
         .bodyM {
-            @each $property, $value in $body-M {
-                #{$property}: $value;
-            }
-
+            @include body-M;
             color: $color-grey-500;
             text-align: left;
             width: 23.1rem;
@@ -146,10 +137,7 @@
                 }
 
                 .labelXS {
-                    @each $property, $value in $label-XS {
-                        #{$property}: $value;
-                    }
-
+                    @include label-XS;
                     color: $color-primary-600;
                 }
             }
@@ -171,15 +159,11 @@
             color: $color-primary-600;
 
             .bodyS {
-                @each $property, $value in $body-S {
-                    #{$property}: $value;
-                }
+                @include body-S;
             }
 
             .titleL {
-                @each $property, $value in $title-L {
-                    #{$property}: $value;
-                }
+                @include title-L;
             }
         }
     }
