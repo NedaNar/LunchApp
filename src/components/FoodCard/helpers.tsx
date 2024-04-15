@@ -25,7 +25,7 @@ export enum DishType {
   Wrap = 'wrap',
 }
 
-const helpers = (picture: DishType) => {
+export const getFoodIcon = (picture: DishType) => {
   switch (picture) {
     case DishType.Thai:
       return <ThaiIcon />;
@@ -53,5 +53,3 @@ const helpers = (picture: DishType) => {
       return <LogoIcon />;
   }
 };
-
-export default helpers;

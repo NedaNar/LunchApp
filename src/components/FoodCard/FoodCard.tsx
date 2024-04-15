@@ -3,7 +3,7 @@ import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from '../RegularButt
 import SolarStarIcon from '../../assets/static/icons/icon_solar-star.svg?react';
 import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
-import helpers, { DishType } from './helpers';
+import { getFoodIcon, DishType } from './helpers';
 
 export interface FoodCardProps {
   title: string;
@@ -32,7 +32,7 @@ function FoodCard({
   return (
     <article className={styles.foodCard}>
       <header className={styles.cardHeader}>
-        <figure className={styles.cardHeaderLogo}>{helpers(picture)}</figure>
+        <figure className={styles.cardHeaderLogo}>{getFoodIcon(picture)}</figure>
         <div className={styles.cardSubHeader}>
           <p className={styles.titleXS}>{vendor}</p>
           <p className={styles.titleS}>{title}</p>
