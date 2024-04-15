@@ -1,7 +1,7 @@
 import { menuStrings } from '../../utils/strings';
 import styles from './header.module.scss';
 
-// Use case example "<Header page = "first"/>"
+// Use case example "<Header page = "lunchMenu"/>"
 
 export default function Header({ page }: { page: string }) {
   return (
