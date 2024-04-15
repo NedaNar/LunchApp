@@ -2,6 +2,7 @@
 
 .headerTitle {
   @include headline-L;
+
   color: $color-primary-600;
   text-align: left;
   padding: 0;
@@ -10,6 +11,7 @@
 
 .headerSubtitle {
   @include title-L;
+
   color: $color-primary-600;
   text-align: left;
   padding: 0;

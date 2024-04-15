@@ -57,6 +57,7 @@ $transition-delay: 0.1s;
     span {
       min-height: 2.8rem;
       align-content: center;
+
       @include label-S;
     }
   }
@@ -152,6 +153,7 @@ $transition-delay: 0.1s;
       & > span {
         width: 6rem;
         min-height: 1.7rem;
+
         @include label-XXS;
       }
     }
