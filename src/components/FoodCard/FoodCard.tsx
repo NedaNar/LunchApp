@@ -26,7 +26,10 @@ function FoodCard({
   rating,
   vendor,
 }: FoodCardProps) {
-  const formattedPrice = price.toFixed(2).replace('.', ',');
+  const formattedPrice = Intl.NumberFormat('en-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(price);
   const formattedRating = rating.toFixed(1);
 
   return (
@@ -73,7 +76,7 @@ function FoodCard({
       <footer className={styles.cardFooter}>
         <div className={styles.cardFooterText}>
           <p className={styles.bodyS}>Price</p>
-          <p className={styles.titleL}>€{formattedPrice}</p>
+          <p className={styles.titleL}>{formattedPrice}</p>
         </div>
         <Button
           text="Add to cart"
