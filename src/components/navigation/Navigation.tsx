@@ -15,7 +15,6 @@ import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
 
 export default function Navigation() {
-  // const location = useLocation();
   const [collapsed, setCollapsed] = useState(true);
   return (
     <aside
@@ -30,7 +29,7 @@ export default function Navigation() {
       </div>
 
       <nav className={styles.nav}>
-        <Link to={NavigationItemPath.HOME} className={styles.navLogo}>
+        <Link to={NavigationItemPath.ROOT} className={styles.navLogo}>
           {collapsed ? (
             <LogoVertical className={styles.logo} title="logo" />
           ) : (

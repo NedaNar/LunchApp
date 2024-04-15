@@ -1,31 +1,29 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { App } from './App';
-// import HomePage from './pages/HomePage';
-import MenuPage from './pages/MenuPage';
-import LunchPage from './pages/LunchPage';
-import OrdersPage from './pages/OrdersPage';
+import FoodMenuPage from './pages/FoodMenuPage';
+import AvailableLunchPage from './pages/AvailableLunchPage';
+import YourOrdersPage from './pages/YourOrdersPage';
 import RatingsPage from './pages/RatingsPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { NavigationItemPath } from './types/navigationEnums';
 
 export const router = createBrowserRouter([
   {
-    path: NavigationItemPath.HOME,
-    // element: <HomePage />,
+    path: NavigationItemPath.ROOT,
     element: <App />,
     errorElement: <NotFoundPage />,
     children: [
       {
         path: NavigationItemPath.MENU,
-        element: <MenuPage />,
+        element: <FoodMenuPage />,
       },
       {
         path: NavigationItemPath.LUNCH,
-        element: <LunchPage />,
+        element: <AvailableLunchPage />,
       },
       {
         path: NavigationItemPath.ORDERS,
-        element: <OrdersPage />,
+        element: <YourOrdersPage />,
       },
       {
         path: NavigationItemPath.RATINGS,

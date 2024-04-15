@@ -6,11 +6,11 @@ export enum NavigationItemId {
 }
 
 export enum NavigationItemPath {
-  MENU = '/menu',
-  LUNCH = '/lunch',
-  ORDERS = '/orders',
+  ROOT = '/',
+  MENU = '/food-menu',
+  LUNCH = '/available-lunch',
+  ORDERS = '/your-orders',
   RATINGS = '/ratings',
-  HOME = '/',
 }
 
 export enum NavigationItemTitle {

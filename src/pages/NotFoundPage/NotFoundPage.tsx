@@ -1,7 +1,7 @@
 import { useLocation, Link } from 'react-router-dom';
 import { NavigationItemPath } from '../../types/navigationEnums';
 import styles from './notFoundPage.module.scss';
-import burnIcon from './burnIcon.png';
+import BurnIcon from './burnIcon.svg?react';
 
 export function NotFoundPage() {
   const location = useLocation();
@@ -12,10 +12,9 @@ export function NotFoundPage() {
       <h1>Oops!</h1>
       <h2> 404 Page not found </h2>
       <h2>&quot; {currentPath} &quot;</h2>
-      <img src={burnIcon} alt="burnIcon" width={150} />
-
-      <div className={styles.homeLink}>
-        <Link to={NavigationItemPath.HOME}> Home page </Link>{' '}
+      <BurnIcon className={styles.errorImage} title="error image" width={120} />
+      <div className={styles.rootPathLink}>
+        <Link to={NavigationItemPath.ROOT}> Go to LunchApp </Link>{' '}
       </div>
     </div>
   );
