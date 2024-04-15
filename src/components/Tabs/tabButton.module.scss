@@ -15,9 +15,8 @@
   border: none;
   border-bottom: $color-grey-300 0.2rem solid;
   background-color: transparent;
-  @each $property, $value in $label-S {
-    #{$property}: $value;
-  }
+
+  @include label-S;
 
   &.selected {
     color: $color-primary-600;
