@@ -2,6 +2,7 @@
 // import Navigation from './components/navigation/Navigation';
 // <Navigation />
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './navigation.module.scss';
 import NavigationItem from './NavigationItem';
 import {
@@ -28,13 +29,14 @@ export default function Navigation() {
       </div>
 
       <nav className={styles.nav}>
-        <div className={styles.navLogo}>
+        <Link to={NavigationItemPath.ROOT} className={styles.navLogo}>
           {collapsed ? (
             <LogoVertical className={styles.logo} title="logo" />
           ) : (
             <LogoHorizontal className={styles.logo} title="logo" />
           )}
-        </div>
+        </Link>
+
         <ul className={styles.navList}>
           <li>
             <NavigationItem
