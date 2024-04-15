@@ -71,24 +71,18 @@
                 color: $color-grey-500;
             }
 
-            .cardSubHeaderFigures {
-                .plant {
-                    width: 2.0rem;
-                    height: 2.0rem;
+            .cardSubHeaderFigures .plant,
+            .cardSubHeaderFigures .chili {
+                width: 2.0rem;
+                height: 2.0rem;
+            }
 
-                    path {
-                        fill: $color-green-500;
-                    }
-                }
+            .cardSubHeaderFigures .plant path {
+                fill: $color-green-500;
+            }
 
-                .chili {
-                    width: 2.0rem;
-                    height: 2.0rem;
-
-                    path {
-                        fill: $color-red-500;
-                    }
-                }
+            .cardSubHeaderFigures .chili path {
+                fill: $color-red-500;
             }
         }
     }
