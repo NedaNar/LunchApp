@@ -10,7 +10,15 @@ export function App() {
       <hr />
       <br />
       <br />
-      <FoodCard />
+      <FoodCard
+        title="Pho Rice Noodle Soup with Tofu"
+        description="Rice udon noodles in  shiitake stock, fried shredded tofu. Garnish..."
+        price={5.65}
+        picture="bowl"
+        isVegetarian
+        isSpicy
+        evaluation={5.0}
+      />
     </div>
   );
 }

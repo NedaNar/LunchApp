@@ -1,37 +1,53 @@
 import styles from './foodCard.module.scss';
 import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from '../RegularButton/Button';
 import SolarStarIcon from '../../assets/static/icons/icon_solar-star.svg?react';
-import RamenIcon from '../../assets/static/food-images/food-image_ramen.svg?react';
 import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
+import helpers from './helpers';
 
-function FoodCard() {
+export interface FoodCardProps {
+  title: string;
+  description: string;
+  price: number;
+  picture: string;
+  isVegetarian: boolean;
+  isSpicy: boolean;
+  evaluation: number;
+}
+
+function FoodCard({
+  title,
+  description,
+  price,
+  picture,
+  isVegetarian = false,
+  isSpicy = false,
+  evaluation,
+}: FoodCardProps) {
+  const formattedPrice = price.toFixed(2).replace('.', ',');
+
   return (
     <article className={styles.foodCard}>
       <header className={styles.cardHeader}>
-        <figure className={styles.cardHeaderLogo}>
-          <RamenIcon className={styles.logo} />
-        </figure>
+        <figure className={styles.cardHeaderLogo}>{helpers(picture)}</figure>
         <div className={styles.cardSubHeader}>
           <p className={styles.titleXS}>SKOMI</p>
-          <p className={styles.titleS}>Pho Rice Noodle Soup with Tofu</p>
+          <p className={styles.titleS}>{title}</p>
           <figure className={styles.cardSubHeaderFigures}>
-            <PlantIcon className={styles.plant} />
-            <ChiliIcon className={styles.chili} />
+            {isVegetarian && <PlantIcon className={styles.plant} />}
+            {isSpicy && <ChiliIcon className={styles.chili} />}
           </figure>
         </div>
       </header>
+
       <section className={styles.cardBody}>
-        <p className={styles.bodyM}>
-          Rice udon noodles in shiitake stock, fried shredded tofu. Garnished with chilli, coriander
-          and spring onions.
-        </p>
+        <p className={styles.bodyM}>{description}</p>
         <div className={styles.cardSubBody}>
           <div className={styles.evaluation}>
             <figure className={styles.evaluationFigure}>
               <SolarStarIcon className={styles.evaluationLogo} />
             </figure>
-            <p className={styles.labelXS}>5.0</p>
+            <p className={styles.labelXS}>{evaluation}</p>
           </div>
           <Button
             text="More Info"
@@ -42,10 +58,11 @@ function FoodCard() {
           />
         </div>
       </section>
+
       <footer className={styles.cardFooter}>
         <div className={styles.cardFooterText}>
           <p className={styles.bodyS}>Price</p>
-          <p className={styles.titleL}>€5,65</p>
+          <p className={styles.titleL}>€{formattedPrice}</p>
         </div>
         <Button
           text="Add to cart"
@@ -60,3 +77,13 @@ function FoodCard() {
 }
 
 export default FoodCard;
+
+// Use case:
+// <FoodCard
+//      title='Pho Rice Noodle Soup with Tofu'
+//      description='Rice udon noodles in  shiitake stock, fried shredded tofu. Garnish...'
+//      price={5.65}
+//      picture='bowl'
+//      isVegetarian={true}
+//      isSpicy={true}
+//      evaluation={5.0}/>
