@@ -57,9 +57,8 @@ $transition-delay: 0.1s;
     span {
       min-height: 2.8rem;
       align-content: center;
-      @each $property, $value in $label-S {
-        #{$property}: $value;
-      }
+
+      @include label-S;
     }
   }
 }
@@ -155,9 +154,7 @@ $transition-delay: 0.1s;
         width: 6rem;
         min-height: 1.7rem;
 
-        @each $property, $value in $label-XXS {
-          #{$property}: $value;
-        }
+        @include label-XXS;
       }
     }
   }
