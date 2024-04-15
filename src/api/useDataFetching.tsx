@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function useFetch<T>(endpoint: string): { data: T | null; loading: boolean } {
+export enum Endpoint {
+  USER = 'user',
+  USERS = 'users',
+  VENDORS = 'vendors',
+  MEALS = 'meals',
+  RATINGS = 'ratings',
+  AVAILABLE_LUNCH = 'availableLunch',
+}
+
+function useFetch<T>(endpoint: Endpoint): { data: T | null; loading: boolean } {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 

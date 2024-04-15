@@ -1,35 +1,22 @@
+import useFetch, { Endpoint } from '../../api/useDataFetching';
+import { UserData } from '../../api/apiModel';
 import ProfileButton from '../IconButton/ProfileButton';
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
-import useDataFetching from '../DataFetching/useDataFetching';
 import styles from './userProfile.module.scss';
 
-interface Order {
-  weekDay: string;
-  mealIds: number[];
-}
-
-interface OrderHistoryItem {
-  date: string;
-  mealIds: number[];
-}
-
-interface UserData {
-  name: string;
-  surname: string;
-  img?: string;
-  balance: number;
-  orders: Order[];
-  orderHistory: OrderHistoryItem[];
-}
-
 function UserProfile() {
-  const { data, loading } = useDataFetching<UserData>('user');
+  const { data, loading } = useFetch<UserData>(Endpoint.USER);
 
   if (loading) return <h1>LOADING...</h1>;
 
   if (!data) return null;
 
   const orderCount = data.orders.length;
+
+  const formattedBalance = new Intl.NumberFormat('en-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(data.balance);
 
   const handleClick = () => {};
 
@@ -38,7 +25,7 @@ function UserProfile() {
       <div className={styles.profileSection}>
         {data.img && (
           <div className={styles.profileAvatar}>
-            <img src={data.img} style={{ borderRadius: '50%' }} alt="User Avatar" />
+            <img src={data.img} alt="User Avatar" />
           </div>
         )}
         <ProfileButton onClick={handleClick} />
@@ -49,7 +36,7 @@ function UserProfile() {
       <div className={styles.balanceSection}>
         <div className={styles.balance}>
           <p>Balance</p>
-          <p>€{data.balance}</p>
+          <p>{formattedBalance}</p>
         </div>
         <div className={styles.line} />
         <div className={styles.cartOrders}>
