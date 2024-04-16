@@ -5,9 +5,11 @@ import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconBu
 import styles from './userProfile.module.scss';
 
 function UserProfile() {
-  const { data, loading } = useFetch<UserData>(Endpoint.USER);
+  const { data, loading, error } = useFetch<UserData>(Endpoint.USER);
 
   if (loading) return <h1>LOADING...</h1>;
+
+  if (error) return <h1>Error fetching data</h1>;
 
   if (!data) return null;
 
