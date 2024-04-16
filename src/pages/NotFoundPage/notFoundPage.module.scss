@@ -21,8 +21,6 @@
 
   a {
     text-decoration: none;
-    @each $property, $value in $label-S {
-      #{$property}: $value;
-    }
+    @include label-S;
   }
 }
