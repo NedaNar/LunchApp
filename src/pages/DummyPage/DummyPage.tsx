@@ -11,19 +11,17 @@ import {
   ButtonSize,
   ButtonIcon,
 } from '../../components/RegularButton/Button';
-
-// import DayTabs from '../../components/Tabs/Tabs';
-
-// const handleTabChange = (day: string) => {
-//   console.log('Selected day :', day);
-// };
+import DayTabs from '../../components/Tabs/DayTabs';
 
 export default function DummyPage() {
   const handleClick = () => {};
+  // const handleTabChange = (day: string) => {
+  //   console.log('Selected day :', day);
+  // };
 
   return (
     <div className={styles.dummyPage}>
-      <div className={styles.comp}>
+      <div className={`${styles.comp} ${styles.buttonContainer}`}>
         <h2>Regular Buttons</h2>
         <Button
           text="Click me"
@@ -48,7 +46,7 @@ export default function DummyPage() {
         />
       </div>
 
-      <div className={styles.comp}>
+      <div className={`${styles.comp} ${styles.buttonContainer}`}>
         <h2>Icon Buttons</h2>
         <IconButton />
         <IconButton size={IconButtonSize.SMALL} />
@@ -69,7 +67,7 @@ export default function DummyPage() {
 
       <div className={styles.comp}>
         <h2>Tabs</h2>
-        {/* <DayTabs onTabChange={handleTabChange} /> */}
+        <DayTabs onTabChange={handleClick} />
       </div>
     </div>
   );
