@@ -1,4 +1,5 @@
-import Header from '../components/Header/Header';
+// import styles from './availableLunchPage.module.scss';
+import Header from '../../components/Header/Header';
 
 export default function AvailableLunchPage() {
   return (

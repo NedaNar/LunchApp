@@ -2,10 +2,9 @@
 .dummyPage {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: baseline;
   border-radius: $border-radius-regular;
-  gap: 200px;
+  margin-left: 250px;
+  gap: 180px;
 }
 
 .comp {
