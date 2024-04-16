@@ -6,6 +6,7 @@ import YourOrdersPage from './pages/YourOrdersPage';
 import RatingsPage from './pages/RatingsPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { NavigationItemPath } from './types/navigationEnums';
+import DummyPage from './pages/DummyPage/DummyPage';
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,12 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFoundPage />,
     children: [
+      // laikinas DummyPage
+      {
+        path: '/dummy',
+        element: <DummyPage />,
+      },
+
       {
         path: NavigationItemPath.MENU,
         element: <FoodMenuPage />,

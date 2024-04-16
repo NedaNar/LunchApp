@@ -1,3 +1,9 @@
+import Header from '../components/Header/Header';
+
 export default function RatingsPage() {
-  return <h1>Ratings page</h1>;
+  return (
+    <div>
+      <Header page="ratings" />
+    </div>
+  );
 }

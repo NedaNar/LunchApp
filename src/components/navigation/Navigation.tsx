@@ -29,7 +29,8 @@ export default function Navigation() {
       </div>
 
       <nav className={styles.nav}>
-        <Link to={NavigationItemPath.ROOT} className={styles.navLogo}>
+        {/* linkas dummy laikinas pakeisti į  Link to={NavigationItemPath.ROOT} */}
+        <Link to="/dummy" className={styles.navLogo}>
           {collapsed ? (
             <LogoVertical className={styles.logo} title="logo" />
           ) : (
