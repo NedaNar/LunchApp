@@ -12,6 +12,7 @@ export enum Endpoint {
 
 function useFetch<T>(endpoint: Endpoint): { data: T | null; loading: boolean } {
   const [data, setData] = useState<T | null>(null);
+  // const [isError, setIsError] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,6 +22,9 @@ function useFetch<T>(endpoint: Endpoint): { data: T | null; loading: boolean } {
         const response = await axios.get<T>(`http://localhost:3002/${endpoint}`);
         setData(response.data);
       } finally {
+        //  catch (error) {
+        //   setIsError(true);
+        //  }
         setLoading(false);
       }
     };
@@ -28,6 +32,15 @@ function useFetch<T>(endpoint: Endpoint): { data: T | null; loading: boolean } {
     fetchData();
   }, [endpoint]);
 
+  // if (loading) {
+  //    return <div>LOADING...</div>
+  // }
+  // if (isError) {
+  //   return <div>Error - nyveike tava serveriux.</div>
+  // }
+  // if (!data) {
+  //   return <div></div>
+  // }
   return { data, loading };
 }
 
