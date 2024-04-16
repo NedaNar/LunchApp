@@ -43,9 +43,6 @@ button {
   box-shadow: $box-shadow-m;
   border-bottom-left-radius: $border-radius-regular;
   border-top-left-radius: $border-radius-regular;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
 }
 
 .footer {
@@ -54,15 +51,10 @@ button {
 
   padding: 40px 40px 24px 40px;
   
-  // position: fixed;
-  // bottom: 0;
-  // width: 100%;
-
   @media (min-width: 40em) {
     grid-column: span 2;
   }
 }
-
 
 
 .footer-left {
@@ -81,7 +73,6 @@ button {
   display: inline-block;
   text-align: center;
 }
-
 
 
 .header {
