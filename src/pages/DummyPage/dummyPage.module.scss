@@ -1,0 +1,17 @@
+@import '/src/styles/_tools';
+.dummyPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  border-radius: $border-radius-regular;
+  gap: 200px;
+}
+
+.comp {
+  display: flex;
+  flex-direction: column;
+  button {
+    margin: 10px;
+  }
+}

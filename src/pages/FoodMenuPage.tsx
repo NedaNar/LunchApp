@@ -1,3 +1,9 @@
+import Header from '../components/Header/Header';
+
 export default function FoodMenuPage() {
-  return <h1>Food Menu page</h1>;
+  return (
+    <div>
+      <Header page="lunchMenu" />
+    </div>
+  );
 }

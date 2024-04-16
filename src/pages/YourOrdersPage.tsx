@@ -1,3 +1,9 @@
+import Header from '../components/Header/Header';
+
 export default function YourOrdersPage() {
-  return <h1>Your Orders page</h1>;
+  return (
+    <div>
+      <Header page="yourOrders" />
+    </div>
+  );
 }
