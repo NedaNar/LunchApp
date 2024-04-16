@@ -1,4 +1,4 @@
-@import '../../styles/variables/index';
+@import '/src/styles/_tools';
 
 .btn {
   display: flex;
@@ -81,9 +81,9 @@
 
   &.large {
     padding: $space-XXXXS;
-    @each $property, $value in $label-L {
-      #{$property}: $value;
-    }
+
+    @include label-L;
+
     .text {
       margin: 0rem $space-XXXXS;
     }
@@ -95,9 +95,9 @@
 
   &.medium {
     padding: $space-XXXXS;
-    @each $property, $value in $label-M {
-      #{$property}: $value;
-    }
+
+    @include label-M;
+
     .text {
       margin: 0rem $space-XXXXS;
     }
@@ -109,9 +109,9 @@
 
   &.small {
     padding: $space-XXXXXS $space-XXXXS;
-    @each $property, $value in $label-S {
-      #{$property}: $value;
-    }
+
+    @include label-S;
+
     .icon {
       height: 1.8rem;
       width: 1.8rem;
@@ -120,9 +120,9 @@
 
   &.xsmall {
     padding: 0.7rem $space-XXXXS;
-    @each $property, $value in $label-XS {
-      #{$property}: $value;
-    }
+
+    @include label-XS;
+
     .icon {
       height: 1.4rem;
       width: 1.4rem;

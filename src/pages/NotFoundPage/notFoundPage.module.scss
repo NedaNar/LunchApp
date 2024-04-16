@@ -1,0 +1,26 @@
+@import '/src/styles/_tools';
+
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $space-XXXXL;
+  text-align: center;
+  h1,
+  h2 {
+    margin: $space-XXXXXS;
+  }
+}
+
+.rootPathLink {
+  width: 20rem;
+  border: 0.2rem solid $color-secondary-300;
+  border-radius: $border-radius-large;
+  margin: $space-L;
+  gap: $space-XXXXS;
+
+  a {
+    text-decoration: none;
+    @include label-S;
+  }
+}
