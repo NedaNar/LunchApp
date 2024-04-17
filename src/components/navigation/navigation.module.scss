@@ -63,7 +63,7 @@ $transition-delay: 0.3s;
 
 .sidebar {
   min-height: 35rem;
-  height: calc(100vh - 24px * 2);
+  height: calc(100vh - $space-S * 2);
   display: flex;
   position: fixed;
   left: 0;
