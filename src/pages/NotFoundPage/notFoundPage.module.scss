@@ -1,26 +1,23 @@
 @import '/src/styles/_tools';
 
-.errorMessage {
+.errorPageLayout {
+  height: 100vh;
+  width: 100vw;
   display: flex;
+  padding: $space-S 0;
+}
+.navContainer {
+  width: 21.4rem;
+  position: fixed;
+}
+.errorMessageContainer {
+  flex: content;
   flex-direction: column;
   align-items: center;
-  padding: $space-XXXXL;
   text-align: center;
+  margin-top: $space-XXXXL;
   h1,
   h2 {
     margin: $space-XXXXXS;
-  }
-}
-
-.rootPathLink {
-  width: 20rem;
-  border: 0.2rem solid $color-secondary-300;
-  border-radius: $border-radius-large;
-  margin: $space-L;
-  gap: $space-XXXXS;
-
-  a {
-    text-decoration: none;
-    @include label-S;
   }
 }
