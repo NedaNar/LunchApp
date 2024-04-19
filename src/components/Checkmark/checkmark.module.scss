@@ -6,9 +6,7 @@
     width: 100%;
 
     label {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flexbox-centered;
     }
 
     span {
