@@ -1,9 +1,7 @@
 @import '../../styles/tools';
 
 .checkboxWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox-centered;
     max-width: 10.4rem;
     width: 100%;
 
