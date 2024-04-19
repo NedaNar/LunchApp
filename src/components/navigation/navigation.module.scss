@@ -7,7 +7,7 @@ $space-14: 1.4rem;
 $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
 $border-radius-navItem-collapsed: 0.5rem;
 $border-radius-navItem-expanded: 1.2rem;
-$transition: 0.3s;
+$transition: 0.2s;
 $transition-delay: 0.1s;
 
 // ________NAVIGATION ITEM STYLE_________________
@@ -23,7 +23,6 @@ $transition-delay: 0.1s;
   color: $color-white;
   padding: $space-6 $space-XXXS;
   gap: $space-XXXS;
-  // transition: $transition;
 
   &:hover {
     background-color: $color-primary-600;
@@ -63,14 +62,16 @@ $transition-delay: 0.1s;
 // _________NAVIGATION SIDEBAR STYLE______________
 
 .sidebar {
-  height: 97rem;
+  min-height: 35rem;
+  height: calc(100vh - $space-S * 2);
+  max-width: 21.4;
   display: flex;
-  position: fixed;
+  position: absolute;
   left: 0;
-  top: $space-S;
   background-color: $color-primary-800;
   border-radius: $border-radius-sidebar;
   box-sizing: border-box;
+  text-align: center;
   padding: $space-10;
   gap: $space-10;
 
@@ -110,7 +111,8 @@ $transition-delay: 0.1s;
   }
 
   &--expanded {
-    .navItem {
+    .navItem,
+    span {
       transition-delay: $transition-delay;
     }
   }
