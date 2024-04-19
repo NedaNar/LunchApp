@@ -2,6 +2,7 @@ import styles from './iconButton.module.scss';
 import ArrowIcon from '../../assets/iconbuttonsvg/ArrowIcon.svg?react';
 import LoopIcon from '../../assets/iconbuttonsvg/LoopIcon.svg?react';
 import CloseIcon from '../../assets/iconbuttonsvg/CloseIcon.svg?react';
+import ShoppingCartIcon from '../../assets/static/icons/icon_shopping-basket.svg?react';
 
 export enum IconButtonSize {
   SMALL = 'small',
@@ -18,6 +19,7 @@ export enum IconButtonIcon {
   ARROW,
   LOOP,
   CLOSE,
+  CART,
 }
 
 export interface IconButtonProps {
@@ -60,6 +62,8 @@ function IconButton({
             height={size === IconButtonSize.MEDIUM ? 14 : 12}
           />
         );
+      case IconButtonIcon.CART:
+        return <ShoppingCartIcon width={24} height={24} />;
       default:
         return null;
     }
