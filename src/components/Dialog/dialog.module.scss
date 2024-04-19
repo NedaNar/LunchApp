@@ -1,5 +1,66 @@
 @import '../../styles/tools';
 
 .dialogWrapper {
-    display: flex;
+    @include flexbox-centered;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 44.7rem;
+    width: 100%;
+    height: 23.2rem;
+    background-color: $color-white;
+    border-radius: $border-radius-regular;
+    border: 0.1rem solid $color-white;  
+    padding: $space-XXS;
+    gap: $space-S;
+
+    p {
+        color: $color-primary-600;
+    }
+
+    .dialogBody {
+        @include flexbox-centered;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        gap: $space-S;
+
+        .dialogHeader {
+            width: 100%;
+            @include flexbox-centered;
+            justify-content: space-between;
+
+            p {
+                @include headline-S;
+            }
+        }
+
+        .dialogSubBody {
+            @include flexbox-centered;
+            gap: $space-XXS;
+            height: 8rem;
+            width: 100%;
+
+            p {
+                @include body-L;
+                text-align: left;
+                max-width: 31.9rem;
+                width: 100%;
+                text-wrap: wrap;
+
+                span {
+                    @include body-M;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .dialogButtonWrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1.5rem;
+    }
 }
