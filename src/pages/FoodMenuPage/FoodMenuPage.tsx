@@ -1,13 +1,13 @@
 import styles from './foodMenuPage.module.scss';
-import Header from '../../components/Header/Header';
 import FoodCard from '../../components/FoodCard/FoodCard';
 import { DishType } from '../../components/FoodCard/helpers';
 
 export default function FoodMenuPage() {
   return (
     <>
-      <Header page="lunchMenu" />
+      <h1> This is Food Menu Page</h1>
 
+      {/* div tag below with className={styles.containar} added for temporary styling, and can be changed or removed */}
       <div className={styles.containar}>
         <FoodCard
           vendor="Tasty Bites"

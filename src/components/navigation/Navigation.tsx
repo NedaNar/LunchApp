@@ -15,7 +15,7 @@ import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
 
 export default function Navigation() {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   return (
     <aside
       className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : styles['sidebar--expanded']}`}>
