@@ -13,6 +13,7 @@ export function Input({
   error = false,
   disabled = false,
   icon = false,
+
   label,
   name,
   ...rest
@@ -37,7 +38,9 @@ export function Input({
 // import { Input } from './components/Input/Input';
 
 // <Input label="Your string for label" name="string for label-name and input-id"/>
+
 // You can pass states:   error | disabled
 //   <Input label="Your label" name="string" error />
+
 //   you can pass all props from HTML <input> element attributes: type | placeholder | autofocus | value | pattern | and all others
 //   <Input label="Your label" name="string" disable placeholder="text in place holder" />

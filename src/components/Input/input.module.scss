@@ -20,7 +20,9 @@ $color-red-error-border: #ffc7c5;
   //   }
 
   .input {
-    width: 100%;
+    // ar daryt fix width
+    width: 32.2rem;
+    // width: 100%;
     padding: $space-XXXXS $space-XXXS;
     border-radius: $border-radius-regular;
     border: $color-grey-300 0.1rem solid;
@@ -77,6 +79,16 @@ $color-red-error-border: #ffc7c5;
   &Disabled {
     color: $color-grey-disable-text;
   }
+}
+
+.textarea {
+  // ar daryti fix
+  width: 50.2rem;
+  //   width: 100%;
+  padding: $space-XXXXS $space-XXXS;
+  border-radius: $border-radius-regular;
+  border: $color-grey-300 0.1rem solid;
+  outline: none;
 }
 
 .search {
