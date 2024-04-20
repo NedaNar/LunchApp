@@ -14,7 +14,7 @@ export enum DialogIcon {
 export interface DialogProps {
   title: string;
   icon: DialogIcon;
-  description: string;
+  description: JSX.Element;
   outlinedButton?: boolean;
   outlinedButtonText?: string;
   buttonText: string;
@@ -75,12 +75,20 @@ function Dialog({
 
 export default Dialog;
 
+// Since this Dialog component in the future might have more variations
+// of text than currently shown in the design, a decision was made to provide
+// information through props in this way without enums.
+//
 // Use case:
 // import Dialog, {DialogIcon} from './components/Dialog/Dialog';
 //  <Dialog
 //    title='You’re about to cancel your order.'
 //    icon={DialogIcon.WARNING}
-//    description='Are you sure you want to cancel your order for Wednesday?'
+//    description={(
+//      <>
+//        <p>Are you sure you want to cancel your order for <span>Wednesday</span>?</p>
+//      </>
+//    )}
 //    buttonText='Yes, Cancel'
 //    outlinedButton
 //    />
