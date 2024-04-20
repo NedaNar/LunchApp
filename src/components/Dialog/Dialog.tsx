@@ -5,39 +5,29 @@ import InfoDialogIcon from '../../assets/static/icons/icon_infoDialog.svg?react'
 import SuccessDialogIcon from '../../assets/static/icons/icon_successDialog.svg?react';
 import WarningDialogIcon from '../../assets/static/icons/icon_warningDialog.svg?react';
 
-export enum DialogTitle {
-  INFO = 'Informative statement.',
-  SUCCESS = 'We’ve got your lunch order!',
-  WARNING = 'You’re about to cancel your order.',
-}
-
 export enum DialogIcon {
   INFO,
   SUCCESS,
   WARNING,
 }
 
-export enum DialogSummary {
-  INFO = 'Explanation on what is going on.',
-  SUCCESS = 'Your order is placed successfully. You can view your lunch for the week in <strong>Your Order.</strong>',
-  WARNING = 'Are you sure you want to cancel your order for Wednesday?',
-}
-
-export enum DialogButton {
-  INFO = 'Button',
-  SUCCESS = 'Cool, Thanks!',
-  WARNING = 'Yes, Cancel',
-}
-
 export interface DialogProps {
-  title: DialogTitle;
+  title: string;
   icon: DialogIcon;
-  summary: DialogSummary;
+  description: string;
   outlinedButton?: boolean;
-  buttonText: DialogButton;
+  outlinedButtonText?: string;
+  buttonText: string;
 }
 
-function Dialog({ title, icon, summary, outlinedButton = false, buttonText }: DialogProps) {
+function Dialog({
+  title,
+  icon,
+  description,
+  outlinedButton = false,
+  outlinedButtonText = 'No, Keep',
+  buttonText,
+}: DialogProps) {
   const showIcon = (iconType: DialogIcon) => {
     switch (iconType) {
       case DialogIcon.INFO:
@@ -51,27 +41,6 @@ function Dialog({ title, icon, summary, outlinedButton = false, buttonText }: Di
     }
   };
 
-  const getSummary = (summaryType: DialogSummary) => {
-    switch (summaryType) {
-      case DialogSummary.INFO:
-        return 'Explanation on what is going on.';
-      case DialogSummary.SUCCESS:
-        return (
-          <>
-            <p>Your order is placed successfully.</p>
-            <p>You can view your lunch for the week in</p>
-            <p>
-              <span>Your Order.</span>
-            </p>
-          </>
-        );
-      case DialogSummary.WARNING:
-        return 'Are you sure you want to cancel your order for Wednesday?';
-      default:
-        return '';
-    }
-  };
-
   return (
     <dialog open className={styles.dialogWrapper}>
       <div className={styles.dialogBody}>
@@ -81,13 +50,13 @@ function Dialog({ title, icon, summary, outlinedButton = false, buttonText }: Di
         </div>
         <div className={styles.dialogSubBody}>
           <figure>{showIcon(icon)}</figure>
-          <p className={styles.dialogSummary}>{getSummary(summary)}</p>
+          <p>{description}</p>
         </div>
       </div>
       <div className={styles.dialogButtonWrapper}>
         {outlinedButton && (
           <Button
-            text="No, Keep"
+            text={outlinedButtonText}
             appearance={ButtonAppearance.SECONDARY}
             size={ButtonSize.MEDIUM}
             onClick={() => {}}
@@ -107,11 +76,11 @@ function Dialog({ title, icon, summary, outlinedButton = false, buttonText }: Di
 export default Dialog;
 
 // Use case:
-// import Dialog, {DialogTitle, DialogIcon, DialogSummary, DialogButton } from './components/Dialog/Dialog';
-// <Dialog
-//    title={DialogTitle.INFO}
-//    icon={DialogIcon.INFO}
-//    summary={DialogSummary.INFO}
-//    buttonText={DialogButton.INFO}
+// import Dialog, {DialogIcon} from './components/Dialog/Dialog';
+//  <Dialog
+//    title='You’re about to cancel your order.'
+//    icon={DialogIcon.WARNING}
+//    description='Are you sure you want to cancel your order for Wednesday?'
+//    buttonText='Yes, Cancel'
 //    outlinedButton
 //    />
