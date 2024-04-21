@@ -1,7 +1,7 @@
 // Use CASE:
 // import Navigation from './components/navigation/Navigation';
 // <Navigation />
-import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import styles from './navigation.module.scss';
 import NavigationItem from './NavigationItem';
@@ -14,8 +14,13 @@ import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
 import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
 import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
 
-export default function Navigation() {
-  const [collapsed, setCollapsed] = useState(false);
+interface NavigationProps {
+  collapsed: boolean;
+  setCollapsed: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+}
+
+export default function Navigation({ collapsed, setCollapsed }: NavigationProps) {
+  // const [collapsed, setCollapsed] = useState(false);
   return (
     <aside
       className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : styles['sidebar--expanded']}`}>

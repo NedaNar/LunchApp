@@ -1,3 +1,4 @@
+@import '../../styles/_tools.scss';
 @import '/src/styles/_tools';
 
 $transition: 0.2s;
@@ -7,11 +8,13 @@ $transition: 0.2s;
   width: 100vw;
   height: 100vh;
   text-align: center;
+  background-color: $color-grey-100;
 }
 
 .content {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   padding-top: 2.4rem;
   padding-left: calc(21.4rem + 2rem);
   transition: $transition;
@@ -24,12 +27,8 @@ $transition: 0.2s;
   }
 }
 
-.errorMessage {
-  flex: content;
-  flex-direction: column;
-  text-align: center;
-  h1,
-  h2 {
-    margin: $space-XXXXXS;
-  }
+.userprofile {
+  position: absolute;
+  top: 2.4rem;
+  right: 0;
 }

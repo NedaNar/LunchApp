@@ -1,15 +1,9 @@
-import { Outlet } from 'react-router-dom';
 import styles from './App.module.scss';
 import './styles/index.scss';
-import UserProfile from './components/UserProfile/UserProfile';
-import Navigation from './components/navigation/Navigation';
 
 export function App() {
-  return (
-    <div className={styles.container}>
-      <UserProfile />
-      <Navigation />
-      <Outlet />
-    </div>
-  );
+  return <div className={styles.container} />;
 }
+
+// =================App routas nuimtas=======================================
+// komponentų testavimui naudoti DummyPage, arba kelti į jam priklausantį page

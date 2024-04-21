@@ -13,7 +13,8 @@ $transition-delay: 0.1s;
 // ________NAVIGATION ITEM STYLE_________________
 
 .navItem {
-  width: 18.1rem;
+  // width: 18.1rem;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -64,10 +65,11 @@ $transition-delay: 0.1s;
 .sidebar {
   min-height: 35rem;
   height: calc(100vh - $space-S * 2);
-  max-width: 21.4;
+  max-width: 21.4rem;
   display: flex;
-  position: absolute;
+  position: fixed;
   left: 0;
+  margin-top: $space-S;
   background-color: $color-primary-800;
   border-radius: $border-radius-sidebar;
   box-sizing: border-box;
@@ -104,6 +106,10 @@ $transition-delay: 0.1s;
     list-style: none;
     padding: 0;
     margin: 0;
+
+    & > li {
+      width: 100%;
+    }
 
     & > li > a {
       text-decoration: none;

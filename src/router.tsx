@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { App } from './App';
+// import { App } from './App';
 import FoodMenuPage from './pages/FoodMenuPage/FoodMenuPage';
 import AvailableLunchPage from './pages/AvailableLunchPage/AvailableLunchPage';
 import YourOrdersPage from './pages/YourOrdersPage/YourOrdersPage';
@@ -7,11 +7,31 @@ import RatingsPage from './pages/RatingsPage/RatingsPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { NavigationItemPath } from './types/navigationEnums';
 import DummyPage from './pages/DummyPage/DummyPage';
+import MainLayout from './layouts/Main/MainLayout';
+// import AuthLayout from './layouts/Auth/AuthLayout';
+// import LoginPage from './pages/LoginPage/LoginPage';
 
 export const router = createBrowserRouter([
+  // šių routų reikėe kai bus AuthLayout
+  // {
+  //   element: <AuthLayout />,
+  //   errorElement: <NotFoundPage />,
+  //   children: [
+  //     {
+  //       path: '/login',
+  //       element: <LoginPage />,
+  //     },
+  //     {
+  //       path: '/register',
+  //       element: <LoginPage />,
+  //     },
+  //   ],
+  // },
+
+  // Šie routai turės būti apsaugoti
   {
     path: NavigationItemPath.ROOT,
-    element: <App />,
+    element: <MainLayout />,
     errorElement: <NotFoundPage />,
     children: [
       // laikinas DummyPage
