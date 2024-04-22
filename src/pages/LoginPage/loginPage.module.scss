@@ -1,0 +1,31 @@
+@import '../../styles/tools';
+
+.layout {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    background-color: $color-grey-100;
+  
+    img {
+      height: 8.31rem;
+      width: 8.02rem;
+      border-radius: $border-radius-large;
+      border: 0.01rem solid $color-grey-200; /* Specify border style */
+      box-shadow: $box-shadow-m;
+      margin-right: 1rem; /* Add margin for spacing */
+    }
+  
+    .loginForm {
+      background-color: $color-white;
+      margin-top: 1.88rem; /* Use margin instead of top */
+      margin-left: 9.19rem; /* Use margin instead of left */
+      padding: 2.4rem;
+      gap: $space-XXXXL;
+      border-radius: $border-radius-regular;
+      border: 0.01rem solid #F2F2F2; /* Specify border style */
+      box-shadow: $box-shadow-m;
+    }
+  }
+  
+
+
