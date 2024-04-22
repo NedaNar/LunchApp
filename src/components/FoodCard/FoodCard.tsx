@@ -12,7 +12,7 @@ export interface FoodCardProps {
   picture: DishType;
   isVegetarian?: boolean;
   isSpicy?: boolean;
-  rating: number;
+  rating: number | string;
   vendor: string;
 }
 
@@ -30,7 +30,9 @@ function FoodCard({
     style: 'currency',
     currency: 'EUR',
   }).format(price);
-  const formattedRating = rating.toFixed(1);
+
+  const hasRating = typeof rating === 'number';
+  const formattedRating = hasRating ? rating.toFixed(1) : rating;
 
   return (
     <article className={styles.foodCard}>
@@ -58,9 +60,11 @@ function FoodCard({
         <p className={styles.bodyM}>{description}</p>
         <div className={styles.cardSubBody}>
           <div className={styles.rating}>
-            <figure className={styles.ratingFigure}>
-              <SolarStarIcon className={styles.ratingLogo} />
-            </figure>
+            {hasRating && (
+              <figure className={styles.ratingFigure}>
+                <SolarStarIcon className={styles.ratingLogo} />
+              </figure>
+            )}
             <p className={styles.labelXS}>{formattedRating}</p>
           </div>
           <Button

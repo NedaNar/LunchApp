@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { App } from './App';
-import FoodMenuPage from './pages/FoodMenuPage';
+import FoodMenuPage from './pages/FoodMenuPage/FoodMenuPage';
 import AvailableLunchPage from './pages/AvailableLunchPage';
 import YourOrdersPage from './pages/YourOrdersPage';
 import RatingsPage from './pages/RatingsPage';

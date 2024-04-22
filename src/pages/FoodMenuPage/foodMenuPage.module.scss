@@ -1,0 +1,12 @@
+@import '/src/styles/_tools';
+
+.mealContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-M;
+  justify-content: center;
+}
+
+.container {
+  margin: $space-M auto 0rem auto;
+}
