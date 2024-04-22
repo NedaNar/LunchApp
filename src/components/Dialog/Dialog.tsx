@@ -14,7 +14,7 @@ export enum DialogIcon {
 export interface DialogProps {
   title: string;
   icon?: DialogIcon;
-  description: JSX.Element;
+  children: React.ReactNode;
   secondaryButton?: boolean;
   secondaryButtonText?: string;
   primaryButtonText: string;
@@ -23,7 +23,7 @@ export interface DialogProps {
 function Dialog({
   title,
   icon,
-  description,
+  children,
   secondaryButton = false,
   secondaryButtonText = 'No, Keep',
   primaryButtonText,
@@ -44,16 +44,16 @@ function Dialog({
   return (
     <dialog open className={styles.dialogWrapper}>
       <div className={styles.dialogBody}>
-        <div className={styles.dialogHeader}>
+        <header className={styles.dialogHeader}>
           <p>{title}</p>
           <IconButton type={IconButtonType.TERTIARY} icon={IconButtonIcon.CLOSE} />
-        </div>
+        </header>
         <div className={styles.dialogSubBody}>
           <figure>{showIcon(icon)}</figure>
-          <p>{description}</p>
+          <p>{children}</p>
         </div>
       </div>
-      <div className={styles.dialogButtonWrapper}>
+      <footer className={styles.dialogButtonWrapper}>
         {secondaryButton && (
           <Button
             text={secondaryButtonText}
@@ -68,7 +68,7 @@ function Dialog({
           size={ButtonSize.MEDIUM}
           onClick={() => {}}
         />
-      </div>
+      </footer>
     </dialog>
   );
 }
@@ -84,7 +84,7 @@ export default Dialog;
 //  <Dialog
 //    title='You’re about to cancel your order.'
 //    icon={DialogIcon.WARNING}
-//    description={(
+//    children={(
 //      <>
 //        <p>Are you sure you want to cancel your order for <span>Wednesday</span>?</p>
 //      </>

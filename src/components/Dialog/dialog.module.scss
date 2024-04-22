@@ -2,10 +2,12 @@
 
 .dialogWrapper {
     @include flexbox-centered;
+
     flex-direction: column;
     justify-content: space-between;
 
     max-width: 44.7rem;
+    min-width: 44.7rem;
     width: 100%;
     height: 23.2rem;
     background-color: $color-white;
@@ -20,14 +22,16 @@
 
     .dialogBody {
         @include flexbox-centered;
+
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
         gap: $space-S;
 
         .dialogHeader {
-            width: 100%;
             @include flexbox-centered;
+
+            width: 100%;
             justify-content: space-between;
 
             p {
@@ -37,12 +41,14 @@
 
         .dialogSubBody {
             @include flexbox-centered;
+
             gap: $space-XXS;
             height: 8rem;
             width: 100%;
 
             p {
                 @include body-L;
+
                 text-align: left;
                 max-width: 31.9rem;
                 width: 100%;
@@ -50,6 +56,7 @@
 
                 span {
                     @include body-M;
+
                     font-weight: bold;
                 }
             }
