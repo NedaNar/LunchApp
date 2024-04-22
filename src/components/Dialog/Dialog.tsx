@@ -13,22 +13,22 @@ export enum DialogIcon {
 
 export interface DialogProps {
   title: string;
-  icon: DialogIcon;
+  icon?: DialogIcon;
   description: JSX.Element;
-  outlinedButton?: boolean;
-  outlinedButtonText?: string;
-  buttonText: string;
+  secondaryButton?: boolean;
+  secondaryButtonText?: string;
+  primaryButtonText: string;
 }
 
 function Dialog({
   title,
   icon,
   description,
-  outlinedButton = false,
-  outlinedButtonText = 'No, Keep',
-  buttonText,
+  secondaryButton = false,
+  secondaryButtonText = 'No, Keep',
+  primaryButtonText,
 }: DialogProps) {
-  const showIcon = (iconType: DialogIcon) => {
+  const showIcon = (iconType?: DialogIcon) => {
     switch (iconType) {
       case DialogIcon.INFO:
         return <InfoDialogIcon />;
@@ -54,16 +54,16 @@ function Dialog({
         </div>
       </div>
       <div className={styles.dialogButtonWrapper}>
-        {outlinedButton && (
+        {secondaryButton && (
           <Button
-            text={outlinedButtonText}
+            text={secondaryButtonText}
             appearance={ButtonAppearance.SECONDARY}
             size={ButtonSize.MEDIUM}
             onClick={() => {}}
           />
         )}
         <Button
-          text={buttonText}
+          text={primaryButtonText}
           appearance={ButtonAppearance.PRIMARY}
           size={ButtonSize.MEDIUM}
           onClick={() => {}}
@@ -89,6 +89,6 @@ export default Dialog;
 //        <p>Are you sure you want to cancel your order for <span>Wednesday</span>?</p>
 //      </>
 //    )}
-//    buttonText='Yes, Cancel'
-//    outlinedButton
+//    primaryButtonText='Yes, Cancel'
+//    secondaryButton
 //    />
