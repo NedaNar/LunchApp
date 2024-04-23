@@ -1,10 +1,11 @@
 @import '../../styles/tools';
 
-$color-grey-focus-text: #646872;
+$color-grey-input-text: #646872;
 $color-grey-disable-text: #bdbfc4;
 $color-grey-disable-border: #eeeff0;
 $color-red-error-text: #d3232f;
 $color-red-error-border: #ffc7c5;
+$space-7: 0.7rem;
 
 .wrapper {
   width: 32.3rem;
@@ -14,27 +15,21 @@ $color-red-error-border: #ffc7c5;
   position: relative;
   gap: $space-XXXXXS;
 
-  //gal galima visam elementui uždėti opasity?
-  //   &Disabled {
-  //     opacity: 0.4;
-  //   }
-
   .input {
-    // ar daryt fix width
-    width: 32.2rem;
-    // width: 100%;
-    padding: $space-XXXXS $space-XXXS;
+    width: 100%;
+    padding: $space-7 $space-XXXS;
     border-radius: $border-radius-regular;
     border: $color-grey-300 0.1rem solid;
     outline: none;
 
     @include body-M;
-    color: $color-grey-500;
+    color: $color-grey-input-text;
     transition: 0.1s;
 
     &:focus {
+      border: none;
       outline: $color-purple-500 0.2rem solid;
-      color: $color-grey-focus-text;
+      color: $color-primary-600;
     }
 
     &Error {
@@ -42,22 +37,17 @@ $color-red-error-border: #ffc7c5;
       color: $color-red-error-text;
     }
 
-    &Disabled {
+    &:disabled {
       border-color: $color-grey-disable-border;
-      color: $color-grey-disable-text;
+      background-color: transparent;
+      &::placeholder {
+        color: $color-grey-disable-text;
+      }
     }
-
-    // paieškoti info gal  :disable :invalid
-    //   &:disabled {
-    // opacity: 0.4;
-    // color: red;
-    // color: $color-grey-opacity-text;
-    // border-color: $color-grey-opacity-border;
-    //   }
 
     &Icon {
       position: absolute;
-      top: 3.25rem;
+      top: 2.7rem;
       left: 1.25rem;
       gap: 1rem;
 
@@ -65,26 +55,17 @@ $color-red-error-border: #ffc7c5;
         fill: $color-grey-400;
       }
 
-      &Placeholder {
+      &Place {
         padding-left: 4.1rem;
       }
     }
   }
 }
 
-.label {
-  @include label-S;
-  color: $color-primary-600;
-
-  &Disabled {
-    color: $color-grey-disable-text;
-  }
-}
-
 .textarea {
-  // ar daryti fix
+  // width: 100%;
+  // ar daryti fix?
   width: 50.2rem;
-  //   width: 100%;
   padding: $space-XXXXS $space-XXXS;
   border-radius: $border-radius-regular;
   border: $color-grey-300 0.1rem solid;
@@ -92,21 +73,19 @@ $color-red-error-border: #ffc7c5;
 }
 
 .search {
-  &Wrapper {
+  &wrapper {
     position: relative;
   }
   &ResultBox {
     position: absolute;
-    top: 70px;
-    right: 0px;
     width: 100%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: $color-grey-200;
-    border-radius: 0.4rem;
+    top: 7rem;
+    right: 0;
+    border: $color-grey-200 0.1rem solid;
+    border-radius: $border-radius-small;
     color: $color-grey-500;
     @include title-S;
-    padding: 0.4rem 0rem;
+    padding: $space-XXXXXS 0rem;
     box-shadow: $box-shadow-m;
   }
 }

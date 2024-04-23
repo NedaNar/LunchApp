@@ -28,7 +28,7 @@ export function Input({
         id={name}
         {...rest}
         disabled={disabled}
-        className={`${styles.input} ${error ? styles.inputError : ''} ${icon ? styles.inputIconPlaceholder : ''}`}
+        className={`${styles.input} ${error ? styles.inputError : ''} ${disabled ? styles.inputDisabled : ''} ${icon ? styles.inputIconPlace : ''}`}
       />
     </div>
   );
@@ -43,4 +43,6 @@ export function Input({
 //   <Input label="Your label" name="string" error />
 
 //   you can pass all props from HTML <input> element attributes: type | placeholder | autofocus | value | pattern | and all others
-//   <Input label="Your label" name="string" disable placeholder="text in place holder" />
+
+//  !attribute type="" from HTML is highly recommended to use!
+//   <Input label="Your E-mail" name="email" type="email" placeholder="Write E-mail address" />
