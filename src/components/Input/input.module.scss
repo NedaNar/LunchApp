@@ -3,6 +3,7 @@
 $color-grey-input-text: #646872;
 $color-grey-disable-text: #bdbfc4;
 $color-grey-disable-border: #eeeff0;
+$color-grey-error-label: #272930;
 $color-red-error-text: #d3232f;
 $color-red-error-border: #ffc7c5;
 $space-7: 0.7rem;
@@ -47,7 +48,7 @@ $space-7: 0.7rem;
 
     &Icon {
       position: absolute;
-      top: 2.7rem;
+      top: 3.25rem;
       left: 1.25rem;
       gap: 1rem;
 
@@ -61,6 +62,16 @@ $space-7: 0.7rem;
     }
   }
 }
+.label {
+  @include label-S;
+  color: $color-primary-600;
+  &Disabled {
+    color: $color-grey-disable-text;
+  }
+  &Error {
+    color: $color-grey-error-label;
+  }
+}
 
 .textarea {
   // width: 100%;
@@ -70,6 +81,11 @@ $space-7: 0.7rem;
   border-radius: $border-radius-regular;
   border: $color-grey-300 0.1rem solid;
   outline: none;
+  &:focus {
+    border: none;
+    outline: $color-purple-500 0.2rem solid;
+    color: $color-primary-600;
+  }
 }
 
 .search {
