@@ -1,3 +1,3 @@
 export default function RatingsPage() {
-  return <h1>Ratings page</h1>;
+  return <h1> This is Ratings Page</h1>;
 }
