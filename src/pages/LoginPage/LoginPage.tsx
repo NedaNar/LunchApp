@@ -2,9 +2,9 @@
 
 // export default function LoginPage() {
 //   return (
-//     <div style={{ maxWidth: 300 }}>
-//       <Input label="Email" name="email"placeholder="test@gmail.com" />
-//       <Input label="Password" name="password" placeholder="" type="password" />
+//     <div>
+//       <Input label="Email" name="email" type="email" placeholder="test@gmail.com" />
+//       <Input label="Password" name="password" type="password" placeholder="" type="password" />
 //     </div>
 //   );
 // }

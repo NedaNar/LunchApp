@@ -12,6 +12,8 @@ import {
   ButtonIcon,
 } from '../../components/RegularButton/Button';
 import DayTabs from '../../components/Tabs/DayTabs';
+import { Input } from '../../components/Input/Input';
+import Textarea from '../../components/Input/Textarea';
 
 export default function DummyPage() {
   const handleClick = () => {};
@@ -68,6 +70,17 @@ export default function DummyPage() {
       <div className={styles.comp}>
         <h2>Tabs</h2>
         <DayTabs onTabChange={handleClick} />
+      </div>
+
+      <div className={styles.InputContainer}>
+        <h2>Input component</h2>
+
+        <Input label="Email" name="email" type="email" placeholder="test@gmail.com" />
+        <Input label="Error" name="error" error />
+        <Input label="Disabled" name="disabled" placeholder="input disabled" disabled />
+        <Input label="Search" name="serchInput" icon />
+        <Textarea label="Textarea" name="textArea" />
+        <div />
       </div>
     </div>
   );

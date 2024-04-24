@@ -4,10 +4,10 @@ import { Outlet } from 'react-router-dom';
 export default function AuthLayout() {
   return (
     <div style={{ display: 'flex' }}>
-      <div style={{ width: 300, height: 300, background: 'black' }} />
+      <div style={{ width: 300, height: 300 }} />
       <Outlet />
       {/* <LoginPage /> */}
-      <p>footer</p>
+      <p>čia yra AuthLayout</p>
     </div>
   );
 }

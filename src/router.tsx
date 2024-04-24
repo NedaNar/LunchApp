@@ -12,7 +12,7 @@ import MainLayout from './layouts/Main/MainLayout';
 // import LoginPage from './pages/LoginPage/LoginPage';
 
 export const router = createBrowserRouter([
-  // šių routų reikėe kai bus AuthLayout
+  // šių routų reikės kai bus AuthLayout
   // {
   //   element: <AuthLayout />,
   //   errorElement: <NotFoundPage />,
@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
   //     },
   //     {
   //       path: '/register',
-  //       element: <LoginPage />,
+  //       element: <RegisterPage />,
   //     },
   //   ],
   // },

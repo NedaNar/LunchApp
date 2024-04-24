@@ -1,0 +1,91 @@
+@import '../../styles/tools';
+
+$color-grey-input-text: #646872;
+$color-grey-disable-text: #bdbfc4;
+$color-grey-disable-border: #eeeff0;
+$color-red-error-text: #d3232f;
+$color-red-error-border: #ffc7c5;
+$space-7: 0.7rem;
+
+.wrapper {
+  width: 32.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  gap: $space-XXXXXS;
+
+  .input {
+    width: 100%;
+    padding: $space-7 $space-XXXS;
+    border-radius: $border-radius-regular;
+    border: $color-grey-300 0.1rem solid;
+    outline: none;
+
+    @include body-M;
+    color: $color-grey-input-text;
+    transition: 0.1s;
+
+    &:focus {
+      border: none;
+      outline: $color-purple-500 0.2rem solid;
+      color: $color-primary-600;
+    }
+
+    &Error {
+      border-color: $color-red-error-border;
+      color: $color-red-error-text;
+    }
+
+    &:disabled {
+      border-color: $color-grey-disable-border;
+      background-color: transparent;
+      &::placeholder {
+        color: $color-grey-disable-text;
+      }
+    }
+
+    &Icon {
+      position: absolute;
+      top: 2.7rem;
+      left: 1.25rem;
+      gap: 1rem;
+
+      path {
+        fill: $color-grey-400;
+      }
+
+      &Place {
+        padding-left: 4.1rem;
+      }
+    }
+  }
+}
+
+.textarea {
+  // width: 100%;
+  // ar daryti fix?
+  width: 50.2rem;
+  padding: $space-XXXXS $space-XXXS;
+  border-radius: $border-radius-regular;
+  border: $color-grey-300 0.1rem solid;
+  outline: none;
+}
+
+.search {
+  &wrapper {
+    position: relative;
+  }
+  &ResultBox {
+    position: absolute;
+    width: 100%;
+    top: 7rem;
+    right: 0;
+    border: $color-grey-200 0.1rem solid;
+    border-radius: $border-radius-small;
+    color: $color-grey-500;
+    @include title-S;
+    padding: $space-XXXXXS 0rem;
+    box-shadow: $box-shadow-m;
+  }
+}
