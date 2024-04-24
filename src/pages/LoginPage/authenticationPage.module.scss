@@ -5,7 +5,7 @@ body {
 }
 
 .layout {
-    position: relative; 
+    position: relative;
     display: flex;
     height: 100vh;
     background-color: $color-grey-100;
@@ -29,8 +29,8 @@ body {
     margin-left: -2.2rem;
 
     @media (max-width: 480px) {
-        display: none; 
-        padding: 0; 
+        display: none;
+        padding: 0;
         margin-top: -2rem;
         margin-left: 0.1rem;
         margin-right: 1rem;
@@ -38,14 +38,18 @@ body {
     }
 }
 
+.tabs {
+    display: flex;  
+   }
+
 .cloudImage {
     display: none;
-    position: absolute; 
-    z-index: 1; 
+    position: absolute;
+    z-index: 1;
     left: -5rem;
     top: -7rem;
-    width: 28rem; 
-    height: auto; 
+    width: 28rem;
+    height: auto;
 
     @media (max-width: 480px) {
         display: block;
@@ -56,24 +60,23 @@ body {
 
 @keyframes cloudMove {
     0% {
-        transform: translate(1rem, 1rem) ; 
+        transform: translate(1rem, 1rem) ;
     }
     50% {
         transform: translate(1rem, 1.5rem) ;
     }
-   
+
     100% {
-        transform: translate(1rem, 1rem) ; 
+        transform: translate(1rem, 1rem) ;
     }
 }
 
-
 .loginForm {
-    position: relative; 
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 30rem;
     width: 20rem;
     background-color: $color-white;
@@ -84,8 +87,10 @@ body {
     border: 0.01rem solid #F2F2F2;
     box-shadow: $box-shadow-m;
 
+    
+
     @media (max-width: 480px) {
-        margin: 2rem; 
+        margin: 2rem;
     }
 }
 
@@ -93,3 +98,8 @@ body {
     width: 7.4rem;
     height: 5.1rem;
 }
+
+
+
+  
+

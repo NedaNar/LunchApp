@@ -1,4 +1,4 @@
-import AuthenticationPage from '../../components/Tabs/AuthenticationPage';
+import AuthenticationPage from './AuthenticationPage';
 
 export default function LoginPage() {
   return (
