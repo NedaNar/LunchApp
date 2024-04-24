@@ -21,7 +21,9 @@ export function Input({
   return (
     <div className={`${styles.wrapper} ${disabled ? styles.wrapperDisabled : ''}`}>
       {icon && <SearchIcon className={styles.inputIcon} />}
-      <label htmlFor={name} className={`${styles.label} ${disabled ? styles.labelDisabled : ''}`}>
+      <label
+        htmlFor={name}
+        className={`${styles.label} ${disabled ? styles.labelDisabled : ''} ${error ? styles.labelError : ''}`}>
         {label}
       </label>
       <input
