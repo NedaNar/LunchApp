@@ -1,17 +1,15 @@
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styles from './App.module.scss';
 import './styles/index.scss';
-// import UserProfile from './components/UserProfile/UserProfile';
-// import Navigation from './components/navigation/Navigation';
-import LoginPage from './pages/LoginPage/LoginPage';
+import UserProfile from './components/UserProfile/UserProfile';
+import Navigation from './components/navigation/Navigation';
 
 export function App() {
   return (
     <div className={styles.container}>
-      {/* <UserProfile />
+      <UserProfile />
       <Navigation />
-      <Outlet /> */}
-      <LoginPage />
+      <Outlet />
     </div>
   );
 }
