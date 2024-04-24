@@ -81,6 +81,11 @@ $space-7: 0.7rem;
   border-radius: $border-radius-regular;
   border: $color-grey-300 0.1rem solid;
   outline: none;
+  &:focus {
+    border: none;
+    outline: $color-purple-500 0.2rem solid;
+    color: $color-primary-600;
+  }
 }
 
 .search {
