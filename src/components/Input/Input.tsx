@@ -19,18 +19,18 @@ export function Input({
   ...rest
 }: InputProps) {
   return (
-    <div className={`${styles.wrapper} ${disabled ? styles.wrapperDisabled : ''}`}>
+    <div className={styles.wrapper}>
       {icon && <SearchIcon className={styles.inputIcon} />}
       <label
         htmlFor={name}
-        className={`${styles.label} ${disabled ? styles.labelDisabled : ''} ${error ? styles.labelError : ''}`}>
+        className={`${styles.label} ${disabled ? styles['label--disabled'] : ''} ${error ? styles['label--error'] : ''}`}>
         {label}
       </label>
       <input
         id={name}
         {...rest}
         disabled={disabled}
-        className={`${styles.input} ${error ? styles.inputError : ''} ${disabled ? styles.inputDisabled : ''} ${icon ? styles.inputIconPlace : ''}`}
+        className={`${styles.input} ${error ? styles['input--error'] : ''} ${icon ? styles.inputIcon__place : ''}`}
       />
     </div>
   );
