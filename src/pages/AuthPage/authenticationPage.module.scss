@@ -8,7 +8,21 @@
     justify-content: center;
     gap: 12.8rem;
 
-    @media (max-width: 480px) {
+    @media only screen and (max-width: 1440px) {
+        margin: 0;
+        gap: $space-XXXL;
+    }
+
+    @media only screen and (max-width: 1320px) {
+        gap: $space-M;
+    }
+
+    @media only screen and (max-width: 920px) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (max-width: 550px) {
         justify-content: center;
     }
 
@@ -20,7 +34,17 @@
         border: 0.01rem solid $color-grey-200;
         box-shadow: $box-shadow-m;
 
-        @media (max-width: 480px) {
+        @media only screen and (max-width: 1320px) {
+            max-height: 59.2rem;
+            max-width: 56.3rem;
+        }
+
+        @media only screen and (max-width: 1040px) {
+            max-height: 42.9rem;
+            max-width: 40rem;
+        }
+
+        @media (max-width: 550px) {
             display: none;
             padding: 0;
             margin-top: -2rem;
@@ -45,8 +69,12 @@
         box-shadow: $box-shadow-m;
         gap: $space-S;
 
-        @media (max-width: 480px) {
+        @media (max-width: 550px) {
             margin: 2rem;
+        }
+
+        @media (max-width: 440px) {
+            width: 33.1rem;
         }
 
         .logo {
@@ -63,7 +91,7 @@
             width: 28rem;
             height: auto;
 
-            @media (max-width: 480px) {
+            @media (max-width: 550px) {
                 display: block;
                 width: 18rem;
                 animation: cloudMove 5s ease-in-out infinite;
