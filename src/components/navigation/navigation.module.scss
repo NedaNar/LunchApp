@@ -21,7 +21,7 @@ $transition-delay: 0.1s;
   border-radius: $border-radius-navItem-expanded;
   background-color: $color-primary-800;
   color: $color-white;
-  padding: $space-6 $space-XXXS;
+  padding: $space-XXXXXS $space-XXXS;
   gap: $space-XXXS;
 
   &:hover {
@@ -66,7 +66,7 @@ $transition-delay: 0.1s;
   height: calc(100vh - $space-S * 2);
   max-width: 21.4;
   display: flex;
-  position: absolute;
+  position: fixed;
   left: 0;
   background-color: $color-primary-800;
   border-radius: $border-radius-sidebar;
