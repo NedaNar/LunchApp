@@ -34,7 +34,7 @@ export default function AuthLayout() {
             />
           </Link>
         </div>
-        <div className="pageContent">
+        <div className={styles.pageContent}>
           <Outlet />
         </div>
       </div>

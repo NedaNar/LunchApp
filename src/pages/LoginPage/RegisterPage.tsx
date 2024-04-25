@@ -1,6 +1,6 @@
 export default function RegisterPage() {
   return (
-    <div className="pageContent">
+    <div>
       <h3>Čia yra RegisterPage</h3>
     </div>
   );
