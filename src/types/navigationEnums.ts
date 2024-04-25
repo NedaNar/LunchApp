@@ -11,6 +11,8 @@ export enum NavigationItemPath {
   LUNCH = '/available-lunch',
   ORDERS = '/your-orders',
   RATINGS = '/ratings',
+  LOGIN = '/login',
+  REGISTER = '/register',
 }
 
 export enum NavigationItemTitle {

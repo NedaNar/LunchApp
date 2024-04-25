@@ -1,36 +1,29 @@
-import { useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import loginImage from '../../assets/static/login-screen-images/login-screen-image_light-orange-background.png';
 import cloudImage from '../../assets/static/login-screen-images/food-cloud-image.png';
 import styles from './authenticationPage.module.scss';
 import logo from '../../assets/static/logo/logo_horizontal.svg';
-import TabButton from '../../components/Tabs/TabButton';
+import AuthTabs from './AuthTabs';
 
-export default function LoginPage() {
-  const [selectedTab, setSelectedTab] = useState('Login');
+function AuthenticationPage() {
+  const location = useLocation();
+  const preselectedTab = location.pathname === '/register' ? 1 : 0;
 
-  const handleTabClick = (tabText: string) => {
-    setSelectedTab(tabText);
-  };
+  const handleTabClick = () => {};
 
   return (
-    <div className={styles.layout}>
+    <div className={styles.container}>
       <img className={styles.image} src={loginImage} alt="Two people thinking about food" />
       <div className={styles.loginForm}>
         <img className={styles.logo} src={logo} alt="Lunch App" />
         <img className={styles.cloudImage} src={cloudImage} alt="Hovering Cloud" />
         <div className={styles.tabs}>
-          <TabButton
-            text="Login"
-            onClick={() => handleTabClick('Login')}
-            selected={selectedTab === 'Login'}
-          />
-          <TabButton
-            text="Register"
-            onClick={() => handleTabClick('Register')}
-            selected={selectedTab === 'Register'}
-          />
+          <AuthTabs onTabChange={handleTabClick} preselectedTab={preselectedTab} />
         </div>
+        <Outlet />
       </div>
     </div>
   );
 }
+
+export default AuthenticationPage;

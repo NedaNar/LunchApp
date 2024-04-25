@@ -6,6 +6,9 @@ import YourOrdersPage from './pages/YourOrdersPage/YourOrdersPage';
 import RatingsPage from './pages/RatingsPage/RatingsPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { NavigationItemPath } from './types/navigationEnums';
+import AuthLayout from './layouts/Auth/AuthLayout';
+import LoginForm from './components/LoginForm/LoginForm';
+import RegisterForm from './components/RegisterForm/RegisterForm';
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +31,20 @@ export const router = createBrowserRouter([
       {
         path: NavigationItemPath.RATINGS,
         element: <RatingsPage />,
+      },
+    ],
+  },
+  {
+    element: <AuthLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: NavigationItemPath.LOGIN,
+        element: <LoginForm />,
+      },
+      {
+        path: NavigationItemPath.REGISTER,
+        element: <RegisterForm />,
       },
     ],
   },
