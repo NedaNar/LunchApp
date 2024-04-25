@@ -8,25 +8,26 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { NavigationItemPath } from './types/navigationEnums';
 import DummyPage from './pages/DummyPage/DummyPage';
 import MainLayout from './layouts/Main/MainLayout';
-// import AuthLayout from './layouts/Auth/AuthLayout';
-// import LoginPage from './pages/LoginPage/LoginPage';
+import AuthLayout from './layouts/Auth/AuthLayout';
+import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/LoginPage/RegisterPage';
 
 export const router = createBrowserRouter([
   // šių routų reikės kai bus AuthLayout
-  // {
-  //   element: <AuthLayout />,
-  //   errorElement: <NotFoundPage />,
-  //   children: [
-  //     {
-  //       path: '/login',
-  //       element: <LoginPage />,
-  //     },
-  //     {
-  //       path: '/register',
-  //       element: <RegisterPage />,
-  //     },
-  //   ],
-  // },
+  {
+    element: <AuthLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/register',
+        element: <RegisterPage />,
+      },
+    ],
+  },
 
   // Šie routai turės būti apsaugoti
   {

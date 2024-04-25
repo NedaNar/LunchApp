@@ -1,0 +1,98 @@
+@import '../../styles/tools';
+
+body {
+  margin: 0;
+}
+
+.layout {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  background-color: $color-grey-100;
+  background: scroll;
+  transition: background-color 1s ease;
+
+  @media (max-width: 480px) {
+    justify-content: center;
+  }
+}
+
+.image {
+  height: 41.6rem;
+  width: 40.1rem;
+  padding-left: -10rem;
+  border-top-right-radius: $border-radius-large;
+  border-bottom-right-radius: $border-radius-large;
+  border: 0.01rem solid $color-grey-200;
+  box-shadow: $box-shadow-m;
+  margin-right: 1rem;
+  margin-left: -2.2rem;
+
+  @media (max-width: 480px) {
+    display: none;
+    padding: 0;
+    margin-top: -2rem;
+    margin-left: 0.1rem;
+    margin-right: 1rem;
+    border-radius: $border-radius-large;
+  }
+}
+
+.tabs {
+  display: flex;
+}
+
+.cloudImage {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: -5rem;
+  top: -7rem;
+  width: 28rem;
+  height: auto;
+
+  @media (max-width: 480px) {
+    display: block;
+    width: 18rem;
+    animation: cloudMove 5s ease-in-out infinite;
+  }
+}
+
+@keyframes cloudMove {
+  0% {
+    transform: translate(1rem, 1rem);
+  }
+  50% {
+    transform: translate(1rem, 1.5rem);
+  }
+
+  100% {
+    transform: translate(1rem, 1rem);
+  }
+}
+
+.loginForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 30rem;
+  width: 20rem;
+  background-color: $color-white;
+  margin-top: 1.88rem;
+  margin-left: 9.19rem;
+  padding: 2.4rem;
+  border-radius: $border-radius-regular;
+  border: 0.01rem solid #f2f2f2;
+  box-shadow: $box-shadow-m;
+
+  @media (max-width: 480px) {
+    margin: 2rem;
+  }
+}
+
+.loginForm .logo {
+  width: 3.04rem;
+  height: 2.51rem;
+}
