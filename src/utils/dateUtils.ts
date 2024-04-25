@@ -17,3 +17,7 @@ export function getCurrentWorkingWeek(today?: Date): string {
     ? `${mondayMonth} ${mondayDay} - ${fridayDay}`
     : `${mondayMonth} ${mondayDay} - ${fridayMonth} ${fridayDay}`;
 }
+
+export function getCurrentDay(): string {
+  return new Date().toLocaleDateString('en-US', { weekday: 'long' });
+}
