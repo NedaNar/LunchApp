@@ -74,9 +74,8 @@ $space-7: 0.7rem;
 }
 
 .textarea {
-  // width: 100%;
-  // ar daryti fix?
-  width: 50.2rem;
+  width: 100%;
+  min-width: 50.2rem;
   padding: $space-XXXXS $space-XXXS;
   border-radius: $border-radius-regular;
   border: $color-grey-300 0.1rem solid;
