@@ -8,7 +8,7 @@ import {
   NotificationType,
   StaticNotification,
 } from '../../components/StaticNotification/StaticNotification';
-import { getCurrentWeekdayName } from '../../utils/dateUtils';
+import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
 
 function FoodCardsLayout() {
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);
@@ -32,7 +32,8 @@ function FoodCardsLayout() {
     filterMeals(day);
   };
 
-  const canOrder = () => getCurrentWeekdayName() !== selectedDay || new Date().getHours() < 11;
+  const canOrder = () =>
+    getCurrentWeekdayName() !== selectedDay || new Date().getHours() < STOP_ORDERS_HOUR;
 
   const getVendor = (vendorId: number) => {
     const vendor = vendorData?.find((item) => item.id === vendorId.toString());
@@ -43,7 +44,7 @@ function FoodCardsLayout() {
     const ratings = ratingData?.filter((item) => item.mealId.toString() === mealId);
 
     if (!ratings) return '';
-    if (ratings?.length === 0) return 'Not rated';
+    if (!ratings?.length) return 'Not rated';
 
     const totalRating = ratings.reduce((acc, curr) => acc + curr.rating.rating, 0);
     return totalRating / ratings.length;

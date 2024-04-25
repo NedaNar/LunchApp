@@ -1,3 +1,5 @@
+export const STOP_ORDERS_HOUR = 11;
+
 export function getCurrentWorkingWeek(today?: Date): string {
   if (!today) {
     today = new Date();

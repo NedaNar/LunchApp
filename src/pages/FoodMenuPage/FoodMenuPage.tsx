@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
 import Dialog, { DialogIcon } from '../../components/Dialog/Dialog';
 import FoodCardsLayout from './FoodCardsLayout';
+import { STOP_ORDERS_HOUR } from '../../utils/dateUtils';
 
 export default function FoodMenuPage() {
   const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
     const now = new Date();
-    const stopOrdersDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 0, 0);
+    const stopOrdersDate = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      STOP_ORDERS_HOUR,
+      0,
+      0
+    );
 
     if (now < stopOrdersDate) {
       const timeUntilStopOrders = stopOrdersDate.getTime() - now.getTime();
