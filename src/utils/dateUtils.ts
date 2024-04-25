@@ -18,6 +18,6 @@ export function getCurrentWorkingWeek(today?: Date): string {
     : `${mondayMonth} ${mondayDay} - ${fridayMonth} ${fridayDay}`;
 }
 
-export function getCurrentDay(): string {
+export function getCurrentWeekdayName(): string {
   return new Date().toLocaleDateString('en-US', { weekday: 'long' });
 }

@@ -7,13 +7,13 @@ export default function FoodMenuPage() {
 
   useEffect(() => {
     const now = new Date();
-    const timeOverDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 0, 0);
+    const stopOrdersDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 0, 0);
 
-    if (now < timeOverDate) {
-      const timeUntilElevenAM = timeOverDate.getTime() - now.getTime();
+    if (now < stopOrdersDate) {
+      const timeUntilStopOrders = stopOrdersDate.getTime() - now.getTime();
       const timer = setTimeout(() => {
         setShowDialog(true);
-      }, timeUntilElevenAM);
+      }, timeUntilStopOrders);
 
       return () => clearTimeout(timer);
     }
@@ -24,6 +24,7 @@ export default function FoodMenuPage() {
   return (
     <>
       <h1>Food Menu page</h1>
+
       {showDialog && (
         <Dialog
           title="Please refresh page"

@@ -1,4 +1,4 @@
-import { getCurrentDay } from '../../utils/dateUtils';
+import { getCurrentWeekdayName } from '../../utils/dateUtils';
 import Tabs from './Tabs';
 
 // USAGE
@@ -14,7 +14,7 @@ interface DayTabsProps {
 function DayTabs({ onTabChange }: DayTabsProps) {
   const workdays: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
-  const currentDayIndex = workdays.indexOf(getCurrentDay());
+  const currentDayIndex = workdays.indexOf(getCurrentWeekdayName());
 
   const disabledTabs =
     currentDayIndex !== -1

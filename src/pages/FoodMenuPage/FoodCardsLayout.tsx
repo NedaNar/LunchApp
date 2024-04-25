@@ -8,25 +8,15 @@ import {
   NotificationType,
   StaticNotification,
 } from '../../components/StaticNotification/StaticNotification';
-import { getCurrentDay } from '../../utils/dateUtils';
+import { getCurrentWeekdayName } from '../../utils/dateUtils';
 
 function FoodCardsLayout() {
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);
-  const [selectedDay, setSelectedDay] = useState<string>(getCurrentDay());
+  const [selectedDay, setSelectedDay] = useState<string>(getCurrentWeekdayName());
 
-  const {
-    data: mealData,
-    loading: mealLoading,
-    error: mealError,
-  } = useFetch<MealData[]>(Endpoint.MEALS);
-
-  const { data: vendorData, loading: vendorLoading } = useFetch<VendorData[]>(Endpoint.VENDORS);
-
-  const {
-    data: ratingData,
-    loading: ratingLoading,
-    error: ratingError,
-  } = useFetch<RatingData[]>(Endpoint.RATINGS);
+  const { data: mealData, loading, error } = useFetch<MealData[]>(Endpoint.MEALS);
+  const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
+  const { data: ratingData } = useFetch<RatingData[]>(Endpoint.RATINGS);
 
   const filterMeals = (day: string) => {
     if (mealData == null) return;
@@ -34,7 +24,7 @@ function FoodCardsLayout() {
   };
 
   useEffect(() => {
-    filterMeals(getCurrentDay());
+    filterMeals(getCurrentWeekdayName());
   }, [mealData]);
 
   const handleTabChange = (day: string) => {
@@ -42,7 +32,7 @@ function FoodCardsLayout() {
     filterMeals(day);
   };
 
-  const canOrder = () => getCurrentDay() !== selectedDay || new Date().getHours() < 11;
+  const canOrder = () => getCurrentWeekdayName() !== selectedDay || new Date().getHours() < 11;
 
   const getVendor = (vendorId: number) => {
     const vendor = vendorData?.find((item) => item.id === vendorId.toString());
@@ -52,8 +42,8 @@ function FoodCardsLayout() {
   const getRating = (mealId: string) => {
     const ratings = ratingData?.filter((item) => item.mealId.toString() === mealId);
 
-    if (ratingError) return '';
-    if (!ratings || ratings.length === 0) return 'Not rated';
+    if (!ratings) return '';
+    if (ratings?.length === 0) return 'Not rated';
 
     const totalRating = ratings.reduce((acc, curr) => acc + curr.rating.rating, 0);
     return totalRating / ratings.length;
@@ -62,22 +52,18 @@ function FoodCardsLayout() {
   return (
     <>
       <DayTabs onTabChange={handleTabChange} />
-      <div className={styles.container}>
-        {(mealLoading || vendorLoading || ratingLoading) && (
-          <StaticNotification text="Loading..." type={NotificationType.INFO} />
-        )}
-        {mealError && (
+      <div className={styles.cardsContainer}>
+        {loading && <StaticNotification text="Loading..." type={NotificationType.INFO} />}
+        {error && (
           <StaticNotification text="Error getting meals." type={NotificationType.WARNING} />
         )}
-        {!(mealLoading || vendorLoading || ratingLoading) &&
-          !mealError &&
-          filteredMeals?.length === 0 && (
-            <StaticNotification text="No dishes ready for today." type={NotificationType.WARNING} />
-          )}
-        {!(mealLoading || vendorLoading || ratingLoading) && !mealError && !canOrder() && (
+        {!loading && !error && filteredMeals?.length === 0 && (
+          <StaticNotification text="No dishes ready for today." type={NotificationType.INFO} />
+        )}
+        {!loading && !error && !canOrder() && (
           <StaticNotification text="Orders no longer accepted." type={NotificationType.INFO} />
         )}
-        {!(mealLoading || vendorLoading || ratingLoading) && !mealError && canOrder() && (
+        {!loading && !error && canOrder() && (
           <div className={styles.mealContainer}>
             {filteredMeals.map((meal) => (
               <FoodCard
