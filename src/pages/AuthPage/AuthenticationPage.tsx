@@ -3,11 +3,11 @@ import loginImage from '../../assets/static/login-screen-images/login-screen-ima
 import styles from './authenticationPage.module.scss';
 import logo from '../../assets/static/logo/logo_horizontal.svg';
 import AuthTabs from './AuthTabs';
-import { NavigationItemPath } from '../../types/navigationEnums';
+import { RoutePath } from '../../types/navigationEnums';
 
 function AuthenticationPage() {
   const location = useLocation();
-  const preselectedTab = location.pathname === NavigationItemPath.REGISTER ? 1 : 0;
+  const preselectedTab = location.pathname === RoutePath.REGISTER ? 1 : 0;
 
   return (
     <div className={styles.container}>

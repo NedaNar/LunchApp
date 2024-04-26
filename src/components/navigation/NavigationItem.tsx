@@ -4,16 +4,12 @@ import IconMenu from '../../assets/static/icons/icon_menu.svg?react';
 import IconRestaurant from '../../assets/static/icons/icon_restaurant.svg?react';
 import IconGrading from '../../assets/static/icons/icon_grading.svg?react';
 import IconStar from '../../assets/static/icons/icon_star.svg?react';
-import {
-  NavigationItemId,
-  NavigationItemPath,
-  NavigationItemTitle,
-} from '../../types/navigationEnums';
+import { NavigationItemId, RoutePath, NavigationItemTitle } from '../../types/navigationEnums';
 
 interface NavigationItemProps {
   id: NavigationItemId;
   title: NavigationItemTitle;
-  to: NavigationItemPath;
+  to: RoutePath;
 }
 
 export default function NavigationItem({ title, to, id }: NavigationItemProps) {

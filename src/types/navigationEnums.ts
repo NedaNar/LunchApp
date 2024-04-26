@@ -3,11 +3,9 @@ export enum NavigationItemId {
   LUNCH = 'lunch',
   ORDERS = 'orders',
   RATINGS = 'ratings',
-  LOGIN = 'login',
-  REGISTER = 'register',
 }
 
-export enum NavigationItemPath {
+export enum RoutePath {
   ROOT = '/',
   MENU = '/food-menu',
   LUNCH = '/available-lunch',
@@ -22,6 +20,4 @@ export enum NavigationItemTitle {
   LUNCH = 'Available Lunch',
   ORDERS = 'Your Orders',
   RATINGS = 'Ratings',
-  LOGIN = 'login',
-  REGISTER = 'register',
 }
