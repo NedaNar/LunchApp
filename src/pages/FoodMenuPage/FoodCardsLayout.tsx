@@ -7,7 +7,7 @@ import { MealData, RatingData, VendorData } from '../../api/apiModel';
 import {
   NotificationType,
   StaticNotification,
-} from '../../components/StaticNotification/StaticNotification';
+} from '../../components/Notifications/StaticNotification/StaticNotification';
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
 
 function FoodCardsLayout() {

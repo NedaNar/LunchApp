@@ -1,11 +1,7 @@
 import styles from './staticNotification.module.scss';
-import InfoIcon from '../../assets/static/icons/icon_info-outline.svg?react';
-import WarningIcon from '../../assets/static/icons/icon_error-outline.svg?react';
-
-enum NotificationType {
-  INFO = 'info',
-  WARNING = 'warning',
-}
+import InfoIcon from '../../../assets/static/icons/icon_info-outline.svg?react';
+import WarningIcon from '../../../assets/static/icons/icon_error-outline.svg?react';
+import { NotificationType } from '../../../utils/notificationUtils';
 
 interface StaticNotificationProps {
   text: string;
