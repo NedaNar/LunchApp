@@ -44,6 +44,10 @@
             max-width: 40rem;
         }
 
+        @media only screen and (max-width: 920px) {
+            display: none;
+        }
+
         @media (max-width: 550px) {
             display: none;
             padding: 0;
@@ -80,36 +84,6 @@
         .logo {
             width: 10.4rem;
             height: 5.1rem;
-        }
-
-        .cloudImage {
-            display: none;
-            position: absolute;
-            z-index: 1;
-            left: -5rem;
-            top: -7rem;
-            width: 28rem;
-            height: auto;
-
-            @media (max-width: 550px) {
-                display: block;
-                width: 18rem;
-                animation: cloudMove 5s ease-in-out infinite;
-            }
-
-            @keyframes cloudMove {
-                0% {
-                    transform: translate(1rem, 1rem);
-                }
-
-                50% {
-                    transform: translate(1rem, 1.5rem);
-                }
-
-                100% {
-                    transform: translate(1rem, 1rem);
-                }
-            }
         }
 
         .tabs {
