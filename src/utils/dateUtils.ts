@@ -1,3 +1,5 @@
+export const STOP_ORDERS_HOUR = 11;
+
 export function getCurrentWorkingWeek(today?: Date): string {
   if (!today) {
     today = new Date();
@@ -16,4 +18,8 @@ export function getCurrentWorkingWeek(today?: Date): string {
   return mondayMonth === fridayMonth
     ? `${mondayMonth} ${mondayDay} - ${fridayDay}`
     : `${mondayMonth} ${mondayDay} - ${fridayMonth} ${fridayDay}`;
+}
+
+export function getCurrentWeekdayName(): string {
+  return new Date().toLocaleDateString('en-US', { weekday: 'long' });
 }

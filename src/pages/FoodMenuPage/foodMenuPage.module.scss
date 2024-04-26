@@ -1,6 +1,12 @@
-//this is temporary style, it should be removed and replaced with layout style
-.containar {
+@import '/src/styles/_tools';
+
+.cardsContainer {
+  margin: $space-M auto 0rem auto;
+}
+
+.mealContainer {
   display: flex;
-  margin-top: 15rem;
-  margin-left: 25rem;
+  flex-wrap: wrap;
+  gap: $space-M;
+  justify-content: center;
 }
