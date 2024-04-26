@@ -1,0 +1,99 @@
+@import '../../styles/tools';
+
+.container {
+    max-width: 144rem;
+    margin: 0 auto;
+    padding-top: 8rem;
+    display: flex;
+    justify-content: center;
+    gap: 12.8rem;
+
+    @media only screen and (max-width: 1440px) {
+        margin: 0;
+        gap: $space-XXXL;
+    }
+
+    @media only screen and (max-width: 1320px) {
+        gap: $space-M;
+    }
+
+    @media only screen and (max-width: 920px) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (max-width: 550px) {
+        justify-content: center;
+    }
+
+    .image {
+        max-height: 83.1rem;
+        max-width: 80.2rem;
+        border-top-right-radius: $border-radius-large;
+        border-bottom-right-radius: $border-radius-large;
+        border: 0.01rem solid $color-grey-200;
+        box-shadow: $box-shadow-m;
+
+        @media only screen and (max-width: 1320px) {
+            max-height: 59.2rem;
+            max-width: 56.3rem;
+        }
+
+        @media only screen and (max-width: 1040px) {
+            max-height: 42.9rem;
+            max-width: 40rem;
+        }
+
+        @media only screen and (max-width: 920px) {
+            display: none;
+        }
+
+        @media (max-width: 550px) {
+            display: none;
+            padding: 0;
+            margin-top: -2rem;
+            margin-left: 0.1rem;
+            margin-right: 1rem;
+            border-radius: $border-radius-large;
+        }
+    }
+
+    .loginForm {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 39.1rem;
+        height: 59.2rem;
+        background-color: $color-white;
+        padding: $space-S;
+        border-radius: $border-radius-regular;
+        border: 0.01rem solid #F2F2F2;
+        box-shadow: $box-shadow-m;
+        gap: $space-S;
+
+        @media (max-width: 550px) {
+            margin: 2rem;
+        }
+
+        @media (max-width: 440px) {
+            width: 33.1rem;
+        }
+
+        .logo {
+            width: 10.4rem;
+            height: 5.1rem;
+        }
+
+        .tabs {
+            display: flex;
+            align-items: left;
+            width: 100%;
+
+            > * {
+                width: 100%;
+            }
+        }
+    }
+}

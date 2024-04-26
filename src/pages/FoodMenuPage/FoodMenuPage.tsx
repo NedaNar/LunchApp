@@ -1,25 +1,51 @@
-import styles from './foodMenuPage.module.scss';
-import FoodCard from '../../components/FoodCard/FoodCard';
-import { DishType } from '../../components/FoodCard/helpers';
+import { useState, useEffect } from 'react';
+import Dialog, { DialogIcon } from '../../components/Dialog/Dialog';
+import FoodCardsLayout from './FoodCardsLayout';
+import { STOP_ORDERS_HOUR } from '../../utils/dateUtils';
 
 export default function FoodMenuPage() {
+  const [showDialog, setShowDialog] = useState(false);
+
+  useEffect(() => {
+    const now = new Date();
+    const stopOrdersDate = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      STOP_ORDERS_HOUR,
+      0,
+      0
+    );
+
+    if (now < stopOrdersDate) {
+      const timeUntilStopOrders = stopOrdersDate.getTime() - now.getTime();
+      const timer = setTimeout(() => {
+        setShowDialog(true);
+      }, timeUntilStopOrders);
+
+      return () => clearTimeout(timer);
+    }
+
+    return undefined;
+  }, []);
+
   return (
     <>
-      <h1> This is Food Menu Page</h1>
+      <h1>Food Menu page</h1>
 
-      {/* div tag below with className={styles.containar} added for temporary styling, and can be changed or removed */}
-      <div className={styles.containar}>
-        <FoodCard
-          vendor="Tasty Bites"
-          title="Pho Rice Noodle Soup with Tofu"
-          description="Rice udon noodles in  shiitake stock, fried shredded tofu. Garnish..."
-          price={5.65}
-          picture={DishType.Bowl}
-          isVegetarian
-          isSpicy
-          rating={5.0}
-        />
-      </div>
+      {showDialog && (
+        <Dialog
+          title="Please refresh page"
+          icon={DialogIcon.WARNING}
+          primaryButtonText="Refresh"
+          onClose={() => setShowDialog(false)}
+          onPrimaryButtonClick={() => window.location.reload()}
+          isCloseButtonVisible={false}>
+          <span>Time to order for today is over.</span>
+        </Dialog>
+      )}
+
+      <FoodCardsLayout />
     </>
   );
 }

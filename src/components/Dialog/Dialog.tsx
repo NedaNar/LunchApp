@@ -18,6 +18,9 @@ export interface DialogProps {
   secondaryButton?: boolean;
   secondaryButtonText?: string;
   primaryButtonText: string;
+  onPrimaryButtonClick: () => void;
+  onClose: () => void;
+  isCloseButtonVisible?: boolean;
 }
 
 function Dialog({
@@ -27,6 +30,9 @@ function Dialog({
   secondaryButton = false,
   secondaryButtonText = 'No, Keep',
   primaryButtonText,
+  onClose,
+  onPrimaryButtonClick,
+  isCloseButtonVisible = true,
 }: DialogProps) {
   const showIcon = (iconType?: DialogIcon) => {
     switch (iconType) {
@@ -42,34 +48,42 @@ function Dialog({
   };
 
   return (
-    <dialog open className={styles.dialogWrapper}>
-      <div className={styles.dialogBody}>
-        <header className={styles.dialogHeader}>
-          <p>{title}</p>
-          <IconButton type={IconButtonType.TERTIARY} icon={IconButtonIcon.CLOSE} />
-        </header>
-        <div className={styles.dialogSubBody}>
-          <figure>{showIcon(icon)}</figure>
-          <p>{children}</p>
+    <div className={styles.dialogOverlay}>
+      <dialog open className={styles.dialogWrapper}>
+        <div className={styles.dialogBody}>
+          <header className={styles.dialogHeader}>
+            <p>{title}</p>
+            {isCloseButtonVisible && (
+              <IconButton
+                type={IconButtonType.TERTIARY}
+                icon={IconButtonIcon.CLOSE}
+                onClick={onClose}
+              />
+            )}
+          </header>
+          <div className={styles.dialogSubBody}>
+            <figure>{showIcon(icon)}</figure>
+            <p>{children}</p>
+          </div>
         </div>
-      </div>
-      <footer className={styles.dialogButtonWrapper}>
-        {secondaryButton && (
+        <footer className={styles.dialogButtonWrapper}>
+          {secondaryButton && (
+            <Button
+              text={secondaryButtonText}
+              appearance={ButtonAppearance.SECONDARY}
+              size={ButtonSize.MEDIUM}
+              onClick={() => {}}
+            />
+          )}
           <Button
-            text={secondaryButtonText}
-            appearance={ButtonAppearance.SECONDARY}
+            text={primaryButtonText}
+            appearance={ButtonAppearance.PRIMARY}
             size={ButtonSize.MEDIUM}
-            onClick={() => {}}
+            onClick={onPrimaryButtonClick}
           />
-        )}
-        <Button
-          text={primaryButtonText}
-          appearance={ButtonAppearance.PRIMARY}
-          size={ButtonSize.MEDIUM}
-          onClick={() => {}}
-        />
-      </footer>
-    </dialog>
+        </footer>
+      </dialog>
+    </div>
   );
 }
 
