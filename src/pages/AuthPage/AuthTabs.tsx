@@ -4,14 +4,14 @@ import { useLocation } from 'react-router-dom';
 import Tabs from '../../components/Tabs/Tabs';
 
 interface AuthTabsProps {
-  onTabChange: (tab: string) => void;
+  onTabChange?: (tab: string) => void;
   preselectedTab: number;
 }
 
-function AuthTabs({ onTabChange }: AuthTabsProps) {
+function AuthTabs({ onTabChange = () => {} }: AuthTabsProps) {
   const authenticationTabs: { label: string; link: string }[] = [
-    { label: 'LOGIN', link: '/login' },
-    { label: 'REGISTER', link: '/register' },
+    { label: 'Login', link: '/login' },
+    { label: 'Register', link: '/register' },
   ];
 
   const location = useLocation();
@@ -36,6 +36,7 @@ function AuthTabs({ onTabChange }: AuthTabsProps) {
       links={authenticationTabs.map((tab) => tab.link)}
       onTabChange={handleTabChange}
       preselectedTab={selectedTab}
+      isUppercase
     />
   );
 }
