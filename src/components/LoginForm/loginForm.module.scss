@@ -1,1 +1,66 @@
 @import '../../styles/tools';
+
+.loginFormWrapper {
+    width: 100%;
+
+    .loginFormHeader {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: $space-XXXXS;
+
+        h1 {
+            @include headline-L;
+
+            color: $color-primary-600
+        }
+
+        p {
+            @include body-L;
+
+            color: $color-grey-500;
+        }
+    }
+
+    .loginFormBody {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        form {
+
+            .inputWrapper {
+                display: flex;
+                flex-direction: column;
+                gap: $space-S;
+                margin-top: $space-M;
+                margin-bottom: $space-XXXS;
+            }
+
+            .forgotPasswordBtn {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                button {
+                    @include body-M;
+                    
+                    color: $color-secondary-600;
+                    text-decoration: underline;
+                    background-color: $color-white;
+                    border: none;
+                }
+            }
+
+
+        }
+
+        button {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+}
