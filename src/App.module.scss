@@ -1,8 +1,34 @@
 @import './styles/_tools.scss';
 
+// this is initial style for App
+// .container {
+//   margin: 0 auto;
+//   max-width: 1280px;
+//   padding: 2rem;
+//   text-align: center;
+// }
+
+// this is style for working app layout
 .container {
   margin: 0 auto;
-  max-width: 1280px;
-  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+  background-color: $color-grey-100;
+}
+
+.content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2.4rem;
+  padding-left: calc(21.4rem + 2rem);
+  transition: $transition;
+  &Collapsed {
+    height: 100vh;
+    display: flex;
+    padding-top: 2.4rem;
+    padding-left: calc(7.2rem + 2rem);
+    transition: $transition;
+  }
 }

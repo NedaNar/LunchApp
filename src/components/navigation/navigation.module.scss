@@ -7,8 +7,6 @@ $space-14: 1.4rem;
 $border-radius-sidebar: 0rem 0.8rem 0.8rem 0rem;
 $border-radius-navItem-collapsed: 0.5rem;
 $border-radius-navItem-expanded: 1.2rem;
-$transition: 0.2s;
-$transition-delay: 0.1s;
 
 // ________NAVIGATION ITEM STYLE_________________
 
@@ -22,7 +20,7 @@ $transition-delay: 0.1s;
   background-color: $color-primary-800;
   color: $color-white;
   padding: $space-XXXXXS $space-XXXS;
-  gap: $space-XXXS;
+  // gap: $space-XXXS;
 
   &:hover {
     background-color: $color-primary-600;
@@ -84,6 +82,7 @@ $transition-delay: 0.1s;
     box-sizing: border-box;
     gap: $space-S;
     transition: $transition;
+    overflow: clip;
   }
 
   .navLogo {
@@ -101,20 +100,13 @@ $transition-delay: 0.1s;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $space-XXS;
+    gap: $space-XS;
     list-style: none;
     padding: 0;
     margin: 0;
 
     & > li > a {
       text-decoration: none;
-    }
-  }
-
-  &--expanded {
-    .navItem,
-    span {
-      transition-delay: $transition-delay;
     }
   }
 
@@ -138,6 +130,7 @@ $transition-delay: 0.1s;
 
     .navList {
       flex-direction: column;
+      gap: $space-XXS;
     }
 
     .navItem {
