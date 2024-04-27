@@ -10,6 +10,11 @@ interface OrderHistoryItem {
   mealIds: number[];
 }
 
+export interface LoginUserData {
+  userName: string;
+  password: string;
+}
+
 export interface UserData {
   name: string;
   surname: string;
