@@ -30,8 +30,12 @@
         justify-content: space-between;
 
         form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
-            .inputWrapper {
+            .formInputWrap .inputWrapper {
                 display: flex;
                 flex-direction: column;
                 gap: $space-S;
@@ -39,27 +43,26 @@
                 margin-bottom: $space-XXXS;
             }
 
-            .forgotPasswordBtn {
+            .formInputWrap .forgotPasswordBtn {
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
 
                 button {
                     @include body-M;
-                    
+
                     color: $color-secondary-600;
                     text-decoration: underline;
                     background-color: $color-white;
                     border: none;
                 }
             }
-
-
         }
 
-        button {
-            display: flex;
-            justify-content: center;
+        form button[type='submit'] {  
+            width: 100%;
+
+            @include flexbox-centered;
         }
     }
 

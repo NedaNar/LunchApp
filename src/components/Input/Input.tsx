@@ -7,13 +7,13 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   icon?: boolean;
   label: string;
   name: string;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
 export function Input({
   error = false,
   disabled = false,
   icon = false,
-
   label,
   name,
   ...rest
