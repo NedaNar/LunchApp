@@ -16,7 +16,7 @@ function LoginForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // console.log(`Email: ${emailInputRef} password: ${passwordInputRef}`)
+    // console.log(`Email: ${emailInputRef.current?.value} password: ${passwordInputRef.current?.value}`)
   };
 
   return (
@@ -30,13 +30,13 @@ function LoginForm() {
           <div className={styles.formInputWrap}>
             <div className={styles.inputWrapper}>
               <Input
-                ref={emailInputRef}
+                inputRef={emailInputRef}
                 label="Email"
                 name="Email"
                 type="email"
                 placeholder="example@gmail.com"
               />
-              <Input ref={passwordInputRef} label="Password" name="Password" type="password" />
+              <Input inputRef={passwordInputRef} label="Password" name="Password" type="password" />
             </div>
             <div className={styles.forgotPasswordBtn}>
               <button

@@ -7,7 +7,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   icon?: boolean;
   label: string;
   name: string;
-  ref?: React.Ref<HTMLInputElement>;
+  inputRef?: React.Ref<HTMLInputElement>;
 }
 
 export function Input({
@@ -16,6 +16,7 @@ export function Input({
   icon = false,
   label,
   name,
+  inputRef = null,
   ...rest
 }: InputProps) {
   return (
@@ -27,6 +28,7 @@ export function Input({
         {label}
       </label>
       <input
+        ref={inputRef}
         id={name}
         {...rest}
         disabled={disabled}
@@ -48,3 +50,5 @@ export function Input({
 
 //  !attribute type="" from HTML is highly recommended to use!
 //   <Input label="Your E-mail" name="email" type="email" placeholder="Write E-mail address" />
+
+// you can pass ref like this: inputRef={emailInputRef} - emailInputRef in this case is a ref, created in your component
