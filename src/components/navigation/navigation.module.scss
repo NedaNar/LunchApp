@@ -11,43 +11,51 @@ $border-radius-navItem-expanded: 1.2rem;
 // ________NAVIGATION ITEM STYLE_________________
 
 .navItem {
-  width: 18.1rem;
+  width: 6rem;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  border-radius: $border-radius-navItem-expanded;
+  justify-content: center;
+  padding: 0;
+  border-radius: $border-radius-navItem-collapsed;
   background-color: $color-primary-800;
   color: $color-white;
-  padding: $space-XXXXXS $space-XXXS;
-  // gap: $space-XXXS;
 
-  &:hover {
-    background-color: $color-primary-600;
-  }
-
-  &:active {
-    background-color: $color-primary-400;
-  }
-
-  &:focus,
-  &--selected {
-    background-color: $color-primary-800;
-    outline: $color-secondary-400 0.2rem solid;
-  }
-
-  .navTitle {
+  @include for-tablet-landscape-up {
+    width: 18.1rem;
     display: flex;
-    gap: $space-XXXS;
     align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    border-radius: $border-radius-navItem-expanded;
+    padding: $space-XXXXXS $space-XXXS;
+  }
+}
 
-    & svg {
-      width: 2rem;
-      height: 2rem;
-      path {
-        fill: $color-white;
-      }
+.navTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+
+  & svg {
+    width: 2rem;
+    height: 2rem;
+    path {
+      fill: $color-white;
     }
+  }
+
+  & > span {
+    min-height: 1.7rem;
+
+    @include label-XXS;
+  }
+
+  @include for-tablet-landscape-up {
+    display: flex;
+    flex-direction: row;
+    gap: $space-XXXS;
 
     span {
       min-height: 2.8rem;
@@ -57,38 +65,100 @@ $border-radius-navItem-expanded: 1.2rem;
     }
   }
 }
+
+.navItem {
+  &:hover {
+    background-color: $color-primary-600;
+  }
+  &:active {
+    background-color: $color-primary-400;
+  }
+  &:focus,
+  &--selected {
+    background-color: $color-primary-800;
+    outline: $color-secondary-400 0.2rem solid;
+  }
+}
+
+// _______________NAV BURGER STYLE________________
+
+.iconBurger {
+  margin-top: 0.9rem;
+  path {
+    fill: $color-white;
+  }
+}
+.navBurger {
+  // transition: $transition;
+  display: block;
+
+  @include for-tablet-portrait-up {
+    display: none;
+  }
+}
+
 // _________NAVIGATION SIDEBAR STYLE______________
 
+// &--closed {
+//   .navList {
+//     display: none;
+//   }
+// }
+
 .sidebar {
-  min-height: 35rem;
+  &--navClosed {
+    max-height: 6.3rem;
+    min-height: 6.3rem;
+  }
+
   height: calc(100vh - $space-S * 2);
-  max-width: 21.4;
+  min-height: 35rem;
+  transition: $transition;
   display: flex;
   position: fixed;
+
   left: 0;
   margin-top: $space-S;
   background-color: $color-primary-800;
   border-radius: $border-radius-sidebar;
   box-sizing: border-box;
   text-align: center;
-  padding: $space-10;
+  padding: $space-5;
   gap: $space-10;
+  z-index: 999;
+
+  @include for-tablet-landscape-up {
+    transition: $transition;
+    min-height: calc(100vh - $space-S * 2);
+    // min-height: 70rem;
+    max-width: 21.4;
+    padding: $space-10;
+  }
 
   .nav {
-    width: 19.4rem;
+    width: 6.3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    overflow: clip;
     gap: $space-S;
     transition: $transition;
-    overflow: clip;
+
+    @include for-tablet-landscape-up {
+      width: 19.4rem;
+    }
   }
 
   .navLogo {
     cursor: pointer;
     padding: $space-14;
     gap: $space-10;
+    display: none;
+
+    @include for-tablet-portrait-up {
+      display: block;
+    }
   }
 
   .logo {
@@ -114,7 +184,6 @@ $border-radius-navItem-expanded: 1.2rem;
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    gap: $space-XXXXS;
     padding: $space-5;
     padding-top: $space-10;
 
@@ -161,21 +230,26 @@ $border-radius-navItem-expanded: 1.2rem;
 // _____________SIDEBAR TOGGLE STYLE______________
 
 .sidebarToggle {
-  position: absolute;
-  top: 51%;
-  right: -1.3rem;
-  transform: translateY(-50%);
+  display: none;
 
-  button {
-    border-color: $color-white;
-    border-width: 0.2rem;
-    border-style: solid;
-  }
-  &--collapsed > button > svg {
-    transition: $transition;
-    transform: rotate(180deg);
-  }
-  &--expanded > button > svg {
-    transition: $transition;
+  @include for-tablet-landscape-up {
+    display: block;
+    position: absolute;
+    top: 51%;
+    right: -1.3rem;
+    transform: translateY(-50%);
+
+    button {
+      border-color: $color-white;
+      border-width: 0.2rem;
+      border-style: solid;
+    }
+    &--collapsed > button > svg {
+      transition: $transition;
+      transform: rotate(180deg);
+    }
+    &--expanded > button > svg {
+      transition: $transition;
+    }
   }
 }

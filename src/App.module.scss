@@ -18,17 +18,27 @@
 }
 
 .content {
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 2.4rem;
-  padding-left: calc(21.4rem + 2rem);
+  padding-left: calc(7.2rem + 2rem);
   transition: $transition;
-  &Collapsed {
-    height: 100vh;
+
+  @include for-tablet-landscape-up {
+    // height: 100vh;
     display: flex;
+    flex-direction: column;
     padding-top: 2.4rem;
-    padding-left: calc(7.2rem + 2rem);
+    padding-left: calc(21.4rem + 2rem);
     transition: $transition;
+    &Collapsed {
+      // height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: 2.4rem;
+      padding-left: calc(7.2rem + 2rem);
+      transition: $transition;
+    }
   }
 }
