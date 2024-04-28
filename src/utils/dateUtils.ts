@@ -24,6 +24,6 @@ export function getCurrentWeekdayName(): string {
   return new Date().toLocaleDateString('en-US', { weekday: 'long' });
 }
 
-export function isTodayWeekend(): boolean {
-  return [0, 6].includes(new Date().getDay());
+export function isWorkday(): boolean {
+  return ![0, 6].includes(new Date().getDay());
 }
