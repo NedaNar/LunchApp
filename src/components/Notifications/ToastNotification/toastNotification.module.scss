@@ -15,6 +15,7 @@
   grid-auto-flow: column;
   align-items: center;
   animation: slideInFromTop 0.3s ease forwards;
+  z-index: 10;
 
   @keyframes slideInFromTop {
     0% {
