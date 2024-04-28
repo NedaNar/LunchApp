@@ -2,6 +2,7 @@
 
 .loginFormWrapper {
     width: 100%;
+    position: relative;
 
     .loginFormHeader {
         width: 100%;
@@ -65,5 +66,10 @@
             @include flexbox-centered;
         }
     }
+}
 
+.notification {
+    left: -0.5rem;
+    position: absolute;
+    top: 62rem;
 }

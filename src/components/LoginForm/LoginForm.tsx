@@ -1,4 +1,5 @@
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from '../Input/Input';
 import {
   Button,
@@ -8,57 +9,127 @@ import {
   ButtonType,
 } from '../RegularButton/Button';
 import styles from './loginForm.module.scss';
+import useFetch, { Endpoint } from '../../api/useDataFetching';
+import { LoginUserData } from '../../api/apiModel';
+import Dialog from '../Dialog/Dialog';
+
+interface LoginUser {
+  username?: string | null;
+  password?: string | null;
+}
 
 function LoginForm() {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const response = useFetch<LoginUserData>(Endpoint.USER);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // console.log(`Email: ${emailInputRef.current?.value} password: ${passwordInputRef.current?.value}`)
+    const loginUser: LoginUser = {
+      username: emailInputRef.current?.value ?? null,
+      password: passwordInputRef.current?.value ?? null,
+    };
+
+    try {
+      if (!response || !response.data) {
+        alert('No data from database was received');
+        return;
+      }
+
+      const { data } = response;
+
+      if (data.userName === loginUser.username && data.password === loginUser.password) {
+        localStorage.setItem(
+          'userData',
+          JSON.stringify({ isLoggedIn: true, userName: data.userName })
+        );
+        navigate('/');
+      } else {
+        setError('Username or password You have provided are incorrect. Please try again.');
+        setShowDialog(true);
+      }
+    } catch (fetchError) {
+      setError('Error fetching data');
+      alert(fetchError);
+    }
+
+    if (emailInputRef.current) {
+      emailInputRef.current.value = '';
+    }
+    if (passwordInputRef.current) {
+      passwordInputRef.current.value = '';
+    }
   };
 
   return (
-    <div className={styles.loginFormWrapper}>
-      <header className={styles.loginFormHeader}>
-        <h1>Login</h1>
-        <p>Lunch won’t order itself</p>
-      </header>
-      <div className={styles.loginFormBody}>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.formInputWrap}>
-            <div className={styles.inputWrapper}>
-              <Input
-                inputRef={emailInputRef}
-                label="Email"
-                name="Email"
-                type="email"
-                placeholder="example@gmail.com"
-              />
-              <Input inputRef={passwordInputRef} label="Password" name="Password" type="password" />
+    <>
+      <div className={styles.loginFormWrapper}>
+        <header className={styles.loginFormHeader}>
+          <h1>Login</h1>
+          <p>Lunch won’t order itself</p>
+        </header>
+        <div className={styles.loginFormBody}>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formInputWrap}>
+              <div className={styles.inputWrapper}>
+                <Input
+                  inputRef={emailInputRef}
+                  label="Email"
+                  name="Email"
+                  type="email"
+                  placeholder="example@gmail.com"
+                />
+                <Input
+                  inputRef={passwordInputRef}
+                  label="Password"
+                  name="Password"
+                  type="password"
+                />
+              </div>
+              <div className={styles.forgotPasswordBtn}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    alert('Logic for reset password button will be added');
+                  }}>
+                  Forgot Password?
+                </button>
+              </div>
             </div>
-            <div className={styles.forgotPasswordBtn}>
-              <button
-                type="button"
-                onClick={() => {
-                  alert('Logic for reset password button will be added');
-                }}>
-                Forgot Password?
-              </button>
-            </div>
-          </div>
-          <Button
-            text="Log In"
-            appearance={ButtonAppearance.PRIMARY}
-            size={ButtonSize.MEDIUM}
-            icon={ButtonIcon.ARROW}
-            onClick={() => {}}
-            buttonType={ButtonType.SUBMIT}
-          />
-        </form>
+            <Button
+              text="Log In"
+              appearance={ButtonAppearance.PRIMARY}
+              size={ButtonSize.MEDIUM}
+              icon={ButtonIcon.ARROW}
+              onClick={() => {}}
+              buttonType={ButtonType.SUBMIT}
+            />
+          </form>
+        </div>
       </div>
-    </div>
+      <div className={styles.notification}>
+        {showDialog && (
+          <Dialog
+            title="Failed to Log In"
+            // eslint-disable-next-line
+            children={error}
+            primaryButtonText="Try Again"
+            isCloseButtonVisible={false}
+            onPrimaryButtonClick={() => {
+              setShowDialog(false);
+            }}
+            onClose={() => {
+              setShowDialog(false);
+            }}
+          />
+        )}
+      </div>
+    </>
   );
 }
 
