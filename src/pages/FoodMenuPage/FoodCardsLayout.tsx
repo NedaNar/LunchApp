@@ -61,7 +61,7 @@ function FoodCardsLayout() {
         {!loading && !error && filteredMeals?.length === 0 && (
           <StaticNotification text="No dishes ready for today." type={NotificationType.INFO} />
         )}
-        {!loading && !error && !canOrder() && (
+        {!loading && !error && filteredMeals?.length !== 0 && !canOrder() && (
           <StaticNotification text="Orders no longer accepted." type={NotificationType.INFO} />
         )}
         {!loading && !error && canOrder() && (
