@@ -5,12 +5,14 @@ export enum NavigationItemId {
   RATINGS = 'ratings',
 }
 
-export enum NavigationItemPath {
+export enum RoutePath {
   ROOT = '/',
   MENU = '/food-menu',
   LUNCH = '/available-lunch',
   ORDERS = '/your-orders',
   RATINGS = '/ratings',
+  LOGIN = '/login',
+  REGISTER = '/register',
 }
 
 export enum NavigationItemTitle {
