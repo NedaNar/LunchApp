@@ -22,7 +22,6 @@
   display: flex;
   flex-direction: column;
   padding-top: 2.4rem;
-  padding-left: calc(7.2rem + 2rem);
   transition: $transition;
 
   @include for-tablet-landscape-up {

@@ -25,7 +25,7 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
 
   return (
     <aside
-      className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : ''} ${closed ? styles['sidebar--navClosed'] : ''}}`}>
+      className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : ''} ${closed ? styles['sidebar--navClosed'] : ''}`}>
       <div
         className={`${styles.sidebarToggle} ${collapsed ? styles['sidebarToggle--collapsed'] : styles['sidebarToggle--expanded']}`}>
         <IconButton

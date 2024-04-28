@@ -89,21 +89,14 @@ $border-radius-navItem-expanded: 1.2rem;
   }
 }
 .navBurger {
-  // transition: $transition;
   display: block;
 
-  @include for-tablet-portrait-up {
+  @include for-tablet-landscape-up {
     display: none;
   }
 }
 
 // _________NAVIGATION SIDEBAR STYLE______________
-
-// &--closed {
-//   .navList {
-//     display: none;
-//   }
-// }
 
 .sidebar {
   &--navClosed {
@@ -130,7 +123,6 @@ $border-radius-navItem-expanded: 1.2rem;
   @include for-tablet-landscape-up {
     transition: $transition;
     min-height: calc(100vh - $space-S * 2);
-    // min-height: 70rem;
     max-width: 21.4;
     padding: $space-10;
   }
@@ -156,7 +148,7 @@ $border-radius-navItem-expanded: 1.2rem;
     gap: $space-10;
     display: none;
 
-    @include for-tablet-portrait-up {
+    @include for-tablet-landscape-up {
       display: block;
     }
   }
