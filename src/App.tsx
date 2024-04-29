@@ -13,7 +13,7 @@ export function App() {
       <Navigation collapsed={collapsed} setCollapsed={setCollapsed} />
       <div>{/* div for any element in layout */}</div>
 
-      <div className={collapsed ? styles.contentCollapsed : styles.content}>
+      <div className={collapsed ? styles['content--collapsed'] : styles.content}>
         <Outlet />
         {/* <Outlet> allows to render 'child route' elements, so components can be placed on page  */}
       </div>

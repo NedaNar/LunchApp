@@ -1,14 +1,5 @@
 @import './styles/_tools.scss';
 
-// this is initial style for App
-// .container {
-//   margin: 0 auto;
-//   max-width: 1280px;
-//   padding: 2rem;
-//   text-align: center;
-// }
-
-// this is style for working app layout
 .container {
   margin: 0 auto;
   width: 100vw;
@@ -18,25 +9,23 @@
 }
 
 .content {
-  // height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 2.4rem;
   transition: $transition;
 
   @include for-tablet-landscape-up {
-    // height: 100vh;
     display: flex;
     flex-direction: column;
     padding-top: 2.4rem;
-    padding-left: calc(21.4rem + 2rem);
+    padding-left: 21.4rem;
     transition: $transition;
-    &Collapsed {
-      // height: 100vh;
+
+    &--collapsed {
       display: flex;
       flex-direction: column;
       padding-top: 2.4rem;
-      padding-left: calc(7.2rem + 2rem);
+      padding-left: 7.2rem;
       transition: $transition;
     }
   }
