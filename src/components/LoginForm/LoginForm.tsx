@@ -14,8 +14,8 @@ import { LoginUserData } from '../../api/apiModel';
 import Dialog from '../Dialog/Dialog';
 
 interface LoginUser {
-  username?: string | null;
-  password?: string | null;
+  username: string | null;
+  password: string | null;
 }
 
 function LoginForm() {
@@ -25,9 +25,9 @@ function LoginForm() {
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const response = useFetch<LoginUserData>(Endpoint.USER);
+  const res = useFetch<LoginUserData>(Endpoint.USER);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const loginUser: LoginUser = {
@@ -36,18 +36,19 @@ function LoginForm() {
     };
 
     try {
-      if (!response || !response.data) {
+      if (!res || !res.data) {
         alert('No data from database was received');
         return;
       }
 
-      const { data } = response;
+      const { data } = res;
 
       if (data.userName === loginUser.username && data.password === loginUser.password) {
-        localStorage.setItem(
-          'userData',
-          JSON.stringify({ isLoggedIn: true, userName: data.userName })
-        );
+        const token = JSON.stringify({
+          username: res.data?.userName,
+          password: res.data?.password,
+        });
+        localStorage.setItem('token', token);
         navigate('/');
       } else {
         setError('Username or password You have provided are incorrect. Please try again.');
