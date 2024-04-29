@@ -11,8 +11,9 @@ interface OrderHistoryItem {
 }
 
 export interface LoginUserData {
-  userName?: string | null;
+  email?: string | null;
   password?: string | null;
+  userName?: string | null;
 }
 
 export interface UserData {

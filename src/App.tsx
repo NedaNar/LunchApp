@@ -5,6 +5,7 @@ import Navigation from './components/navigation/Navigation';
 import { Button, ButtonAppearance, ButtonSize } from './components/RegularButton/Button';
 
 export function App() {
+  // this is a temporary solution to handle logout
   const navigate = useNavigate();
   const handleLogOut = () => {
     localStorage.removeItem('token');
@@ -16,6 +17,7 @@ export function App() {
       <Navigation />
       <Outlet />
 
+      {/* this is a temporary solution to handle logout */}
       <Button
         text="Log Out"
         appearance={ButtonAppearance.PRIMARY}

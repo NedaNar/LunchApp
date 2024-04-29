@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../Input/Input';
 import {
@@ -12,16 +12,18 @@ import styles from './loginForm.module.scss';
 import useFetch, { Endpoint } from '../../api/useDataFetching';
 import { LoginUserData } from '../../api/apiModel';
 import Dialog from '../Dialog/Dialog';
+import { LocalStorageKeys } from '../../types/localStorageEnums';
 
 interface LoginUser {
-  username: string | null;
-  password: string | null;
+  email: string;
+  password: string;
 }
 
 function LoginForm() {
-  const emailInputRef = useRef<HTMLInputElement>(null);
-  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const [emailInput, setEmailInput] = useState<string>('');
+  const [passwordInput, setPasswordInput] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  // temporary solution, later will be changed to [showToast, setShowToast]
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -31,71 +33,78 @@ function LoginForm() {
     e.preventDefault();
 
     const loginUser: LoginUser = {
-      username: emailInputRef.current?.value ?? null,
-      password: passwordInputRef.current?.value ?? null,
+      email: emailInput,
+      password: passwordInput,
     };
 
     try {
       if (!res || !res.data) {
+        // this alert is a temporary solution for toast component, since it is not finished yet
         alert('No data from database was received');
         return;
       }
 
       const { data } = res;
 
-      if (data.userName === loginUser.username && data.password === loginUser.password) {
+      if (data.email === loginUser.email && data.password === loginUser.password) {
         const token = JSON.stringify({
+          email: res.data?.email,
           username: res.data?.userName,
-          password: res.data?.password,
         });
-        localStorage.setItem('token', token);
+        localStorage.setItem(LocalStorageKeys.TOKEN, token);
         navigate('/');
       } else {
-        setError('Username or password You have provided are incorrect. Please try again.');
+        setError('Email or password You have provided are incorrect. Please try again.');
+        // temporary solution, later will be changed to setShowToast
         setShowDialog(true);
       }
     } catch (fetchError) {
       setError('Error fetching data');
+      // this alert is a temporary solution for toast component, since it is not finished yet
       alert(fetchError);
     }
 
-    if (emailInputRef.current) {
-      emailInputRef.current.value = '';
-    }
-    if (passwordInputRef.current) {
-      passwordInputRef.current.value = '';
-    }
+    setEmailInput('');
+    setPasswordInput('');
   };
 
   return (
     <>
       <div className={styles.loginFormWrapper}>
         <header className={styles.loginFormHeader}>
-          <h1>Login</h1>
-          <p>Lunch won’t order itself</p>
+          <h1 className={styles.title}>Login</h1>
+          <p className={styles.subtitle}>Lunch won’t order itself</p>
         </header>
         <div className={styles.loginFormBody}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.loginForm}>
             <div className={styles.formInputWrap}>
               <div className={styles.inputWrapper}>
                 <Input
-                  inputRef={emailInputRef}
+                  value={emailInput}
+                  onChange={(e) => {
+                    setEmailInput(e.target.value);
+                  }}
                   label="Email"
                   name="Email"
                   type="email"
                   placeholder="example@gmail.com"
                 />
                 <Input
-                  inputRef={passwordInputRef}
+                  value={passwordInput}
+                  onChange={(e) => {
+                    setPasswordInput(e.target.value);
+                  }}
                   label="Password"
                   name="Password"
                   type="password"
                 />
               </div>
-              <div className={styles.forgotPasswordBtn}>
+              <div className={styles.forgotPassword}>
                 <button
+                  className={styles.forgotPasswordBtn}
                   type="button"
                   onClick={() => {
+                    // this alert is a temporary solution for password reset modal, since it is not finished yet
                     alert('Logic for reset password button will be added');
                   }}>
                   Forgot Password?
@@ -115,9 +124,10 @@ function LoginForm() {
       </div>
       <div className={styles.notification}>
         {showDialog && (
+          // this alert is a temporary solution for toast component, since it is not finished yet
           <Dialog
             title="Failed to Log In"
-            // eslint-disable-next-line
+            // eslint-disable-next-line react/no-children-prop
             children={error}
             primaryButtonText="Try Again"
             isCloseButtonVisible={false}

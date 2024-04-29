@@ -11,13 +11,13 @@
         flex-direction: column;
         gap: $space-XXXXS;
 
-        h1 {
+        .title {
             @include headline-L;
 
             color: $color-primary-600
         }
 
-        p {
+        .subtitle {
             @include body-L;
 
             color: $color-grey-500;
@@ -30,7 +30,7 @@
         flex-direction: column;
         justify-content: space-between;
 
-        form {
+        .loginForm {
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -44,23 +44,23 @@
                 margin-bottom: $space-XXXS;
             }
 
-            .formInputWrap .forgotPasswordBtn {
+            .formInputWrap .forgotPassword {
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+            }
 
-                button {
-                    @include body-M;
+            .forgotPasswordBtn {
+                @include body-M;
 
-                    color: $color-secondary-600;
-                    text-decoration: underline;
-                    background-color: $color-white;
-                    border: none;
-                }
+                color: $color-secondary-600;
+                text-decoration: underline;
+                background-color: $color-white;
+                border: none;
             }
         }
 
-        form button[type='submit'] {  
+        .loginForm button[type='submit'] {  
             width: 100%;
 
             @include flexbox-centered;
