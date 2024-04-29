@@ -16,15 +16,11 @@
 
   @include for-tablet-landscape-up {
     display: flex;
-    flex-direction: column;
-    padding-top: 2.4rem;
     padding-left: 21.4rem;
     transition: $transition;
 
     &--collapsed {
       display: flex;
-      flex-direction: column;
-      padding-top: 2.4rem;
       padding-left: 7.2rem;
       transition: $transition;
     }
