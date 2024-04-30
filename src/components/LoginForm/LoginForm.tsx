@@ -13,6 +13,7 @@ import useFetch, { Endpoint } from '../../api/useDataFetching';
 import { LoginUserData } from '../../api/apiModel';
 import Dialog from '../Dialog/Dialog';
 import { LocalStorageKeys } from '../../types/localStorageEnums';
+import { RoutePath } from '../../types/navigationEnums';
 
 interface LoginUser {
   email: string;
@@ -27,7 +28,7 @@ function LoginForm() {
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const res = useFetch<LoginUserData>(Endpoint.USER);
+  const { data } = useFetch<LoginUserData>(Endpoint.USER);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,21 +39,19 @@ function LoginForm() {
     };
 
     try {
-      if (!res || !res.data) {
+      if (!data) {
         // this alert is a temporary solution for toast component, since it is not finished yet
         alert('No data from database was received');
         return;
       }
 
-      const { data } = res;
-
       if (data.email === loginUser.email && data.password === loginUser.password) {
         const token = JSON.stringify({
-          email: res.data?.email,
-          username: res.data?.userName,
+          email: data?.email,
+          username: data?.userName,
         });
         localStorage.setItem(LocalStorageKeys.TOKEN, token);
-        navigate('/');
+        navigate(RoutePath.ROOT);
       } else {
         setError('Email or password You have provided are incorrect. Please try again.');
         // temporary solution, later will be changed to setShowToast

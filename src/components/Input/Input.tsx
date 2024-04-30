@@ -7,7 +7,6 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   icon?: boolean;
   label: string;
   name: string;
-  inputRef?: React.Ref<HTMLInputElement>;
 }
 
 export function Input({
@@ -16,7 +15,6 @@ export function Input({
   icon = false,
   label,
   name,
-  inputRef = null,
   ...rest
 }: InputProps) {
   return (
@@ -28,7 +26,6 @@ export function Input({
         {label}
       </label>
       <input
-        ref={inputRef}
         id={name}
         {...rest}
         disabled={disabled}
