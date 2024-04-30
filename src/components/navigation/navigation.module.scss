@@ -123,7 +123,7 @@ $border-radius-navItem-expanded: 1.2rem;
   @include for-tablet-landscape-up {
     transition: $transition;
     min-height: calc(100vh - $space-S * 2);
-    max-width: 21.4;
+    max-width: 21.4rem;
     padding: $space-10;
   }
 
