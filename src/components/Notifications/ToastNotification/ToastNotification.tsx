@@ -6,20 +6,28 @@ import WarningIcon from '../../../assets/static/icons/icon_error-outline.svg?rea
 import IconButton, { IconButtonIcon, IconButtonType } from '../../IconButton/IconButton';
 import { NOTIFICATION_TIMEOUT, NotificationType } from '../../../utils/notificationUtils';
 
+// USAGE
+// const toastRef = useRef<ToastRefObject>(null);
+// const showNotification = () => {
+//   toastRef.current!.showToast('someText', NotificationType.INFO);
+// };
+// <ToastNotification toastRef={toastRef} />
+
 interface Notification {
   text: string;
   type: NotificationType;
   isClosing: boolean;
 }
 
-// USAGE
-// const toastRef = useRef<any>();
-// const showNotification = () => {
-//   toastRef.current.showToast({ text: "someText", type: NotificationType.INFO });
-// };
-// <ToastNotification ref={toastRef} />
+export interface ToastRefObject {
+  showToast: (text: string, type: NotificationType) => void;
+}
 
-const ToastNotification = React.forwardRef<void>((_, ref: React.Ref<void>) => {
+interface ToastProps extends React.AllHTMLAttributes<ToastRefObject> {
+  toastRef: React.Ref<ToastRefObject>;
+}
+
+function ToastNotification({ toastRef }: ToastProps) {
   const [notification, setNotification] = useState<Notification | null>(null);
   const autoCloseTimeout = useRef<NodeJS.Timeout | null>(null);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -42,8 +50,8 @@ const ToastNotification = React.forwardRef<void>((_, ref: React.Ref<void>) => {
     removeNotification();
   };
 
-  useImperativeHandle(ref, () => ({
-    showToast({ text, type }: { text: string; type: NotificationType }) {
+  useImperativeHandle(toastRef, () => ({
+    showToast(text, type) {
       clearTimer(closeTimeout.current);
       clearTimer(autoCloseTimeout.current);
 
@@ -76,6 +84,6 @@ const ToastNotification = React.forwardRef<void>((_, ref: React.Ref<void>) => {
       )}
     </div>
   );
-});
+}
 
 export default ToastNotification;
