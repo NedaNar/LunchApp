@@ -4,6 +4,7 @@ import styles from './App.module.scss';
 import './styles/index.scss';
 import Navigation from './components/navigation/Navigation';
 import { Button, ButtonAppearance, ButtonSize } from './components/RegularButton/Button';
+import UserProfile from './components/UserProfile/UserProfile';
 
 export function App() {
   // This const is needed in parent element for navigation state
@@ -23,14 +24,19 @@ export function App() {
         {/* div for any element in layout */}
 
         {/* this is a temporary solution to handle logout */}
-        <Button
-          text="Log Out"
-          appearance={ButtonAppearance.PRIMARY}
-          size={ButtonSize.LARGE}
-          onClick={handleLogOut}
-        />
-      </div>
+        <div className={styles.logOut}>
+          <Button
+            text="Log Out"
+            appearance={ButtonAppearance.PRIMARY}
+            size={ButtonSize.SMALL}
+            onClick={handleLogOut}
+          />
+        </div>
 
+        <div className={styles.userProfile}>
+          <UserProfile />
+        </div>
+      </div>
       <div className={collapsed ? styles['content--collapsed'] : styles.content}>
         <Outlet />
         {/* <Outlet> allows to render 'child route' elements, so components can be placed on page  */}

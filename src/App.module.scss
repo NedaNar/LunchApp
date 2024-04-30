@@ -21,8 +21,22 @@
 
     &--collapsed {
       display: flex;
+      flex-direction: column;
       padding-left: 7.2rem;
       transition: $transition;
     }
   }
+}
+// temporary style for UserProfile
+.userProfile {
+  position: fixed;
+  top: 2.4rem;
+  right: 0;
+}
+
+// temporary style for logout
+.logOut {
+  position: absolute;
+  align-items: right;
+  right: 0;
 }
