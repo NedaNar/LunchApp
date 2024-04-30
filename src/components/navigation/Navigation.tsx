@@ -1,6 +1,9 @@
 // Use CASE:
+// import { useState } from 'react';
 // import Navigation from './components/navigation/Navigation';
-// <Navigation />
+// const [collapsed, setCollapsed] = useState(false);
+// <Navigation collapsed={collapsed} setCollapsed={setCollapsed} />
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navigation.module.scss';
@@ -8,13 +11,21 @@ import NavigationItem from './NavigationItem';
 import { NavigationItemId, RoutePath, NavigationItemTitle } from '../../types/navigationEnums';
 import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
 import LogoVertical from '../../assets/static/logo/logo_vertical.svg?react';
+import BurgerIcon from '../../assets/static/icons/icon_hamburger.svg?react';
+import CloseIcon from '../../assets/static/icons/icon_close.svg?react';
 import IconButton, { IconButtonSize, IconButtonType } from '../IconButton/IconButton';
 
-export default function Navigation() {
-  const [collapsed, setCollapsed] = useState(false);
+interface NavigationProps {
+  collapsed: boolean;
+  setCollapsed: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+}
+
+export default function Navigation({ collapsed, setCollapsed }: NavigationProps) {
+  const [closed, setClosed] = useState(true);
+
   return (
     <aside
-      className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : styles['sidebar--expanded']}`}>
+      className={`${styles.sidebar} ${collapsed ? styles['sidebar--collapsed'] : ''} ${closed ? styles['sidebar--navClosed'] : ''}`}>
       <div
         className={`${styles.sidebarToggle} ${collapsed ? styles['sidebarToggle--collapsed'] : styles['sidebarToggle--expanded']}`}>
         <IconButton
@@ -32,8 +43,16 @@ export default function Navigation() {
             <LogoHorizontal className={styles.logo} title="logo" />
           )}
         </Link>
+        <div className={styles.navBurger}>
+          {closed ? (
+            <BurgerIcon onClick={() => setClosed((prev) => !prev)} className={styles.iconBurger} />
+          ) : (
+            <CloseIcon onClick={() => setClosed((prev) => !prev)} className={styles.iconBurger} />
+          )}
+        </div>
 
-        <ul className={styles.navList}>
+        <ul
+          className={`${styles.navList} ${collapsed ? styles['sidebar__navList--collapsed'] : ''} ${closed ? styles['sidebar__navList--closed'] : ''}`}>
           <li>
             <NavigationItem
               id={NavigationItemId.MENU}
