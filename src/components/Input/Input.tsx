@@ -13,7 +13,6 @@ export function Input({
   error = false,
   disabled = false,
   icon = false,
-
   label,
   name,
   ...rest
@@ -48,3 +47,5 @@ export function Input({
 
 //  !attribute type="" from HTML is highly recommended to use!
 //   <Input label="Your E-mail" name="email" type="email" placeholder="Write E-mail address" />
+
+// you can pass ref like this: inputRef={emailInputRef} - emailInputRef in this case is a ref, created in your component
