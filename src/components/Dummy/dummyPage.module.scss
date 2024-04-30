@@ -1,0 +1,12 @@
+@import '../../styles/tools';
+
+.dummyContainer {
+    width: 80%;
+    margin: 0 auto;
+
+    .checkmarkWrapper, .dialogWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

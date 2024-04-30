@@ -10,6 +10,7 @@ import AuthLayout from './layouts/Auth/AuthLayout';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 import PrivateRoutes from './components/LoginForm/AuthenticationLogic/PrivateRoutes';
+import DummyPage from './components/Dummy/DummyPage';
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: RoutePath.RATINGS,
         element: <PrivateRoutes element={<RatingsPage />} />,
+      },
+      {
+        path: '/dummy',
+        element: <PrivateRoutes element={<DummyPage />} />,
       },
     ],
   },
