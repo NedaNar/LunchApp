@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import styles from './toastNotification.module.scss';
 import InfoIcon from '../../../assets/static/icons/icon_info-outline.svg?react';
 import SuccessIcon from '../../../assets/static/icons/icon_check-circle-outline.svg?react';
@@ -31,6 +31,7 @@ function ToastNotification({ toastRef }: ToastProps) {
   const [notification, setNotification] = useState<Notification | null>(null);
   const autoCloseTimeout = useRef<NodeJS.Timeout | null>(null);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [notificationKey, setNotificationKey] = useState(0);
 
   const clearTimer = (timeout: NodeJS.Timeout | null) => timeout && clearTimeout(timeout);
 
@@ -50,19 +51,28 @@ function ToastNotification({ toastRef }: ToastProps) {
     removeNotification();
   };
 
+  useEffect(
+    () => () => {
+      clearTimer(autoCloseTimeout.current);
+      clearTimer(closeTimeout.current);
+    },
+    []
+  );
+
   useImperativeHandle(toastRef, () => ({
     showToast(text, type) {
       clearTimer(closeTimeout.current);
       clearTimer(autoCloseTimeout.current);
 
       setNotification({ text, type, isClosing: false });
+      setNotificationKey((prevKey) => prevKey + 1);
 
       autoCloseTimeout.current = setTimeout(removeNotification, NOTIFICATION_TIMEOUT);
     },
   }));
 
   return (
-    <div>
+    <div key={notificationKey}>
       {notification && (
         <div
           className={`${styles.container} ${styles[notification.type]} ${notification.isClosing ? styles.slideOut : ''}`}>
