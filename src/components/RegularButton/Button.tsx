@@ -3,13 +3,14 @@ import AddIcon from '../../assets/static/icons/icon_add.svg?react';
 import ArrowIcon from '../../assets/static/icons/icon_arrow-forward.svg?react';
 
 // USE CASE
-// import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from './components/RegularButton/Button';
+// import { Button, ButtonAppearance, ButtonSize, ButtonIcon, ButtonType } from './components/RegularButton/Button';
 // <Button
 //   text="Click me"
 //   appearance={ButtonAppearance.PRIMARY}
 //   size={ButtonSize.LARGE}
 //   icon={ButtonIcon.ADD}
 //   onClick={() => {}}
+//   buttonType={ButtonType.SUBMIT}
 // />;
 
 enum ButtonAppearance {
@@ -31,12 +32,18 @@ enum ButtonIcon {
   NONE = 'none',
 }
 
+enum ButtonType {
+  BUTTON = 'button',
+  SUBMIT = 'submit',
+}
+
 interface ButtonProps {
   text: string;
   appearance: ButtonAppearance;
   size: ButtonSize;
   icon?: ButtonIcon;
   disabled?: boolean;
+  buttonType?: ButtonType;
   onClick: () => void;
 }
 
@@ -47,11 +54,12 @@ function Button({
   onClick,
   icon = ButtonIcon.NONE,
   disabled,
+  buttonType = ButtonType.BUTTON,
 }: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      type="button"
+      type={buttonType === ButtonType.SUBMIT ? 'submit' : 'button'}
       className={`${styles.btn} ${styles[appearance]} ${styles[size]} ${styles[icon]}`}
       disabled={disabled}>
       {icon === ButtonIcon.ADD && <AddIcon className={styles.icon} />}
@@ -61,4 +69,4 @@ function Button({
   );
 }
 
-export { Button, ButtonAppearance, ButtonSize, ButtonIcon };
+export { Button, ButtonAppearance, ButtonSize, ButtonIcon, ButtonType };
