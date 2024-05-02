@@ -7,23 +7,10 @@
     display: flex;
     justify-content: center;
     gap: 12.8rem;
+    height: 100vh;
 
-    @media only screen and (max-width: 1440px) {
-        margin: 0;
-        gap: $space-XXXL;
-    }
-
-    @media only screen and (max-width: 1320px) {
-        gap: $space-M;
-    }
-
-    @media only screen and (max-width: 920px) {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    @media (max-width: 550px) {
-        justify-content: center;
+    @include for-tablet-landscape-up {
+        gap: $space-S;
     }
 
     .image {
@@ -34,27 +21,28 @@
         border: 0.01rem solid $color-grey-200;
         box-shadow: $box-shadow-m;
 
-        @media only screen and (max-width: 1320px) {
-            max-height: 59.2rem;
-            max-width: 56.3rem;
+        @include for-phone-only-bigger {
+            display: none;
         }
 
-        @media only screen and (max-width: 1040px) {
+        @include for-tablet-landscape-up {
             max-height: 42.9rem;
             max-width: 40rem;
         }
 
-        @media only screen and (max-width: 920px) {
-            display: none;
+        @include for-tablet-desktop-up {
+            max-height: 59.2rem;
+            max-width: 56.3rem;
         }
 
-        @media (max-width: 550px) {
-            display: none;
-            padding: 0;
-            margin-top: -2rem;
-            margin-left: 0.1rem;
-            margin-right: 1rem;
-            border-radius: $border-radius-large;
+        @include for-desktop-up {
+            max-height: 69.2rem;
+            max-width: 66.3rem;
+        }
+
+        @include for-big-desktop-up {
+            max-height: 75.1rem;
+            max-width: 72.2rem;
         }
     }
 
@@ -73,12 +61,8 @@
         box-shadow: $box-shadow-m;
         gap: $space-S;
 
-        @media (max-width: 550px) {
+        @include for-phone-only {
             margin: 2rem;
-        }
-
-        @media (max-width: 440px) {
-            width: 33.1rem;
         }
 
         .logo {
@@ -91,7 +75,7 @@
             align-items: left;
             width: 100%;
 
-            > * {
+            >* {
                 width: 100%;
             }
         }
