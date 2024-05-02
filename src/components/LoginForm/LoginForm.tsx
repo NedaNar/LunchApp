@@ -12,7 +12,7 @@ import styles from './loginForm.module.scss';
 import useFetch, { Endpoint } from '../../api/useDataFetching';
 import { LoginUserData } from '../../api/apiModel';
 import Dialog from '../Dialog/Dialog';
-import { LocalStorageKeys } from '../../types/localStorageEnums';
+import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 import { RoutePath } from '../../types/navigationEnums';
 
 interface LoginUser {
@@ -50,8 +50,8 @@ function LoginForm() {
           email: data?.email,
           username: data?.userName,
         });
-        localStorage.setItem(LocalStorageKeys.TOKEN, token);
-        navigate(RoutePath.ROOT);
+        sessionStorage.setItem(SessionStorageKeys.TOKEN, token);
+        navigate(RoutePath.MENU);
       } else {
         setError('Email or password You have provided are incorrect. Please try again.');
         // temporary solution, later will be changed to setShowToast
