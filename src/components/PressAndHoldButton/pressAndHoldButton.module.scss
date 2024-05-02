@@ -1,0 +1,136 @@
+@import '/src/styles/_tools';
+
+.btn {
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  border: 0.2rem solid $color-green-400;
+  border-radius: 4.2rem;
+  color: $color-primary-600;
+  width: 24.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.8rem;
+
+  @include label-S;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: auto;
+  }
+
+  &:focus {
+    outline: 0.2rem solid $color-purple-500;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+
+  &.confirmed {
+    color: $color-white;
+    background-color: $color-green-400;
+
+    .icon {
+      height: 1.8rem;
+      width: 1.8rem;
+      margin-left: 0.5rem;
+
+      path {
+        fill: $color-white;
+      }
+    }
+  }
+
+  .content {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+
+  @keyframes fillNormal {
+    0% {
+      border-radius: 60%/100%;
+      left: 0;
+      width: 0rem;
+    }
+    100% {
+      border-radius: 95%/100%;
+      left: -100%;
+      width: 200%;
+    }
+  }
+
+  @keyframes fillTransp {
+    0% {
+      opacity: 0;
+      border-radius: 4.2rem;
+      width: 0;
+    }
+    100% {
+      opacity: 0.9;
+      border-radius: 16rem;
+      width: 100%;
+    }
+  }
+
+  @keyframes removeFillNormal {
+    0% {
+      border-radius: 95%/100%;
+      left: -100%;
+      width: 200%;
+    }
+    100% {
+      border-radius: 60%/100%;
+      left: 0;
+      width: 0rem;
+    }
+  }
+
+  @keyframes removeFillTransp {
+    0% {
+      opacity: 0.9;
+      border-radius: 16rem;
+      width: 100%;
+    }
+    100% {
+      opacity: 0;
+      border-radius: 4.2rem;
+      width: 0;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    animation-duration: 1.5s;
+    position: absolute;
+    left: 0;
+    height: 5rem;
+    width: 0rem;
+    background-color: $color-green-400;
+    z-index: 1;
+    animation-fill-mode: forwards;
+  }
+
+  &.pressed {
+    &::before {
+      animation-name: fillTransp;
+    }
+
+    &::after {
+      animation-name: fillNormal;
+    }
+  }
+
+  &.released {
+    &::before {
+      animation-name: removeFillNormal;
+    }
+
+    &::after {
+      animation-name: removeFillTransp;
+    }
+  }
+}
