@@ -20,12 +20,10 @@
         border-bottom-right-radius: $border-radius-large;
         border: 0.01rem solid $color-grey-200;
         box-shadow: $box-shadow-m;
-
-        @include for-phone-only-bigger {
-            display: none;
-        }
+        display: none;
 
         @include for-tablet-landscape-up {
+            display: flex;
             max-height: 42.9rem;
             max-width: 40rem;
         }
