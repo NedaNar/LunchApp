@@ -30,7 +30,9 @@ function UserProfile() {
             <img src={data.img} alt="User Avatar" />
           </div>
         )}
-        <ProfileButton onClick={handleClick} />
+        <div className={styles.dropdown}>
+          <ProfileButton onClick={handleClick} dropdownOptions={['Log Out']} />
+        </div>
         <p className={styles.username}>
           {data.name} {data.surname}
         </p>
