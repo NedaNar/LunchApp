@@ -1,18 +1,23 @@
 @import '/src/styles/_tools';
 
+// border radius for animation
+$border-radius-S: 4.2rem;
+$border-radius-L: 16rem;
+$border-radius-hor-S: 60%;
+$border-radius-hor-L: 95%;
+$border-radius-vert: 100%;
+
 .btn {
   background-color: transparent;
   position: relative;
   overflow: hidden;
   border: 0.2rem solid $color-green-400;
-  border-radius: 4.2rem;
+  border-radius: $border-radius-S;
   color: $color-primary-600;
   width: 24.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 4.8rem;
 
+  @include flexbox-centered;
   @include label-S;
 
   &:disabled {
@@ -45,18 +50,17 @@
 
   .content {
     z-index: 2;
-    display: flex;
-    align-items: center;
+    @include flexbox-centered;
   }
 
   @keyframes fillNormal {
     0% {
-      border-radius: 60%/100%;
+      border-radius: $border-radius-hor-S $border-radius-vert;
       left: 0;
       width: 0rem;
     }
     100% {
-      border-radius: 95%/100%;
+      border-radius: $border-radius-hor-L $border-radius-vert;
       left: -100%;
       width: 200%;
     }
@@ -65,24 +69,24 @@
   @keyframes fillTransp {
     0% {
       opacity: 0;
-      border-radius: 4.2rem;
+      $border-radius: $border-radius-S;
       width: 0;
     }
     100% {
       opacity: 0.9;
-      border-radius: 16rem;
+      border-radius: $border-radius-L;
       width: 100%;
     }
   }
 
   @keyframes removeFillNormal {
     0% {
-      border-radius: 95%/100%;
+      border-radius: $border-radius-hor-L $border-radius-vert;
       left: -100%;
       width: 200%;
     }
     100% {
-      border-radius: 60%/100%;
+      border-radius: $border-radius-hor-S $border-radius-vert;
       left: 0;
       width: 0rem;
     }
@@ -91,12 +95,12 @@
   @keyframes removeFillTransp {
     0% {
       opacity: 0.9;
-      border-radius: 16rem;
+      border-radius: $border-radius-L;
       width: 100%;
     }
     100% {
       opacity: 0;
-      border-radius: 4.2rem;
+      border-radius: $border-radius-S;
       width: 0;
     }
   }
@@ -107,7 +111,7 @@
     animation-duration: 1.5s;
     position: absolute;
     left: 0;
-    height: 5rem;
+    height: 4.6rem;
     width: 0rem;
     background-color: $color-green-400;
     z-index: 1;
