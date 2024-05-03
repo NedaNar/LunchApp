@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './iconButton.module.scss';
 import ProfileCarretIcon from '../../assets/iconbuttonsvg/ProfileCarretIcon.svg?react';
@@ -12,6 +12,21 @@ interface ProfileButtonProps {
 function ProfileButton({ onClick, dropdownOptions }: ProfileButtonProps) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleDropdownToggle = () => {
     setDropdownVisible(!dropdownVisible);
@@ -24,7 +39,7 @@ function ProfileButton({ onClick, dropdownOptions }: ProfileButtonProps) {
   };
 
   return (
-    <div className={styles.profileButtonWrapper}>
+    <div className={styles.profileButtonWrapper} ref={dropdownRef}>
       <button
         aria-label="Profile Options"
         type="button"
