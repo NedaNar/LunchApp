@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './pressAndHoldButton.module.scss';
 import CheckIcon from '../../assets/static/icons/icon_check-circle.svg?react';
 
@@ -44,6 +44,13 @@ function PressAndHoldButton({ disabled, onConfirm }: PressAndHoldButtonProps) {
   const handleKeyUp = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === ' ' || event.key === 'Enter') handleHoldEnd();
   };
+
+  useEffect(
+    () => () => {
+      clearTimeout(timeout.current);
+    },
+    []
+  );
 
   return (
     <button
