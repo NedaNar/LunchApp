@@ -18,7 +18,7 @@ function ProfileButton({ onClick, dropdownOptions }: ProfileButtonProps) {
   };
 
   const handleOptionSelect = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     navigate('/login');
     handleDropdownToggle();
   };
