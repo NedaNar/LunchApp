@@ -10,6 +10,7 @@ import AuthLayout from './layouts/Auth/AuthLayout';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 import PrivateRoutes from './components/LoginForm/AuthenticationLogic/PrivateRoutes';
+import PublicRoutes from './components/LoginForm/AuthenticationLogic/PublicRoutes';
 
 export const router = createBrowserRouter([
   {
@@ -41,11 +42,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: RoutePath.LOGIN,
-        element: <LoginForm />,
+        element: <PublicRoutes element={<LoginForm />} />,
       },
       {
         path: RoutePath.REGISTER,
-        element: <RegisterForm />,
+        element: <PublicRoutes element={<RegisterForm />} />,
       },
     ],
   },

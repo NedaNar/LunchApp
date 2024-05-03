@@ -13,7 +13,7 @@ export function App() {
   // this is a temporary solution to handle logout
   const navigate = useNavigate();
   const handleLogOut = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     navigate('/login');
   };
 
