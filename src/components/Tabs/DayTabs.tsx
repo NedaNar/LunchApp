@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { getCurrentWeekdayName } from '../../utils/dateUtils';
 import Tabs from './Tabs';
 
@@ -12,9 +13,28 @@ interface DayTabsProps {
 }
 
 function DayTabs({ onTabChange }: DayTabsProps) {
-  const workdays: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const PHONE_MAX_WIDTH = 599;
 
-  const currentDayIndex = workdays.indexOf(getCurrentWeekdayName());
+  const workdaysLong = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const workdaysShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+  const [isPhoneScreen, setisPhoneScreen] = useState(false);
+  const [workdays, setWorkdays] = useState(workdaysLong);
+
+  const handleResize = () => setisPhoneScreen(window.innerWidth <= PHONE_MAX_WIDTH);
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    setWorkdays(isPhoneScreen ? workdaysShort : workdaysLong);
+  }, [isPhoneScreen]);
+
+  const currentDayIndex = workdaysLong.indexOf(getCurrentWeekdayName());
 
   const disabledTabs =
     currentDayIndex !== -1
@@ -22,7 +42,7 @@ function DayTabs({ onTabChange }: DayTabsProps) {
       : Array.from({ length: 5 }, (_, i) => i);
 
   const handleTabChange = (index: number) => {
-    onTabChange(workdays[index]);
+    onTabChange(workdaysLong[index]);
   };
 
   return (
