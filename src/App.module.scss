@@ -27,9 +27,18 @@
     }
   }
 }
+.rightSide {
+  z-index: 999;
+  position: fixed;
+  right: 0;
+  top: $space-S;
+  display: flex;
+  flex-direction: column;
+  gap: $space-L;
+}
+
 // temporary style for UserProfile
 .userProfile {
-  position: fixed;
   top: 2.4rem;
   right: 0;
 }
