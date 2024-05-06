@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import useFetch, { Endpoint } from '../../api/useDataFetching';
 import FoodCard from '../../components/FoodCard/FoodCard';
 import DayTabs from '../../components/Tabs/DayTabs';
@@ -9,8 +9,11 @@ import {
   StaticNotification,
 } from '../../components/Notifications/StaticNotification/StaticNotification';
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
+import cartContext from '../../contexts/cartContext';
 
 function FoodCardsLayout() {
+  const cart = useContext(cartContext);
+
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>(getCurrentWeekdayName());
 
@@ -77,6 +80,9 @@ function FoodCardsLayout() {
                 isVegetarian={meal.vegetarian}
                 isSpicy={meal.spicy}
                 rating={getRating(meal.id)}
+                handleAddToCart={() => {
+                  cart.addToCart({ meal, selectedDay });
+                }}
               />
             ))}
           </div>

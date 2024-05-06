@@ -3,7 +3,6 @@
 // temporary style for pageLayout
 .foodMenuPageLayout {
   margin-top: 2.4rem;
-  margin-right: 30rem;
 }
 
 .cardsContainer {
@@ -15,4 +14,8 @@
   flex-wrap: wrap;
   gap: $space-M;
   justify-content: center;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

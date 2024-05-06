@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Dialog, { DialogIcon } from '../../components/Dialog/Dialog';
 import FoodCardsLayout from './FoodCardsLayout';
 import { STOP_ORDERS_HOUR, isWorkday } from '../../utils/dateUtils';
 import styles from './foodMenuPage.module.scss';
+import cartContext from '../../contexts/cartContext';
 
 export default function FoodMenuPage() {
   const [showDialog, setShowDialog] = useState(false);
+  const { expanded } = useContext(cartContext);
 
   useEffect(() => {
     const now = new Date();
@@ -31,7 +33,8 @@ export default function FoodMenuPage() {
   }, []);
 
   return (
-    <div className={styles.foodMenuPageLayout}>
+    <div
+      className={`${styles.foodMenuPageLayout} ${expanded ? styles.foodMenuPageLayoutExpandedCart : ''}`}>
       <h1>Food Menu page</h1>
 
       {showDialog && (

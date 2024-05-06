@@ -14,6 +14,7 @@ export interface FoodCardProps {
   isSpicy?: boolean;
   rating: number | string;
   vendor: string;
+  handleAddToCart: () => void;
 }
 
 function FoodCard({
@@ -25,6 +26,7 @@ function FoodCard({
   isSpicy = false,
   rating,
   vendor,
+  handleAddToCart,
 }: FoodCardProps) {
   const formattedPrice = Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -87,7 +89,7 @@ function FoodCard({
           appearance={ButtonAppearance.SECONDARY}
           size={ButtonSize.SMALL}
           icon={ButtonIcon.ADD}
-          onClick={() => {}}
+          onClick={handleAddToCart}
         />
       </footer>
     </article>
