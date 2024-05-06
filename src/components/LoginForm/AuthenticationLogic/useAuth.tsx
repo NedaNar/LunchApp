@@ -1,7 +1,7 @@
-import { LocalStorageKeys } from '../../../types/localStorageEnums';
+import { SessionStorageKeys } from '../../../types/sessionStorageEnums';
 
 function useAuth() {
-  const user = localStorage.getItem(LocalStorageKeys.TOKEN);
+  const user = sessionStorage.getItem(SessionStorageKeys.TOKEN);
 
   if (user) {
     return true;
