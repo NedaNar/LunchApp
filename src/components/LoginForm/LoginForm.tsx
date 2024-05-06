@@ -1,4 +1,4 @@
-import { FormEvent, useState, useRef } from 'react';
+import { FormEvent, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../Input/Input';
 import {
@@ -38,6 +38,12 @@ function LoginForm() {
     }
   };
 
+  useEffect(() => {
+    if (error) {
+      showNotification(error);
+    }
+  }, [error]);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -61,11 +67,9 @@ function LoginForm() {
         navigate(RoutePath.MENU);
       } else {
         setError('Email or password You have provided are incorrect. Please try again.');
-        showNotification(error!);
       }
     } catch (fetchError) {
       setError('Error fetching data');
-      showNotification(error!);
     }
 
     setEmailInput('');
