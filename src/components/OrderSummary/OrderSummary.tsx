@@ -5,6 +5,7 @@ import BasketIcon from '../../assets/static/supporting-illustrations/basket.svg?
 import DeleteIcon from '../../assets/static/icons/icon_delete.svg?react';
 import { getFoodIcon } from '../FoodCard/helpers';
 import cartContext, { MealItem } from '../../contexts/cartContext';
+import PressAndHoldButton from '../PressAndHoldButton/PressAndHoldButton';
 
 function EmptyCard() {
   return (
@@ -91,7 +92,7 @@ export default function OrderSummary() {
             </span>
           </article>
         </div>
-        <div className={styles.orderSummaryButton}>button place</div>
+        <PressAndHoldButton onConfirm={() => {}} />
       </footer>
     </aside>
   );
