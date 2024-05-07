@@ -3,6 +3,7 @@ import SearchIcon from '../../assets/static/icons/icon_search.svg?react';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
+  errorText?: string;
   disabled?: boolean;
   icon?: boolean;
   label: string;
@@ -11,6 +12,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 export function Input({
   error = false,
+  errorText = '',
   disabled = false,
   icon = false,
   label,
@@ -31,6 +33,7 @@ export function Input({
         disabled={disabled}
         className={`${styles.input} ${error ? styles['input--error'] : ''} ${icon ? styles.inputIcon__place : ''}`}
       />
+      {errorText && <span className={styles.errorText}>{errorText}</span>}
     </div>
   );
 }

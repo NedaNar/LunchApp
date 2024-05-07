@@ -1,81 +1,80 @@
 @import '../../styles/tools';
 
 .container {
-    max-width: 144rem;
-    margin: 0 auto;
-    padding-top: 8rem;
-    display: flex;
-    justify-content: center;
-    gap: 12.8rem;
-    height: 100vh;
+  max-width: 144rem;
+  margin: 0 auto;
+  padding-top: 8rem;
+  display: flex;
+  justify-content: center;
+  gap: 12.8rem;
+
+  @include for-tablet-landscape-up {
+    gap: $space-S;
+  }
+
+  .image {
+    max-height: 83.1rem;
+    max-width: 80.2rem;
+    border-top-right-radius: $border-radius-large;
+    border-bottom-right-radius: $border-radius-large;
+    border: 0.01rem solid $color-grey-200;
+    box-shadow: $box-shadow-m;
+    display: none;
 
     @include for-tablet-landscape-up {
-        gap: $space-S;
+      display: flex;
+      max-height: 42.9rem;
+      max-width: 40rem;
     }
 
-    .image {
-        max-height: 83.1rem;
-        max-width: 80.2rem;
-        border-top-right-radius: $border-radius-large;
-        border-bottom-right-radius: $border-radius-large;
-        border: 0.01rem solid $color-grey-200;
-        box-shadow: $box-shadow-m;
-        display: none;
-
-        @include for-tablet-landscape-up {
-            display: flex;
-            max-height: 42.9rem;
-            max-width: 40rem;
-        }
-
-        @include for-tablet-desktop-up {
-            max-height: 59.2rem;
-            max-width: 56.3rem;
-        }
-
-        @include for-desktop-up {
-            max-height: 69.2rem;
-            max-width: 66.3rem;
-        }
-
-        @include for-big-desktop-up {
-            max-height: 75.1rem;
-            max-width: 72.2rem;
-        }
+    @include for-tablet-desktop-up {
+      max-height: 59.2rem;
+      max-width: 56.3rem;
     }
 
-    .loginForm {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        width: 39.1rem;
-        height: 59.2rem;
-        background-color: $color-white;
-        padding: $space-S;
-        border-radius: $border-radius-regular;
-        border: 0.01rem solid #F2F2F2;
-        box-shadow: $box-shadow-m;
-        gap: $space-S;
-
-        @include for-phone-only {
-            margin: 2rem;
-        }
-
-        .logo {
-            width: 10.4rem;
-            height: 5.1rem;
-        }
-
-        .tabs {
-            display: flex;
-            align-items: left;
-            width: 100%;
-
-            >* {
-                width: 100%;
-            }
-        }
+    @include for-desktop-up {
+      max-height: 69.2rem;
+      max-width: 66.3rem;
     }
+
+    @include for-big-desktop-up {
+      max-height: 75.1rem;
+      max-width: 72.2rem;
+    }
+  }
+
+  .loginForm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 39.1rem;
+    height: fit-content;
+    background-color: $color-white;
+    padding: $space-S;
+    border-radius: $border-radius-regular;
+    border: 0.01rem solid #f2f2f2;
+    box-shadow: $box-shadow-m;
+    gap: $space-S;
+
+    @include for-phone-only {
+      margin: 2rem;
+    }
+
+    .logo {
+      width: 10.4rem;
+      height: 5.1rem;
+    }
+
+    .tabs {
+      display: flex;
+      align-items: left;
+      width: 100%;
+
+      > * {
+        width: 100%;
+      }
+    }
+  }
 }

@@ -41,7 +41,7 @@
         flex-direction: column;
         gap: $space-S;
         margin-top: $space-M;
-        margin-bottom: $space-XXXS;
+        margin-bottom: $space-S;
       }
 
       .formInputWrap .forgotPassword {
@@ -50,14 +50,14 @@
         align-items: center;
       }
 
-      .forgotPasswordBtn {
+      .communityRulesBtn {
         @include body-M;
 
         color: $color-secondary-600;
         text-decoration: underline;
         background-color: $color-white;
         border: none;
-        margin-bottom: $space-XXXXL;
+        margin-left: $space-XXXXS;
       }
     }
 
@@ -67,6 +67,11 @@
       @include flexbox-centered;
     }
   }
+}
+
+.communityRulesContainer {
+  display: flex;
+  margin-bottom: $space-XXXXL;
 }
 
 .notification {
