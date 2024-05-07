@@ -21,7 +21,6 @@ function Dropdown({ options, onSelect }: DropdownProps) {
         <button
           className={`${styles.dropdownButton}`}
           type="button"
-          // key={`${option.value}-${index}`}
           key={option.value}
           onClick={() => handleClick(option.value)}>
           {option.icon && option.icon}
