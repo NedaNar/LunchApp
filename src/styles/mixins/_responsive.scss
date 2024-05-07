@@ -1,30 +1,32 @@
+@import '../variables/mediaBreakpoints.module';
+
 @mixin for-phone-only {
-  @media (max-width: 599px) {
+  @media (max-width: #{$max-phone-width}px) {
     @content;
   }
 }
 @mixin for-tablet-portrait-up {
-  @media (min-width: 600px) {
+  @media (min-width: #{$min-tablet-portrait-width}px) {
     @content;
   }
 }
 @mixin for-tablet-landscape-up {
-  @media (min-width: 900px) {
+  @media (min-width: #{$min-tablet-landscape-width}px) {
     @content;
   }
 }
 @mixin for-tablet-desktop-up {
-  @media (min-width: 1050px) {
+  @media (min-width: #{$min-tablet-desktop-width}px) {
     @content;
   }
 }
 @mixin for-desktop-up {
-  @media (min-width: 1200px) {
+  @media (min-width: #{$min-desktop-width}px) {
     @content;
   }
 }
 @mixin for-big-desktop-up {
-  @media (min-width: 1800px) {
+  @media (min-width: #{$min-big-desktop-width}px) {
     @content;
   }
 }

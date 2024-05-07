@@ -1,9 +1,8 @@
 import { useState, useMemo } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styles from './App.module.scss';
 import './styles/index.scss';
 import Navigation from './components/navigation/Navigation';
-import { Button, ButtonAppearance, ButtonSize } from './components/RegularButton/Button';
 import UserProfile from './components/UserProfile/UserProfile';
 import OrderSummary from './components/OrderSummary/OrderSummary';
 import CartContext, { CartItem } from './contexts/cartContext';
@@ -29,29 +28,12 @@ export function App() {
     [cartItems, cartExpanded]
   );
 
-  // this is a temporary solution to handle logout
-  const navigate = useNavigate();
-  const handleLogOut = () => {
-    sessionStorage.removeItem('token');
-    navigate('/login');
-  };
-
   return (
     <div className={styles.container}>
       <Navigation collapsed={collapsed} setCollapsed={setCollapsed} />
       <CartContext.Provider value={cart}>
         <div>
           {/* div for any element in layout */}
-
-          {/* this is a temporary solution to handle logout */}
-          <div className={styles.logOut}>
-            <Button
-              text="Log Out"
-              appearance={ButtonAppearance.PRIMARY}
-              size={ButtonSize.SMALL}
-              onClick={handleLogOut}
-            />
-          </div>
 
           <aside className={styles.rightSide}>
             <div className={styles.userProfile}>
