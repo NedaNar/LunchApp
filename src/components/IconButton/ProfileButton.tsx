@@ -34,16 +34,18 @@ function ProfileButton({ onClick, dropdownOptions }: ProfileButtonProps) {
     handleDropdownToggle();
   };
 
+  const handleProfileCartClick = () => {
+    onClick();
+    handleDropdownToggle();
+  };
+
   return (
     <div className={styles.profileButtonWrapper} ref={dropdownRef}>
       <button
         aria-label="Profile Options"
         type="button"
         className={`${styles.positioning} ${styles['profile-button']}`}
-        onClick={() => {
-          onClick();
-          handleDropdownToggle();
-        }}>
+        onClick={handleProfileCartClick}>
         <ProfileCarretIcon />
       </button>
       {dropdownVisible && <Dropdown options={dropdownOptions} onSelect={handleOptionSelect} />}
