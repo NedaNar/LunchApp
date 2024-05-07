@@ -3,6 +3,7 @@ import { UserData } from '../../api/apiModel';
 import ProfileButton from '../IconButton/ProfileButton';
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
 import styles from './userProfile.module.scss';
+import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 
 function UserProfile() {
   const { data, loading, error } = useFetch<UserData>(Endpoint.USER);
@@ -30,7 +31,12 @@ function UserProfile() {
             <img src={data.img} alt="User Avatar" />
           </div>
         )}
-        <ProfileButton onClick={handleClick} />
+        <div className={styles.dropdown}>
+          <ProfileButton
+            onClick={handleClick}
+            dropdownOptions={[{ value: 'Log Out', icon: <LogOutIcon /> }]}
+          />
+        </div>
         <p className={styles.username}>
           {data.name} {data.surname}
         </p>
