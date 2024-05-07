@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../Input/Input';
 import {
@@ -11,9 +11,12 @@ import {
 import styles from './loginForm.module.scss';
 import useFetch, { Endpoint } from '../../api/useDataFetching';
 import { LoginUserData } from '../../api/apiModel';
-import Dialog from '../Dialog/Dialog';
 import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 import { RoutePath } from '../../types/navigationEnums';
+import ToastNotification, {
+  ToastRefObject,
+} from '../Notifications/ToastNotification/ToastNotification';
+import { NotificationType } from '../../utils/notificationUtils';
 
 interface LoginUser {
   email: string;
@@ -24,11 +27,22 @@ function LoginForm() {
   const [emailInput, setEmailInput] = useState<string>('');
   const [passwordInput, setPasswordInput] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  // temporary solution, later will be changed to [showToast, setShowToast]
-  const [showDialog, setShowDialog] = useState<boolean>(false);
   const navigate = useNavigate();
+  const toastRef = useRef<ToastRefObject>(null);
 
   const { data } = useFetch<LoginUserData>(Endpoint.USER);
+
+  const showNotification = (errorText: string) => {
+    if (toastRef.current) {
+      toastRef.current.showToast(errorText, NotificationType.WARNING);
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      showNotification(error);
+    }
+  }, [error]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,8 +54,7 @@ function LoginForm() {
 
     try {
       if (!data) {
-        // this alert is a temporary solution for toast component, since it is not finished yet
-        alert('No data from database was received');
+        showNotification('No data from database was received');
         return;
       }
 
@@ -54,13 +67,9 @@ function LoginForm() {
         navigate(RoutePath.MENU);
       } else {
         setError('Email or password You have provided are incorrect. Please try again.');
-        // temporary solution, later will be changed to setShowToast
-        setShowDialog(true);
       }
     } catch (fetchError) {
       setError('Error fetching data');
-      // this alert is a temporary solution for toast component, since it is not finished yet
-      alert(fetchError);
     }
 
     setEmailInput('');
@@ -103,8 +112,7 @@ function LoginForm() {
                   className={styles.forgotPasswordBtn}
                   type="button"
                   onClick={() => {
-                    // this alert is a temporary solution for password reset modal, since it is not finished yet
-                    alert('Logic for reset password button will be added');
+                    showNotification('Logic for reset password button will be added shortly');
                   }}>
                   Forgot Password?
                 </button>
@@ -122,22 +130,7 @@ function LoginForm() {
         </div>
       </div>
       <div className={styles.notification}>
-        {showDialog && (
-          // this alert is a temporary solution for toast component, since it is not finished yet
-          <Dialog
-            title="Failed to Log In"
-            // eslint-disable-next-line react/no-children-prop
-            children={error}
-            primaryButtonText="Try Again"
-            isCloseButtonVisible={false}
-            onPrimaryButtonClick={() => {
-              setShowDialog(false);
-            }}
-            onClose={() => {
-              setShowDialog(false);
-            }}
-          />
-        )}
+        {error && <ToastNotification toastRef={toastRef} />}
       </div>
     </>
   );

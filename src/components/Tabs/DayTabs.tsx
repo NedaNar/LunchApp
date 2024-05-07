@@ -1,5 +1,6 @@
 import { getCurrentWeekdayName } from '../../utils/dateUtils';
 import Tabs from './Tabs';
+import useResizeDetector from '../../utils/useResizeDetector';
 
 // USAGE
 // const handleTabChange = (day: string) => {
@@ -12,9 +13,12 @@ interface DayTabsProps {
 }
 
 function DayTabs({ onTabChange }: DayTabsProps) {
-  const workdays: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const workdaysLong = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const workdaysShort = workdaysLong.map((day) => day.slice(0, 3));
 
-  const currentDayIndex = workdays.indexOf(getCurrentWeekdayName());
+  const { isTabletPortrait } = useResizeDetector();
+
+  const currentDayIndex = workdaysLong.indexOf(getCurrentWeekdayName());
 
   const disabledTabs =
     currentDayIndex !== -1
@@ -22,12 +26,12 @@ function DayTabs({ onTabChange }: DayTabsProps) {
       : Array.from({ length: 5 }, (_, i) => i);
 
   const handleTabChange = (index: number) => {
-    onTabChange(workdays[index]);
+    onTabChange(workdaysLong[index]);
   };
 
   return (
     <Tabs
-      tabs={workdays}
+      tabs={isTabletPortrait ? workdaysShort : workdaysLong}
       onTabChange={handleTabChange}
       preselectedTab={currentDayIndex}
       disabledTabs={disabledTabs}
