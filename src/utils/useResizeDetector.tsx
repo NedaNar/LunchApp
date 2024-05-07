@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-
-const MAX_PHONE_WIDTH = 600;
-const MAX_TABLET_PORTRAIT_WIDTH = 900;
-const MAX_TABLET_LANDSCAPE_WIDTH = 1050;
-const MAX_TABLET_DESKTOP_WIDTH = 1200;
-const MAX_DESKTOP_WIDTH = 1800;
+import breakpoints from '../styles/variables/_mediaBreakpoints.module.scss';
 
 interface ResizeParameters {
   isPhone: boolean;
@@ -28,12 +23,12 @@ function useResizeDetector(): ResizeParameters {
     };
   }, []);
 
-  const isPhone = width <= MAX_PHONE_WIDTH;
-  const isTabletPortrait = width <= MAX_TABLET_PORTRAIT_WIDTH;
-  const isTabletLandscape = width <= MAX_TABLET_LANDSCAPE_WIDTH;
-  const isTabletDesktop = width <= MAX_TABLET_DESKTOP_WIDTH;
-  const isDesktop = width <= MAX_DESKTOP_WIDTH;
-  const isBigDesktop = width > MAX_DESKTOP_WIDTH;
+  const isPhone = width < parseInt(breakpoints.min_tablet_portrait_width, 10);
+  const isTabletPortrait = width < parseInt(breakpoints.min_tablet_landscape_width, 10);
+  const isTabletLandscape = width < parseInt(breakpoints.min_tablet_desktop_width, 10);
+  const isTabletDesktop = width < parseInt(breakpoints.min_desktop_width, 10);
+  const isDesktop = width < parseInt(breakpoints.min_big_desktop_width, 10);
+  const isBigDesktop = width >= parseInt(breakpoints.min_big_desktop_width, 10);
 
   return { isPhone, isTabletPortrait, isTabletLandscape, isTabletDesktop, isDesktop, isBigDesktop };
 }
