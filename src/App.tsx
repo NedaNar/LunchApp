@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './App.module.scss';
 import './styles/index.scss';
-import Navigation from './components/Navigation/Navigation';
+import Navigation from './components/navigation/Navigation';
 import { Button, ButtonAppearance, ButtonSize } from './components/RegularButton/Button';
 import UserProfile from './components/UserProfile/UserProfile';
 import OrderSummary from './components/OrderSummary/OrderSummary';
