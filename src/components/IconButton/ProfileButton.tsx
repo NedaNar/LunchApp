@@ -2,14 +2,14 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './iconButton.module.scss';
 import ProfileCarretIcon from '../../assets/iconbuttonsvg/ProfileCarretIcon.svg?react';
-import Dropdown from '../Dropdown/Dropdown';
+import Dropdown, { Option } from '../Dropdown/Dropdown';
 import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 import { RoutePath } from '../../types/navigationEnums';
 import useClickOutside from '../CustomHooks/useClickOutside';
 
 interface ProfileButtonProps {
   onClick: () => void;
-  dropdownOptions: string[];
+  dropdownOptions: Option[];
 }
 
 function ProfileButton({ onClick, dropdownOptions }: ProfileButtonProps) {

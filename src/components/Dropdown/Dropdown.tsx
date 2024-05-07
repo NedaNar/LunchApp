@@ -1,8 +1,12 @@
 import styles from './dropdown.module.scss';
-import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
+
+export interface Option {
+  value: string;
+  icon?: React.ReactNode;
+}
 
 interface DropdownProps {
-  options: string[];
+  options: Option[];
   onSelect: (option: string) => void;
 }
 
@@ -17,10 +21,11 @@ function Dropdown({ options, onSelect }: DropdownProps) {
         <button
           className={`${styles.dropdownButton}`}
           type="button"
-          key={option}
-          onClick={() => handleClick(option)}>
-          <LogOutIcon />
-          {option}
+          // key={`${option.value}-${index}`}
+          key={option.value}
+          onClick={() => handleClick(option.value)}>
+          {option.icon && option.icon}
+          {option.value}
         </button>
       ))}
     </div>
