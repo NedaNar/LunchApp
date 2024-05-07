@@ -74,6 +74,16 @@
         }
       }
     }
+
+    .dialogSubBodyCenter {
+      @extend .dialogSubBody;
+      justify-content: center;
+    }
+    
+    .dialogSubBodyStart {
+      @extend .dialogSubBody;
+      justify-content: flex-start;
+    }
   }
 
   .dialogButtonWrapper {

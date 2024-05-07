@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './notFoundPage.module.scss';
 import BurnIcon from './burnIcon.svg?react';
@@ -6,11 +7,12 @@ import Navigation from '../../components/navigation/Navigation';
 export function NotFoundPage() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <div className={styles.errorPageLayout}>
       <div className={styles.navContainer}>
-        <Navigation />
+        <Navigation collapsed={collapsed} setCollapsed={setCollapsed} />
       </div>
       <div className={styles.errorMessageContainer}>
         <h1>Oops!</h1>

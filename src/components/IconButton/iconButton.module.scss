@@ -54,14 +54,14 @@
   }
 
   &.tertiary {
-    background-color: $color-white;
+    background-color: transparent;
 
     &:hover:not(:disabled) {
       background-color: rgba(255, 127, 15, 0.1);
     }
 
     &:focus:not(:disabled) {
-      background-color: $color-white;
+      background-color: transparent;
       border: 0.2rem solid $color-purple-500;
       outline: none;
     }

@@ -9,28 +9,30 @@ import { RoutePath } from './types/navigationEnums';
 import AuthLayout from './layouts/Auth/AuthLayout';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/RegisterForm/RegisterForm';
+import PrivateRoutes from './components/LoginForm/AuthenticationLogic/PrivateRoutes';
+import PublicRoutes from './components/LoginForm/AuthenticationLogic/PublicRoutes';
 
 export const router = createBrowserRouter([
   {
     path: RoutePath.ROOT,
-    element: <App />,
+    element: <PrivateRoutes element={<App />} />,
     errorElement: <NotFoundPage />,
     children: [
       {
         path: RoutePath.MENU,
-        element: <FoodMenuPage />,
+        element: <PrivateRoutes element={<FoodMenuPage />} />,
       },
       {
         path: RoutePath.LUNCH,
-        element: <AvailableLunchPage />,
+        element: <PrivateRoutes element={<AvailableLunchPage />} />,
       },
       {
         path: RoutePath.ORDERS,
-        element: <YourOrdersPage />,
+        element: <PrivateRoutes element={<YourOrdersPage />} />,
       },
       {
         path: RoutePath.RATINGS,
-        element: <RatingsPage />,
+        element: <PrivateRoutes element={<RatingsPage />} />,
       },
     ],
   },
@@ -40,11 +42,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: RoutePath.LOGIN,
-        element: <LoginForm />,
+        element: <PublicRoutes element={<LoginForm />} />,
       },
       {
         path: RoutePath.REGISTER,
-        element: <RegisterForm />,
+        element: <PublicRoutes element={<RegisterForm />} />,
       },
     ],
   },

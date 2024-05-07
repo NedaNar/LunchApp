@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Dialog, { DialogIcon } from '../../components/Dialog/Dialog';
 import FoodCardsLayout from './FoodCardsLayout';
-import { STOP_ORDERS_HOUR } from '../../utils/dateUtils';
+import { STOP_ORDERS_HOUR, isWorkday } from '../../utils/dateUtils';
+import styles from './foodMenuPage.module.scss';
 
 export default function FoodMenuPage() {
   const [showDialog, setShowDialog] = useState(false);
@@ -17,7 +18,7 @@ export default function FoodMenuPage() {
       0
     );
 
-    if (now < stopOrdersDate) {
+    if (isWorkday() && now < stopOrdersDate) {
       const timeUntilStopOrders = stopOrdersDate.getTime() - now.getTime();
       const timer = setTimeout(() => {
         setShowDialog(true);
@@ -30,7 +31,7 @@ export default function FoodMenuPage() {
   }, []);
 
   return (
-    <>
+    <div className={styles.foodMenuPageLayout}>
       <h1>Food Menu page</h1>
 
       {showDialog && (
@@ -46,6 +47,6 @@ export default function FoodMenuPage() {
       )}
 
       <FoodCardsLayout />
-    </>
+    </div>
   );
 }

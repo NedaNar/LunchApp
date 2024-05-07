@@ -47,6 +47,8 @@ function Dialog({
     }
   };
 
+  const dialogSubBodyClass = icon ? styles.dialogSubBodyCenter : styles.dialogSubBodyStart;
+
   return (
     <div className={styles.dialogOverlay}>
       <dialog open className={styles.dialogWrapper}>
@@ -61,7 +63,7 @@ function Dialog({
               />
             )}
           </header>
-          <div className={styles.dialogSubBody}>
+          <div className={dialogSubBodyClass}>
             <figure>{showIcon(icon)}</figure>
             <p>{children}</p>
           </div>

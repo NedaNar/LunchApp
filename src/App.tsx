@@ -1,33 +1,48 @@
-import { ReactNode } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './App.module.scss';
 import './styles/index.scss';
 // import Navigation from './components/navigation/Navigation';
 // import Header from './components/Header/Header';
 import Navigation from './components/navigation/Navigation';
-// import DayTabs from './components/Tabs/DayTabs';
+import { Button, ButtonAppearance, ButtonSize } from './components/RegularButton/Button';
+import UserProfile from './components/UserProfile/UserProfile';
 
-interface FirstLayoutProps {
-  children?: ReactNode;
-}
+export function App() {
+  // This const is needed in parent element for navigation state
+  const [collapsed, setCollapsed] = useState(false);
 
-export function App({ children }: FirstLayoutProps) {
-  // const handleTabChange = (day: string) => {
-  //   console.log('Selected day :', day);
-  // };
+  // this is a temporary solution to handle logout
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    sessionStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
     <div className={styles.container}>
-      <div className="navigation">
-        <Navigation />
+      <Navigation collapsed={collapsed} setCollapsed={setCollapsed} />
+      <div>
+        {/* div for any element in layout */}
+
+        {/* this is a temporary solution to handle logout */}
+        <div className={styles.logOut}>
+          <Button
+            text="Log Out"
+            appearance={ButtonAppearance.PRIMARY}
+            size={ButtonSize.SMALL}
+            onClick={handleLogOut}
+          />
+        </div>
+
+        <div className={styles.userProfile}>
+          <UserProfile />
+        </div>
       </div>
-      <Outlet />
-      {children}
-      <div className="user">Ernestas Grabliauskas</div>
-      <footer className="footer">
-        <div className="footer-left">Sourcery Academy</div>
-        <div className="footer-middle">Lunch App</div>
-        <div className="footer-right">© 2024 Cognizant</div>
-      </footer>
+      <div className={collapsed ? styles['content--collapsed'] : styles.content}>
+        <Outlet />
+        {/* <Outlet> allows to render 'child route' elements, so components can be placed on page  */}
+      </div>
     </div>
   );
 }
