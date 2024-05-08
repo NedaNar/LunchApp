@@ -14,23 +14,26 @@ import Filters from '../../components/Filters/Filters';
 function FoodCardsLayout() {
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>(getCurrentWeekdayName());
-  const [searchInput, setSearchInput] = useState<string>('');
 
   const { data: mealData, loading, error } = useFetch<MealData[]>(Endpoint.MEALS);
   const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
   const { data: ratingData } = useFetch<RatingData[]>(Endpoint.RATINGS);
 
-  const handleSearchInputChange = (searchTerm: string) => {
-    setSearchInput(searchTerm);
-  };
-
-  useEffect(() => {
+  const filterMeals = (searchTerm: string) => {
     const filteredBySearch = mealData?.filter((meal) =>
-      meal.title.toLowerCase().includes(searchInput.toLowerCase())
+      meal.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     const filteredByDay = filteredBySearch?.filter((meal) => meal.weekDays.includes(selectedDay));
     setFilteredMeals(filteredByDay || []);
-  }, [mealData, searchInput, selectedDay]);
+  };
+
+  const handleSearchButtonClick = (searchTerm: string) => {
+    filterMeals(searchTerm);
+  };
+
+  useEffect(() => {
+    filterMeals('');
+  }, [mealData, selectedDay]);
 
   const handleTabChange = (day: string) => {
     setSelectedDay(day);
@@ -57,7 +60,7 @@ function FoodCardsLayout() {
   return (
     <>
       <DayTabs onTabChange={handleTabChange} />
-      <Filters searchInput={searchInput} onSearchInputChange={handleSearchInputChange} />
+      <Filters onSearchButtonClick={handleSearchButtonClick} />
       <div className={styles.cardsContainer}>
         {loading && <StaticNotification text="Loading..." type={NotificationType.INFO} />}
         {error && (
