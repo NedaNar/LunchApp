@@ -9,27 +9,31 @@ import {
   StaticNotification,
 } from '../../components/Notifications/StaticNotification/StaticNotification';
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
+import Filters from '../../components/Filters/Filters';
 
 function FoodCardsLayout() {
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>(getCurrentWeekdayName());
+  const [searchInput, setSearchInput] = useState<string>('');
 
   const { data: mealData, loading, error } = useFetch<MealData[]>(Endpoint.MEALS);
   const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
   const { data: ratingData } = useFetch<RatingData[]>(Endpoint.RATINGS);
 
-  const filterMeals = (day: string) => {
-    if (mealData == null) return;
-    setFilteredMeals(mealData.filter((meal) => meal.weekDays.includes(day)));
+  const handleSearchInputChange = (searchTerm: string) => {
+    setSearchInput(searchTerm);
   };
 
   useEffect(() => {
-    filterMeals(getCurrentWeekdayName());
-  }, [mealData]);
+    const filteredBySearch = mealData?.filter((meal) =>
+      meal.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    const filteredByDay = filteredBySearch?.filter((meal) => meal.weekDays.includes(selectedDay));
+    setFilteredMeals(filteredByDay || []);
+  }, [mealData, searchInput, selectedDay]);
 
   const handleTabChange = (day: string) => {
     setSelectedDay(day);
-    filterMeals(day);
   };
 
   const canOrder = () =>
@@ -53,6 +57,7 @@ function FoodCardsLayout() {
   return (
     <>
       <DayTabs onTabChange={handleTabChange} />
+      <Filters searchInput={searchInput} onSearchInputChange={handleSearchInputChange} />
       <div className={styles.cardsContainer}>
         {loading && <StaticNotification text="Loading..." type={NotificationType.INFO} />}
         {error && (
