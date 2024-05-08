@@ -1,11 +1,15 @@
 import { useContext } from 'react';
 import styles from './orderSummary.module.scss';
-import CloseIcon from '../../assets/static/icons/icon_close.svg?react';
 import BasketIcon from '../../assets/static/supporting-illustrations/basket.svg?react';
 import DeleteIcon from '../../assets/static/icons/icon_delete.svg?react';
 import { getFoodIcon } from '../FoodCard/helpers';
 import cartContext, { MealItem } from '../../contexts/cartContext';
 import PressAndHoldButton from '../PressAndHoldButton/PressAndHoldButton';
+import IconButton, {
+  IconButtonSize,
+  IconButtonType,
+  IconButtonIcon,
+} from '../IconButton/IconButton';
 
 function EmptyCard() {
   return (
@@ -73,7 +77,12 @@ export default function OrderSummary() {
     <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
       <header className={styles.orderSummaryTitle}>
         <h1 className={styles.orderSummaryTitleText}>Order Summary</h1>
-        <CloseIcon onClick={() => setExpanded(false)} />
+        <IconButton
+          type={IconButtonType.TERTIARY}
+          size={IconButtonSize.MEDIUM}
+          icon={IconButtonIcon.CLOSE}
+          onClick={() => setExpanded(false)}
+        />
       </header>
       <section className={styles.orderSummaryList}>
         {items.length === 0 ? (

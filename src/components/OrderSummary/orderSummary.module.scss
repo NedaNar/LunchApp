@@ -37,14 +37,6 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
     @include headline-S;
     color: $color-primary-600;
   }
-
-  & svg {
-    width: 2.4rem;
-    height: 2.4rem;
-    path {
-      fill: $color-primary-800;
-    }
-  }
 }
 
 .emptyCart {
@@ -168,8 +160,8 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
         }
 
         & svg {
-          width: 3.7rem;
-          height: 3.7rem;
+          width: 4.5rem;
+          height: 4.4rem;
         }
       }
     }
