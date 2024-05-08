@@ -16,6 +16,16 @@ $space-7: 0.7rem;
   position: relative;
   gap: $space-XXXXXS;
 
+  .inputWrapper {
+    position: relative;
+
+    .dropdownIcon {
+      position: absolute;
+      right: $space-XXXS;
+      top: 0.6rem;
+    }
+  }
+
   .input {
     width: 100%;
     padding: $space-7 $space-XXXS;
@@ -24,6 +34,7 @@ $space-7: 0.7rem;
     outline: none;
     color: $color-grey-input-text;
     transition: 0.1s;
+    position: relative;
 
     @include body-M;
 

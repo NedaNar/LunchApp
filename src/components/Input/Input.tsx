@@ -1,5 +1,6 @@
 import styles from './input.module.scss';
 import SearchIcon from '../../assets/static/icons/icon_search.svg?react';
+import DropdownIcon from '../../assets/static/icons/icon_arrow-dropdown.svg?react';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
@@ -7,12 +8,14 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   icon?: boolean;
   label: string;
   name: string;
+  dropdownIcon?: boolean;
 }
 
 export function Input({
   error = false,
   disabled = false,
   icon = false,
+  dropdownIcon = false,
   label,
   name,
   ...rest
@@ -25,12 +28,15 @@ export function Input({
         className={`${styles.label} ${disabled ? styles['label--disabled'] : ''} ${error ? styles['label--error'] : ''}`}>
         {label}
       </label>
-      <input
-        id={name}
-        {...rest}
-        disabled={disabled}
-        className={`${styles.input} ${error ? styles['input--error'] : ''} ${icon ? styles.inputIcon__place : ''}`}
-      />
+      <div className={styles.inputWrapper}>
+        <input
+          id={name}
+          {...rest}
+          disabled={disabled}
+          className={`${styles.input} ${error ? styles['input--error'] : ''} ${icon ? styles.inputIcon__place : ''}`}
+        />
+        {dropdownIcon && <DropdownIcon className={styles.dropdownIcon} />}
+      </div>
     </div>
   );
 }
