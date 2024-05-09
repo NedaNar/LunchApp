@@ -85,6 +85,7 @@ function FoodCardsLayout() {
                 isVegetarian={meal.vegetarian}
                 isSpicy={meal.spicy}
                 rating={getRating(meal.id)}
+                weekday={selectedDay}
               />
             ))}
           </div>
