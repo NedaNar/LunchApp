@@ -1,0 +1,38 @@
+@import '../../styles/tools';
+
+.footer {
+    padding: 40px 40px 24px 40px;
+    // display: inline-block;
+}
+
+p {
+    @include title-S;
+    color: $color-grey-500;
+}
+
+.footerLeft {
+    text-align: left;
+    width: 50%;
+    display: inline-block;
+    // kitą lūžį pasirinkt
+    @include for-tablet-portrait-up { 
+        width: 33.33%;
+    }
+}
+
+.footerRight {
+    text-align: right;
+    width: 50%;
+    display: inline-block;
+    @include for-tablet-portrait-up {
+        width: 33.33%;
+    }
+}
+
+.footerMiddle {
+    width: 33.33%;
+    display: none;
+    text-align: center;
+    @include for-tablet-portrait-up {
+        display: inline-block;  }
+}

@@ -4,20 +4,26 @@ import styles from './authenticationPage.module.scss';
 import logo from '../../assets/static/logo/logo_horizontal.svg';
 import AuthTabs from './AuthTabs';
 import { RoutePath } from '../../types/navigationEnums';
+import Footer from '../../components/Footer/Footer';
 
 function AuthenticationPage() {
   const location = useLocation();
   const preselectedTab = location.pathname === RoutePath.REGISTER ? 1 : 0;
 
   return (
-    <div className={styles.container}>
-      <img className={styles.image} src={loginImage} alt="Two people thinking about food" />
-      <div className={styles.loginForm}>
-        <img className={styles.logo} src={logo} alt="Lunch App" />
-        <div className={styles.tabs}>
-          <AuthTabs preselectedTab={preselectedTab} />
+    <div className={styles.test}>
+      <div className={styles.container}>
+        <img className={styles.image} src={loginImage} alt="Two people thinking about food" />
+        <div className={styles.loginForm}>
+          <img className={styles.logo} src={logo} alt="Lunch App" />
+          <div className={styles.tabs}>
+            <AuthTabs preselectedTab={preselectedTab} />
+          </div>
+          <Outlet />
         </div>
-        <Outlet />
+      </div>
+      <div className={styles.test2}>
+        <Footer />
       </div>
     </div>
   );

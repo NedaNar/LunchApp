@@ -1,5 +1,14 @@
 @import '../../styles/tools';
 
+.test {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: $color-grey-100;
+}
+.test2 {
+    margin-top: auto;
+}
 .container {
     max-width: 144rem;
     margin: 0 auto;
@@ -7,7 +16,8 @@
     display: flex;
     justify-content: center;
     gap: 12.8rem;
-    height: 100vh;
+    flex-grow: 1;
+    
 
     @include for-tablet-landscape-up {
         gap: $space-S;
