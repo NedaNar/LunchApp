@@ -4,9 +4,12 @@ import ProfileButton from '../IconButton/ProfileButton';
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
 import styles from './userProfile.module.scss';
 import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
+import useAuth from '../LoginForm/AuthenticationLogic/useAuth';
 
 function UserProfile() {
-  const { data, loading, error } = useFetch<UserData>(Endpoint.USER);
+  const token = useAuth();
+
+  const { data, loading, error } = useFetch<UserData>(Endpoint.USERS, token.id);
 
   if (loading) return <h1>LOADING...</h1>;
 

@@ -13,14 +13,18 @@ interface OrderHistoryItem {
 export interface LoginUserData {
   email?: string | null;
   password?: string | null;
-  userName?: string | null;
+  id?: string | null;
 }
 
 export interface UserData {
+  id: string;
+  userName: string;
+  email: string;
+  password: string;
   name: string;
   surname: string;
-  img?: string;
   balance: number;
+  img?: string;
   orders: Order[];
   orderHistory: OrderHistoryItem[];
 }

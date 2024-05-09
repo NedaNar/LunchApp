@@ -29,7 +29,7 @@ function LoginForm() {
   const navigate = useNavigate();
   const toastRef = useRef<ToastRefObject>(null);
 
-  const { data } = useFetch<LoginUserData>(Endpoint.USER);
+  const { data } = useFetch<LoginUserData[]>(Endpoint.USERS);
 
   const showNotification = (errorText: string) => {
     if (toastRef.current) {
@@ -51,10 +51,14 @@ function LoginForm() {
         return;
       }
 
-      if (data.email === loginUser.email && data.password === loginUser.password) {
+      const existingUser = data.find(
+        (user) => user.email === loginUser.email && user.password === loginUser.password
+      );
+
+      if (existingUser) {
         const token = JSON.stringify({
-          email: data?.email,
-          username: data?.userName,
+          email: existingUser.email,
+          id: existingUser.id,
         });
         sessionStorage.setItem(SessionStorageKeys.TOKEN, token);
         navigate(RoutePath.MENU);
