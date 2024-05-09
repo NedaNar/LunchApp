@@ -14,25 +14,40 @@ import Filters from '../../components/Filters/Filters';
 function FoodCardsLayout() {
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>(getCurrentWeekdayName());
+  const [selectedVendorState, setSelectedVendorState] = useState<number | null>(null);
 
   const { data: mealData, loading, error } = useFetch<MealData[]>(Endpoint.MEALS);
   const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
   const { data: ratingData } = useFetch<RatingData[]>(Endpoint.RATINGS);
 
-  const filterMeals = (searchTerm: string) => {
-    const filteredBySearch = mealData?.filter((meal) =>
-      meal.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    const filteredByDay = filteredBySearch?.filter((meal) => meal.weekDays.includes(selectedDay));
-    setFilteredMeals(filteredByDay || []);
+  const filterMeals = (searchTerm: string, vendorId: number | null) => {
+    let updateFilteredMeals = mealData || [];
+
+    updateFilteredMeals = updateFilteredMeals.filter((meal) => meal.weekDays.includes(selectedDay));
+
+    if (vendorId !== null) {
+      updateFilteredMeals = updateFilteredMeals.filter((meal) => meal.vendorId === vendorId);
+    }
+
+    if (searchTerm !== '') {
+      updateFilteredMeals = updateFilteredMeals.filter((meal) =>
+        meal.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setFilteredMeals(updateFilteredMeals);
   };
 
-  const handleSearchButtonClick = (searchTerm: string) => {
-    filterMeals(searchTerm);
+  const handleVendorSelect = (vendorId: number | null) => {
+    setSelectedVendorState(vendorId);
+  };
+
+  const handleSearchButtonClick = (searchTerm: string, selectedVendor: number | null) => {
+    filterMeals(searchTerm, selectedVendor);
   };
 
   useEffect(() => {
-    filterMeals('');
+    filterMeals('', null);
   }, [mealData, selectedDay]);
 
   const handleTabChange = (day: string) => {
@@ -57,10 +72,20 @@ function FoodCardsLayout() {
     return totalRating / ratings.length;
   };
 
+  const transformVendorData = (vendorsData: VendorData[] | null) =>
+    vendorsData?.map((vendor) => ({ id: parseInt(vendor.id, 10), name: vendor.name })) || [];
+
   return (
     <>
       <DayTabs onTabChange={handleTabChange} />
-      <Filters onSearchButtonClick={handleSearchButtonClick} />
+
+      <Filters
+        dropdownData={transformVendorData(vendorData)}
+        onSearchButtonClick={handleSearchButtonClick}
+        onVendorSelect={handleVendorSelect}
+        selectedVendor={selectedVendorState}
+      />
+
       <div className={styles.cardsContainer}>
         {loading && <StaticNotification text="Loading..." type={NotificationType.INFO} />}
         {error && (

@@ -2,13 +2,23 @@ import { ChangeEvent, useState } from 'react';
 import { Input } from '../Input/Input';
 import styles from './filters.module.scss';
 import { Button, ButtonAppearance, ButtonSize, ButtonType } from '../RegularButton/Button';
+import ReusableDropdown, { DropdownItem } from './ReusableDropdown';
 
 interface FiltersProps {
   sort?: boolean;
-  onSearchButtonClick: (searchTerm: string) => void;
+  onSearchButtonClick: (searchTerm: string, selectedVendor: number | null) => void;
+  onVendorSelect: (vendor: number | null) => void;
+  dropdownData: DropdownItem[];
+  selectedVendor: number | null;
 }
 
-function Filters({ sort = true, onSearchButtonClick }: FiltersProps) {
+function Filters({
+  sort = true,
+  onSearchButtonClick,
+  onVendorSelect,
+  dropdownData,
+  selectedVendor,
+}: FiltersProps) {
   const [searchInput, setSearchInput] = useState<string>('');
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,8 +27,12 @@ function Filters({ sort = true, onSearchButtonClick }: FiltersProps) {
 
   const formHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSearchButtonClick(searchInput);
+    onSearchButtonClick(searchInput, selectedVendor);
     setSearchInput('');
+  };
+
+  const handleSelect = (vendorId: number | null) => {
+    onVendorSelect(vendorId);
   };
 
   return (
@@ -35,19 +49,20 @@ function Filters({ sort = true, onSearchButtonClick }: FiltersProps) {
               value={searchInput}
               onChange={handleSearchInput}
             />
-            <Input
+            <ReusableDropdown
+              id="vendors"
               label="Vendor"
-              name="vendorInput"
-              id="vendorInput"
-              placeholder="All vendors"
-              dropdownIcon
+              title="All vendors"
+              data={dropdownData}
+              selectedId={selectedVendor ?? undefined}
+              onSelect={handleSelect}
             />
           </div>
           <Button
             text="Search"
             appearance={ButtonAppearance.PRIMARY}
             size={ButtonSize.MEDIUM}
-            onClick={() => {}}
+            onClick={() => onSearchButtonClick(searchInput, selectedVendor)}
             buttonType={ButtonType.SUBMIT}
           />
         </div>
@@ -74,7 +89,7 @@ function Filters({ sort = true, onSearchButtonClick }: FiltersProps) {
             text="RATING"
             appearance={ButtonAppearance.TERTIARY}
             size={ButtonSize.XSMALL}
-            onClick={() => {}}
+            onClick={() => onSearchButtonClick}
             buttonType={ButtonType.SUBMIT}
           />
         </div>
