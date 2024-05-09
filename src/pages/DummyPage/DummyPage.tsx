@@ -4,7 +4,7 @@ import IconButton, {
   IconButtonType,
   IconButtonIcon,
 } from '../../components/IconButton/IconButton';
-import ProfileButton from '../../components/IconButton/ProfileButton';
+// import ProfileButton from '../../components/IconButton/ProfileButton';
 import {
   Button,
   ButtonAppearance,
@@ -19,7 +19,7 @@ import {
 // };
 
 export default function DummyPage() {
-  const handleClick = () => {};
+  // const handleClick = () => {};
 
   return (
     <div className={styles.dummyPage}>
@@ -64,7 +64,7 @@ export default function DummyPage() {
           size={IconButtonSize.SMALL}
           icon={IconButtonIcon.CLOSE}
         />
-        <ProfileButton onClick={handleClick} />
+        {/* <ProfileButton onClick={handleClick} /> */}
       </div>
 
       <div className={styles.comp}>
