@@ -29,7 +29,7 @@ export default function OrderSummary() {
         />
       </header>
       <section className={styles.orderSummaryList}>
-        {items.length === 0 ? (
+        {!items.length ? (
           <EmptyCart />
         ) : (
           Object.keys(mappedMealsByDay).map((day) => (
