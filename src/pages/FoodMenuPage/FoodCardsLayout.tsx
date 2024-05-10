@@ -9,7 +9,7 @@ import {
   StaticNotification,
 } from '../../components/Notifications/StaticNotification/StaticNotification';
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
-import cartContext from '../../contexts/cartContext';
+import cartContext from '../../components/OrderSummary/cartContext';
 
 function FoodCardsLayout() {
   const cart = useContext(cartContext);

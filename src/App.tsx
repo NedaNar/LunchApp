@@ -5,7 +5,7 @@ import './styles/index.scss';
 import Navigation from './components/navigation/Navigation';
 import UserProfile from './components/UserProfile/UserProfile';
 import OrderSummary from './components/OrderSummary/OrderSummary';
-import CartContext, { CartItem } from './contexts/cartContext';
+import CartContext, { CartItem } from './components/OrderSummary/cartContext';
 
 export function App() {
   // This const is needed in parent element for navigation state

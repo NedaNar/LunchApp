@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { DishType } from '../components/FoodCard/helpers';
+import { DishType } from '../FoodCard/helpers';
 
 export interface MealItem {
   dishType: DishType;

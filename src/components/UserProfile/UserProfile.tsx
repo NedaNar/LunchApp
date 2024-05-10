@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import useFetch, { Endpoint } from '../../api/useDataFetching';
 import { UserData } from '../../api/apiModel';
-import CartContext from '../../contexts/cartContext';
+import CartContext from '../OrderSummary/cartContext';
 import ProfileButton from '../IconButton/ProfileButton';
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
 import styles from './userProfile.module.scss';

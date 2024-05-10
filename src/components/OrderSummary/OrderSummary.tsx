@@ -1,24 +1,14 @@
 import { useContext } from 'react';
 import styles from './orderSummary.module.scss';
-import BasketIcon from '../../assets/static/supporting-illustrations/basket.svg?react';
-import DeleteIcon from '../../assets/static/icons/icon_delete.svg?react';
-import { getFoodIcon } from '../FoodCard/helpers';
-import cartContext, { MealItem } from '../../contexts/cartContext';
+import cartContext, { MealItem } from './cartContext';
+import EmptyCart from './EmptyCart';
+import DayItems from './DayItem';
 import PressAndHoldButton from '../PressAndHoldButton/PressAndHoldButton';
 import IconButton, {
   IconButtonSize,
   IconButtonType,
   IconButtonIcon,
 } from '../IconButton/IconButton';
-
-function EmptyCard() {
-  return (
-    <figure className={styles.emptyCart}>
-      <BasketIcon />
-      <p className={styles.emptyCartText}>Your cart is empty</p>
-    </figure>
-  );
-}
 
 interface ReduceAccumulator {
   [key: string]: MealItem[];
@@ -27,35 +17,6 @@ interface ReduceAccumulator {
 export interface DayItemsProps {
   day: string;
   items: MealItem[];
-}
-
-function DayItems({ day, items }: DayItemsProps) {
-  return (
-    <section className={styles.dayItems}>
-      <header className={styles.dayItemsHeader}>
-        <p className={styles.dayItemsHeaderDay}>{day}</p>
-        <div className={styles.separator} />
-      </header>
-      <div className={styles.dayItemsList}>
-        {items.map((item) => (
-          <div className={styles.dayItemsListItem}>
-            <div className={styles.dayItemsListItemContent}>
-              <figure>{getFoodIcon(item.dishType)}</figure>
-
-              <div className={styles.dayItemsListItemContentText}>
-                <p>vendor</p>
-                <span>{item.title}</span>
-              </div>
-            </div>
-            <div className={styles.dayItemsListItemRight}>
-              <p>€{item.price}</p>
-              <DeleteIcon />
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
 }
 
 export default function OrderSummary() {
@@ -86,7 +47,7 @@ export default function OrderSummary() {
       </header>
       <section className={styles.orderSummaryList}>
         {items.length === 0 ? (
-          <EmptyCard />
+          <EmptyCart />
         ) : (
           Object.keys(mapped).map((day) => <DayItems day={day} items={mapped[day]} />)
         )}
