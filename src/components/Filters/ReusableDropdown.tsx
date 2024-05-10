@@ -60,9 +60,9 @@ function ReusableDropdown({ id, label, title, data, selectedId, onSelect }: Drop
         aria-expanded={isOpen}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={styles.reusableDropdownButton}>
+        className={`${styles.reusableDropdownButton} ${selectedItem !== null && selectedItem !== undefined ? styles.dropdownSelected : ''}`}>
         <span>{selectedItem?.name || title}</span>
-        <DropdownIcon />
+        <DropdownIcon className={`${isOpen === true && styles.dropdownIconRotate}`} />
       </button>
       {isOpen && (
         <div className={styles.reusableDropdownMenu} aria-label="Dropdown menu">
