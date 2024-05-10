@@ -5,6 +5,7 @@
 html {
   font-size: 10px;
 }
+
 /* stylelint-enable scale-unlimited/declaration-strict-value */
 
 * {
@@ -24,4 +25,15 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.order {
+  width: 28.3rem;
+  height: 43.4rem;
+  padding: 1.6rem;
+  background-color: $color-white;
+  border: $color-grey-100 0.05rem;
+  box-shadow: $box-shadow-m;
+  border-bottom-left-radius: $border-radius-regular;
+  border-top-left-radius: $border-radius-regular;
 }

@@ -1,3 +1,9 @@
+import Header from '../../components/Header/Header';
+
 export default function AvailableLunchPage() {
-  return <h1> This is Available Lunch Page</h1>;
+  return (
+    <div>
+      <Header page="availableLunch" />
+    </div>
+  );
 }
