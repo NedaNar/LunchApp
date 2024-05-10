@@ -14,6 +14,7 @@ export interface FoodCardProps {
   isSpicy?: boolean;
   rating: number | string;
   vendor: string;
+  weekday: string;
   handleAddToCart: () => void;
 }
 
@@ -26,6 +27,7 @@ function FoodCard({
   isSpicy = false,
   rating,
   vendor,
+  weekday,
   handleAddToCart,
 }: FoodCardProps) {
   const formattedPrice = Intl.NumberFormat('en-DE', {
@@ -82,7 +84,7 @@ function FoodCard({
       <footer className={styles.cardFooter}>
         <div className={styles.cardFooterText}>
           <p className={styles.bodyS}>Price</p>
-          <p className={styles.titleL}>{formattedPrice}</p>
+          <p className={styles.titleL}> {weekday !== 'Friday' ? formattedPrice : 'Free'}</p>
         </div>
         <Button
           text="Add to cart"

@@ -1,4 +1,4 @@
-import { FormEvent, useState, useRef, useEffect } from 'react';
+import { FormEvent, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../Input/Input';
 import {
@@ -26,7 +26,6 @@ interface LoginUser {
 function LoginForm() {
   const [emailInput, setEmailInput] = useState<string>('');
   const [passwordInput, setPasswordInput] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const toastRef = useRef<ToastRefObject>(null);
 
@@ -37,12 +36,6 @@ function LoginForm() {
       toastRef.current.showToast(errorText, NotificationType.WARNING);
     }
   };
-
-  useEffect(() => {
-    if (error) {
-      showNotification(error);
-    }
-  }, [error]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -66,10 +59,10 @@ function LoginForm() {
         sessionStorage.setItem(SessionStorageKeys.TOKEN, token);
         navigate(RoutePath.MENU);
       } else {
-        setError('Email or password You have provided are incorrect. Please try again.');
+        showNotification('Email or password You have provided are incorrect. Please try again.');
       }
     } catch (fetchError) {
-      setError('Error fetching data');
+      showNotification('Error fetching data');
     }
 
     setEmailInput('');
@@ -129,9 +122,7 @@ function LoginForm() {
           </form>
         </div>
       </div>
-      <div className={styles.notification}>
-        {error && <ToastNotification toastRef={toastRef} />}
-      </div>
+      <ToastNotification toastRef={toastRef} />
     </>
   );
 }
