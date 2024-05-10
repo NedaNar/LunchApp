@@ -14,11 +14,13 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-
+        flex-wrap: wrap;
+        gap: $space-XXXS;
 
         .filtersWrapper {
             display: flex;
             gap: $space-XXXS;
+            flex-wrap: wrap;
 
             input {
                 width: 32.3rem;
