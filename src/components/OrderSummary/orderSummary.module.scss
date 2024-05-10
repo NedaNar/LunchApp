@@ -11,11 +11,12 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
   padding-right: $space-XXXXXS;
   background-color: $color-white;
   border-radius: $border-radius-orderSummary;
+  border: $color-grey-100 0.05rem;
   box-shadow: $box-shadow-m;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  text-align: center;
   transform: translateX(100%);
   transition: $transition;
 
