@@ -9,23 +9,12 @@ $color-red-error-border: #ffc7c5;
 $space-7: 0.7rem;
 
 .wrapper {
-  width: 100%;
+  width: 32.3rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
   gap: $space-XXXXXS;
-
-  .inputWrapper {
-    position: relative;
-    width: 100%;
-
-    .dropdownIcon {
-      position: absolute;
-      right: $space-XXXS;
-      top: 0.6rem;
-    }
-  }
 
   .input {
     width: 100%;

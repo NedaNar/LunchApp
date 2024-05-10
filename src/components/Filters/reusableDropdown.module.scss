@@ -1,1 +1,44 @@
 @import '../../styles/tools';
+
+$color-grey-input-text: #646872;
+
+.reusableDropdownWrapper {
+    width: 32.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    gap: $space-XXXXXS;
+
+    .reusableDropdownLabel {
+        color: $color-primary-600;
+
+        @include label-S;
+
+        line-height: 2.4rem;
+    }
+
+    .reusableDropdownButton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+        height: 4rem;
+        padding: 0.7rem $space-XXXS;
+        border-radius: $border-radius-regular;
+        border: $color-grey-300 0.1rem solid;
+        outline: none;
+        color: $color-grey-input-text;
+        transition: 0.1s;
+        position: relative;
+        background-color: $color-white;
+    
+        @include body-M;
+
+        span {
+            @include body-M;
+        }
+    }
+
+}
