@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import styles from './orderSummary.module.scss';
-import cartContext, { MealItem } from './cartContext';
+import cartContext from './cartContext';
 import EmptyCart from './EmptyCart';
 import DayItems from './DayItem';
+import { calculateAndFormatTotalCartPrice, groupMealByDay } from '../../utils/orderSummaryHelpers';
 import PressAndHoldButton from '../PressAndHoldButton/PressAndHoldButton';
 import IconButton, {
   IconButtonSize,
@@ -10,29 +11,11 @@ import IconButton, {
   IconButtonIcon,
 } from '../IconButton/IconButton';
 
-interface ReduceAccumulator {
-  [key: string]: MealItem[];
-}
-
-export interface DayItemsProps {
-  day: string;
-  items: MealItem[];
-}
-
 export default function OrderSummary() {
   const { items, expanded, setExpanded } = useContext(cartContext);
 
-  const mapped = items.reduce((acc, item) => {
-    if (acc[item.selectedDay] === undefined) {
-      acc[item.selectedDay] = [];
-    }
-
-    acc[item.selectedDay].push(item.meal);
-
-    return acc;
-  }, {} as ReduceAccumulator);
-
-  const totalPrice = items.reduce((sum, item) => item.meal.price + sum, 0);
+  const mappedMealsByDay = groupMealByDay(items);
+  const totalPrice = calculateAndFormatTotalCartPrice(items);
 
   return (
     <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
@@ -49,7 +32,9 @@ export default function OrderSummary() {
         {items.length === 0 ? (
           <EmptyCart />
         ) : (
-          Object.keys(mapped).map((day) => <DayItems day={day} items={mapped[day]} />)
+          Object.keys(mappedMealsByDay).map((day) => (
+            <DayItems day={day} items={mappedMealsByDay[day]} />
+          ))
         )}
       </section>
       <footer className={styles.orderSummaryFooter}>
@@ -57,9 +42,7 @@ export default function OrderSummary() {
         <div className={styles.orderSummaryFooterContent}>
           <article className={styles.orderSummaryFooterContentPrice}>
             <p className={styles.orderSummaryFooterContentPriceText}>Total Price</p>
-            <span className={styles.orderSummaryFooterContentPriceAmount}>
-              €{totalPrice.toFixed(2)}
-            </span>
+            <span className={styles.orderSummaryFooterContentPriceAmount}>€{totalPrice}</span>
           </article>
         </div>
         <PressAndHoldButton onConfirm={() => {}} />
