@@ -1,8 +1,7 @@
 @import '../../styles/tools';
 
 .footer {
-    padding: 40px 40px 24px 40px;
-    // display: inline-block;
+    padding: $space-L $space-L $space-S $space-L;
 }
 
 p {
@@ -14,7 +13,7 @@ p {
     text-align: left;
     width: 50%;
     display: inline-block;
-    // kitą lūžį pasirinkt
+
     @include for-tablet-portrait-up { 
         width: 33.33%;
     }

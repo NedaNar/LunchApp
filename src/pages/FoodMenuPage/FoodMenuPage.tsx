@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Dialog, { DialogIcon } from '../../components/Dialog/Dialog';
 import FoodCardsLayout from './FoodCardsLayout';
 import { STOP_ORDERS_HOUR, isWorkday } from '../../utils/dateUtils';
-import styles from './foodMenuPage.module.scss';
 import Header from '../../components/Header/Header';
 
 export default function FoodMenuPage() {
@@ -32,9 +31,8 @@ export default function FoodMenuPage() {
   }, []);
 
   return (
-    <div className={styles.foodMenuPageLayout}>
+    <div>
       <Header page="lunchMenu" />
-
       {showDialog && (
         <Dialog
           title="Please refresh page"
@@ -46,7 +44,6 @@ export default function FoodMenuPage() {
           <span>Time to order for today is over.</span>
         </Dialog>
       )}
-
       <FoodCardsLayout />
     </div>
   );

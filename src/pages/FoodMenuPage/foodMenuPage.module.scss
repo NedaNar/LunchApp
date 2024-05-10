@@ -1,14 +1,5 @@
 @import '/src/styles/_tools';
 
-.foodMenuPageLayout {
-  margin-right: $space-S;
-  margin-left: $space-S;
-  @include for-tablet-landscape-up {
-    margin-right: 34rem;
-    margin-left: 0;
-  }
-}
-
 .cardsContainer {
   margin: $space-M auto 0rem auto;
 }

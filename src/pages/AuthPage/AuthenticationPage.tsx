@@ -11,8 +11,8 @@ function AuthenticationPage() {
   const preselectedTab = location.pathname === RoutePath.REGISTER ? 1 : 0;
 
   return (
-    <div className={styles.test}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles.content}>
         <img className={styles.image} src={loginImage} alt="Two people thinking about food" />
         <div className={styles.loginForm}>
           <img className={styles.logo} src={logo} alt="Lunch App" />
@@ -22,7 +22,7 @@ function AuthenticationPage() {
           <Outlet />
         </div>
       </div>
-      <div className={styles.test2}>
+      <div className={styles.footer}>
         <Footer />
       </div>
     </div>

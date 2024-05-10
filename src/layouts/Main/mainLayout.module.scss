@@ -29,6 +29,16 @@
   }
 }
 
+.pageContent {
+  margin-right: $space-S;
+  margin-left: $space-S;
+
+  @include for-tablet-landscape-up {
+      margin-right: 34rem;
+      margin-left: 0;
+  }
+}
+
 .footer {
   margin-top: auto;
 

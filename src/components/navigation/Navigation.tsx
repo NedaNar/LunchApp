@@ -36,8 +36,7 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
       </div>
 
       <nav className={styles.nav}>
-        {/* linkas dummy laikinas pakeisti į  Link to={NavigationItemPath.ROOT} */}
-        <Link to="/dummy" className={styles.navLogo}>
+        <Link to={RoutePath.ROOT} className={styles.navLogo}>
           {collapsed ? (
             <LogoVertical className={styles.logo} title="logo" />
           ) : (
