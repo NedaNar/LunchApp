@@ -35,6 +35,8 @@ function Filters({
     onVendorSelect(vendorId);
   };
 
+  // const handleClearFilters = () => {}
+
   return (
     <div className={styles.filtersLayout}>
       <form onSubmit={formHandler}>
@@ -58,13 +60,26 @@ function Filters({
               onSelect={handleSelect}
             />
           </div>
-          <Button
-            text="Search"
-            appearance={ButtonAppearance.PRIMARY}
-            size={ButtonSize.MEDIUM}
-            onClick={() => onSearchButtonClick(searchInput, selectedVendor)}
-            buttonType={ButtonType.SUBMIT}
-          />
+          <div className={styles.filterButtonWrapper}>
+            {searchInput || selectedVendor ? (
+              <Button
+                text="Clear filters"
+                appearance={ButtonAppearance.SECONDARY}
+                size={ButtonSize.MEDIUM}
+                onClick={() => onSearchButtonClick(searchInput, selectedVendor)}
+                buttonType={ButtonType.SUBMIT}
+              />
+            ) : (
+              ''
+            )}
+            <Button
+              text="Search"
+              appearance={ButtonAppearance.PRIMARY}
+              size={ButtonSize.MEDIUM}
+              onClick={() => onSearchButtonClick(searchInput, selectedVendor)}
+              buttonType={ButtonType.SUBMIT}
+            />
+          </div>
         </div>
       </form>
       {sort && <div className={styles.seperator} />}

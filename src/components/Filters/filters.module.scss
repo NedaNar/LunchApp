@@ -36,6 +36,11 @@
                 color: $color-primary-600;
             }
         }
+
+        .filterButtonWrapper {
+            display: flex;
+            gap: $space-XXXS;
+        }
     }
 
     .seperator {
