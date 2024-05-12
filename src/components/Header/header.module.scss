@@ -20,4 +20,8 @@
 
 .headerBody {
   display: inline-block;
+  margin: $space-S 0 $space-M;
+  @include for-tablet-landscape-up {
+    margin: 4.4rem 0 $space-XXL;
+  }
 }
