@@ -263,7 +263,6 @@ function RegisterForm() {
               text="Create account"
               appearance={ButtonAppearance.PRIMARY}
               size={ButtonSize.MEDIUM}
-              onClick={() => {}}
               buttonType={ButtonType.SUBMIT}
             />
           </form>

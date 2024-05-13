@@ -1,5 +1,4 @@
 export enum Endpoint {
-  USER = 'user',
   USERS = 'users',
   VENDORS = 'vendors',
   MEALS = 'meals',

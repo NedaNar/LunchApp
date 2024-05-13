@@ -121,7 +121,6 @@ function LoginForm() {
               appearance={ButtonAppearance.PRIMARY}
               size={ButtonSize.MEDIUM}
               icon={ButtonIcon.ARROW}
-              onClick={() => {}}
               buttonType={ButtonType.SUBMIT}
             />
           </form>
