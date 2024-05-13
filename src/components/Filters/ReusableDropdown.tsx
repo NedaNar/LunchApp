@@ -38,8 +38,11 @@ function ReusableDropdown({
     setSelectedItem(item);
     onSelect(item.id === -1 ? null : item.id);
     setIsOpen(false);
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    onFocusChange && onFocusChange();
+    // // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    // onFocusChange && onFocusChange();
+    if (onFocusChange) {
+      onFocusChange();
+    }
   };
 
   useEffect(() => {
