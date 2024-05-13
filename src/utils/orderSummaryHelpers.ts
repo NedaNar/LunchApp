@@ -10,10 +10,14 @@ export function groupMealByDay(items: CartItem[]) {
       acc[item.selectedDay] = [];
     }
 
-    acc[item.selectedDay].push(item.meal);
+    acc[item.selectedDay].push({ ...item.meal, orderId: item.id });
 
     return acc;
   }, {} as ReduceAccumulator);
+}
+
+export function generateUniqueId(): string {
+  return `order-${Math.random().toString(16).slice(2)}`;
 }
 export function calculateAndFormatTotalCartPrice(items: CartItem[]) {
   return items.reduce((sum, item) => item.meal.price + sum, 0).toFixed(2);

@@ -8,14 +8,20 @@ import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
 import AccountIcon from '../../assets/static/icons/icon_account.svg?react';
 import Footer from '../../components/Footer/Footer';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
-import CartContext, { CartItem } from '../../components/OrderSummary/cartContext';
+import CartContext, { CartItem, MealItem } from '../../components/OrderSummary/cartContext';
+import { generateUniqueId } from '../../utils/orderSummaryHelpers';
 
 export default function MainLayout() {
   // This const is needed in parent element for navigation state
   const [collapsed, setCollapsed] = useState(false);
 
   // This is order summary cart
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  // const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(
+    // uzkrovimas cart itemus is local storage ant pirmo uzkrovimo
+    JSON.parse(localStorage.getItem('cartItems') ?? '[]')
+  );
   const [cartExpanded, setCartExpanded] = useState(true);
 
   const cart = useMemo(
@@ -24,12 +30,26 @@ export default function MainLayout() {
       setCartItems,
       expanded: cartExpanded,
       setExpanded: setCartExpanded,
-      addToCart: (item: CartItem) => {
-        setCartItems((prev: CartItem[]) => [...prev, item]);
+
+      addToCart: (item: { selectedDay: string; meal: MealItem }) => {
+        setCartItems((prev: CartItem[]) => {
+          const items = [...prev, { ...item, id: generateUniqueId() }];
+          localStorage.setItem('cartItems', JSON.stringify(items));
+          return items;
+        });
+      },
+
+      removeFromCart: (id: string) => {
+        setCartItems((prev) => {
+          const items = prev.filter((item) => item.id !== id);
+          localStorage.setItem('cartItems', JSON.stringify(items));
+          return items;
+        });
       },
     }),
     [cartItems, cartExpanded]
   );
+  // _________________________________________________________
 
   return (
     <div className={styles.container}>
@@ -45,7 +65,6 @@ export default function MainLayout() {
             <UserProfile />
           </article>
 
-          {/* <article> */}
           <article className="order">
             <OrderSummary />
           </article>

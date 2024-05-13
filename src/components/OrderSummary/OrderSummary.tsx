@@ -34,6 +34,7 @@ export default function OrderSummary() {
         ) : (
           Object.keys(mappedMealsByDay).map((day) => (
             <DayItems day={day} items={mappedMealsByDay[day]} />
+            // DayItems key={day}
           ))
         )}
       </section>
