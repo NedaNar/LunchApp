@@ -50,9 +50,10 @@ $space-7: 0.7rem;
 
     &Icon {
       position: absolute;
-      top: 3.25rem;
+      top: 3.5rem;
       left: 1.25rem;
       gap: 1rem;
+      z-index: 100;
 
       path {
         fill: $color-grey-400;
