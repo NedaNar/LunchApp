@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './button.module.scss';
 import AddIcon from '../../assets/static/icons/icon_add.svg?react';
 import ArrowIcon from '../../assets/static/icons/icon_arrow-forward.svg?react';
@@ -47,17 +48,21 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-function Button({
-  text,
-  appearance,
-  size,
-  onClick,
-  icon = ButtonIcon.NONE,
-  disabled,
-  buttonType = ButtonType.BUTTON,
-}: ButtonProps) {
-  return (
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      text,
+      appearance,
+      size,
+      onClick,
+      icon = ButtonIcon.NONE,
+      disabled,
+      buttonType = ButtonType.BUTTON,
+    }: ButtonProps,
+    ref
+  ) => (
     <button
+      ref={ref}
       onClick={onClick}
       type={buttonType === ButtonType.SUBMIT ? 'submit' : 'button'}
       className={`${styles.btn} ${styles[appearance]} ${styles[size]} ${styles[icon]}`}
@@ -66,7 +71,7 @@ function Button({
       <span className={styles.text}>{text}</span>
       {icon === ButtonIcon.ARROW && <ArrowIcon className={styles.icon} />}
     </button>
-  );
-}
+  )
+);
 
 export { Button, ButtonAppearance, ButtonSize, ButtonIcon, ButtonType };
