@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import useFetch, { Endpoint } from '../../api/useDataFetching';
 import { UserData } from '../../api/apiModel';
+import CartContext from '../OrderSummary/cartContext';
 import ProfileButton from '../IconButton/ProfileButton';
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
 import styles from './userProfile.module.scss';
@@ -7,14 +9,13 @@ import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 
 function UserProfile() {
   const { data, loading, error } = useFetch<UserData>(Endpoint.USER);
+  const cart = useContext(CartContext);
 
   if (loading) return <h1>LOADING...</h1>;
 
   if (error) return <h1>Error fetching data</h1>;
 
   if (!data) return null;
-
-  const orderCount = data.orders.length;
 
   const formattedBalance = new Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -48,8 +49,12 @@ function UserProfile() {
         </div>
         <div className={styles.line} />
         <div className={styles.cartOrders}>
-          <IconButton type={IconButtonType.OUTLINED} icon={IconButtonIcon.CART} />
-          <p className={styles.circle}> {orderCount}</p>
+          <IconButton
+            onClick={() => cart.setExpanded(true)}
+            type={IconButtonType.OUTLINED}
+            icon={IconButtonIcon.CART}
+          />
+          {cart.items.length !== 0 ? <p className={styles.circle}> {cart.items.length}</p> : null}
         </div>
       </div>
     </div>
