@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { App } from './App';
 import FoodMenuPage from './pages/FoodMenuPage/FoodMenuPage';
 import AvailableLunchPage from './pages/AvailableLunchPage/AvailableLunchPage';
 import YourOrdersPage from './pages/YourOrdersPage/YourOrdersPage';
@@ -11,11 +10,12 @@ import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 import PrivateRoutes from './components/LoginForm/AuthenticationLogic/PrivateRoutes';
 import PublicRoutes from './components/LoginForm/AuthenticationLogic/PublicRoutes';
+import MainLayout from './layouts/Main/MainLayout';
 
 export const router = createBrowserRouter([
   {
     path: RoutePath.ROOT,
-    element: <PrivateRoutes element={<App />} />,
+    element: <PrivateRoutes element={<MainLayout />} />,
     errorElement: <NotFoundPage />,
     children: [
       {

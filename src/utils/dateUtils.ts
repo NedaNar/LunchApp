@@ -27,3 +27,8 @@ export function getCurrentWeekdayName(): string {
 export function isWorkday(): boolean {
   return ![0, 6].includes(new Date().getDay());
 }
+
+export function getCurrentYear(): string {
+  const currentYear = new Date().getFullYear();
+  return currentYear.toString();
+}
