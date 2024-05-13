@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './notFoundPage.module.scss';
 import BurnIcon from './burnIcon.svg?react';
-import Navigation from '../../components/navigation/Navigation';
+import Navigation from '../../components/Navigation/Navigation';
 
 export function NotFoundPage() {
   const location = useLocation();
