@@ -9,6 +9,7 @@ $color-grey-input-text: #646872;
     align-items: flex-start;
     position: relative;
     gap: $space-XXXXXS;
+    cursor: pointer;
 
     .reusableDropdownLabel {
         color: $color-primary-600;
@@ -44,6 +45,7 @@ $color-grey-input-text: #646872;
             border: none;
             outline: $color-purple-500 0.2rem solid;
             color: $color-primary-600;
+            background-color: $color-white;
         }
 
         .dropdownIconRotate {

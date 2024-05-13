@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { Input } from '../Input/Input';
 import styles from './filters.module.scss';
 import { Button, ButtonAppearance, ButtonSize, ButtonType } from '../RegularButton/Button';
@@ -24,6 +24,7 @@ function Filters({
   onClearFiltersButtonClick,
 }: FiltersProps) {
   const [searchInput, setSearchInput] = useState<string>('');
+  const searchButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value.toLowerCase());
@@ -41,6 +42,10 @@ function Filters({
   const handleClearFiltersButtonClick = () => {
     onClearFiltersButtonClick();
     setSearchInput('');
+  };
+
+  const focusOnSearchButton = () => {
+    searchButtonRef.current?.focus();
   };
 
   return (
@@ -64,6 +69,7 @@ function Filters({
               data={dropdownData}
               selectedId={selectedVendor ?? undefined}
               onSelect={handleSelect}
+              onFocusChange={focusOnSearchButton}
             />
           </div>
           <div className={styles.filterButtonWrapper}>
@@ -77,6 +83,7 @@ function Filters({
               />
             )}
             <Button
+              ref={searchButtonRef}
               text="Search"
               appearance={ButtonAppearance.PRIMARY}
               size={ButtonSize.MEDIUM}
