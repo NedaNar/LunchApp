@@ -18,7 +18,7 @@ export interface CartContext {
   items: CartItem[];
   expanded: boolean;
   addToCart: (meal: CartItem) => void;
-  removeFromCart: (id: string) => void;
+  removeFromCart: (toRemoveItem: MealItem) => void;
   setExpanded: (value: boolean) => void;
 }
 

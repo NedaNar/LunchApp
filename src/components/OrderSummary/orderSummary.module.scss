@@ -135,6 +135,12 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
         & svg {
           width: 1.8rem;
           height: 1.8rem;
+          cursor: pointer;
+          transition: 0.05s;
+
+          &:hover {
+            filter: brightness(125%);
+          }
 
           & path {
             fill: $color-red-500;

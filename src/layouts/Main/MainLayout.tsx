@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import styles from './mainLayout.module.scss';
 import '../../styles/index.scss';
@@ -10,19 +10,28 @@ import Footer from '../../components/Footer/Footer';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import CartContext, { CartItem, MealItem } from '../../components/OrderSummary/cartContext';
 import { generateUniqueId } from '../../utils/orderSummaryHelpers';
+import ToastNotification, {
+  ToastRefObject,
+} from '../../components/Notifications/ToastNotification/ToastNotification';
+import { NotificationType } from '../../utils/notificationUtils';
 
 export default function MainLayout() {
   // This const is needed in parent element for navigation state
   const [collapsed, setCollapsed] = useState(false);
 
-  // This is order summary cart
-
-  // const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>(
-    // uzkrovimas cart itemus is local storage ant pirmo uzkrovimo
     JSON.parse(localStorage.getItem('cartItems') ?? '[]')
   );
   const [cartExpanded, setCartExpanded] = useState(true);
+
+  const cartToast = useRef<ToastRefObject>(null);
+
+  // const showToast = (meal: string) => {
+  //   cartToast.current?.showToast(
+  //     `${meal} has been added to your cart. Excellent choice!`,
+  //     NotificationType.SUCCESS
+  //   );
+  // };
 
   const cart = useMemo(
     () => ({
@@ -35,14 +44,22 @@ export default function MainLayout() {
         setCartItems((prev: CartItem[]) => {
           const items = [...prev, { ...item, id: generateUniqueId() }];
           localStorage.setItem('cartItems', JSON.stringify(items));
+          cartToast.current?.showToast(
+            `${item.meal.title} has been added to your cart. Excellent choice!`,
+            NotificationType.SUCCESS
+          );
           return items;
         });
       },
 
-      removeFromCart: (id: string) => {
+      removeFromCart: (toRemoveItem: MealItem) => {
         setCartItems((prev) => {
-          const items = prev.filter((item) => item.id !== id);
+          const items = prev.filter((item) => item.id !== toRemoveItem.orderId);
           localStorage.setItem('cartItems', JSON.stringify(items));
+          cartToast.current?.showToast(
+            `${toRemoveItem.title} has been removed from your cart.`,
+            NotificationType.WARNING
+          );
           return items;
         });
       },
@@ -53,6 +70,8 @@ export default function MainLayout() {
 
   return (
     <div className={styles.container}>
+      <ToastNotification toastRef={cartToast} />
+
       <Navigation collapsed={collapsed} setCollapsed={setCollapsed} />
 
       <header className={styles.headerLine}>

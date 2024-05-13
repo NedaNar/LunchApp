@@ -30,7 +30,7 @@ export default function DayItems({ day, items }: DayItemsProps) {
             </div>
             <div className={styles.dayItemsListItemRight}>
               <p>€{item.price}</p>
-              <DeleteIcon onClick={() => cart.removeFromCart(item.orderId ?? '')} />
+              <DeleteIcon onClick={() => cart.removeFromCart(item)} />
             </div>
           </div>
         ))}
