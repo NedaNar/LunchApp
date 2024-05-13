@@ -1,14 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
-export enum Endpoint {
-  USER = 'user',
-  USERS = 'users',
-  VENDORS = 'vendors',
-  MEALS = 'meals',
-  RATINGS = 'ratings',
-  AVAILABLE_LUNCH = 'availableLunch',
-}
+import { Endpoint } from './endpoints';
 
 interface FetchResult<T> {
   data: T | null;

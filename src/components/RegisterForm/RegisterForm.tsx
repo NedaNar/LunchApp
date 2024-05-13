@@ -1,4 +1,5 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './registerForm.module.scss';
 import { Button, ButtonAppearance, ButtonSize, ButtonType } from '../RegularButton/Button';
 import { Input } from '../Input/Input';
@@ -8,8 +9,19 @@ import {
   validateEmail,
   validatePassword,
   validateRepeatPassword,
+  validateUniqueEmail,
   validateUsername,
 } from '../../utils/validationUtils';
+import useFetch from '../../api/useDataFetching';
+import { UserData, createUserData } from '../../api/apiModel';
+import { SessionStorageKeys } from '../../types/sessionStorageEnums';
+import { RoutePath } from '../../types/navigationEnums';
+import { Endpoint } from '../../api/endpoints';
+import usePost from '../../api/useDataPosting';
+import ToastNotification, {
+  ToastRefObject,
+} from '../Notifications/ToastNotification/ToastNotification';
+import { NotificationType } from '../../utils/notificationUtils';
 
 enum FieldName {
   EMAIL = 'email',
@@ -18,16 +30,52 @@ enum FieldName {
   REPEAT_PASSWORD = 'repeatPassword',
 }
 
+function getId(data: UserData[]) {
+  const maxId = Math.max(...data.map((item) => parseInt(item.id, 10)));
+  return (maxId + 1).toString();
+}
+
 function RegisterForm() {
+  const navigate = useNavigate();
+  const toastRef = useRef<ToastRefObject>(null);
+  const [showDialog, setShowDialog] = useState(false);
+
   const [fields, setFields] = useState({
     [FieldName.EMAIL]: { value: '', error: '' },
     [FieldName.USERNAME]: { value: '', error: '' },
     [FieldName.PASSWORD]: { value: '', error: '' },
     [FieldName.REPEAT_PASSWORD]: { value: '', error: '' },
   });
+
   const [isChecked, setIsChecked] = useState(false);
   const [checkmarkError, setCheckmarkError] = useState(false);
-  const [showDialog, setShowDialog] = useState(false);
+
+  const { data: existingUsers, error: fetchError } = useFetch<UserData[]>(Endpoint.USERS);
+  const { responseData, error: postError, postData } = usePost<UserData>(Endpoint.USERS);
+
+  const showNotification = () => {
+    toastRef.current!.showToast(
+      'There was an error creating your account. Pleasy try again.',
+      NotificationType.WARNING
+    );
+  };
+
+  useEffect(() => {
+    if (responseData) {
+      const token = JSON.stringify({
+        email: responseData.email,
+        id: responseData.id,
+      });
+
+      sessionStorage.setItem(SessionStorageKeys.TOKEN, token);
+      navigate(RoutePath.MENU);
+    }
+  }, [responseData]);
+
+  useEffect(() => {
+    if (!postError) return;
+    showNotification();
+  }, [postError]);
 
   const validateField = (fieldName: FieldName, value: string) => {
     let error = '';
@@ -50,31 +98,51 @@ function RegisterForm() {
     }
 
     setFields({ ...fields, [fieldName]: { ...fields[fieldName], error } });
+
+    if (error) return false;
+    return true;
   };
 
-  const validateFields = (): boolean => {
-    validateField(FieldName.EMAIL, fields.email.value);
-    validateField(FieldName.USERNAME, fields.email.value);
-    validateField(FieldName.PASSWORD, fields.email.value);
-    validateField(FieldName.REPEAT_PASSWORD, fields.email.value);
+  const isFormValid = (): boolean => {
     if (!isChecked) setCheckmarkError(true);
 
     if (
-      fields.email.error ||
-      fields.username.error ||
-      fields.password.error ||
-      fields.repeatPassword.error ||
-      checkmarkError
+      !validateField(FieldName.EMAIL, fields.email.value) ||
+      !validateField(FieldName.USERNAME, fields.username.value) ||
+      !validateField(FieldName.PASSWORD, fields.password.value) ||
+      !validateField(FieldName.REPEAT_PASSWORD, fields.repeatPassword.value) ||
+      !isChecked
     )
       return false;
+
+    if (fetchError) {
+      showNotification();
+      return false;
+    }
+
+    const error = validateUniqueEmail(fields.email.value, existingUsers!);
+    if (error) {
+      setFields({ ...fields, [FieldName.EMAIL]: { ...fields[FieldName.EMAIL], error } });
+      return false;
+    }
 
     return true;
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    validateFields();
-    // if (!validateFields()) return;
+
+    if (!isFormValid()) return;
+
+    const nextId = getId(existingUsers!);
+    const userData = createUserData(
+      nextId,
+      fields.username.value,
+      fields.email.value,
+      fields.password.value
+    );
+
+    postData(userData);
   };
 
   const handleChange = (fieldName: FieldName, value: string) =>
@@ -86,6 +154,8 @@ function RegisterForm() {
 
   return (
     <>
+      <ToastNotification toastRef={toastRef} />
+
       {showDialog && (
         <Dialog
           title="Community rules"
@@ -119,13 +189,13 @@ function RegisterForm() {
         </Dialog>
       )}
 
-      <div className={styles.loginFormWrapper}>
-        <header className={styles.loginFormHeader}>
+      <div className={styles.registerFormWrapper}>
+        <header className={styles.registerFormHeader}>
           <h1 className={styles.title}>Register</h1>
           <p className={styles.subtitle}>Join our office foodies today!</p>
         </header>
-        <div className={styles.loginFormBody}>
-          <form onSubmit={handleSubmit} className={styles.loginForm} noValidate>
+        <div className={styles.registerFormBody}>
+          <form onSubmit={handleSubmit} className={styles.registerForm} noValidate>
             <div className={styles.formInputWrap}>
               <div className={styles.inputWrapper}>
                 <Input
@@ -178,7 +248,7 @@ function RegisterForm() {
                   id=""
                   onCheckChange={(checked) => {
                     setIsChecked(checked);
-                    if (checked) setCheckmarkError(false);
+                    setCheckmarkError(!checked);
                   }}
                 />
                 <button

@@ -59,3 +59,29 @@ export interface RatingData {
   rating: Rating;
   id: string;
 }
+
+export function createUserData(
+  id: string,
+  userName: string,
+  email: string,
+  password: string,
+  name = '',
+  surname = '',
+  balance = 0,
+  img?: string,
+  orders: Order[] = [],
+  orderHistory: OrderHistoryItem[] = []
+): UserData {
+  return {
+    id,
+    userName,
+    email,
+    password,
+    name,
+    surname,
+    balance,
+    img,
+    orders,
+    orderHistory,
+  };
+}

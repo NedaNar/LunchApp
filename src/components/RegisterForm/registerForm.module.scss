@@ -1,10 +1,10 @@
 @import '../../styles/tools';
 
-.loginFormWrapper {
+.registerFormWrapper {
   width: 100%;
   position: relative;
 
-  .loginFormHeader {
+  .registerFormHeader {
     width: 100%;
     text-align: left;
     display: flex;
@@ -24,13 +24,13 @@
     }
   }
 
-  .loginFormBody {
+  .registerFormBody {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .loginForm {
+    .registerForm {
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -44,10 +44,9 @@
         margin-bottom: $space-S;
       }
 
-      .formInputWrap .forgotPassword {
+      .communityRulesContainer {
         display: flex;
-        justify-content: flex-end;
-        align-items: center;
+        margin-bottom: $space-XXXXL;
       }
 
       .communityRulesBtn {
@@ -61,21 +60,10 @@
       }
     }
 
-    .loginForm button[type='submit'] {
+    .registerForm button[type='submit'] {
       width: 100%;
 
       @include flexbox-centered;
     }
   }
-}
-
-.communityRulesContainer {
-  display: flex;
-  margin-bottom: $space-XXXXL;
-}
-
-.notification {
-  left: -0.5rem;
-  position: absolute;
-  top: 62rem;
 }

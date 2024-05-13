@@ -14,7 +14,6 @@
   flex-direction: column;
   justify-content: center;
 
-
   .profileSection {
     position: relative;
     display: flex;
@@ -32,6 +31,13 @@
       height: 3.2rem;
       width: 3.2rem;
       object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .emptyAvatar {
+      height: 3.2rem;
+      width: 3.2rem;
+      background-color: $color-grey-400;
       border-radius: 50%;
     }
   }
@@ -60,7 +66,6 @@
 
     .cartOrders {
       position: relative;
-      
 
       .circle {
         position: absolute;

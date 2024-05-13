@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import useFetch, { Endpoint } from '../../api/useDataFetching';
+import useFetch from '../../api/useDataFetching';
 import FoodCard from '../../components/FoodCard/FoodCard';
 import DayTabs from '../../components/Tabs/DayTabs';
 import styles from './foodMenuPage.module.scss';
@@ -9,6 +9,7 @@ import {
   StaticNotification,
 } from '../../components/Notifications/StaticNotification/StaticNotification';
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
+import { Endpoint } from '../../api/endpoints';
 
 function FoodCardsLayout() {
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);

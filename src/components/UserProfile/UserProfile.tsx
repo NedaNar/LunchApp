@@ -1,10 +1,11 @@
-import useFetch, { Endpoint } from '../../api/useDataFetching';
+import useFetch from '../../api/useDataFetching';
 import { UserData } from '../../api/apiModel';
 import ProfileButton from '../IconButton/ProfileButton';
 import IconButton, { IconButtonIcon, IconButtonType } from '../IconButton/IconButton';
 import styles from './userProfile.module.scss';
 import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 import useAuth from '../LoginForm/AuthenticationLogic/useAuth';
+import { Endpoint } from '../../api/endpoints';
 
 function UserProfile() {
   const token = useAuth();
@@ -34,6 +35,7 @@ function UserProfile() {
             <img src={data.img} alt="User Avatar" />
           </div>
         )}
+        {!data.img && <div className={styles.emptyAvatar} />}
         <div className={styles.dropdown}>
           <ProfileButton
             onClick={handleClick}

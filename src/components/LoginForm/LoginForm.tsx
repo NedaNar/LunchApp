@@ -9,7 +9,7 @@ import {
   ButtonType,
 } from '../RegularButton/Button';
 import styles from './loginForm.module.scss';
-import useFetch, { Endpoint } from '../../api/useDataFetching';
+import useFetch from '../../api/useDataFetching';
 import { LoginUserData } from '../../api/apiModel';
 import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 import { RoutePath } from '../../types/navigationEnums';
@@ -17,6 +17,7 @@ import ToastNotification, {
   ToastRefObject,
 } from '../Notifications/ToastNotification/ToastNotification';
 import { NotificationType } from '../../utils/notificationUtils';
+import { Endpoint } from '../../api/endpoints';
 
 interface LoginUser {
   email: string;
