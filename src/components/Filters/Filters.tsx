@@ -10,6 +10,8 @@ interface FiltersProps {
   onVendorSelect: (vendor: number | null) => void;
   dropdownData: DropdownItem[];
   selectedVendor: number | null;
+  clearFiltersButton: boolean;
+  onClearFiltersButtonClick: () => void;
 }
 
 function Filters({
@@ -18,6 +20,8 @@ function Filters({
   onVendorSelect,
   dropdownData,
   selectedVendor,
+  clearFiltersButton = false,
+  onClearFiltersButtonClick,
 }: FiltersProps) {
   const [searchInput, setSearchInput] = useState<string>('');
 
@@ -28,14 +32,16 @@ function Filters({
   const formHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSearchButtonClick(searchInput, selectedVendor);
-    setSearchInput('');
   };
 
   const handleSelect = (vendorId: number | null) => {
     onVendorSelect(vendorId);
   };
 
-  // const handleClearFilters = () => {}
+  const handleClearFiltersButtonClick = () => {
+    onClearFiltersButtonClick();
+    setSearchInput('');
+  };
 
   return (
     <div className={styles.filtersLayout}>
@@ -61,16 +67,14 @@ function Filters({
             />
           </div>
           <div className={styles.filterButtonWrapper}>
-            {searchInput || selectedVendor ? (
+            {clearFiltersButton && (
               <Button
                 text="Clear filters"
                 appearance={ButtonAppearance.SECONDARY}
                 size={ButtonSize.MEDIUM}
-                onClick={() => onSearchButtonClick(searchInput, selectedVendor)}
-                buttonType={ButtonType.SUBMIT}
+                onClick={handleClearFiltersButtonClick}
+                buttonType={ButtonType.BUTTON}
               />
-            ) : (
-              ''
             )}
             <Button
               text="Search"

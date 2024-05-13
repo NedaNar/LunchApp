@@ -15,6 +15,7 @@ function FoodCardsLayout() {
   const [filteredMeals, setFilteredMeals] = useState<MealData[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>(getCurrentWeekdayName());
   const [selectedVendorState, setSelectedVendorState] = useState<number | null>(null);
+  const [showClearFiltersButton, setShowClearFiltersButton] = useState(false);
 
   const { data: mealData, loading, error } = useFetch<MealData[]>(Endpoint.MEALS);
   const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
@@ -44,6 +45,7 @@ function FoodCardsLayout() {
 
   const handleSearchButtonClick = (searchTerm: string, selectedVendor: number | null) => {
     filterMeals(searchTerm, selectedVendor);
+    setShowClearFiltersButton(true);
   };
 
   useEffect(() => {
@@ -75,6 +77,12 @@ function FoodCardsLayout() {
   const transformVendorData = (vendorsData: VendorData[] | null) =>
     vendorsData?.map((vendor) => ({ id: parseInt(vendor.id, 10), name: vendor.name })) || [];
 
+  const handleClearFiltersButtonClick = () => {
+    filterMeals('', null);
+    setSelectedVendorState(null);
+    setShowClearFiltersButton(false);
+  };
+
   return (
     <>
       <DayTabs onTabChange={handleTabChange} />
@@ -84,6 +92,8 @@ function FoodCardsLayout() {
         onSearchButtonClick={handleSearchButtonClick}
         onVendorSelect={handleVendorSelect}
         selectedVendor={selectedVendorState}
+        clearFiltersButton={showClearFiltersButton}
+        onClearFiltersButtonClick={handleClearFiltersButtonClick}
       />
 
       <div className={styles.cardsContainer}>
