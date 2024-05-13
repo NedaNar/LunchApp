@@ -26,6 +26,12 @@
       padding-left: 11.2rem;
       transition: $transition;
     }
+
+    &--cartExpanded {
+      display: flex;
+      padding-right: 34rem;
+      transition: $transition;
+    }
   }
 }
 
@@ -34,8 +40,7 @@
   margin-left: $space-S;
 
   @include for-tablet-landscape-up {
-      margin-right: 34rem;
-      margin-left: 0;
+    margin-left: 0;
   }
 }
 
@@ -80,7 +85,6 @@
     display: none;
   }
 }
-
 
 .rightSide {
   display: none;

@@ -27,13 +27,16 @@ button {
   align-items: center;
 }
 
-.order {
-  width: 28.3rem;
-  height: 43.4rem;
-  padding: 1.6rem;
-  background-color: $color-white;
-  border: $color-grey-100 0.05rem;
-  box-shadow: $box-shadow-m;
-  border-bottom-left-radius: $border-radius-regular;
-  border-top-left-radius: $border-radius-regular;
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+::-webkit-scrollbar-track {
+  background: $color-grey-300;
+  border-radius: $border-radius-small;
+}
+::-webkit-scrollbar-thumb {
+  background: $color-grey-500;
+  border-radius: $border-radius-small;
+  border: 0.1rem solid $color-grey-300;
 }

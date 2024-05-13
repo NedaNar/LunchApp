@@ -15,6 +15,7 @@ export interface FoodCardProps {
   rating: number | string;
   vendor: string;
   weekday: string;
+  handleAddToCart: () => void;
 }
 
 function FoodCard({
@@ -27,6 +28,7 @@ function FoodCard({
   rating,
   vendor,
   weekday,
+  handleAddToCart,
 }: FoodCardProps) {
   const formattedPrice = Intl.NumberFormat('en-DE', {
     style: 'currency',
@@ -89,7 +91,7 @@ function FoodCard({
           appearance={ButtonAppearance.SECONDARY}
           size={ButtonSize.SMALL}
           icon={ButtonIcon.ADD}
-          onClick={() => {}}
+          onClick={handleAddToCart}
         />
       </footer>
     </article>
