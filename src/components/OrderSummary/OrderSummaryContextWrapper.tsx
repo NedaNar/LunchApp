@@ -63,24 +63,19 @@ export default function OrderSummaryContextWrapper({
   );
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const date = new Date();
-      if (date.getHours() >= STOP_ORDERS_HOUR) {
-        const today = getCurrentWeekdayName();
-        const todayItems = cartItems.filter((item) => item.selectedDay === today);
-        if (todayItems.length > 0) {
-          cartToast.current?.showToast(
-            `Todays items have been removed from your cart.`,
-            NotificationType.WARNING
-          );
-          setCartItems([]);
-          localStorage.setItem(LocalStorageKeys.CART_ITEMS, JSON.stringify([]));
-        }
-        clearInterval(interval);
+    const date = new Date();
+    if (date.getHours() >= STOP_ORDERS_HOUR) {
+      const today = getCurrentWeekdayName();
+      const todayItems = cartItems.filter((item) => item.selectedDay === today);
+      if (todayItems.length > 0) {
+        cartToast.current?.showToast(
+          `Todays items have been removed from your cart.`,
+          NotificationType.WARNING
+        );
+        setCartItems([]);
+        localStorage.setItem(LocalStorageKeys.CART_ITEMS, JSON.stringify([]));
       }
-    }, 1000);
-
-    return () => clearInterval(interval);
+    }
   }, []);
 
   return (
