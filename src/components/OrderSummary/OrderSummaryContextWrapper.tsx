@@ -6,6 +6,7 @@ import ToastNotification, {
 import { checkForFridayMeal, generateUniqueId } from '../../utils/orderSummaryHelpers';
 import { NotificationType } from '../../utils/notificationUtils';
 import { getCurrentWeekdayName } from '../../utils/dateUtils';
+import { LocalStorageKeys } from '../../types/localStorageEnums';
 
 export default function OrderSummaryContextWrapper({
   children,
@@ -17,7 +18,7 @@ export default function OrderSummaryContextWrapper({
   setCartExpanded: (value: boolean) => void;
 }) {
   const [cartItems, setCartItems] = useState<CartItem[]>(
-    JSON.parse(localStorage.getItem('cartItems') ?? '[]')
+    JSON.parse(localStorage.getItem(LocalStorageKeys.CART_ITEMS) ?? '[]')
   );
   const cartToast = useRef<ToastRefObject>(null);
 
@@ -38,7 +39,7 @@ export default function OrderSummaryContextWrapper({
             return prev;
           }
           const items = [...prev, { ...item, id: generateUniqueId() }];
-          localStorage.setItem('cartItems', JSON.stringify(items));
+          localStorage.setItem(LocalStorageKeys.CART_ITEMS, JSON.stringify(items));
           cartToast.current?.showToast(
             `${item.meal.title} has been added to your cart. Excellent choice!`,
             NotificationType.SUCCESS
@@ -49,7 +50,7 @@ export default function OrderSummaryContextWrapper({
       removeFromCart: (toRemoveItem: MealItem) => {
         setCartItems((prev) => {
           const items = prev.filter((item) => item.id !== toRemoveItem.orderId);
-          localStorage.setItem('cartItems', JSON.stringify(items));
+          localStorage.setItem(LocalStorageKeys.CART_ITEMS, JSON.stringify(items));
           cartToast.current?.showToast(
             `${toRemoveItem.title} has been removed from your cart.`,
             NotificationType.WARNING
@@ -73,7 +74,7 @@ export default function OrderSummaryContextWrapper({
             NotificationType.WARNING
           );
           setCartItems([]);
-          localStorage.setItem('cartItems', JSON.stringify([]));
+          localStorage.setItem(LocalStorageKeys.CART_ITEMS, JSON.stringify([]));
         }
         clearInterval(interval);
       }
