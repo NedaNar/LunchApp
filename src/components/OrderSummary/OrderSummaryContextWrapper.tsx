@@ -5,7 +5,7 @@ import ToastNotification, {
 } from '../Notifications/ToastNotification/ToastNotification';
 import { checkForFridayMeal, generateUniqueId } from '../../utils/orderSummaryHelpers';
 import { NotificationType } from '../../utils/notificationUtils';
-import { getCurrentWeekdayName } from '../../utils/dateUtils';
+import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
 import { LocalStorageKeys } from '../../types/localStorageEnums';
 
 export default function OrderSummaryContextWrapper({
@@ -65,7 +65,7 @@ export default function OrderSummaryContextWrapper({
   useEffect(() => {
     const interval = setInterval(() => {
       const date = new Date();
-      if (date.getHours() >= 11) {
+      if (date.getHours() >= STOP_ORDERS_HOUR) {
         const today = getCurrentWeekdayName();
         const todayItems = cartItems.filter((item) => item.selectedDay === today);
         if (todayItems.length > 0) {
