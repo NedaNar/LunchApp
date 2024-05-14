@@ -5,6 +5,8 @@ interface ReduceAccumulator {
   [key: string]: MealItem[];
 }
 
+export const FREE_MEEL_DAY = 'Friday';
+
 export function groupMealByDay(items: CartItem[]) {
   return items.reduce((acc, item) => {
     if (acc[item.selectedDay] === undefined) {
@@ -30,18 +32,19 @@ export function checkForFridayMeal(
   items: CartItem[],
   newItem: { selectedDay: string; meal: MealItem }
 ): boolean {
-  if (newItem.selectedDay === 'Friday') {
+  if (newItem.selectedDay === FREE_MEEL_DAY) {
     if (newItem.meal.dishType === DishType.Soup) {
       return (
         items.filter(
           (cartItem) =>
-            cartItem.meal.dishType === DishType.Soup && cartItem.selectedDay === 'Friday'
+            cartItem.meal.dishType === DishType.Soup && cartItem.selectedDay === FREE_MEEL_DAY
         ).length > 0
       );
     }
     return (
       items.filter(
-        (cartItem) => cartItem.meal.dishType !== DishType.Soup && cartItem.selectedDay === 'Friday'
+        (cartItem) =>
+          cartItem.meal.dishType !== DishType.Soup && cartItem.selectedDay === FREE_MEEL_DAY
       ).length > 0
     );
   }
