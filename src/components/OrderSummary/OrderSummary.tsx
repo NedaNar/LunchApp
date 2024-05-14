@@ -13,12 +13,13 @@ import IconButton, {
   IconButtonIcon,
 } from '../IconButton/IconButton';
 import Dialog, { DialogIcon } from '../Dialog/Dialog';
-import useFetch, { Endpoint } from '../../api/useDataFetching';
+import useFetch from '../../api/useDataFetching';
+import { Endpoint } from '../../api/endpoints';
 import { UserData } from '../../api/apiModel';
 
 export default function OrderSummary() {
   const { items, expanded, setExpanded, removeAllItems } = useContext(cartContext);
-  const { data } = useFetch<UserData>(Endpoint.USER);
+  const { data } = useFetch<UserData>(Endpoint.USERS);
 
   const mappedMealsByDay = groupMealByDay(items);
   const totalPrice = calculateAndFormatTotalCartPrice(items);

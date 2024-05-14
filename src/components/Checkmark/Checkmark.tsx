@@ -6,15 +6,16 @@ export interface CheckmarkProps {
   error?: boolean;
   disabled?: boolean;
   id: string;
+  onCheckChange: (isChecked: boolean) => void;
 }
 
-function Checkmark({ label, error = false, disabled = false, id }: CheckmarkProps) {
+function Checkmark({ label, error = false, disabled = false, id, onCheckChange }: CheckmarkProps) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleChange = () => {
-    if (!error) {
-      setIsChecked((prev) => !prev);
-    }
+    onCheckChange(!isChecked);
+
+    setIsChecked((prev) => !prev);
   };
 
   return (

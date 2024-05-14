@@ -11,6 +11,11 @@ export enum DialogIcon {
   WARNING,
 }
 
+export enum DialogSize {
+  MEDIUM = 'medium',
+  LARGE = 'large',
+}
+
 export interface DialogProps {
   title: string;
   icon?: DialogIcon;
@@ -21,6 +26,7 @@ export interface DialogProps {
   onPrimaryButtonClick: () => void;
   onClose: () => void;
   isCloseButtonVisible?: boolean;
+  size?: DialogSize;
 }
 
 function Dialog({
@@ -33,6 +39,7 @@ function Dialog({
   onClose,
   onPrimaryButtonClick,
   isCloseButtonVisible = true,
+  size = DialogSize.MEDIUM,
 }: DialogProps) {
   const showIcon = (iconType?: DialogIcon) => {
     switch (iconType) {
@@ -51,7 +58,7 @@ function Dialog({
 
   return (
     <div className={styles.dialogOverlay}>
-      <dialog open className={styles.dialogWrapper}>
+      <dialog open className={`${styles.dialogWrapper} ${styles[size]}`}>
         <div className={styles.dialogBody}>
           <header className={styles.dialogHeader}>
             <p>{title}</p>
