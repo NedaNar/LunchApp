@@ -44,14 +44,14 @@ interface ButtonProps {
   icon?: ButtonIcon;
   disabled?: boolean;
   buttonType?: ButtonType;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function Button({
   text,
   appearance,
   size,
-  onClick,
+  onClick = () => {},
   icon = ButtonIcon.NONE,
   disabled,
   buttonType = ButtonType.BUTTON,

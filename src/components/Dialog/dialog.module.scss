@@ -21,8 +21,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  max-width: 44.7rem;
-  min-width: 44.7rem;
   width: 100%;
   max-height: 80vh;
   background-color: $color-white;
@@ -30,6 +28,16 @@
   border: 0.1rem solid $color-white;
   padding: $space-XXS;
   gap: $space-S;
+
+  &.medium {
+    max-width: 44.7rem;
+    min-width: 44.7rem;
+  }
+
+  &.large {
+    max-width: 67.4rem;
+    min-width: 67.4rem;
+  }
 
   p {
     color: $color-primary-600;
@@ -65,9 +73,12 @@
         @include body-L;
 
         text-align: left;
-        max-width: 31.9rem;
         width: 100%;
         text-wrap: wrap;
+
+        &.medium {
+          max-width: 31.9rem;
+        }
 
         span {
           @include body-M;
@@ -79,7 +90,7 @@
       @extend .dialogSubBody;
       justify-content: center;
     }
-    
+
     .dialogSubBodyStart {
       @extend .dialogSubBody;
       justify-content: flex-start;
