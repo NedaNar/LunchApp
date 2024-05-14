@@ -1,0 +1,133 @@
+@import '../../styles/tools';
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  
+  .modalContent {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 16px;
+    width: 80%;
+    max-width: 40rem;
+  }
+  
+
+  .modalContent {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-M;
+
+  h2 {
+    @include title-L;
+    margin: 0;
+  }
+
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.modalBody {
+  .details {
+    display: flex;
+    margin-bottom: $space-M;
+
+    .foodIcon {
+      margin-right: $space-M;
+    }
+
+    .info {
+      flex: 1;
+
+      .vendor {
+        @include body-M;
+        color: $color-grey-500;
+        margin-bottom: $space-XXXXS;
+      }
+
+      .title {
+        @include title-M;
+        color: $color-primary-600;
+        margin-bottom: $space-XXXXS;
+      }
+
+      .description {
+        @include body-S;
+        color: $color-grey-500;
+        margin-bottom: $space-XXXXS;
+      }
+
+      .icons {
+        display: flex;
+        gap: $space-XXXXS;
+        margin-bottom: $space-XXXXS;
+
+        .icon {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: $space-XXXXS;
+        margin-bottom: $space-XXXXS;
+
+        .ratingFigure {
+          display: flex;
+          align-items: center;
+        }
+
+        .ratingLogo {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+
+        .ratingValue {
+          @include label-XS;
+          color: $color-primary-600;
+        }
+      }
+
+      .price {
+        @include body-S;
+        color: $color-primary-600;
+        margin-bottom: $space-XXXXS;
+      }
+    }
+  }
+
+  .commentsSection {
+    height: auto;
+  }
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    width: 48%;
+  }
+}

@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import styles from './foodCard.module.scss';
 import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from '../RegularButton/Button';
 import SolarStarIcon from '../../assets/static/icons/icon_solar-star.svg?react';
 import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
 import { getFoodIcon, DishType } from './helpers';
+import FoodModal from '../FoodModal/FoodModal';
 
 export interface FoodCardProps {
   title: string;
@@ -38,63 +40,86 @@ function FoodCard({
   const hasRating = typeof rating === 'number';
   const formattedRating = hasRating ? rating.toFixed(1) : rating;
 
-  return (
-    <article className={styles.foodCard}>
-      <header className={styles.cardHeader}>
-        <figure className={styles.cardHeaderLogo}>{getFoodIcon(picture)}</figure>
-        <div className={styles.cardSubHeader}>
-          <p className={styles.titleXS}>{vendor}</p>
-          <p className={styles.titleS}>{title}</p>
-          <div className={styles.cardSubHeaderFiguresWrap}>
-            {isVegetarian && (
-              <figure className={styles.cardSubHeaderFigures}>
-                <PlantIcon className={styles.plant} />
-              </figure>
-            )}
-            {isSpicy && (
-              <figure className={styles.cardSubHeaderFigures}>
-                <ChiliIcon className={styles.chili} />
-              </figure>
-            )}
-          </div>
-        </div>
-      </header>
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-      <section className={styles.cardBody}>
-        <p className={styles.bodyM}>{description}</p>
-        <div className={styles.cardSubBody}>
-          <div className={styles.rating}>
-            {hasRating && (
-              <figure className={styles.ratingFigure}>
-                <SolarStarIcon className={styles.ratingLogo} />
-              </figure>
-            )}
-            <p className={styles.labelXS}>{formattedRating}</p>
+  const handleMoreInfoClick = () => {
+    setIsModalOpen(true);
+  };
+
+  return (
+    <>
+      <article className={styles.foodCard}>
+        <header className={styles.cardHeader}>
+          <figure className={styles.cardHeaderLogo}>{getFoodIcon(picture)}</figure>
+          <div className={styles.cardSubHeader}>
+            <p className={styles.titleXS}>{vendor}</p>
+            <p className={styles.titleS}>{title}</p>
+            <div className={styles.cardSubHeaderFiguresWrap}>
+              {isVegetarian && (
+                <figure className={styles.cardSubHeaderFigures}>
+                  <PlantIcon className={styles.plant} />
+                </figure>
+              )}
+              {isSpicy && (
+                <figure className={styles.cardSubHeaderFigures}>
+                  <ChiliIcon className={styles.chili} />
+                </figure>
+              )}
+            </div>
+          </div>
+        </header>
+
+        <section className={styles.cardBody}>
+          <p className={styles.bodyM}>{description}</p>
+          <div className={styles.cardSubBody}>
+            <div className={styles.rating}>
+              {hasRating && (
+                <figure className={styles.ratingFigure}>
+                  <SolarStarIcon className={styles.ratingLogo} />
+                </figure>
+              )}
+              <p className={styles.labelXS}>{formattedRating}</p>
+            </div>
+            <Button
+              text="More Info"
+              appearance={ButtonAppearance.TERTIARY}
+              size={ButtonSize.SMALL}
+              icon={ButtonIcon.ARROW}
+              onClick={handleMoreInfoClick}
+            />
+          </div>
+        </section>
+
+        <footer className={styles.cardFooter}>
+          <div className={styles.cardFooterText}>
+            <p className={styles.bodyS}>Price</p>
+            <p className={styles.titleL}> {weekday !== 'Friday' ? formattedPrice : 'Free'}</p>
           </div>
           <Button
-            text="More Info"
-            appearance={ButtonAppearance.TERTIARY}
+            text="Add to cart"
+            appearance={ButtonAppearance.SECONDARY}
             size={ButtonSize.SMALL}
-            icon={ButtonIcon.ARROW}
-            onClick={() => {}}
+            icon={ButtonIcon.ADD}
+            onClick={handleAddToCart}
           />
-        </div>
-      </section>
-
-      <footer className={styles.cardFooter}>
-        <div className={styles.cardFooterText}>
-          <p className={styles.bodyS}>Price</p>
-          <p className={styles.titleL}> {weekday !== 'Friday' ? formattedPrice : 'Free'}</p>
-        </div>
-        <Button
-          text="Add to cart"
-          appearance={ButtonAppearance.SECONDARY}
-          size={ButtonSize.SMALL}
-          icon={ButtonIcon.ADD}
-          onClick={handleAddToCart}
+        </footer>
+      </article>
+      {isModalOpen && (
+        <FoodModal
+          title={title}
+          description={description}
+          price={price}
+          picture={picture}
+          isVegetarian={isVegetarian}
+          isSpicy={isSpicy}
+          rating={rating}
+          vendor={vendor}
+          weekday={weekday}
+          handleAddToCart={handleAddToCart}
+          handleCloseModal={() => setIsModalOpen(false)}
         />
-      </footer>
-    </article>
+      )}
+    </>
   );
 }
 
