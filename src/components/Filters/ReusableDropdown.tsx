@@ -63,6 +63,18 @@ function ReusableDropdown({
       ? [{ id: -1, name: 'All vendors' }, ...data]
       : data;
 
+  const handleButtonKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      setIsOpen(!isOpen);
+    }
+  };
+
+  const handleOptionKeyDown = (e: React.KeyboardEvent<HTMLLIElement>, item: DropdownItem) => {
+    if (e.key === 'Enter') {
+      handleChange(item);
+    }
+  };
+
   return (
     <div ref={dropdownRef} className={styles.reusableDropdownWrapper}>
       <p className={styles.reusableDropdownLabel}>{label}</p>
@@ -76,11 +88,7 @@ function ReusableDropdown({
         aria-controls={`${id}-dropdown`}
         tabIndex={0}
         onClick={() => setIsOpen(!isOpen)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            setIsOpen(!isOpen);
-          }
-        }}
+        onKeyDown={() => handleButtonKeyDown}
         className={`${styles.reusableDropdownButton} ${selectedItem !== null && selectedItem !== undefined ? styles.dropdownSelected : ''}`}>
         <span>{selectedItem?.name || title}</span>
         <DropdownIcon className={isOpen ? styles.dropdownIconRotate : ''} />
@@ -95,11 +103,7 @@ function ReusableDropdown({
                 key={item.id}
                 className={styles.reusableDropdownListItem}
                 onClick={() => handleChange(item)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    handleChange(item);
-                  }
-                }}
+                onKeyDown={() => handleOptionKeyDown}
                 tabIndex={0}>
                 <span>{item.name}</span>
               </li>
