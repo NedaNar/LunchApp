@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { DishType } from '../components/FoodCard/helpers';
 import { CartItem, MealItem } from '../components/OrderSummary/cartContext';
 
@@ -20,7 +21,7 @@ export function groupMealByDay(items: CartItem[]) {
 }
 
 export function generateUniqueId(): string {
-  return `order-${Math.random().toString(16).slice(2)}`;
+  return `order-${uuidv4()}`;
 }
 export function calculateAndFormatTotalCartPrice(items: CartItem[]) {
   return items
