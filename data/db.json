@@ -1,135 +1,166 @@
 {
-  "user": {
-    "userName": "frontender",
-    "email": "frontender@gmail.com",
-    "password": "securepass123",
-    "name": "Stanton",
-    "surname": "Richardson",
-    "balance": 55.55,
-    "img": "https://lh3.googleusercontent.com/pw/AP1GczOPmz6MNqqTx2YZekmxppn88NfHDX4qSdH1foq865siphuhKlwTKyqxXhvYmbi28KleHbRtQYEuTSeKP4ib0BTwGKAtCvhw-gBgUxktYziqlh5u9EI-pyYi2cLlaGPXBlTkfRvZJSlDttN7cFAvD03H=w612-h323-s-no-gm",
-    "orders": [
-      {
-        "weekDay": "Monday",
-        "mealIds": [6, 3]
-      },
-      {
-        "weekDay": "Wednesday",
-        "mealIds": [6, 11]
-      },
-      {
-        "weekDay": "Thursday",
-        "mealIds": [21]
-      }
-    ],
-    "orderHistory": [
-      {
-        "date": "2023-11-27T08:49:37.465Z",
-        "mealsIds": [11]
-      },
-      {
-        "date": "2023-11-29T08:01:45.841Z",
-        "mealsIds": [6, 9]
-      },
-      {
-        "date": "2023-11-30T08:16:25.653Z",
-        "mealsIds": [6, 14]
-      },
-      {
-        "date": "2023-12-06T08:21:15.111Z",
-        "mealsIds": [16]
-      },
-      {
-        "date": "2023-12-08T07:39:10.144Z",
-        "mealsIds": [2, 10]
-      },
-      {
-        "date": "2023-12-11T07:37:45.559Z",
-        "mealsIds": [3, 8]
-      },
-      {
-        "date": "2023-12-15T08:45:57.653Z",
-        "mealsIds": [7, 12]
-      },
-      {
-        "date": "2023-12-19T08:02:24.856Z",
-        "mealsIds": [5, 6]
-      },
-      {
-        "date": "2024-01-02T09:25:13.308Z",
-        "mealsIds": [13]
-      },
-      {
-        "date": "2024-01-04T07:16:47.554Z",
-        "mealsIds": [9]
-      },
-      {
-        "date": "2024-01-15T09:59:56.451Z",
-        "mealsIds": [8, 11]
-      },
-      {
-        "date": "2024-01-19T07:41:19.397Z",
-        "mealsIds": [1, 12]
-      },
-      {
-        "date": "2024-01-22T08:05:37.352Z",
-        "mealsIds": [16]
-      },
-      {
-        "date": "2024-01-24T08:22:07.492Z",
-        "mealsIds": [4, 8]
-      },
-      {
-        "date": "2024-01-25T08:08:08.188Z",
-        "mealsIds": [14]
-      },
-      {
-        "date": "2024-02-02T08:20:56.498Z",
-        "mealsIds": [2, 10]
-      },
-      {
-        "date": "2024-02-05T07:51:05.343Z",
-        "mealsIds": [3, 8]
-      },
-      {
-        "date": "2024-02-06T08:14:35.696Z",
-        "mealsIds": [4, 6]
-      },
-      {
-        "date": "2024-02-23T09:05:41.729Z",
-        "mealsIds": [1, 2]
-      }
-    ]
-  },
   "users": [
     {
       "id": 1,
+      "userName": "burton",
+      "email": "burton@gmail.com",
+      "password": "burton123",
       "name": "Burton",
       "surname": "Whitaker",
-      "img": "https://lh3.googleusercontent.com/pw/AP1GczPd86eTOZysL0WAf9veGe6WIkEfvgX2zA1gKY65ylS64iQW5kK7ppYKO8uUBJkQZh5UNxDN-E9aJgvQFsS28YzQHREL4rU5_2TXUKd0xjZTd7tu8fCMKANM28tMIHhyD3KnhvA_s0gcvbkK447oLT9E=w611-h321-s-no-gm"
+      "balance": 0,
+      "img": "https://lh3.googleusercontent.com/pw/AP1GczPd86eTOZysL0WAf9veGe6WIkEfvgX2zA1gKY65ylS64iQW5kK7ppYKO8uUBJkQZh5UNxDN-E9aJgvQFsS28YzQHREL4rU5_2TXUKd0xjZTd7tu8fCMKANM28tMIHhyD3KnhvA_s0gcvbkK447oLT9E=w611-h321-s-no-gm",
+      "orders": [],
+      "orderHistory": []
     },
     {
       "id": 2,
+      "userName": "dorsey",
+      "email": "dorsey@gmail.com",
+      "password": "dorsey123",
       "name": "Dorsey",
       "surname": "Shepherd",
-      "img": "https://lh3.googleusercontent.com/pw/AP1GczN8h4gHh3CU2rbqTQ32im-ZGQFJh6_8pH_xZjX_xTjOGVgqgbuUfZzhgnraPvh3j3blvhsMqRh4vNss9jCxpA-hy8zllx3ffEsehoeYmSzNtlRrk4e30qOV-61y28NHCFjnPQvLFiAVRPsQyUQ_8z80=w613-h407-s-no-gm"
+      "balance": 0,
+      "img": "https://lh3.googleusercontent.com/pw/AP1GczN8h4gHh3CU2rbqTQ32im-ZGQFJh6_8pH_xZjX_xTjOGVgqgbuUfZzhgnraPvh3j3blvhsMqRh4vNss9jCxpA-hy8zllx3ffEsehoeYmSzNtlRrk4e30qOV-61y28NHCFjnPQvLFiAVRPsQyUQ_8z80=w613-h407-s-no-gm",
+      "orders": [],
+      "orderHistory": []
     },
     {
       "id": 3,
+      "userName": "amalia",
+      "email": "amalia@gmail.com",
+      "password": "amalia123",
       "name": "Amalia",
       "surname": "Clements",
-      "img": "https://lh3.googleusercontent.com/pw/AP1GczNxx7hUZVWjQXfi9axHa9kNC0oldSfSJsw0M2Gccn1yK480_Dd5VcvqeQ0weKo6tsqbbbqYMYVR8flDccmrqrFEU0mnOK9ixVzQgx1ao7ZPZ-h8skuWIA_bzoGqwXVvyuRVWZfip4FHawhfZ7u4d_VK=w610-h407-s-no-gm"
+      "balance": 0,
+      "img": "https://lh3.googleusercontent.com/pw/AP1GczNxx7hUZVWjQXfi9axHa9kNC0oldSfSJsw0M2Gccn1yK480_Dd5VcvqeQ0weKo6tsqbbbqYMYVR8flDccmrqrFEU0mnOK9ixVzQgx1ao7ZPZ-h8skuWIA_bzoGqwXVvyuRVWZfip4FHawhfZ7u4d_VK=w610-h407-s-no-gm",
+      "orders": [],
+      "orderHistory": []
     },
     {
       "id": 4,
+      "userName": "addie",
+      "email": "addie@gmail.com",
+      "password": "addie123",
       "name": "Addie",
       "surname": "Horton",
-      "img": "https://lh3.googleusercontent.com/pw/AP1GczMpmk11zhuVZ2G_UB4GexN9phSuaDZ4JSEMgk9l2FKavowvTv9mkElxB-eem33gEj49tFZUDn1XaI_bkEXVp7ZdEOpDbTeK8EjGdhtPDJxCc5ymDuMvVRwZTA6Oca6ID1nGQA2o36zBGz_jgknVovdw=w609-h344-s-no-gm"
+      "balance": 0,
+      "img": "https://lh3.googleusercontent.com/pw/AP1GczMpmk11zhuVZ2G_UB4GexN9phSuaDZ4JSEMgk9l2FKavowvTv9mkElxB-eem33gEj49tFZUDn1XaI_bkEXVp7ZdEOpDbTeK8EjGdhtPDJxCc5ymDuMvVRwZTA6Oca6ID1nGQA2o36zBGz_jgknVovdw=w609-h344-s-no-gm",
+      "orders": [],
+      "orderHistory": []
     },
     {
       "id": 5,
+      "userName": "lacey",
+      "email": "lacey@gmail.com",
+      "password": "lacey123",
       "name": "Lacey",
       "surname": "Combs",
-      "img": "https://lh3.googleusercontent.com/pw/AP1GczMEFyPtgHzU4U-kLNuyb9FES-wKXPYvvGp3BoRTJKfKIWb6tirHkbx0QMba_-C96oNzFGmi6_45WHx_E0SfkI-zZQeCB0t5iMv-Kp3ZTJ2EeAlBJUPo9yiOv8gvbz-3TpuscIQMvTV5GkmAY6_Xy-Lo=w611-h407-s-no-gm"
+      "balance": 0,
+      "img": "https://lh3.googleusercontent.com/pw/AP1GczMEFyPtgHzU4U-kLNuyb9FES-wKXPYvvGp3BoRTJKfKIWb6tirHkbx0QMba_-C96oNzFGmi6_45WHx_E0SfkI-zZQeCB0t5iMv-Kp3ZTJ2EeAlBJUPo9yiOv8gvbz-3TpuscIQMvTV5GkmAY6_Xy-Lo=w611-h407-s-no-gm",
+      "orders": [],
+      "orderHistory": []
+    },
+    {
+      "id": 6,
+      "userName": "frontender",
+      "email": "frontender@gmail.com",
+      "password": "securepass123",
+      "name": "Stanton",
+      "surname": "Richardson",
+      "balance": 55.55,
+      "img": "https://lh3.googleusercontent.com/pw/AP1GczOPmz6MNqqTx2YZekmxppn88NfHDX4qSdH1foq865siphuhKlwTKyqxXhvYmbi28KleHbRtQYEuTSeKP4ib0BTwGKAtCvhw-gBgUxktYziqlh5u9EI-pyYi2cLlaGPXBlTkfRvZJSlDttN7cFAvD03H=w612-h323-s-no-gm",
+      "orders": [
+        {
+          "weekDay": "Monday",
+          "mealIds": [6, 3]
+        },
+        {
+          "weekDay": "Wednesday",
+          "mealIds": [6, 11]
+        },
+        {
+          "weekDay": "Thursday",
+          "mealIds": [21]
+        }
+      ],
+      "orderHistory": [
+        {
+          "date": "2023-11-27T08:49:37.465Z",
+          "mealsIds": [11]
+        },
+        {
+          "date": "2023-11-29T08:01:45.841Z",
+          "mealsIds": [6, 9]
+        },
+        {
+          "date": "2023-11-30T08:16:25.653Z",
+          "mealsIds": [6, 14]
+        },
+        {
+          "date": "2023-12-06T08:21:15.111Z",
+          "mealsIds": [16]
+        },
+        {
+          "date": "2023-12-08T07:39:10.144Z",
+          "mealsIds": [2, 10]
+        },
+        {
+          "date": "2023-12-11T07:37:45.559Z",
+          "mealsIds": [3, 8]
+        },
+        {
+          "date": "2023-12-15T08:45:57.653Z",
+          "mealsIds": [7, 12]
+        },
+        {
+          "date": "2023-12-19T08:02:24.856Z",
+          "mealsIds": [5, 6]
+        },
+        {
+          "date": "2024-01-02T09:25:13.308Z",
+          "mealsIds": [13]
+        },
+        {
+          "date": "2024-01-04T07:16:47.554Z",
+          "mealsIds": [9]
+        },
+        {
+          "date": "2024-01-15T09:59:56.451Z",
+          "mealsIds": [8, 11]
+        },
+        {
+          "date": "2024-01-19T07:41:19.397Z",
+          "mealsIds": [1, 12]
+        },
+        {
+          "date": "2024-01-22T08:05:37.352Z",
+          "mealsIds": [16]
+        },
+        {
+          "date": "2024-01-24T08:22:07.492Z",
+          "mealsIds": [4, 8]
+        },
+        {
+          "date": "2024-01-25T08:08:08.188Z",
+          "mealsIds": [14]
+        },
+        {
+          "date": "2024-02-02T08:20:56.498Z",
+          "mealsIds": [2, 10]
+        },
+        {
+          "date": "2024-02-05T07:51:05.343Z",
+          "mealsIds": [3, 8]
+        },
+        {
+          "date": "2024-02-06T08:14:35.696Z",
+          "mealsIds": [4, 6]
+        },
+        {
+          "date": "2024-02-23T09:05:41.729Z",
+          "mealsIds": [1, 2]
+        }
+      ]
     }
   ],
   "vendors": [

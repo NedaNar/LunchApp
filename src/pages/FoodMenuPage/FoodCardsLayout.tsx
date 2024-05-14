@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import useFetch, { Endpoint } from '../../api/useDataFetching';
+import useFetch from '../../api/useDataFetching';
 import FoodCard from '../../components/FoodCard/FoodCard';
 import DayTabs from '../../components/Tabs/DayTabs';
 import styles from './foodMenuPage.module.scss';
@@ -11,6 +11,7 @@ import {
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
 import Filters from '../../components/Filters/Filters';
 import cartContext from '../../components/OrderSummary/cartContext';
+import { Endpoint } from '../../api/endpoints';
 
 function FoodCardsLayout() {
   const cart = useContext(cartContext);
