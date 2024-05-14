@@ -100,9 +100,11 @@ $color-grey-input-text: #646872;
                     background-color: $color-purple-200;
                 }
 
-                &:focus {
-                    background-color: rgba(33, 150, 243, 0.04);
-                    color: $color-secondary-600;
+                &:focus { 
+                    background-color: $color-purple-100;
+                    color: $color-secondary-600;    
+                    z-index: 1000;
+                    opacity: 1;
                 }
             }
         }
