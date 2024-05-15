@@ -44,6 +44,7 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
   & svg {
     width: 12.4rem;
     height: 8.6rem;
+    opacity: 70%;
   }
   &Text {
     @include body-M;
@@ -70,7 +71,7 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
     margin-right: $space-XS;
 
     &Price {
-      align-items: end;
+      align-items: flex-end;
       display: flex;
       flex-direction: column;
 
@@ -123,7 +124,7 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        align-items: end;
+        align-items: flex-end;
         padding: $space-XXS $space-XXXS;
         gap: $space-XXXXS;
 
@@ -150,7 +151,7 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
 
       &Content {
         display: flex;
-        align-items: start;
+        align-items: flex-start;
         text-align: left;
         gap: $space-XXS;
         &Text {

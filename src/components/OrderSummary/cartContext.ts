@@ -7,6 +7,7 @@ export interface MealItem {
   orderId?: string;
   price: number;
   id: string;
+  vendor: string;
 }
 
 export interface CartItem {
