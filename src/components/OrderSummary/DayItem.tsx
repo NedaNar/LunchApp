@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import styles from './orderSummary.module.scss';
 import DeleteIcon from '../../assets/static/icons/icon_delete.svg?react';
 import { getFoodIcon } from '../FoodCard/helpers';
-import { MealItem } from './cartContext';
+import cartContext, { MealItem } from './cartContext';
+import { FREE_MEEL_DAY } from '../../utils/orderSummaryHelpers';
 
 export interface DayItemsProps {
   day: string;
@@ -9,6 +11,7 @@ export interface DayItemsProps {
 }
 
 export default function DayItems({ day, items }: DayItemsProps) {
+  const cart = useContext(cartContext);
   return (
     <section className={styles.dayItems}>
       <header className={styles.dayItemsHeader}>
@@ -17,7 +20,7 @@ export default function DayItems({ day, items }: DayItemsProps) {
       </header>
       <div className={styles.dayItemsList}>
         {items.map((item) => (
-          <div className={styles.dayItemsListItem}>
+          <div key={item.orderId} className={styles.dayItemsListItem}>
             <div className={styles.dayItemsListItemContent}>
               <figure>{getFoodIcon(item.dishType)}</figure>
 
@@ -27,8 +30,8 @@ export default function DayItems({ day, items }: DayItemsProps) {
               </div>
             </div>
             <div className={styles.dayItemsListItemRight}>
-              <p>€{item.price}</p>
-              <DeleteIcon />
+              <p>{day === FREE_MEEL_DAY ? 'Free' : `€${item.price}`}</p>
+              <DeleteIcon onClick={() => cart.removeFromCart(item)} />
             </div>
           </div>
         ))}

@@ -16,9 +16,21 @@ enum DishType {
 }
 
 const mockCart1Data: CartItem[] = [
-  { selectedDay: 'Monday', meal: { title: 'test1', dishType: DishType.Bowl, price: 5 } },
-  { selectedDay: 'Monday', meal: { title: 'test2', dishType: DishType.Burger, price: 10 } },
-  { selectedDay: 'Friday', meal: { title: 'test3', dishType: DishType.Pizza, price: 13.556 } },
+  {
+    selectedDay: 'Monday',
+    id: 'order-xxx',
+    meal: { title: 'test1', orderId: 'order-xxx', dishType: DishType.Bowl, price: 5 },
+  },
+  {
+    selectedDay: 'Monday',
+    id: 'order-xxx',
+    meal: { title: 'test2', orderId: 'order-xxx', dishType: DishType.Burger, price: 10 },
+  },
+  {
+    selectedDay: 'Friday',
+    id: 'order-xxx',
+    meal: { title: 'test3', orderId: 'order-xxx', dishType: DishType.Pizza, price: 13.556 },
+  },
 ];
 
 describe('groupMealByDay', () => {
@@ -26,9 +38,11 @@ describe('groupMealByDay', () => {
     expect(groupMealByDay(mockCart1Data)).toMatchObject({
       Monday: [
         { dishType: DishType.Bowl, price: 5, title: 'test1' },
-        { title: 'test2', dishType: DishType.Burger, price: 10 },
+        { title: 'test2', orderId: 'order-xxx', dishType: DishType.Burger, price: 10 },
       ] as MealItem[],
-      Friday: [{ title: 'test3', dishType: DishType.Pizza, price: 13.556 }] as MealItem[],
+      Friday: [
+        { title: 'test3', orderId: 'order-xxx', dishType: DishType.Pizza, price: 13.556 },
+      ] as MealItem[],
     });
   });
 });
@@ -41,8 +55,16 @@ describe('calculateAndFormatTotalCartPrice', () => {
 
 describe('calculateAndFormatTotalCartPrice', () => {
   const mockCartData: CartItem[] = [
-    { selectedDay: 'Monday', meal: { title: 'test6', dishType: DishType.Burger, price: 5.554 } },
-    { selectedDay: 'Friday', meal: { title: 'test7', dishType: DishType.Pizza, price: 0 } },
+    {
+      selectedDay: 'Monday',
+      id: 'order-xxx',
+      meal: { title: 'test6', orderId: 'order-xxx', dishType: DishType.Burger, price: 5.554 },
+    },
+    {
+      selectedDay: 'Friday',
+      id: 'order-xxx',
+      meal: { title: 'test7', orderId: 'order-xxx', dishType: DishType.Pizza, price: 0 },
+    },
   ];
 
   it('should sum all prices of cart items and format price output number', () => {
@@ -52,8 +74,16 @@ describe('calculateAndFormatTotalCartPrice', () => {
 
 describe('groupMealByDay', () => {
   const mockCartData: CartItem[] = [
-    { selectedDay: 'Monday', meal: { title: 'test5', dishType: DishType.Bowl, price: 5 } },
-    { selectedDay: 'Sunday', meal: { title: 'test5', dishType: DishType.Pasta, price: 5 } },
+    {
+      selectedDay: 'Monday',
+      id: 'order-xxx',
+      meal: { title: 'test5', orderId: 'order-xxx', dishType: DishType.Bowl, price: 5 },
+    },
+    {
+      selectedDay: 'Sunday',
+      id: 'order-xxx',
+      meal: { title: 'test5', orderId: 'order-xxx', dishType: DishType.Pasta, price: 5 },
+    },
   ];
 
   it('if selectedDay dosent match data do not push data into array', () => {
@@ -65,8 +95,16 @@ describe('groupMealByDay', () => {
 
 describe('groupMealByDay', () => {
   const mockCartData: CartItem[] = [
-    { selectedDay: '', meal: { title: 'test5', dishType: DishType.Bowl, price: 5 } },
-    { selectedDay: '', meal: { title: 'test5', dishType: DishType.Pasta, price: 5 } },
+    {
+      selectedDay: '',
+      id: 'order-xxx',
+      meal: { title: 'test5', orderId: 'order-xxx', dishType: DishType.Bowl, price: 5 },
+    },
+    {
+      selectedDay: '',
+      id: 'order-xxx',
+      meal: { title: 'test5', orderId: 'order-xxx', dishType: DishType.Pasta, price: 5 },
+    },
   ];
 
   it('if selectedDay is undefined do not push data into array', () => {
