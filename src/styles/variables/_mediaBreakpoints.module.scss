@@ -3,6 +3,7 @@ $min-tablet-portrait-width: 600;
 $min-tablet-landscape-width: 900;
 $min-tablet-desktop-width: 1050;
 $min-desktop-width: 1200;
+$min-med-desktop-width: 1320;
 $min-big-desktop-width: 1800;
 
 :export {
@@ -11,5 +12,6 @@ $min-big-desktop-width: 1800;
   min_tablet_landscape_width: $min-tablet-landscape-width;
   min_tablet_desktop_width: $min-tablet-desktop-width;
   min_desktop_width: $min-desktop-width;
+  min_med_desktop_width: $min-med-desktop-width;
   min_big_desktop_width: $min-big-desktop-width;
 }
