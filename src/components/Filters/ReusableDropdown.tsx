@@ -15,20 +15,10 @@ interface DropdownProps {
   data: DropdownItem[];
   selectedId?: number | null;
   onSelect: (value: number | null) => void;
-  onFocusChange: () => void;
 }
 
-function ReusableDropdown({
-  id,
-  label,
-  title,
-  data,
-  selectedId = null,
-  onSelect,
-  onFocusChange,
-}: DropdownProps) {
+function ReusableDropdown({ id, label, title, data, selectedId = null, onSelect }: DropdownProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<DropdownItem | undefined>(
     selectedId ? data?.find((item) => item.id === selectedId) : undefined
@@ -38,9 +28,6 @@ function ReusableDropdown({
     setSelectedItem(item);
     onSelect(item.id === -1 ? null : item.id);
     setIsOpen(false);
-    if (onFocusChange) {
-      onFocusChange();
-    }
   };
 
   useEffect(() => {
@@ -79,7 +66,6 @@ function ReusableDropdown({
     <div ref={dropdownRef} className={styles.reusableDropdownWrapper}>
       <p className={styles.reusableDropdownLabel}>{label}</p>
       <div
-        ref={buttonRef}
         id={id}
         role="button"
         aria-labelledby="dropdown-label"
@@ -88,7 +74,7 @@ function ReusableDropdown({
         aria-controls={`${id}-dropdown`}
         tabIndex={0}
         onClick={() => setIsOpen(!isOpen)}
-        onKeyDown={() => handleButtonKeyDown}
+        onKeyDown={handleButtonKeyDown}
         className={`${styles.reusableDropdownButton} ${selectedItem !== null && selectedItem !== undefined ? styles.dropdownSelected : ''}`}>
         <span>{selectedItem?.name || title}</span>
         <DropdownIcon className={isOpen ? styles.dropdownIconRotate : ''} />
@@ -103,7 +89,7 @@ function ReusableDropdown({
                 key={item.id}
                 className={styles.reusableDropdownListItem}
                 onClick={() => handleChange(item)}
-                onKeyDown={() => handleOptionKeyDown}
+                onKeyDown={(e) => handleOptionKeyDown(e, item)}
                 tabIndex={0}>
                 <span>{item.name}</span>
               </li>
