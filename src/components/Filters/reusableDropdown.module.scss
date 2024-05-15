@@ -3,13 +3,17 @@
 $color-grey-input-text: #646872;
 
 .reusableDropdownWrapper {
-    width: 32.3rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
     gap: $space-XXXXXS;
     cursor: pointer;
+
+    @include for-med-desktop-up {
+        width: 32.3rem;
+    }
 
     .reusableDropdownLabel {
         color: $color-primary-600;
@@ -36,6 +40,10 @@ $color-grey-input-text: #646872;
         background-color: $color-white;
 
         @include body-M;
+
+        @include for-med-desktop-up {
+            width: 32.3rem;
+        }
 
         span {
             @include body-M;

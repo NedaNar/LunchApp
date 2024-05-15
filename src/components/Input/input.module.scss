@@ -9,15 +9,19 @@ $color-red-error-border: #ffc7c5;
 $space-7: 0.7rem;
 
 .wrapper {
-  width: 32.3rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
   gap: $space-XXXXXS;
 
+  .inputWrapper {
+    width: 100%;
+  }
+
   .input {
-    width: 32.3rem;
+    width: 100%;
     padding: $space-7 $space-XXXS;
     border-radius: $border-radius-regular;
     border: $color-grey-300 0.1rem solid;

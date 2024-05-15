@@ -12,22 +12,42 @@
 
     .filters {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
         flex-wrap: wrap;
         gap: $space-XXXS;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        @include for-med-desktop-up {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
 
         .filtersWrapper {
             display: flex;
             gap: $space-XXXS;
             flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+
+            @include for-med-desktop-up {
+                flex-wrap: nowrap;
+                flex-direction: row;
+                width: 65.8rem;
+            }
 
             input {
-                width: 32.3rem;
+                width: 100%;
                 height: 4rem;
                 text-align: left;
+
+                @include for-med-desktop-up {
+                    width: 32.3rem;
+                }
             }
-            
+
             label {
                 @include label-XS;
 
