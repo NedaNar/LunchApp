@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import axios from 'axios';
 import styles from './orderSummary.module.scss';
 import cartContext from './cartContext';
 import EmptyCart from './EmptyCart';
@@ -13,12 +12,14 @@ import IconButton, {
 } from '../IconButton/IconButton';
 import Dialog, { DialogIcon } from '../Dialog/Dialog';
 import useFetch from '../../api/useDataFetching';
+import usePut from '../../api/useDataPutting';
 import { Endpoint } from '../../api/endpoints';
 import { UserData } from '../../api/apiModel';
 
 export default function OrderSummary() {
   const { items, expanded, setExpanded, removeAllItems } = useContext(cartContext);
   const { data } = useFetch<UserData>(Endpoint.USERS);
+  const { putData } = usePut<UserData>(Endpoint.USERS);
 
   const mappedMealsByDay = groupMealByDay(items);
   const totalPrice = calculateAndFormatTotalCartPrice(items);
@@ -27,23 +28,19 @@ export default function OrderSummary() {
 
   const handleCheckout = async () => {
     if ((data?.balance ?? 0) < Number(totalPrice)) return setOrderStatus(false);
+    const updatedData: UserData = {
+      ...data!,
+      id: data!.id || '',
+      orders: Object.keys(mappedMealsByDay).map((day) => ({
+        weekDay: day,
+        mealIds: mappedMealsByDay[day].map((meal) => Number(meal.id)),
+      })),
+    };
 
-    try {
-      const updatedData = {
-        ...data,
-        orders: Object.keys(mappedMealsByDay).map((day) => ({
-          weekDay: day,
-          mealIds: mappedMealsByDay[day].map((meal) => Number(meal.id)),
-        })),
-      };
+    putData(updatedData);
+    removeAllItems();
 
-      await axios.patch('http://localhost:3002/user', JSON.stringify(updatedData));
-      removeAllItems();
-      return setOrderStatus(true);
-    } catch (error) {
-      // handle error here
-    }
-    return setOrderStatus(false);
+    return setOrderStatus(true);
   };
 
   return (
@@ -105,3 +102,17 @@ export default function OrderSummary() {
     </>
   );
 }
+// function putData(updatedData: {
+//   orders: { weekDay: string; mealIds: number[] }[];
+//   id?: string | undefined;
+//   userName?: string | undefined;
+//   email?: string | undefined;
+//   password?: string | undefined;
+//   name?: string | undefined;
+//   surname?: string | undefined;
+//   balance?: number | undefined;
+//   img?: string | undefined;
+//   orderHistory?: OrderHistoryItem[] | undefined;
+// }) {
+//   throw new Error('Function not implemented.');
+// }

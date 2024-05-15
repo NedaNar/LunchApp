@@ -18,7 +18,7 @@ function usePut<T>(endpoint: Endpoint): PutResult<T> {
     setLoading(true);
     try {
       const url = `http://localhost:3002/${endpoint}`;
-      const response = await axios.patch<T>(url, data);
+      const response = await axios.put<T>(url, data);
 
       if (response.status === 201) {
         setResponseData(response.data);
