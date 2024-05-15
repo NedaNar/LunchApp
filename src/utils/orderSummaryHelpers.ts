@@ -25,7 +25,7 @@ export function generateUniqueId(): string {
 }
 export function calculateAndFormatTotalCartPrice(items: CartItem[]) {
   return items
-    .reduce((sum, item) => (item.selectedDay !== 'Friday' ? item.meal.price + sum : sum), 0)
+    .reduce((sum, item) => (item.selectedDay !== FREE_MEEL_DAY ? item.meal.price + sum : sum), 0)
     .toFixed(2);
 }
 
