@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import styles from './dialog.module.scss';
 import { Button, ButtonAppearance, ButtonSize } from '../RegularButton/Button';
 import IconButton, { IconButtonType, IconButtonIcon } from '../IconButton/IconButton';
@@ -56,7 +57,7 @@ function Dialog({
 
   const dialogSubBodyClass = icon ? styles.dialogSubBodyCenter : styles.dialogSubBodyStart;
 
-  return (
+  return createPortal(
     <div className={styles.dialogOverlay}>
       <dialog open className={`${styles.dialogWrapper} ${styles[size]}`}>
         <div className={styles.dialogBody}>
@@ -92,7 +93,8 @@ function Dialog({
           />
         </footer>
       </dialog>
-    </div>
+    </div>,
+    document.body
   );
 }
 

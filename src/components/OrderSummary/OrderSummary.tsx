@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import { createPortal } from 'react-dom';
 import axios from 'axios';
 import styles from './orderSummary.module.scss';
 import cartContext from './cartContext';
@@ -49,34 +48,28 @@ export default function OrderSummary() {
 
   return (
     <>
-      {createPortal(
-        orderStatus && (
-          <Dialog
-            primaryButtonText="OK"
-            onClose={() => setOrderStatus(null)}
-            title="Order Confirmed!"
-            icon={DialogIcon.SUCCESS}
-            onPrimaryButtonClick={() => setOrderStatus(null)}
-            isCloseButtonVisible>
-            Your order has been successfully processed.
-          </Dialog>
-        ),
-        document.body
+      {orderStatus && (
+        <Dialog
+          primaryButtonText="OK"
+          onClose={() => setOrderStatus(null)}
+          title="Order Confirmed!"
+          icon={DialogIcon.SUCCESS}
+          onPrimaryButtonClick={() => setOrderStatus(null)}
+          isCloseButtonVisible>
+          Your order has been successfully processed.
+        </Dialog>
       )}
 
-      {createPortal(
-        orderStatus === false && (
-          <Dialog
-            primaryButtonText="OK"
-            onClose={() => setOrderStatus(null)}
-            title="Not enough balance!"
-            icon={DialogIcon.WARNING}
-            onPrimaryButtonClick={() => setOrderStatus(null)}
-            isCloseButtonVisible>
-            You do not have enough balance available to complete this order.
-          </Dialog>
-        ),
-        document.body
+      {orderStatus === false && (
+        <Dialog
+          primaryButtonText="OK"
+          onClose={() => setOrderStatus(null)}
+          title="Not enough balance!"
+          icon={DialogIcon.WARNING}
+          onPrimaryButtonClick={() => setOrderStatus(null)}
+          isCloseButtonVisible>
+          You do not have enough balance available to complete this order.
+        </Dialog>
       )}
 
       <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
