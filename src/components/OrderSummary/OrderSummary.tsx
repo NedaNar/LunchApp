@@ -77,13 +77,17 @@ export default function OrderSummary() {
     <>
       {orderStatus === OrderStatus.SUCCESS && (
         <Dialog
-          primaryButtonText="OK"
+          primaryButtonText="Cool, Thanks!"
           onClose={() => setOrderStatus(null)}
-          title="Order Confirmed!"
+          title="We've got your lunch order!"
           icon={DialogIcon.SUCCESS}
           onPrimaryButtonClick={() => setOrderStatus(null)}
           isCloseButtonVisible>
-          Your order has been successfully processed.
+          <p>Order has been placed successfully.</p>
+          <p>
+            You can view lunch for the week in <br />
+            <b>Your Orders</b>
+          </p>
         </Dialog>
       )}
 
