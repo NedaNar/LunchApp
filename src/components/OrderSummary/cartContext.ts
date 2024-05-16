@@ -18,6 +18,8 @@ export interface CartItem {
 
 export interface CartContext {
   items: CartItem[];
+  balance: number;
+  setBalance: (value: number) => void;
   expanded: boolean;
   addToCart: (meal: CartItem) => void;
   removeFromCart: (toRemoveItem: MealItem) => void;
@@ -27,7 +29,9 @@ export interface CartContext {
 
 export default createContext({
   items: [],
+  balance: 0,
   removeAllItems: () => {},
+  setBalance: () => {},
   addToCart: () => {},
   removeFromCart: () => {},
   expanded: true,

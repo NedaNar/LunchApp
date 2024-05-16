@@ -12,51 +12,70 @@ import IconButton, {
 } from '../IconButton/IconButton';
 import Dialog, { DialogIcon } from '../Dialog/Dialog';
 import useFetch from '../../api/useDataFetching';
-import usePut from '../../api/useDataPutting';
 import { Endpoint } from '../../api/endpoints';
 import { UserData } from '../../api/apiModel';
 import { SessionStorageKeys } from '../../types/sessionStorageEnums';
+import usePatch from '../../api/useDataPatching';
+
+export enum OrderStatus {
+  SUCCESS = 'success',
+  NOT_ENOUGH_BALANCE = 'not_enough_balance',
+  ERROR = 'error',
+}
 
 export default function OrderSummary() {
-  const { items, expanded, setExpanded, removeAllItems } = useContext(cartContext);
+  const { items, expanded, setExpanded, removeAllItems, setBalance } = useContext(cartContext);
   const { data } = useFetch<UserData[]>(Endpoint.USERS);
 
   const mappedMealsByDay = groupMealByDay(items);
   const totalPrice = calculateAndFormatTotalCartPrice(items);
 
-  const [orderStatus, setOrderStatus] = useState<null | boolean>(null);
-  const { putData, error, responseData } = usePut<UserData[]>(Endpoint.USERS);
+  const [orderStatus, setOrderStatus] = useState<null | OrderStatus>(null);
+  const { putData, error, responseData } = usePatch<UserData>(Endpoint.USERS);
+
+  const [intermediateBalance, setIntermediateBalance] = useState<number | null>(null);
+
+  const calculateNewBalance = (user: UserData, totalPrice: number) =>
+    Number((user.balance - totalPrice).toFixed(2));
 
   const handleCheckout = async () => {
-    const loggedInUserId = JSON.parse(sessionStorage.get(SessionStorageKeys.TOKEN)).id;
-    const user = data?.find((u) => u.id === loggedInUserId);
+    const loggedInUserId = JSON.parse(sessionStorage.getItem(SessionStorageKeys.TOKEN) ?? '{}')?.id;
+    const user = data?.find((u) => u.id == loggedInUserId);
     if (!user) return;
 
-    if ((user.balance ?? 0) < Number(totalPrice)) return setOrderStatus(false);
+    if ((user.balance ?? 0) < Number(totalPrice))
+      return setOrderStatus(OrderStatus.NOT_ENOUGH_BALANCE);
+
+    const newBalance = calculateNewBalance(user, Number(totalPrice));
+    setIntermediateBalance(newBalance);
 
     const updatedUserData: UserData = {
       ...user,
-      balance: user.balance - Number(totalPrice),
+      balance: newBalance,
       orders: Object.keys(mappedMealsByDay).map((day) => ({
         weekDay: day,
         mealIds: mappedMealsByDay[day].map((meal) => Number(meal.id)),
       })),
     };
 
-    const updatedData = data?.map((user) => (user.id === user.id ? updatedUserData : user)) ?? [];
-
-    putData(updatedData);
-    removeAllItems();
+    putData(updatedUserData);
   };
 
   useEffect(() => {
-    if (responseData !== null) setOrderStatus(true);
-    if (error) setOrderStatus(false);
+    if (error && responseData !== null) {
+      setOrderStatus(OrderStatus.ERROR);
+    }
+
+    if (!error && responseData !== null) {
+      setOrderStatus(OrderStatus.SUCCESS);
+      removeAllItems();
+      setBalance(intermediateBalance ?? 0);
+    }
   }, [responseData, error]);
 
   return (
     <>
-      {orderStatus && (
+      {orderStatus === OrderStatus.SUCCESS && (
         <Dialog
           primaryButtonText="OK"
           onClose={() => setOrderStatus(null)}
@@ -68,7 +87,7 @@ export default function OrderSummary() {
         </Dialog>
       )}
 
-      {orderStatus === false && (
+      {orderStatus === OrderStatus.NOT_ENOUGH_BALANCE && (
         <Dialog
           primaryButtonText="OK"
           onClose={() => setOrderStatus(null)}
@@ -77,6 +96,18 @@ export default function OrderSummary() {
           onPrimaryButtonClick={() => setOrderStatus(null)}
           isCloseButtonVisible>
           You do not have enough balance available to complete this order.
+        </Dialog>
+      )}
+
+      {orderStatus === OrderStatus.ERROR && (
+        <Dialog
+          primaryButtonText="OK"
+          onClose={() => setOrderStatus(null)}
+          title="An error occured!"
+          icon={DialogIcon.WARNING}
+          onPrimaryButtonClick={() => setOrderStatus(null)}
+          isCloseButtonVisible>
+          This is on us. Sorry for the inconvenience.
         </Dialog>
       )}
 

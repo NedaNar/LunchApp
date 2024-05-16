@@ -70,23 +70,30 @@ function FoodCardsLayout() {
         )}
         {!loading && !error && canOrder() && (
           <div className={styles.mealContainer}>
-            {filteredMeals.map((meal) => (
-              <FoodCard
-                key={meal.id}
-                vendor={getVendor(meal.vendorId)}
-                title={meal.title}
-                description={meal.description}
-                price={meal.price}
-                picture={meal.dishType}
-                isVegetarian={meal.vegetarian}
-                isSpicy={meal.spicy}
-                rating={getRating(meal.id)}
-                weekday={selectedDay}
-                handleAddToCart={() => {
-                  cart.addToCart({ meal, selectedDay });
-                }}
-              />
-            ))}
+            {filteredMeals.map((meal) => {
+              const vendorName = getVendor(meal.vendorId);
+
+              return (
+                <FoodCard
+                  key={meal.id}
+                  vendor={vendorName}
+                  title={meal.title}
+                  description={meal.description}
+                  price={meal.price}
+                  picture={meal.dishType}
+                  isVegetarian={meal.vegetarian}
+                  isSpicy={meal.spicy}
+                  rating={getRating(meal.id)}
+                  weekday={selectedDay}
+                  handleAddToCart={() => {
+                    cart.addToCart({
+                      meal: { ...meal, vendor: vendorName },
+                      selectedDay,
+                    });
+                  }}
+                />
+              );
+            })}
           </div>
         )}
       </div>

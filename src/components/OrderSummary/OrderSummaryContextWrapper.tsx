@@ -7,6 +7,10 @@ import { checkForFridayMeal, generateUniqueId } from '../../utils/orderSummaryHe
 import { NotificationType } from '../../utils/notificationUtils';
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
 import { LocalStorageKeys } from '../../types/localStorageEnums';
+import useFetch from '../../api/useDataFetching';
+import { Endpoint } from '../../api/endpoints';
+import { UserData } from '../../api/apiModel';
+import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 
 export default function OrderSummaryContextWrapper({
   children,
@@ -20,11 +24,26 @@ export default function OrderSummaryContextWrapper({
   const [cartItems, setCartItems] = useState<CartItem[]>(
     JSON.parse(localStorage.getItem(LocalStorageKeys.CART_ITEMS) ?? '[]')
   );
+
+  const [balance, setBalance] = useState<number>(0);
   const cartToast = useRef<ToastRefObject>(null);
+
+  const { data } = useFetch<UserData[]>(Endpoint.USERS);
+  const loggedInUserId = JSON.parse(sessionStorage.getItem(SessionStorageKeys.TOKEN) ?? '{}')?.id;
+  const user = data?.find((u) => u.id == loggedInUserId);
+
+  useEffect(() => {
+    if (user) {
+      setBalance(user.balance);
+      
+    }
+  }, [user]);
 
   const cart = useMemo(
     () => ({
       items: cartItems,
+      balance: balance,
+      setBalance,
       setCartItems,
       expanded: cartExpanded,
       setExpanded: setCartExpanded,
@@ -71,7 +90,7 @@ export default function OrderSummaryContextWrapper({
         });
       },
     }),
-    [cartItems, cartExpanded]
+    [cartItems, cartExpanded, balance]
   );
 
   useEffect(() => {
@@ -89,6 +108,8 @@ export default function OrderSummaryContextWrapper({
       }
     }
   }, []);
+
+  if (!user) return 'loading';
 
   return (
     <>
