@@ -22,6 +22,7 @@ export enum OrderStatus {
   NOT_ENOUGH_BALANCE = 'not_enough_balance',
   ERROR = 'error',
   EMPTY = 'empty_cart',
+  FRIDAY_MEAL_ALREADY_BOOKED = 'Friday_already_booked',
 }
 
 export default function OrderSummary() {
@@ -52,9 +53,12 @@ export default function OrderSummary() {
     const newBalance = calculateNewBalance(user, Number(totalPrice));
     setIntermediateBalance(newBalance);
 
-    // _______________________________________________________
-
     const existingOrders = user.orders || [];
+
+    if (existingOrders.some((order) => order.weekDay === 'Friday')) {
+      setOrderStatus(OrderStatus.FRIDAY_MEAL_ALREADY_BOOKED);
+      return;
+    }
 
     const existingOrdersMap = new Map(
       existingOrders.map((order) => [order.weekDay, order.mealIds])
@@ -143,6 +147,26 @@ export default function OrderSummary() {
           onPrimaryButtonClick={() => setOrderStatus(null)}
           isCloseButtonVisible>
           This is on us. Sorry for the inconvenience.
+        </Dialog>
+      )}
+
+      {orderStatus === OrderStatus.FRIDAY_MEAL_ALREADY_BOOKED && (
+        <Dialog
+          primaryButtonText="OK"
+          onClose={() => setOrderStatus(null)}
+          title="Friday's meals are already booked! "
+          icon={DialogIcon.WARNING}
+          onPrimaryButtonClick={() => setOrderStatus(null)}
+          isCloseButtonVisible>
+          <p>
+            Friday's meals are already booked.
+            <br />
+            <b>Remove it from the basket</b>
+          </p>
+          <p>
+            You can view lunch for the week in <br />
+            <b>Your Orders</b>
+          </p>
         </Dialog>
       )}
 
