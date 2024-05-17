@@ -8,7 +8,7 @@ import styles from './userProfile.module.scss';
 import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 import useAuth from '../LoginForm/AuthenticationLogic/useAuth';
 import { Endpoint } from '../../api/endpoints';
-import EmptyUser from '../../assets/static/supporting-illustrations/empty-user.svg?react';
+import AccountIcon from '../../assets/static/icons/icon_account.svg?react';
 
 function UserProfile() {
   const token = useAuth();
@@ -33,7 +33,7 @@ function UserProfile() {
       <div className={styles.profileSection}>
         <div>
           {data.img && <img src={data.img} alt="User Avatar" />}
-          {!data.img && <EmptyUser className={styles.emptyAvatar} />}
+          {!data.img && <AccountIcon className={styles.account} />}
         </div>
         <div className={styles.dropdown}>
           <ProfileButton
