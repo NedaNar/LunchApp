@@ -21,6 +21,7 @@ export enum OrderStatus {
   SUCCESS = 'success',
   NOT_ENOUGH_BALANCE = 'not_enough_balance',
   ERROR = 'error',
+  EMPTY = 'empty_cart',
 }
 
 export default function OrderSummary() {
@@ -46,6 +47,8 @@ export default function OrderSummary() {
     if ((user.balance ?? 0) < Number(totalPrice))
       return setOrderStatus(OrderStatus.NOT_ENOUGH_BALANCE);
 
+    if (!items.length) return setOrderStatus(OrderStatus.EMPTY);
+
     const newBalance = calculateNewBalance(user, Number(totalPrice));
     setIntermediateBalance(newBalance);
 
@@ -58,7 +61,7 @@ export default function OrderSummary() {
       })),
     };
 
-    putData(updatedUserData);
+    putData(updatedUserData, loggedInUserId);
   };
 
   useEffect(() => {
@@ -100,6 +103,18 @@ export default function OrderSummary() {
           onPrimaryButtonClick={() => setOrderStatus(null)}
           isCloseButtonVisible>
           You do not have enough balance available to complete this order.
+        </Dialog>
+      )}
+
+      {orderStatus === OrderStatus.EMPTY && (
+        <Dialog
+          primaryButtonText="OK"
+          onClose={() => setOrderStatus(null)}
+          title="Your cart empty"
+          icon={DialogIcon.INFO}
+          onPrimaryButtonClick={() => setOrderStatus(null)}
+          isCloseButtonVisible>
+          Your cart is empty! Plese choose the meal from Menu.
         </Dialog>
       )}
 

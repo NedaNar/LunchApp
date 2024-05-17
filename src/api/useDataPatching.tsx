@@ -6,7 +6,7 @@ interface PutResult<T> {
   responseData: T | null;
   loading: boolean;
   error: boolean;
-  putData: (data: T) => void;
+  putData: (id: string, data: T) => void;
 }
 
 function usePatch<T>(endpoint: Endpoint): PutResult<T> {
@@ -14,10 +14,10 @@ function usePatch<T>(endpoint: Endpoint): PutResult<T> {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const putData = async (data: T) => {
+  const putData = async (data: T, id: string) => {
     setLoading(true);
     try {
-      const url = `http://localhost:3002/${endpoint}/6`;
+      const url = `http://localhost:3002/${endpoint}/${id}`;
       const response = await axios.patch<T>(url, data);
 
       if (response.status === 201 || response.status === 204 || response.status === 200) {
