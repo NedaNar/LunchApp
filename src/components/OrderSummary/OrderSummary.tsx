@@ -52,13 +52,29 @@ export default function OrderSummary() {
     const newBalance = calculateNewBalance(user, Number(totalPrice));
     setIntermediateBalance(newBalance);
 
+    // _______________________________________________________
+
+    const existingOrders = user.orders || [];
+
+    const existingOrdersMap = new Map(
+      existingOrders.map((order) => [order.weekDay, order.mealIds])
+    );
+    for (const day of Object.keys(mappedMealsByDay)) {
+      const newMealIds = mappedMealsByDay[day].map((meal) => Number(meal.id));
+      const existingMealIds = existingOrdersMap.get(day) || [];
+      const mergedMealIds = [...new Set([...existingMealIds, ...newMealIds])];
+      existingOrdersMap.set(day, mergedMealIds);
+    }
+
+    const updatedOrders = Array.from(existingOrdersMap.entries()).map(([weekDay, mealIds]) => ({
+      weekDay,
+      mealIds,
+    }));
+
     const updatedUserData: UserData = {
       ...user,
       balance: newBalance,
-      orders: Object.keys(mappedMealsByDay).map((day) => ({
-        weekDay: day,
-        mealIds: mappedMealsByDay[day].map((meal) => Number(meal.id)),
-      })),
+      orders: updatedOrders,
     };
 
     putData(updatedUserData, loggedInUserId);
