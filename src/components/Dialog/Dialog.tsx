@@ -71,7 +71,7 @@ function Dialog({
             )}
           </header>
           <div className={dialogSubBodyClass}>
-            <figure>{showIcon(icon)}</figure>
+            {showIcon(icon) && <figure>{showIcon(icon)}</figure>}
             <p>{children}</p>
           </div>
         </div>

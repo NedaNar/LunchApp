@@ -8,6 +8,7 @@ import styles from './userProfile.module.scss';
 import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 import useAuth from '../LoginForm/AuthenticationLogic/useAuth';
 import { Endpoint } from '../../api/endpoints';
+import EmptyUser from '../../assets/static/supporting-illustrations/empty-user.svg?react';
 
 function UserProfile() {
   const token = useAuth();
@@ -30,12 +31,10 @@ function UserProfile() {
   return (
     <div className={styles.userProfile}>
       <div className={styles.profileSection}>
-        {data.img && (
-          <div className={styles.profileAvatar}>
-            <img src={data.img} alt="User Avatar" />
-          </div>
-        )}
-        {!data.img && <div className={styles.emptyAvatar} />}
+        <div>
+          {data.img && <img src={data.img} alt="User Avatar" />}
+          {!data.img && <EmptyUser className={styles.emptyAvatar} />}
+        </div>
         <div className={styles.dropdown}>
           <ProfileButton
             onClick={handleClick}
@@ -43,7 +42,7 @@ function UserProfile() {
           />
         </div>
         <p className={styles.username}>
-          {data.name} {data.surname}
+          {data.name || data.surname ? `${data.name} ${data.surname}` : data.userName}
         </p>
       </div>
       <div className={styles.balanceSection}>

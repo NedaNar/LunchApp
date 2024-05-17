@@ -228,6 +228,7 @@ function RegisterForm() {
                   label="Create password"
                   name="Password"
                   type="password"
+                  placeholder="••••••••••"
                   onBlur={() => handleBlur(FieldName.PASSWORD)}
                 />
                 <Input
@@ -238,6 +239,7 @@ function RegisterForm() {
                   label="Repeat password"
                   name="RepeatPassword"
                   type="password"
+                  placeholder="••••••••••"
                   onBlur={() => handleBlur(FieldName.REPEAT_PASSWORD)}
                 />
               </div>
@@ -260,7 +262,7 @@ function RegisterForm() {
               </div>
             </div>
             <Button
-              text="Create account"
+              text="Create Account"
               appearance={ButtonAppearance.PRIMARY}
               size={ButtonSize.MEDIUM}
               buttonType={ButtonType.SUBMIT}

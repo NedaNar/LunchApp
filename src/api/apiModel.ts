@@ -68,7 +68,7 @@ export function createUserData(
   name = '',
   surname = '',
   balance = 0,
-  img?: string,
+  img = '',
   orders: Order[] = [],
   orderHistory: OrderHistoryItem[] = []
 ): UserData {
