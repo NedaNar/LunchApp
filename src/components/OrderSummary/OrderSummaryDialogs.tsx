@@ -10,20 +10,28 @@ export enum OrderStatus {
 export interface OrderSummaryDialogsProps {
   orderStatus: OrderStatus | null;
   setOrderStatus: (value: null | OrderStatus) => void;
+  onClose: () => void;
 }
 
 export default function OrderSummaryDialogs({
   orderStatus,
+  onClose,
   setOrderStatus,
 }: OrderSummaryDialogsProps) {
   if (orderStatus === OrderStatus.SUCCESS) {
     return (
       <Dialog
         primaryButtonText="Cool, Thanks!"
-        onClose={() => setOrderStatus(null)}
+        onClose={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         title="We've got your lunch order!"
         icon={DialogIcon.SUCCESS}
-        onPrimaryButtonClick={() => setOrderStatus(null)}
+        onPrimaryButtonClick={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         isCloseButtonVisible>
         <p>Order has been placed successfully.</p>
         <p>
@@ -38,10 +46,16 @@ export default function OrderSummaryDialogs({
     return (
       <Dialog
         primaryButtonText="OK"
-        onClose={() => setOrderStatus(null)}
+        onClose={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         title="Not enough balance!"
         icon={DialogIcon.WARNING}
-        onPrimaryButtonClick={() => setOrderStatus(null)}
+        onPrimaryButtonClick={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         isCloseButtonVisible>
         You do not have enough balance available to complete this order.
       </Dialog>
@@ -52,10 +66,16 @@ export default function OrderSummaryDialogs({
     return (
       <Dialog
         primaryButtonText="OK"
-        onClose={() => setOrderStatus(null)}
+        onClose={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         title="An error occured!"
         icon={DialogIcon.WARNING}
-        onPrimaryButtonClick={() => setOrderStatus(null)}
+        onPrimaryButtonClick={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         isCloseButtonVisible>
         This is on us. Sorry for the inconvenience.
       </Dialog>
@@ -66,10 +86,16 @@ export default function OrderSummaryDialogs({
     return (
       <Dialog
         primaryButtonText="OK"
-        onClose={() => setOrderStatus(null)}
+        onClose={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         title="Friday's meals are already booked! "
         icon={DialogIcon.WARNING}
-        onPrimaryButtonClick={() => setOrderStatus(null)}
+        onPrimaryButtonClick={() => {
+          setOrderStatus(null);
+          onClose();
+        }}
         isCloseButtonVisible>
         <p>
           Meals for Friday are already booked.

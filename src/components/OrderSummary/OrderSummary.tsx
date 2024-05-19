@@ -27,6 +27,8 @@ export default function OrderSummary() {
   const { items, expanded, setExpanded, removeAllItems, setBalance } = useContext(cartContext);
   const { data } = useFetch<UserData[]>(Endpoint.USERS);
 
+  const [isConfirmed, setIsConfirmed] = useState(false);
+
   const mappedMealsByDay = groupMealByDay(items);
   const totalPrice = calculateAndFormatTotalCartPrice(items);
 
@@ -81,7 +83,13 @@ export default function OrderSummary() {
 
   return (
     <>
-      <OrderSummaryDialogs orderStatus={orderStatus} setOrderStatus={setOrderStatus} />
+      <OrderSummaryDialogs
+        onClose={() => {
+          setIsConfirmed(false);
+        }}
+        orderStatus={orderStatus}
+        setOrderStatus={setOrderStatus}
+      />
       <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
         <header className={styles.orderSummaryTitle}>
           <h1 className={styles.orderSummaryTitleText}>Order Summary</h1>
@@ -109,7 +117,12 @@ export default function OrderSummary() {
               <span className={styles.orderSummaryFooterContentPriceAmount}>€{totalPrice}</span>
             </article>
           </div>
-          <PressAndHoldButton disabled={items.length === 0} onConfirm={handleCheckout} />
+          <PressAndHoldButton
+            setIsConfirmed={setIsConfirmed}
+            isConfirmed={isConfirmed}
+            disabled={items.length === 0}
+            onConfirm={handleCheckout}
+          />
         </footer>
       </aside>
     </>
