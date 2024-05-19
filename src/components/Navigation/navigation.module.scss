@@ -11,23 +11,16 @@ $border-radius-navItem-expanded: 1.2rem;
 // ________NAVIGATION ITEM STYLE_________________
 
 .navItem {
-  width: 6rem;
-  display: flex;
-  justify-content: center;
+  width: 18.1rem;
   padding: 0;
-  border-radius: $border-radius-navItem-collapsed;
   background-color: $color-primary-800;
   color: $color-white;
-
-  @include for-tablet-landscape-up {
-    width: 18.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    border-radius: $border-radius-navItem-expanded;
-    padding: $space-XXXXXS $space-XXXS;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border-radius: $border-radius-navItem-expanded;
+  padding: $space-XXXXXS $space-XXXS;
 }
 
 .navTitle {
@@ -52,17 +45,16 @@ $border-radius-navItem-expanded: 1.2rem;
     @include label-XXS;
   }
 
-  @include for-tablet-landscape-up {
-    display: flex;
-    flex-direction: row;
-    gap: $space-XXXS;
+  // @include for-tablet-landscape-up {
+  display: flex;
+  flex-direction: row;
+  gap: $space-XXXS;
 
-    span {
-      min-height: 2.8rem;
-      align-content: center;
+  span {
+    min-height: 2.8rem;
+    align-content: center;
 
-      @include label-S;
-    }
+    @include label-S;
   }
 }
 
@@ -90,6 +82,11 @@ $border-radius-navItem-expanded: 1.2rem;
 }
 .navBurger {
   display: block;
+  margin-left: -13rem;
+
+  &Collapsed {
+    margin-left: 0;
+  }
 
   @include for-tablet-landscape-up {
     display: none;
@@ -129,7 +126,7 @@ $border-radius-navItem-expanded: 1.2rem;
   }
 
   .nav {
-    width: 6.3rem;
+    width: 19.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,12 +134,7 @@ $border-radius-navItem-expanded: 1.2rem;
     overflow: clip;
     gap: $space-S;
     transition: $transition;
-
-    @include for-tablet-landscape-up {
-      width: 19.4rem;
-    }
   }
-
   .navLogo {
     cursor: pointer;
     padding: $space-14;
