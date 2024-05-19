@@ -36,6 +36,10 @@ button {
 }
 ::-webkit-scrollbar-thumb {
   @include webkit-scrollbar-thumb;
-  
+
   border: 0.1rem solid $color-grey-300;
+}
+
+::-webkit-scrollbar:horizontal {
+  display: none;
 }

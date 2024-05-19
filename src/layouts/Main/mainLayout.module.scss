@@ -78,7 +78,7 @@
     margin-left: auto;
     height: 3.8rem;
     width: auto;
-    margin-right: 1.4rem;
+    margin-right: $space-XXS;
   }
 
   @include for-tablet-landscape-up {
@@ -102,7 +102,6 @@
 
 .order {
   overflow-x: hidden;
-  padding-bottom: 3rem;
-  padding-left: 0.5rem;
-  // box-sizing: content-box;
+  padding-bottom: $space-M;
+  padding-left: $space-XXXXS;
 }
