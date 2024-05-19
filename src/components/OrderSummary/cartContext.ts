@@ -20,6 +20,7 @@ export interface CartContext {
   addToCart: (meal: CartItem) => void;
   removeFromCart: (toRemoveItem: MealItem) => void;
   setExpanded: (value: boolean) => void;
+  toggleSummaryRef: React.RefObject<HTMLButtonElement> | null;
 }
 
 export default createContext({
@@ -28,4 +29,5 @@ export default createContext({
   removeFromCart: () => {},
   expanded: true,
   setExpanded: () => {},
+  toggleSummaryRef: null,
 } as CartContext);

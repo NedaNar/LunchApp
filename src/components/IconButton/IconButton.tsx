@@ -27,6 +27,7 @@ export interface IconButtonProps {
   type?: IconButtonType;
   icon?: IconButtonIcon;
   disabled?: boolean;
+  buttonRef?: React.RefObject<HTMLButtonElement> | null;
   onClick?: () => void;
 }
 
@@ -36,6 +37,7 @@ function IconButton({
   icon = IconButtonIcon.ARROW,
   disabled,
   onClick,
+  buttonRef = null,
 }: IconButtonProps) {
   const buttonClassName = `${styles.iconButton} ${styles[type]} ${styles[size]} ${disabled ? styles.disabled : ''}`;
 
@@ -71,6 +73,7 @@ function IconButton({
 
   return (
     <button
+      ref={buttonRef}
       type="button"
       className={`centered-flexbox ${buttonClassName}`}
       onClick={onClick}

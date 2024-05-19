@@ -30,7 +30,7 @@ export default function DayItems({ day, items }: DayItemsProps) {
               </div>
             </div>
             <div className={styles.dayItemsListItemRight}>
-              <p>{day === FREE_MEEL_DAY ? 'Free' : `€${item.price}`}</p>
+              <p>{day === FREE_MEEL_DAY ? 'Free' : `€${String(item.price).replace('.', ',')}`}</p>
               <DeleteIcon onClick={() => cart.removeFromCart(item)} />
             </div>
           </div>

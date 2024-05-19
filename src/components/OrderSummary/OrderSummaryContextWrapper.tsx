@@ -21,13 +21,18 @@ export default function OrderSummaryContextWrapper({
     JSON.parse(localStorage.getItem(LocalStorageKeys.CART_ITEMS) ?? '[]')
   );
   const cartToast = useRef<ToastRefObject>(null);
+  const toggleSummaryRef = useRef<HTMLButtonElement>(null);
 
   const cart = useMemo(
     () => ({
       items: cartItems,
       setCartItems,
       expanded: cartExpanded,
-      setExpanded: setCartExpanded,
+      setExpanded: (value: boolean) => {
+        if (!value) toggleSummaryRef.current?.focus();
+        setCartExpanded(value);
+      },
+      toggleSummaryRef,
 
       addToCart: (item: { selectedDay: string; meal: MealItem }) => {
         setCartItems((prev: CartItem[]) => {
@@ -59,7 +64,7 @@ export default function OrderSummaryContextWrapper({
         });
       },
     }),
-    [cartItems, cartExpanded]
+    [cartItems, cartExpanded, toggleSummaryRef]
   );
 
   useEffect(() => {

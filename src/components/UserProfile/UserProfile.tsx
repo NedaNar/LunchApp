@@ -23,7 +23,9 @@ function UserProfile() {
   const formattedBalance = new Intl.NumberFormat('en-DE', {
     style: 'currency',
     currency: 'EUR',
-  }).format(data.balance);
+  })
+    .format(data.balance)
+    .replace('.', ',');
 
   const handleClick = () => {};
 
@@ -54,6 +56,7 @@ function UserProfile() {
         <div className={styles.line} />
         <div className={styles.cartOrders}>
           <IconButton
+            buttonRef={cart.toggleSummaryRef}
             onClick={() => cart.setExpanded(true)}
             type={IconButtonType.OUTLINED}
             icon={IconButtonIcon.CART}

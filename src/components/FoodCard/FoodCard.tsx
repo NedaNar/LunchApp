@@ -33,7 +33,9 @@ function FoodCard({
   const formattedPrice = Intl.NumberFormat('en-DE', {
     style: 'currency',
     currency: 'EUR',
-  }).format(price);
+  })
+    .format(price)
+    .replace('.', ',');
 
   const hasRating = typeof rating === 'number';
   const formattedRating = hasRating ? rating.toFixed(1) : rating;
