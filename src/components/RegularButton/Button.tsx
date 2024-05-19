@@ -51,7 +51,7 @@ function Button({
   text,
   appearance,
   size,
-  onClick = () => {},
+  onClick,
   icon = ButtonIcon.NONE,
   disabled,
   buttonType = ButtonType.BUTTON,

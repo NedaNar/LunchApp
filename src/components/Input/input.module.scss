@@ -16,6 +16,10 @@ $space-7: 0.7rem;
   position: relative;
   gap: $space-XXXXXS;
 
+  .inputWrapper {
+    width: 100%;
+  }
+
   .input {
     width: 100%;
     padding: $space-7 $space-XXXS;
@@ -24,6 +28,7 @@ $space-7: 0.7rem;
     outline: none;
     color: $color-grey-input-text;
     transition: 0.1s;
+    position: relative;
 
     @include body-M;
 
@@ -49,9 +54,10 @@ $space-7: 0.7rem;
 
     &Icon {
       position: absolute;
-      top: 3.25rem;
+      top: 3.5rem;
       left: 1.25rem;
       gap: 1rem;
+      z-index: 100;
 
       path {
         fill: $color-grey-400;
