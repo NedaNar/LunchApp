@@ -6,7 +6,7 @@ interface PutResult<T> {
   responseData: T | null;
   loading: boolean;
   error: boolean;
-  putData: (id: string, data: T) => void;
+  putData: (data: T, id: string) => void;
 }
 
 function usePatch<T>(endpoint: Endpoint): PutResult<T> {

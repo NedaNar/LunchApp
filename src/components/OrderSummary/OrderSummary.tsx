@@ -3,27 +3,25 @@ import styles from './orderSummary.module.scss';
 import cartContext from './cartContext';
 import EmptyCart from './EmptyCart';
 import DayItems from './DayItem';
-import { calculateAndFormatTotalCartPrice, groupMealByDay } from '../../utils/orderSummaryHelpers';
+import {
+  FREE_MEEL_DAY,
+  calculateAndFormatTotalCartPrice,
+  calculateNewBalance,
+  groupMealByDay,
+  mergeUserOrders,
+} from '../../utils/orderSummaryHelpers';
 import PressAndHoldButton from '../PressAndHoldButton/PressAndHoldButton';
 import IconButton, {
   IconButtonSize,
   IconButtonType,
   IconButtonIcon,
 } from '../IconButton/IconButton';
-import Dialog, { DialogIcon } from '../Dialog/Dialog';
+import OrderSummaryDialogs, { OrderStatus } from './OrderSummaryDialogs';
 import useFetch from '../../api/useDataFetching';
 import { Endpoint } from '../../api/endpoints';
 import { UserData } from '../../api/apiModel';
 import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 import usePatch from '../../api/useDataPatching';
-
-export enum OrderStatus {
-  SUCCESS = 'success',
-  NOT_ENOUGH_BALANCE = 'not_enough_balance',
-  ERROR = 'error',
-  EMPTY = 'empty_cart',
-  FRIDAY_MEAL_ALREADY_BOOKED = 'Friday_already_booked',
-}
 
 export default function OrderSummary() {
   const { items, expanded, setExpanded, removeAllItems, setBalance } = useContext(cartContext);
@@ -37,50 +35,35 @@ export default function OrderSummary() {
 
   const [intermediateBalance, setIntermediateBalance] = useState<number | null>(null);
 
-  const calculateNewBalance = (user: UserData, totalPrice: number) =>
-    Number((user.balance - totalPrice).toFixed(2));
-
   const handleCheckout = async () => {
     const loggedInUserId = JSON.parse(sessionStorage.getItem(SessionStorageKeys.TOKEN) ?? '{}')?.id;
-    const user = data?.find((u) => u.id == loggedInUserId);
+    const user = data?.find((u) => u.id === loggedInUserId);
     if (!user) return;
 
-    if ((user.balance ?? 0) < Number(totalPrice))
-      return setOrderStatus(OrderStatus.NOT_ENOUGH_BALANCE);
-
-    if (!items.length) return setOrderStatus(OrderStatus.EMPTY);
+    if ((user.balance ?? 0) < Number(totalPrice)) {
+      setOrderStatus(OrderStatus.NOT_ENOUGH_BALANCE);
+      return;
+    }
 
     const newBalance = calculateNewBalance(user, Number(totalPrice));
     setIntermediateBalance(newBalance);
 
     const existingOrders = user.orders || [];
 
-    if (existingOrders.some((order) => order.weekDay === 'Friday')) {
+    if (
+      existingOrders.some((order) => order.weekDay === FREE_MEEL_DAY) &&
+      items.some((item) => item.selectedDay === FREE_MEEL_DAY)
+    ) {
       setOrderStatus(OrderStatus.FRIDAY_MEAL_ALREADY_BOOKED);
       return;
     }
 
-    const existingOrdersMap = new Map(
-      existingOrders.map((order) => [order.weekDay, order.mealIds])
-    );
-    for (const day of Object.keys(mappedMealsByDay)) {
-      const newMealIds = mappedMealsByDay[day].map((meal) => Number(meal.id));
-      const existingMealIds = existingOrdersMap.get(day) || [];
-      const mergedMealIds = [...new Set([...existingMealIds, ...newMealIds])];
-      existingOrdersMap.set(day, mergedMealIds);
-    }
-
-    const updatedOrders = Array.from(existingOrdersMap.entries()).map(([weekDay, mealIds]) => ({
-      weekDay,
-      mealIds,
-    }));
-
+    const mergedOrders = mergeUserOrders(existingOrders, items);
     const updatedUserData: UserData = {
       ...user,
       balance: newBalance,
-      orders: updatedOrders,
+      orders: mergedOrders,
     };
-
     putData(updatedUserData, loggedInUserId);
   };
 
@@ -98,78 +81,7 @@ export default function OrderSummary() {
 
   return (
     <>
-      {orderStatus === OrderStatus.SUCCESS && (
-        <Dialog
-          primaryButtonText="Cool, Thanks!"
-          onClose={() => setOrderStatus(null)}
-          title="We've got your lunch order!"
-          icon={DialogIcon.SUCCESS}
-          onPrimaryButtonClick={() => setOrderStatus(null)}
-          isCloseButtonVisible>
-          <p>Order has been placed successfully.</p>
-          <p>
-            You can view lunch for the week in <br />
-            <b>Your Orders</b>
-          </p>
-        </Dialog>
-      )}
-
-      {orderStatus === OrderStatus.NOT_ENOUGH_BALANCE && (
-        <Dialog
-          primaryButtonText="OK"
-          onClose={() => setOrderStatus(null)}
-          title="Not enough balance!"
-          icon={DialogIcon.WARNING}
-          onPrimaryButtonClick={() => setOrderStatus(null)}
-          isCloseButtonVisible>
-          You do not have enough balance available to complete this order.
-        </Dialog>
-      )}
-
-      {orderStatus === OrderStatus.EMPTY && (
-        <Dialog
-          primaryButtonText="OK"
-          onClose={() => setOrderStatus(null)}
-          title="Your cart empty"
-          icon={DialogIcon.INFO}
-          onPrimaryButtonClick={() => setOrderStatus(null)}
-          isCloseButtonVisible>
-          Your cart is empty! Plese choose the meal from Menu.
-        </Dialog>
-      )}
-
-      {orderStatus === OrderStatus.ERROR && (
-        <Dialog
-          primaryButtonText="OK"
-          onClose={() => setOrderStatus(null)}
-          title="An error occured!"
-          icon={DialogIcon.WARNING}
-          onPrimaryButtonClick={() => setOrderStatus(null)}
-          isCloseButtonVisible>
-          This is on us. Sorry for the inconvenience.
-        </Dialog>
-      )}
-
-      {orderStatus === OrderStatus.FRIDAY_MEAL_ALREADY_BOOKED && (
-        <Dialog
-          primaryButtonText="OK"
-          onClose={() => setOrderStatus(null)}
-          title="Friday's meals are already booked! "
-          icon={DialogIcon.WARNING}
-          onPrimaryButtonClick={() => setOrderStatus(null)}
-          isCloseButtonVisible>
-          <p>
-            Friday's meals are already booked.
-            <br />
-            <b>Remove it from the basket</b>
-          </p>
-          <p>
-            You can view lunch for the week in <br />
-            <b>Your Orders</b>
-          </p>
-        </Dialog>
-      )}
-
+      <OrderSummaryDialogs orderStatus={orderStatus} setOrderStatus={setOrderStatus} />
       <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
         <header className={styles.orderSummaryTitle}>
           <h1 className={styles.orderSummaryTitleText}>Order Summary</h1>
@@ -197,7 +109,7 @@ export default function OrderSummary() {
               <span className={styles.orderSummaryFooterContentPriceAmount}>€{totalPrice}</span>
             </article>
           </div>
-          <PressAndHoldButton onConfirm={handleCheckout} />
+          <PressAndHoldButton disabled={items.length === 0} onConfirm={handleCheckout} />
         </footer>
       </aside>
     </>

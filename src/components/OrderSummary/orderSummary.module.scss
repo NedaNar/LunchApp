@@ -6,7 +6,7 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
   min-width: 28.3rem;
   max-width: 28.3rem;
   min-height: 43.4rem;
-  height: calc(100vh - 24rem);
+  max-height: calc(100vh - 24rem);
   padding: $space-XS;
   padding-right: $space-XXXXXS;
   background-color: $color-white;
