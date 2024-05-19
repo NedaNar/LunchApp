@@ -58,21 +58,6 @@ export function checkForFridayMeal(
 }
 
 export function mergeUserOrders(existingOrders: Order[], items: CartItem[]) {
-  // const existingOrdersMap = new Map(
-  //   existingOrders.map((order) => [order.weekDay, order.mealIds])
-  // );
-  // for (const day of Object.keys(mappedMealsByDay)) {
-  //   const newMealIds = mappedMealsByDay[day].map((meal) => Number(meal.id));
-  //   const existingMealIds = existingOrdersMap.get(day) || [];
-  //   const mergedMealIds = [...new Set([...existingMealIds, ...newMealIds])];
-  //   existingOrdersMap.set(day, mergedMealIds);
-  // }
-
-  // const updatedOrders = Array.from(existingOrdersMap.entries()).map(([weekDay, mealIds]) => ({
-  //   weekDay,
-  //   mealIds,
-  // }));
-
   const mergedOrders = [...existingOrders];
   items.forEach((item) => {
     const maybeIndex = mergedOrders.findIndex((order) => order.weekDay === item.selectedDay);
