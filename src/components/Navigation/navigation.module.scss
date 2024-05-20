@@ -45,7 +45,6 @@ $border-radius-navItem-expanded: 1.2rem;
     @include label-XXS;
   }
 
-  // @include for-tablet-landscape-up {
   display: flex;
   flex-direction: row;
   gap: $space-XXXS;
