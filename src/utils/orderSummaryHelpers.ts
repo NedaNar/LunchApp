@@ -1,6 +1,3 @@
-// USECASE:
-// npm install uuid
-
 import { v4 as uuidv4 } from 'uuid';
 import { DishType } from '../components/FoodCard/helpers';
 import { CartItem, MealItem } from '../components/OrderSummary/cartContext';
