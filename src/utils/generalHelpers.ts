@@ -5,4 +5,5 @@ export function formatCurrency(number: number) {
   }).format(number);
 }
 
-// ar daryt en-US + .replace('.', ',')  ar 'de-DE';
+// Šis komentaras bus ištrintas prieš sumerginant į developerį
+// standarinio Intl.NumberFormat  'de-DE'outputas (55,55 €) ,o  'en-US' outputas (€55.55)  nzn kaip formatuot, nebent su .replace('.', ',')  ;
