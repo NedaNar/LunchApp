@@ -1,3 +1,4 @@
+import FocusTrap from 'focus-trap-react';
 import styles from './dialog.module.scss';
 import { Button, ButtonAppearance, ButtonSize } from '../RegularButton/Button';
 import IconButton, { IconButtonType, IconButtonIcon } from '../IconButton/IconButton';
@@ -58,40 +59,42 @@ function Dialog({
 
   return (
     <div className={styles.dialogOverlay}>
-      <dialog open className={`${styles.dialogWrapper} ${styles[size]}`}>
-        <div className={styles.dialogBody}>
-          <header className={styles.dialogHeader}>
-            <p>{title}</p>
-            {isCloseButtonVisible && (
-              <IconButton
-                type={IconButtonType.TERTIARY}
-                icon={IconButtonIcon.CLOSE}
-                onClick={onClose}
+      <FocusTrap>
+        <dialog open className={`${styles.dialogWrapper} ${styles[size]}`}>
+          <div className={styles.dialogBody}>
+            <header className={styles.dialogHeader}>
+              <p>{title}</p>
+              {isCloseButtonVisible && (
+                <IconButton
+                  type={IconButtonType.TERTIARY}
+                  icon={IconButtonIcon.CLOSE}
+                  onClick={onClose}
+                />
+              )}
+            </header>
+            <div className={dialogSubBodyClass}>
+              {showIcon(icon) && <figure>{showIcon(icon)}</figure>}
+              <p>{children}</p>
+            </div>
+          </div>
+          <footer className={styles.dialogButtonWrapper}>
+            {secondaryButton && (
+              <Button
+                text={secondaryButtonText}
+                appearance={ButtonAppearance.SECONDARY}
+                size={ButtonSize.MEDIUM}
+                onClick={() => {}}
               />
             )}
-          </header>
-          <div className={dialogSubBodyClass}>
-            {showIcon(icon) && <figure>{showIcon(icon)}</figure>}
-            <p>{children}</p>
-          </div>
-        </div>
-        <footer className={styles.dialogButtonWrapper}>
-          {secondaryButton && (
             <Button
-              text={secondaryButtonText}
-              appearance={ButtonAppearance.SECONDARY}
+              text={primaryButtonText}
+              appearance={ButtonAppearance.PRIMARY}
               size={ButtonSize.MEDIUM}
-              onClick={() => {}}
+              onClick={onPrimaryButtonClick}
             />
-          )}
-          <Button
-            text={primaryButtonText}
-            appearance={ButtonAppearance.PRIMARY}
-            size={ButtonSize.MEDIUM}
-            onClick={onPrimaryButtonClick}
-          />
-        </footer>
-      </dialog>
+          </footer>
+        </dialog>
+      </FocusTrap>
     </div>
   );
 }
