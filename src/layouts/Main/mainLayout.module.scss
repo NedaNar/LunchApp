@@ -1,7 +1,7 @@
 @import '../../styles/_tools.scss';
 
 .container {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-color: $color-grey-100;
   display: flex;
@@ -29,7 +29,7 @@
 
     &--cartExpanded {
       display: flex;
-      padding-right: 34rem;
+      padding-right: 30rem;
       transition: $transition;
     }
   }
