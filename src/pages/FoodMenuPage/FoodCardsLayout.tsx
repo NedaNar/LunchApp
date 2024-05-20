@@ -21,7 +21,6 @@ function FoodCardsLayout() {
   const [selectedVendorState, setSelectedVendorState] = useState<number | null>(null);
   const [showClearFiltersButton, setShowClearFiltersButton] = useState(false);
   const [sortBy, setSortBy] = useState<SortTerm>(SortTerm.POPULARITY);
-  const [whichSortSelected, setWhichSortSelected] = useState<SortTerm>(SortTerm.POPULARITY);
 
   const { data: mealData, loading, error } = useFetch<MealData[]>(Endpoint.MEALS);
   const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
@@ -55,11 +54,11 @@ function FoodCardsLayout() {
     switch (sortBy) {
       case SortTerm.POPULARITY:
         updateFilteredMeals.sort((a, b) => b.orderCount - a.orderCount);
-        setWhichSortSelected(SortTerm.POPULARITY);
+        setSortBy(SortTerm.POPULARITY);
         break;
       case SortTerm.PRICE:
         updateFilteredMeals.sort((a, b) => a.price - b.price);
-        setWhichSortSelected(SortTerm.PRICE);
+        setSortBy(SortTerm.PRICE);
         break;
       case SortTerm.RATING:
         updateFilteredMeals.sort((a, b) => {
@@ -71,7 +70,7 @@ function FoodCardsLayout() {
           if (ratingB === 'Not rated') return -1;
           return ratingB - ratingA;
         });
-        setWhichSortSelected(SortTerm.RATING);
+        setSortBy(SortTerm.RATING);
         break;
       default:
         updateFilteredMeals.sort((a, b) => b.orderCount - a.orderCount);
@@ -131,7 +130,7 @@ function FoodCardsLayout() {
         clearFiltersButton={showClearFiltersButton}
         onClearFiltersButtonClick={handleClearFiltersButtonClick}
         onSortChange={handleSortChange}
-        selectedSort={whichSortSelected}
+        selectedSort={sortBy}
       />
 
       <div className={styles.cardsContainer}>
