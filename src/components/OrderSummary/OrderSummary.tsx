@@ -42,7 +42,7 @@ export default function OrderSummary() {
         <div className={styles.orderSummaryFooterContent}>
           <article className={styles.orderSummaryFooterContentPrice}>
             <p className={styles.orderSummaryFooterContentPriceText}>Total Price</p>
-            <span className={styles.orderSummaryFooterContentPriceAmount}>€{totalPrice}</span>
+            <span className={styles.orderSummaryFooterContentPriceAmount}>{totalPrice}</span>
           </article>
         </div>
         <PressAndHoldButton onConfirm={() => {}} />

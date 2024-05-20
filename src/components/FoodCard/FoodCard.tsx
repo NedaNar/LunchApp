@@ -4,6 +4,7 @@ import SolarStarIcon from '../../assets/static/icons/icon_solar-star.svg?react';
 import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
 import { getFoodIcon, DishType } from './helpers';
+import { formatCurrency } from '../../utils/generalHelpers';
 
 export interface FoodCardProps {
   title: string;
@@ -30,12 +31,7 @@ function FoodCard({
   weekday,
   handleAddToCart,
 }: FoodCardProps) {
-  const formattedPrice = Intl.NumberFormat('en-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  })
-    .format(price)
-    .replace('.', ',');
+  const formattedPrice = formatCurrency(price);
 
   const hasRating = typeof rating === 'number';
   const formattedRating = hasRating ? rating.toFixed(1) : rating;

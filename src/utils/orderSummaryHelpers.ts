@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { DishType } from '../components/FoodCard/helpers';
 import { CartItem, MealItem } from '../components/OrderSummary/cartContext';
+import { formatCurrency } from './generalHelpers';
 
 interface ReduceAccumulator {
   [key: string]: MealItem[];
@@ -24,10 +25,11 @@ export function generateUniqueId(): string {
   return `order-${uuidv4()}`;
 }
 export function calculateAndFormatTotalCartPrice(items: CartItem[]) {
-  return items
-    .reduce((sum, item) => (item.selectedDay !== FREE_MEEL_DAY ? item.meal.price + sum : sum), 0)
-    .toFixed(2)
-    .replace('.', ',');
+  const total = items.reduce(
+    (sum, item) => (item.selectedDay !== FREE_MEEL_DAY ? item.meal.price + sum : sum),
+    0
+  );
+  return formatCurrency(total);
 }
 
 export function checkForFridayMeal(

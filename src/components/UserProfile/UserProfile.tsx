@@ -8,6 +8,7 @@ import styles from './userProfile.module.scss';
 import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 import useAuth from '../LoginForm/AuthenticationLogic/useAuth';
 import { Endpoint } from '../../api/endpoints';
+import { formatCurrency } from '../../utils/generalHelpers';
 
 function UserProfile() {
   const token = useAuth();
@@ -20,12 +21,7 @@ function UserProfile() {
 
   if (!data) return null;
 
-  const formattedBalance = new Intl.NumberFormat('en-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  })
-    .format(data.balance)
-    .replace('.', ',');
+  const formattedBalance = formatCurrency(data.balance);
 
   const handleClick = () => {};
 
