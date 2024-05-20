@@ -4,6 +4,12 @@ import styles from './filters.module.scss';
 import { Button, ButtonAppearance, ButtonSize, ButtonType } from '../RegularButton/Button';
 import ReusableDropdown, { DropdownItem } from './ReusableDropdown';
 
+export enum SortTerm {
+  POPULARITY = 'popularity',
+  PRICE = 'price',
+  RATING = 'rating',
+}
+
 interface FiltersProps {
   sort?: boolean;
   onSearchButtonClick: (searchTerm: string, selectedVendor: number | null) => void;
@@ -12,6 +18,8 @@ interface FiltersProps {
   selectedVendor: number | null;
   clearFiltersButton: boolean;
   onClearFiltersButtonClick: () => void;
+  onSortChange: (sortBy: SortTerm) => void;
+  selectedSort: SortTerm;
 }
 
 function Filters({
@@ -22,6 +30,8 @@ function Filters({
   selectedVendor,
   clearFiltersButton = false,
   onClearFiltersButtonClick,
+  onSortChange,
+  selectedSort,
 }: FiltersProps) {
   const [searchInput, setSearchInput] = useState<string>('');
 
@@ -41,6 +51,10 @@ function Filters({
   const handleClearFiltersButtonClick = () => {
     onClearFiltersButtonClick();
     setSearchInput('');
+  };
+
+  const handleSortChange = (sortBy: SortTerm) => {
+    onSortChange(sortBy);
   };
 
   return (
@@ -92,23 +106,35 @@ function Filters({
           <p className={styles.title}>Sort by</p>
           <Button
             text="POPULARITY"
-            appearance={ButtonAppearance.SECONDARY}
+            appearance={
+              selectedSort === SortTerm.POPULARITY
+                ? ButtonAppearance.SECONDARY
+                : ButtonAppearance.TERTIARY
+            }
             size={ButtonSize.XSMALL}
-            onClick={() => {}}
+            onClick={() => handleSortChange(SortTerm.POPULARITY)}
             buttonType={ButtonType.SUBMIT}
           />
           <Button
             text="PRICE"
-            appearance={ButtonAppearance.TERTIARY}
+            appearance={
+              selectedSort === SortTerm.PRICE
+                ? ButtonAppearance.SECONDARY
+                : ButtonAppearance.TERTIARY
+            }
             size={ButtonSize.XSMALL}
-            onClick={() => {}}
+            onClick={() => handleSortChange(SortTerm.PRICE)}
             buttonType={ButtonType.SUBMIT}
           />
           <Button
             text="RATING"
-            appearance={ButtonAppearance.TERTIARY}
+            appearance={
+              selectedSort === SortTerm.RATING
+                ? ButtonAppearance.SECONDARY
+                : ButtonAppearance.TERTIARY
+            }
             size={ButtonSize.XSMALL}
-            onClick={() => onSearchButtonClick}
+            onClick={() => handleSortChange(SortTerm.RATING)}
             buttonType={ButtonType.SUBMIT}
           />
         </div>

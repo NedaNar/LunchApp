@@ -9,7 +9,7 @@ import {
   StaticNotification,
 } from '../../components/Notifications/StaticNotification/StaticNotification';
 import { STOP_ORDERS_HOUR, getCurrentWeekdayName } from '../../utils/dateUtils';
-import Filters from '../../components/Filters/Filters';
+import Filters, { SortTerm } from '../../components/Filters/Filters';
 import cartContext from '../../components/OrderSummary/cartContext';
 import { Endpoint } from '../../api/endpoints';
 
@@ -20,10 +20,22 @@ function FoodCardsLayout() {
   const [selectedDay, setSelectedDay] = useState<string>(getCurrentWeekdayName());
   const [selectedVendorState, setSelectedVendorState] = useState<number | null>(null);
   const [showClearFiltersButton, setShowClearFiltersButton] = useState(false);
+  const [sortBy, setSortBy] = useState<SortTerm>(SortTerm.POPULARITY);
+  const [whichSortSelected, setWhichSortSelected] = useState<SortTerm>(SortTerm.POPULARITY);
 
   const { data: mealData, loading, error } = useFetch<MealData[]>(Endpoint.MEALS);
   const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
   const { data: ratingData } = useFetch<RatingData[]>(Endpoint.RATINGS);
+
+  const getRating = (mealId: string): number | 'Not rated' => {
+    const ratings = ratingData?.filter((item) => item.mealId.toString() === mealId);
+
+    if (!ratings || !ratings.length) return 'Not rated';
+
+    const totalRating = ratings.reduce((acc, curr) => acc + curr.rating.rating, 0);
+    const averageTotalRating = totalRating / ratings.length;
+    return averageTotalRating || 'Not rated';
+  };
 
   const filterMeals = (searchTerm: string, vendorId: number | null) => {
     let updateFilteredMeals = mealData || [];
@@ -40,6 +52,32 @@ function FoodCardsLayout() {
       );
     }
 
+    switch (sortBy) {
+      case SortTerm.POPULARITY:
+        updateFilteredMeals.sort((a, b) => b.orderCount - a.orderCount);
+        setWhichSortSelected(SortTerm.POPULARITY);
+        break;
+      case SortTerm.PRICE:
+        updateFilteredMeals.sort((a, b) => a.price - b.price);
+        setWhichSortSelected(SortTerm.PRICE);
+        break;
+      case SortTerm.RATING:
+        updateFilteredMeals.sort((a, b) => {
+          const ratingA: number | 'Not rated' = getRating(a.id);
+          const ratingB: number | 'Not rated' = getRating(b.id);
+
+          if (ratingA === 'Not rated' && ratingB === 'Not rated') return 0;
+          if (ratingA === 'Not rated') return 1;
+          if (ratingB === 'Not rated') return -1;
+          return ratingB - ratingA;
+        });
+        setWhichSortSelected(SortTerm.RATING);
+        break;
+      default:
+        updateFilteredMeals.sort((a, b) => b.orderCount - a.orderCount);
+        break;
+    }
+
     setFilteredMeals(updateFilteredMeals);
   };
 
@@ -54,7 +92,7 @@ function FoodCardsLayout() {
 
   useEffect(() => {
     filterMeals('', null);
-  }, [mealData, selectedDay]);
+  }, [mealData, selectedDay, sortBy]);
 
   const handleTabChange = (day: string) => {
     setSelectedDay(day);
@@ -68,16 +106,6 @@ function FoodCardsLayout() {
     return vendor ? vendor.name : '';
   };
 
-  const getRating = (mealId: string) => {
-    const ratings = ratingData?.filter((item) => item.mealId.toString() === mealId);
-
-    if (!ratings) return '';
-    if (!ratings?.length) return 'Not rated';
-
-    const totalRating = ratings.reduce((acc, curr) => acc + curr.rating.rating, 0);
-    return totalRating / ratings.length;
-  };
-
   const transformVendorData = (vendorsData: VendorData[] | null) =>
     vendorsData?.map((vendor) => ({ id: parseInt(vendor.id, 10), name: vendor.name })) || [];
 
@@ -85,6 +113,10 @@ function FoodCardsLayout() {
     filterMeals('', null);
     setSelectedVendorState(null);
     setShowClearFiltersButton(false);
+  };
+
+  const handleSortChange = (sortyBy: SortTerm) => {
+    setSortBy(sortyBy);
   };
 
   return (
@@ -98,6 +130,8 @@ function FoodCardsLayout() {
         selectedVendor={selectedVendorState}
         clearFiltersButton={showClearFiltersButton}
         onClearFiltersButtonClick={handleClearFiltersButtonClick}
+        onSortChange={handleSortChange}
+        selectedSort={whichSortSelected}
       />
 
       <div className={styles.cardsContainer}>
