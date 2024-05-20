@@ -68,6 +68,10 @@
       width: 100%;
       justify-content: space-between;
 
+      @include for-tablet-portraitM-up {
+        margin-bottom: $space-XXS;
+      }
+
       p {
         @include headline-S;
       }
@@ -115,5 +119,9 @@
     align-items: center;
     justify-content: flex-end;
     gap: 1.5rem;
+
+    @include for-tablet-portraitM-up {
+      margin-top: $space-S;
+    }
   }
 }
