@@ -8,6 +8,7 @@ import styles from './userProfile.module.scss';
 import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 import useAuth from '../LoginForm/AuthenticationLogic/useAuth';
 import { Endpoint } from '../../api/endpoints';
+import AccountIcon from '../../assets/static/icons/icon_account.svg?react';
 import { formatCurrency } from '../../utils/generalHelpers';
 
 function UserProfile() {
@@ -28,12 +29,10 @@ function UserProfile() {
   return (
     <div className={styles.userProfile}>
       <div className={styles.profileSection}>
-        {data.img && (
-          <div className={styles.profileAvatar}>
-            <img src={data.img} alt="User Avatar" />
-          </div>
-        )}
-        {!data.img && <div className={styles.emptyAvatar} />}
+        <div>
+          {data.img && <img src={data.img} alt="User Avatar" />}
+          {!data.img && <AccountIcon className={styles.account} />}
+        </div>
         <div className={styles.dropdown}>
           <ProfileButton
             onClick={handleClick}
@@ -41,7 +40,7 @@ function UserProfile() {
           />
         </div>
         <p className={styles.username}>
-          {data.name} {data.surname}
+          {data.name || data.surname ? `${data.name} ${data.surname}` : data.userName}
         </p>
       </div>
       <div className={styles.balanceSection}>

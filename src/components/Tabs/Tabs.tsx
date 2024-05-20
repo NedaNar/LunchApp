@@ -40,7 +40,7 @@ function Tabs({
         {tabs.map((tab, index) => (
           <div key={tab}>
             {links && links[index] ? (
-              <Link to={links[index]}>
+              <Link tabIndex={-1} to={links[index]}>
                 <TabButton
                   text={isUppercase ? tab.toUpperCase() : tab}
                   onClick={() => handleTabClick(index)}
