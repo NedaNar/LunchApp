@@ -34,11 +34,12 @@
       border-radius: 50%;
     }
 
-    .emptyAvatar {
-      height: 3.2rem;
-      width: 3.2rem;
-      background-color: $color-grey-300;
-      border-radius: 50%;
+    .account {
+      height: 3.8rem;
+      width: 3.8rem;
+      path {
+        fill: $color-grey-300;
+      }
     }
   }
 
