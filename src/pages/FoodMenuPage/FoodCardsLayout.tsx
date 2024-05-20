@@ -13,6 +13,10 @@ import Filters, { SortTerm } from '../../components/Filters/Filters';
 import cartContext from '../../components/OrderSummary/cartContext';
 import { Endpoint } from '../../api/endpoints';
 
+enum Ratings {
+  NOT_RATED = 'Not rated',
+}
+
 function FoodCardsLayout() {
   const cart = useContext(cartContext);
 
@@ -26,14 +30,14 @@ function FoodCardsLayout() {
   const { data: vendorData } = useFetch<VendorData[]>(Endpoint.VENDORS);
   const { data: ratingData } = useFetch<RatingData[]>(Endpoint.RATINGS);
 
-  const getRating = (mealId: string): number | 'Not rated' => {
+  const getRating = (mealId: string): number | Ratings.NOT_RATED => {
     const ratings = ratingData?.filter((item) => item.mealId.toString() === mealId);
 
-    if (!ratings || !ratings.length) return 'Not rated';
+    if (!ratings || !ratings.length) return Ratings.NOT_RATED;
 
     const totalRating = ratings.reduce((acc, curr) => acc + curr.rating.rating, 0);
     const averageTotalRating = totalRating / ratings.length;
-    return averageTotalRating || 'Not rated';
+    return averageTotalRating || Ratings.NOT_RATED;
   };
 
   const filterMeals = (searchTerm: string, vendorId: number | null) => {
@@ -62,12 +66,12 @@ function FoodCardsLayout() {
         break;
       case SortTerm.RATING:
         updateFilteredMeals.sort((a, b) => {
-          const ratingA: number | 'Not rated' = getRating(a.id);
-          const ratingB: number | 'Not rated' = getRating(b.id);
+          const ratingA: number | Ratings.NOT_RATED = getRating(a.id);
+          const ratingB: number | Ratings.NOT_RATED = getRating(b.id);
 
-          if (ratingA === 'Not rated' && ratingB === 'Not rated') return 0;
-          if (ratingA === 'Not rated') return 1;
-          if (ratingB === 'Not rated') return -1;
+          if (ratingA === Ratings.NOT_RATED && ratingB === Ratings.NOT_RATED) return 0;
+          if (ratingA === Ratings.NOT_RATED) return 1;
+          if (ratingB === Ratings.NOT_RATED) return -1;
           return ratingB - ratingA;
         });
         setSortBy(SortTerm.RATING);
