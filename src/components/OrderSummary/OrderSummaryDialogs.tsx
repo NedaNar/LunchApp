@@ -18,20 +18,19 @@ export default function OrderSummaryDialogs({
   onClose,
   setOrderStatus,
 }: OrderSummaryDialogsProps) {
+  const handleClose = () => {
+    setOrderStatus(null);
+    onClose();
+  };
+
   if (orderStatus === OrderStatus.SUCCESS) {
     return (
       <Dialog
         primaryButtonText="Cool, Thanks!"
-        onClose={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onClose={handleClose}
         title="We've got your lunch order!"
         icon={DialogIcon.SUCCESS}
-        onPrimaryButtonClick={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onPrimaryButtonClick={handleClose}
         isCloseButtonVisible>
         <p>Order has been placed successfully.</p>
         <p>
@@ -46,16 +45,10 @@ export default function OrderSummaryDialogs({
     return (
       <Dialog
         primaryButtonText="OK"
-        onClose={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onClose={handleClose}
         title="Not enough balance!"
         icon={DialogIcon.WARNING}
-        onPrimaryButtonClick={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onPrimaryButtonClick={handleClose}
         isCloseButtonVisible>
         You do not have enough balance available to complete this order.
       </Dialog>
@@ -66,16 +59,10 @@ export default function OrderSummaryDialogs({
     return (
       <Dialog
         primaryButtonText="OK"
-        onClose={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onClose={handleClose}
         title="An error occured!"
         icon={DialogIcon.WARNING}
-        onPrimaryButtonClick={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onPrimaryButtonClick={handleClose}
         isCloseButtonVisible>
         This is on us. Sorry for the inconvenience.
       </Dialog>
@@ -86,16 +73,10 @@ export default function OrderSummaryDialogs({
     return (
       <Dialog
         primaryButtonText="OK"
-        onClose={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onClose={handleClose}
         title="Friday's meals are already booked! "
         icon={DialogIcon.WARNING}
-        onPrimaryButtonClick={() => {
-          setOrderStatus(null);
-          onClose();
-        }}
+        onPrimaryButtonClick={handleClose}
         isCloseButtonVisible>
         <p>
           Meals for Friday are already booked.

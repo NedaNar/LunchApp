@@ -21,8 +21,7 @@ function PressAndHoldButton({
   isConfirmed,
 }: PressAndHoldButtonProps) {
   const [isPressed, setIsPressed] = useState<boolean | undefined>(undefined);
-  // this should be moved to a parent component for state control
-  // const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+
   const timeout = useRef<NodeJS.Timeout>();
 
   const handleHoldStart = () => {
