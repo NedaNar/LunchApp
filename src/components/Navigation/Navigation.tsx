@@ -43,9 +43,16 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
             <LogoHorizontal className={styles.logo} title="logo" />
           )}
         </Link>
-        <div className={styles.navBurger}>
+
+        <div className={`${styles.navBurger} ${collapsed ? styles.navBurgerCollapsed : ''}`}>
           {closed ? (
-            <BurgerIcon onClick={() => setClosed((prev) => !prev)} className={styles.iconBurger} />
+            <BurgerIcon
+              onClick={() => {
+                setCollapsed(false);
+                setClosed((prev) => !prev);
+              }}
+              className={styles.iconBurger}
+            />
           ) : (
             <CloseIcon onClick={() => setClosed((prev) => !prev)} className={styles.iconBurger} />
           )}
@@ -55,6 +62,7 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
           className={`${styles.navList} ${collapsed ? styles['sidebar__navList--collapsed'] : ''} ${closed ? styles['sidebar__navList--closed'] : ''}`}>
           <li>
             <NavigationItem
+              onClick={() => setClosed(true)}
               id={NavigationItemId.MENU}
               title={NavigationItemTitle.MENU}
               to={RoutePath.MENU}
@@ -62,6 +70,7 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
           </li>
           <li>
             <NavigationItem
+              onClick={() => setClosed(true)}
               id={NavigationItemId.LUNCH}
               title={NavigationItemTitle.LUNCH}
               to={RoutePath.LUNCH}
@@ -69,6 +78,7 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
           </li>
           <li>
             <NavigationItem
+              onClick={() => setClosed(true)}
               id={NavigationItemId.ORDERS}
               title={NavigationItemTitle.ORDERS}
               to={RoutePath.ORDERS}
@@ -76,6 +86,7 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
           </li>
           <li>
             <NavigationItem
+              onClick={() => setClosed(true)}
               id={NavigationItemId.RATINGS}
               title={NavigationItemTitle.RATINGS}
               to={RoutePath.RATINGS}
