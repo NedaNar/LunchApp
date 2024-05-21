@@ -1,6 +1,6 @@
 import { DishType } from '../components/FoodCard/helpers';
 
-interface Order {
+export interface Order {
   weekDay: string;
   mealIds: number[];
 }

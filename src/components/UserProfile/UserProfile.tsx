@@ -21,10 +21,11 @@ function UserProfile() {
 
   if (!data) return null;
 
+
   const formattedBalance = new Intl.NumberFormat('en-DE', {
     style: 'currency',
     currency: 'EUR',
-  }).format(data.balance);
+  }).format(cart.balance);
 
   const handleClick = () => {};
 

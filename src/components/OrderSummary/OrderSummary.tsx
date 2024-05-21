@@ -1,52 +1,130 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import styles from './orderSummary.module.scss';
 import cartContext from './cartContext';
 import EmptyCart from './EmptyCart';
 import DayItems from './DayItem';
-import { calculateAndFormatTotalCartPrice, groupMealByDay } from '../../utils/orderSummaryHelpers';
+import {
+  FREE_MEEL_DAY,
+  calculateAndFormatTotalCartPrice,
+  calculateNewBalance,
+  groupMealByDay,
+  mergeUserOrders,
+} from '../../utils/orderSummaryHelpers';
 import PressAndHoldButton from '../PressAndHoldButton/PressAndHoldButton';
 import IconButton, {
   IconButtonSize,
   IconButtonType,
   IconButtonIcon,
 } from '../IconButton/IconButton';
+import OrderSummaryDialogs, { OrderStatus } from './OrderSummaryDialogs';
+import useFetch from '../../api/useDataFetching';
+import { Endpoint } from '../../api/endpoints';
+import { UserData } from '../../api/apiModel';
+import { SessionStorageKeys } from '../../types/sessionStorageEnums';
+import usePatch from '../../api/useDataPatching';
 
 export default function OrderSummary() {
-  const { items, expanded, setExpanded } = useContext(cartContext);
+  const { items, expanded, setExpanded, removeAllItems, setBalance } = useContext(cartContext);
+  const { data } = useFetch<UserData[]>(Endpoint.USERS);
+
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   const mappedMealsByDay = groupMealByDay(items);
   const totalPrice = calculateAndFormatTotalCartPrice(items);
 
+  const [orderStatus, setOrderStatus] = useState<null | OrderStatus>(null);
+  const { putData, error, responseData } = usePatch<UserData>(Endpoint.USERS);
+
+  const [intermediateBalance, setIntermediateBalance] = useState<number | null>(null);
+
+  const handleCheckout = async () => {
+    const loggedInUserId = JSON.parse(sessionStorage.getItem(SessionStorageKeys.TOKEN) ?? '{}')?.id;
+    const user = data?.find((u) => u.id === loggedInUserId);
+    if (!user) return;
+
+    if ((user.balance ?? 0) < Number(totalPrice)) {
+      setOrderStatus(OrderStatus.NOT_ENOUGH_BALANCE);
+      return;
+    }
+
+    const newBalance = calculateNewBalance(user, Number(totalPrice));
+    setIntermediateBalance(newBalance);
+
+    const existingOrders = user.orders || [];
+
+    if (
+      existingOrders.some((order) => order.weekDay === FREE_MEEL_DAY) &&
+      items.some((item) => item.selectedDay === FREE_MEEL_DAY)
+    ) {
+      setOrderStatus(OrderStatus.FRIDAY_MEAL_ALREADY_BOOKED);
+      return;
+    }
+
+    const mergedOrders = mergeUserOrders(existingOrders, items);
+    const updatedUserData: UserData = {
+      ...user,
+      balance: newBalance,
+      orders: mergedOrders,
+    };
+    putData(updatedUserData, loggedInUserId);
+  };
+
+  useEffect(() => {
+    if (error && responseData !== null) {
+      setOrderStatus(OrderStatus.ERROR);
+    }
+
+    if (!error && responseData !== null) {
+      setOrderStatus(OrderStatus.SUCCESS);
+      removeAllItems();
+      setBalance(intermediateBalance ?? 0);
+    }
+  }, [responseData, error]);
+
   return (
-    <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
-      <header className={styles.orderSummaryTitle}>
-        <h1 className={styles.orderSummaryTitleText}>Order Summary</h1>
-        <IconButton
-          type={IconButtonType.TERTIARY}
-          size={IconButtonSize.MEDIUM}
-          icon={IconButtonIcon.CLOSE}
-          onClick={() => setExpanded(false)}
-        />
-      </header>
-      <section className={styles.orderSummaryList}>
-        {!items.length ? (
-          <EmptyCart />
-        ) : (
-          Object.keys(mappedMealsByDay).map((day) => (
-            <DayItems day={day} items={mappedMealsByDay[day]} />
-          ))
-        )}
-      </section>
-      <footer className={styles.orderSummaryFooter}>
-        <div className={styles.separator} />
-        <div className={styles.orderSummaryFooterContent}>
-          <article className={styles.orderSummaryFooterContentPrice}>
-            <p className={styles.orderSummaryFooterContentPriceText}>Total Price</p>
-            <span className={styles.orderSummaryFooterContentPriceAmount}>€{totalPrice}</span>
-          </article>
-        </div>
-        <PressAndHoldButton onConfirm={() => {}} />
-      </footer>
-    </aside>
+    <>
+      <OrderSummaryDialogs
+        onClose={() => {
+          setIsConfirmed(false);
+        }}
+        orderStatus={orderStatus}
+        setOrderStatus={setOrderStatus}
+      />
+      <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
+        <header className={styles.orderSummaryTitle}>
+          <h1 className={styles.orderSummaryTitleText}>Order Summary</h1>
+          <IconButton
+            type={IconButtonType.TERTIARY}
+            size={IconButtonSize.MEDIUM}
+            icon={IconButtonIcon.CLOSE}
+            onClick={() => setExpanded(false)}
+          />
+        </header>
+        <section className={styles.orderSummaryList}>
+          {!items.length ? (
+            <EmptyCart />
+          ) : (
+            Object.keys(mappedMealsByDay).map((day) => (
+              <DayItems day={day} items={mappedMealsByDay[day]} />
+            ))
+          )}
+        </section>
+        <footer className={styles.orderSummaryFooter}>
+          <div className={styles.separator} />
+          <div className={styles.orderSummaryFooterContent}>
+            <article className={styles.orderSummaryFooterContentPrice}>
+              <p className={styles.orderSummaryFooterContentPriceText}>Total Price</p>
+              <span className={styles.orderSummaryFooterContentPriceAmount}>€{totalPrice}</span>
+            </article>
+          </div>
+          <PressAndHoldButton
+            setIsConfirmed={setIsConfirmed}
+            isConfirmed={isConfirmed}
+            disabled={items.length === 0}
+            onConfirm={handleCheckout}
+          />
+        </footer>
+      </aside>
+    </>
   );
 }
