@@ -36,10 +36,16 @@ export function Input({
           {...rest}
           disabled={disabled}
           className={`${styles.input} ${error ? styles['input--error'] : ''} ${icon ? styles.inputIcon__place : ''}`}
+          aria-describedby={error ? `${name}-error` : undefined}
+          aria-invalid={error}
         />
         {dropdownIcon && <DropdownIcon className={styles.dropdownIcon} />}
       </div>
-      {errorText && <span className={styles.errorText}>{errorText}</span>}
+      {errorText && (
+        <span id={`${name}-error`} className={styles.errorText}>
+          {errorText}
+        </span>
+      )}
     </div>
   );
 }
