@@ -26,7 +26,7 @@ export default function DayItems({ day, items }: DayItemsProps) {
               <figure>{getFoodIcon(item.dishType)}</figure>
 
               <div className={styles.dayItemsListItemContentText}>
-                <p>vendor</p>
+                <p>{item.vendor}</p>
                 <span>{item.title}</span>
               </div>
             </div>
