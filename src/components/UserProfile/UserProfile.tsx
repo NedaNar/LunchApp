@@ -24,7 +24,7 @@ function UserProfile() {
   const formattedBalance = new Intl.NumberFormat('en-DE', {
     style: 'currency',
     currency: 'EUR',
-  }).format(data.balance);
+  }).format(cart.balance);
 
   const handleClick = () => {};
 

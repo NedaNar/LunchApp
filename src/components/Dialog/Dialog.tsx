@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import FocusTrap from 'focus-trap-react';
 import styles from './dialog.module.scss';
 import { Button, ButtonAppearance, ButtonSize } from '../RegularButton/Button';
@@ -57,9 +58,9 @@ function Dialog({
 
   const dialogSubBodyClass = icon ? styles.dialogSubBodyCenter : styles.dialogSubBodyStart;
 
-  return (
+  return createPortal(
     <div className={styles.dialogOverlay}>
-      <FocusTrap>
+      <FocusTrap focusTrapOptions={{ initialFocus: false }}>
         <dialog open className={`${styles.dialogWrapper} ${styles[size]}`}>
           <div className={styles.dialogBody}>
             <header className={styles.dialogHeader}>
@@ -95,7 +96,8 @@ function Dialog({
           </footer>
         </dialog>
       </FocusTrap>
-    </div>
+    </div>,
+    document.body
   );
 }
 
