@@ -1,9 +1,14 @@
-import styles from './foodModal.module.scss';
 import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from '../RegularButton/Button';
+import IconButton, {
+  IconButtonSize,
+  IconButtonType,
+  IconButtonIcon,
+} from '../IconButton/IconButton';
+import { getFoodIcon, DishType } from '../FoodCard/helpers';
 import SolarStarIcon from '../../assets/static/icons/icon_solar-star.svg?react';
 import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
-import { getFoodIcon, DishType } from '../FoodCard/helpers';
+import styles from './foodModal.module.scss';
 
 export interface FoodModalProps {
   title: string;
@@ -44,10 +49,13 @@ function FoodModal({
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
-          <h2>{title}</h2>
-          <button type="button" className={styles.closeButton} onClick={handleCloseModal}>
-            X
-          </button>
+          <h2>Dish Details</h2>
+          <IconButton
+            type={IconButtonType.TERTIARY}
+            size={IconButtonSize.MEDIUM}
+            icon={IconButtonIcon.CLOSE}
+            onClick={handleCloseModal}
+          />
         </div>
         <div className={styles.modalBody}>
           <div className={styles.details}>
@@ -72,9 +80,6 @@ function FoodModal({
                 Price: {weekday !== 'Friday' ? formattedPrice : 'Free'}
               </p>
             </div>
-          </div>
-          <div className={styles.commentsSection}>
-            <p>Comments section</p>
           </div>
         </div>
         <div className={styles.modalFooter}>

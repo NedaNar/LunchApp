@@ -93,7 +93,7 @@ function FoodCard({
         <footer className={styles.cardFooter}>
           <div className={styles.cardFooterText}>
             <p className={styles.bodyS}>Price</p>
-            <p className={styles.titleL}> {weekday !== 'Friday' ? formattedPrice : 'Free'}</p>
+            <p className={styles.titleL}>{weekday !== 'Friday' ? formattedPrice : 'Free'}</p>
           </div>
           <Button
             text="Add to cart"
@@ -124,14 +124,3 @@ function FoodCard({
 }
 
 export default FoodCard;
-
-// Use case:
-// <FoodCard
-//      vendor='Tasty Bites'
-//      title='Pho Rice Noodle Soup with Tofu'
-//      description='Rice udon noodles in  shiitake stock, fried shredded tofu. Garnish...'
-//      price={5.65}
-//      picture={DishType.Bowl}
-//      isVegetarian={true}
-//      isSpicy={true}
-//      rating={5.0}/>
