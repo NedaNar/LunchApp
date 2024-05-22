@@ -30,19 +30,18 @@ export default function OrderSummaryContextWrapper({
 
   const { data } = useFetch<UserData[]>(Endpoint.USERS);
   const loggedInUserId = JSON.parse(sessionStorage.getItem(SessionStorageKeys.TOKEN) ?? '{}')?.id;
-  const user = data?.find((u) => u.id == loggedInUserId);
+  const user = data?.find((u) => u.id === loggedInUserId);
 
   useEffect(() => {
     if (user) {
       setBalance(user.balance);
-      
     }
   }, [user]);
 
   const cart = useMemo(
     () => ({
       items: cartItems,
-      balance: balance,
+      balance,
       setBalance,
       setCartItems,
       expanded: cartExpanded,
