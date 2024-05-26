@@ -27,6 +27,7 @@ export default function OrderSummaryContextWrapper({
 
   const [balance, setBalance] = useState<number>(0);
   const cartToast = useRef<ToastRefObject>(null);
+  const toggleSummaryRef = useRef<HTMLButtonElement>(null);
 
   const { data } = useFetch<UserData[]>(Endpoint.USERS);
   const loggedInUserId = JSON.parse(sessionStorage.getItem(SessionStorageKeys.TOKEN) ?? '{}')?.id;
@@ -45,7 +46,13 @@ export default function OrderSummaryContextWrapper({
       setBalance,
       setCartItems,
       expanded: cartExpanded,
-      setExpanded: setCartExpanded,
+
+      setExpanded: (value: boolean) => {
+        if (!value) toggleSummaryRef.current?.focus();
+        setCartExpanded(value);
+      },
+      toggleSummaryRef,
+
       removeAllItems: (day?: string) => {
         if (day) {
           setCartItems((prev) => {
@@ -89,7 +96,7 @@ export default function OrderSummaryContextWrapper({
         });
       },
     }),
-    [cartItems, cartExpanded, balance]
+    [cartItems, cartExpanded, balance, toggleSummaryRef]
   );
 
   useEffect(() => {

@@ -29,7 +29,7 @@ export default function MainLayout() {
             <UserProfile />
           </article>
 
-          <article className="order">
+          <article className={styles.order}>
             <OrderSummary />
           </article>
         </aside>

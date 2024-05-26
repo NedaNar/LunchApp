@@ -9,6 +9,7 @@ import LogOutIcon from '../../assets/static/icons/icon_logout.svg?react';
 import useAuth from '../LoginForm/AuthenticationLogic/useAuth';
 import { Endpoint } from '../../api/endpoints';
 import AccountIcon from '../../assets/static/icons/icon_account.svg?react';
+import { formatCurrency } from '../../utils/generalHelpers';
 
 function UserProfile() {
   const token = useAuth();
@@ -21,10 +22,7 @@ function UserProfile() {
 
   if (!data) return null;
 
-  const formattedBalance = new Intl.NumberFormat('en-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  }).format(cart.balance);
+  const formattedBalance = formatCurrency(cart.balance);
 
   const handleClick = () => {};
 
@@ -53,6 +51,7 @@ function UserProfile() {
         <div className={styles.line} />
         <div className={styles.cartOrders}>
           <IconButton
+            buttonRef={cart.toggleSummaryRef}
             onClick={() => cart.setExpanded(true)}
             type={IconButtonType.OUTLINED}
             icon={IconButtonIcon.CART}

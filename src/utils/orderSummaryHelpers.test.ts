@@ -35,7 +35,7 @@ const mockCart1Data: CartItem[] = [
 
 describe('calculateAndFormatTotalCartPrice', () => {
   it('should sum all prices of cart items and format price output number', () => {
-    expect(calculateAndFormatTotalCartPrice(mockCart1Data)).toEqual('28.56');
+    expect(calculateAndFormatTotalCartPrice(mockCart1Data)).toEqual('€28.56');
   });
 });
 
@@ -52,7 +52,7 @@ describe('calculateAndFormatTotalCartPrice', () => {
   ];
 
   it('should sum all prices of cart items and format price output number', () => {
-    expect(calculateAndFormatTotalCartPrice(mockCartData)).toEqual('5.55');
+    expect(calculateAndFormatTotalCartPrice(mockCartData)).toEqual('€5.55');
   });
 });
 
@@ -65,7 +65,9 @@ describe('groupMealByDay', () => {
         { dishType: DishType.Soup, price: 5, title: 'test1', id: 'x' },
         { title: 'test2', id: 'x', dishType: DishType.Burger, price: 10 },
       ] as MealItem[],
-      Friday: [{ title: 'test3', id: 'x', dishType: DishType.Pizza, price: 13.556 }] as MealItem[],
+      Thursday: [
+        { title: 'test3', id: 'x', dishType: DishType.Pizza, price: 13.556 },
+      ] as MealItem[],
     });
   });
 });

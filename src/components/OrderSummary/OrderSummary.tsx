@@ -35,20 +35,19 @@ export default function OrderSummary() {
   const [orderStatus, setOrderStatus] = useState<null | OrderStatus>(null);
   const { putData, error, responseData } = usePatch<UserData>(Endpoint.USERS);
 
-  const [intermediateBalance, setIntermediateBalance] = useState<number | null>(null);
-
   const handleCheckout = async () => {
     const loggedInUserId = JSON.parse(sessionStorage.getItem(SessionStorageKeys.TOKEN) ?? '{}')?.id;
     const user = data?.find((u) => u.id === loggedInUserId);
     if (!user) return;
 
-    if ((user.balance ?? 0) < Number(totalPrice)) {
+    const totalNumberPrice = Number(calculateAndFormatTotalCartPrice(items, false));
+
+    if ((user.balance ?? 0) < totalNumberPrice) {
       setOrderStatus(OrderStatus.NOT_ENOUGH_BALANCE);
       return;
     }
 
-    const newBalance = calculateNewBalance(user, Number(totalPrice));
-    setIntermediateBalance(newBalance);
+    const newBalance = calculateNewBalance(user, totalNumberPrice);
 
     const existingOrders = user.orders || [];
 
@@ -77,9 +76,20 @@ export default function OrderSummary() {
     if (!error && responseData !== null) {
       setOrderStatus(OrderStatus.SUCCESS);
       removeAllItems();
-      setBalance(intermediateBalance ?? 0);
+      setBalance(responseData.balance);
     }
   }, [responseData, error]);
+
+  const [hide, setHide] = useState(false);
+  useEffect(() => {
+    if (!expanded) {
+      setTimeout(() => {
+        setHide(true);
+      }, 200);
+    } else {
+      setHide(false);
+    }
+  }, [expanded]);
 
   return (
     <>
@@ -90,7 +100,9 @@ export default function OrderSummary() {
         orderStatus={orderStatus}
         setOrderStatus={setOrderStatus}
       />
-      <aside className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''}`}>
+
+      <aside
+        className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''} ${hide ? styles.orderSummaryHidden : ''}`}>
         <header className={styles.orderSummaryTitle}>
           <h1 className={styles.orderSummaryTitleText}>Order Summary</h1>
           <IconButton
@@ -114,7 +126,7 @@ export default function OrderSummary() {
           <div className={styles.orderSummaryFooterContent}>
             <article className={styles.orderSummaryFooterContentPrice}>
               <p className={styles.orderSummaryFooterContentPriceText}>Total Price</p>
-              <span className={styles.orderSummaryFooterContentPriceAmount}>€{totalPrice}</span>
+              <span className={styles.orderSummaryFooterContentPriceAmount}>{totalPrice}</span>
             </article>
           </div>
           <PressAndHoldButton
