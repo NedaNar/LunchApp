@@ -36,7 +36,7 @@ export default function Navigation({ collapsed, setCollapsed }: NavigationProps)
       </div>
 
       <nav className={styles.nav}>
-        <Link to={RoutePath.ROOT} className={styles.navLogo}>
+        <Link to={RoutePath.MENU} className={styles.navLogo}>
           {collapsed ? (
             <LogoVertical className={styles.logo} title="logo" />
           ) : (
