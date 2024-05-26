@@ -1,11 +1,24 @@
 import { v4 as uuidv4 } from 'uuid';
-import { DishType } from '../components/FoodCard/helpers';
 import { CartItem, MealItem } from '../components/OrderSummary/cartContext';
 import { Order, UserData } from '../api/apiModel';
 import { formatCurrency } from './generalHelpers';
 
 interface ReduceAccumulator {
   [key: string]: MealItem[];
+}
+
+export enum DishType {
+  Thai = 'thai',
+  Burger = 'burger',
+  Bowl = 'bowl',
+  Sandwich = 'sandwich',
+  Steak = 'steak',
+  Tacos = 'tacos',
+  Salad = 'salad',
+  Pizza = 'pizza',
+  Soup = 'soup',
+  Pasta = 'pasta',
+  Wrap = 'wrap',
 }
 
 export const FREE_MEEL_DAY = 'Friday';
