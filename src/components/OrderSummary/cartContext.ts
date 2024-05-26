@@ -25,6 +25,7 @@ export interface CartContext {
   removeFromCart: (toRemoveItem: MealItem) => void;
   setExpanded: (value: boolean) => void;
   removeAllItems: () => void;
+  toggleSummaryRef: React.RefObject<HTMLButtonElement> | null;
 }
 
 export default createContext({
@@ -36,4 +37,5 @@ export default createContext({
   removeFromCart: () => {},
   expanded: true,
   setExpanded: () => {},
+  toggleSummaryRef: null,
 } as CartContext);

@@ -25,6 +25,10 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
     transition: $transition;
     right: 0;
   }
+
+  &Hidden {
+    display: none;
+  }
 }
 
 .orderSummaryTitle {

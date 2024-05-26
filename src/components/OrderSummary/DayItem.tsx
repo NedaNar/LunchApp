@@ -4,6 +4,7 @@ import DeleteIcon from '../../assets/static/icons/icon_delete.svg?react';
 import { getFoodIcon } from '../FoodCard/helpers';
 import cartContext, { MealItem } from './cartContext';
 import { FREE_MEEL_DAY } from '../../utils/orderSummaryHelpers';
+import { formatCurrency } from '../../utils/generalHelpers';
 
 export interface DayItemsProps {
   day: string;
@@ -30,7 +31,7 @@ export default function DayItems({ day, items }: DayItemsProps) {
               </div>
             </div>
             <div className={styles.dayItemsListItemRight}>
-              <p>{day === FREE_MEEL_DAY ? 'Free' : `€${item.price}`}</p>
+              <p>{day === FREE_MEEL_DAY ? 'Free' : formatCurrency(item.price)}</p>
               <DeleteIcon onClick={() => cart.removeFromCart(item)} />
             </div>
           </div>

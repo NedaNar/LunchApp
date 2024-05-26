@@ -1,10 +1,24 @@
 import { v4 as uuidv4 } from 'uuid';
-import { DishType } from '../components/FoodCard/helpers';
 import { CartItem, MealItem } from '../components/OrderSummary/cartContext';
 import { Order, UserData } from '../api/apiModel';
+import { formatCurrency } from './generalHelpers';
 
 interface ReduceAccumulator {
   [key: string]: MealItem[];
+}
+
+export enum DishType {
+  Thai = 'thai',
+  Burger = 'burger',
+  Bowl = 'bowl',
+  Sandwich = 'sandwich',
+  Steak = 'steak',
+  Tacos = 'tacos',
+  Salad = 'salad',
+  Pizza = 'pizza',
+  Soup = 'soup',
+  Pasta = 'pasta',
+  Wrap = 'wrap',
 }
 
 export const FREE_MEEL_DAY = 'Friday';
@@ -24,10 +38,12 @@ export function groupMealByDay(items: CartItem[]) {
 export function generateUniqueId(): string {
   return `order-${uuidv4()}`;
 }
-export function calculateAndFormatTotalCartPrice(items: CartItem[]) {
-  return items
-    .reduce((sum, item) => (item.selectedDay !== FREE_MEEL_DAY ? item.meal.price + sum : sum), 0)
-    .toFixed(2);
+export function calculateAndFormatTotalCartPrice(items: CartItem[], format = true) {
+  const total = items.reduce(
+    (sum, item) => (item.selectedDay !== FREE_MEEL_DAY ? item.meal.price + sum : sum),
+    0
+  );
+  return format ? formatCurrency(total) : total;
 }
 
 export function checkForFridayMeal(
