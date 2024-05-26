@@ -24,7 +24,8 @@ import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 import usePatch from '../../api/useDataPatching';
 
 export default function OrderSummary() {
-  const { items, expanded, setExpanded, removeAllItems, setBalance } = useContext(cartContext);
+  const { items, expanded, setExpanded, removeAllItems, setBalance, balance } =
+    useContext(cartContext);
   const { data } = useFetch<UserData[]>(Endpoint.USERS);
 
   const [isConfirmed, setIsConfirmed] = useState(false);
@@ -42,12 +43,12 @@ export default function OrderSummary() {
 
     const totalNumberPrice = Number(calculateAndFormatTotalCartPrice(items, false));
 
-    if ((user.balance ?? 0) < totalNumberPrice) {
+    if ((balance ?? 0) < totalNumberPrice) {
       setOrderStatus(OrderStatus.NOT_ENOUGH_BALANCE);
       return;
     }
 
-    const newBalance = calculateNewBalance(user, totalNumberPrice);
+    const newBalance = calculateNewBalance(balance, totalNumberPrice);
 
     const existingOrders = user.orders || [];
 
