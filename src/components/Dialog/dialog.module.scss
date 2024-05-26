@@ -22,21 +22,32 @@
   justify-content: space-between;
 
   width: 100%;
-  max-height: 80vh;
   background-color: $color-white;
   border-radius: $border-radius-regular;
   border: 0.1rem solid $color-white;
   padding: $space-XXS;
   gap: $space-S;
 
+  @include for-phoneS-only {
+    left: $space-XS;
+    right: $space-XS;
+    width: auto;
+    transform: translate(0, -50%);
+  }
+
   &.medium {
     max-width: 44.7rem;
-    min-width: 44.7rem;
   }
 
   &.large {
     max-width: 67.4rem;
-    min-width: 67.4rem;
+
+    @include for-tablet-portraitM-up {
+      left: $space-XS;
+      right: $space-XS;
+      width: auto;
+      transform: translate(0, -50%);
+    }
   }
 
   p {

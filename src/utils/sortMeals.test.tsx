@@ -13,7 +13,7 @@ const mockMealsData: MealData[] = [
     weekDays: ['Monday'],
     vegetarian: false,
     spicy: false,
-    dishType: DishType.Bowl,
+    dishType: DishType.Soup,
     description: 'Description A',
     mealType: 'Type A',
   },
