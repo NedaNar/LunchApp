@@ -25,12 +25,12 @@ export function groupMealByDay(items: CartItem[]) {
 export function generateUniqueId(): string {
   return `order-${uuidv4()}`;
 }
-export function calculateAndFormatTotalCartPrice(items: CartItem[]) {
+export function calculateAndFormatTotalCartPrice(items: CartItem[], format = true) {
   const total = items.reduce(
     (sum, item) => (item.selectedDay !== FREE_MEEL_DAY ? item.meal.price + sum : sum),
     0
   );
-  return formatCurrency(total);
+  return format ? formatCurrency(total) : total;
 }
 
 export function checkForFridayMeal(

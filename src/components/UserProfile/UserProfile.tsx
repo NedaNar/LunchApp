@@ -22,7 +22,7 @@ function UserProfile() {
 
   if (!data) return null;
 
-  const formattedBalance = formatCurrency(data.balance);
+  const formattedBalance = formatCurrency(cart.balance);
 
   const handleClick = () => {};
 
