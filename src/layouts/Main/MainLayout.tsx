@@ -9,11 +9,20 @@ import AccountIcon from '../../assets/static/icons/icon_account.svg?react';
 import Footer from '../../components/Footer/Footer';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import OrderSummaryContextWrapper from '../../components/OrderSummary/OrderSummaryContextWrapper';
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 export default function MainLayout() {
-  // This const is needed in parent element for navigation state
   const [collapsed, setCollapsed] = useState(false);
   const [cartExpanded, setCartExpanded] = useState(true);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleProfileClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -21,7 +30,11 @@ export default function MainLayout() {
 
       <header className={styles.headerLine}>
         <LogoHorizontal className={styles.logo} title="logo" />
-        <AccountIcon className={styles.account} title="Account information" />
+        <AccountIcon
+          className={styles.account}
+          title="Account information"
+          onClick={handleProfileClick}
+        />
       </header>
       <OrderSummaryContextWrapper cartExpanded={cartExpanded} setCartExpanded={setCartExpanded}>
         <aside className={styles.rightSide}>
@@ -44,6 +57,7 @@ export default function MainLayout() {
       <footer className={collapsed ? styles['footer--collapsed'] : styles.footer}>
         <Footer />
       </footer>
+      <ProfileCard isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }
