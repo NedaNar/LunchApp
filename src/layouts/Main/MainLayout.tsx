@@ -53,11 +53,12 @@ export default function MainLayout() {
             {/* <Outlet> allows to render 'child route' elements, so components can be placed on page  */}
           </div>
         </main>
+
+        <footer className={`${styles.footer} ${collapsed ? styles['footer--collapsed'] : ''}`}>
+          <Footer />
+        </footer>
+        <ProfileCard isOpen={isModalOpen} onClose={handleCloseModal} />
       </OrderSummaryContextWrapper>
-      <footer className={`${styles.footer} ${collapsed ? styles['footer--collapsed'] : ''}`}>
-        <Footer />
-      </footer>
-      <ProfileCard isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }
