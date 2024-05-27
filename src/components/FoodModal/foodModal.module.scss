@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); 
+  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@
 
   .modalContent {
     background-color: $color-white;
-    border-radius: 0.8rem; 
+    border-radius: 0.8rem;
     padding: 1.6rem;
     width: 80%;
     max-width: 40rem;
@@ -38,7 +38,6 @@
   background: $color-orange-gradient;
   box-shadow: $box-shadow-foodCard;
   border-radius: $border-radius-regular;
-
 }
 
 .modalHeader {
@@ -55,7 +54,7 @@
   .closeButton {
     background: none;
     border: none;
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     cursor: pointer;
   }
 }
@@ -96,8 +95,8 @@
         margin-bottom: $space-XXXXS;
 
         .icon {
-          width: 2rem; 
-          height: 2rem; 
+          width: 2rem;
+          height: 2rem;
         }
       }
 
@@ -113,10 +112,10 @@
         }
 
         .ratingLogo {
-          width: 1.2rem; 
+          width: 1.2rem;
           height: 1.2rem;
-          stroke: #FF7F0F; 
-          fill: #FF7F0F;
+          stroke: #ff7f0f;
+          fill: #ff7f0f;
         }
 
         .ratingValue {
@@ -134,6 +133,26 @@
   }
 }
 
+.commentsSection {
+  max-height: 30rem;
+  overflow: auto;
+  overflow-x: hidden;
+
+  .separator {
+    border: 0;
+    border-bottom: 0.1rem solid $color-grey-200;
+    margin-bottom: $space-XS;
+  }
+
+  .title {
+    @include title-S;
+    color: $color-primary-600;
+  }
+
+  .container {
+    padding: $space-XXS 0 $space-XXXXXS;
+  }
+}
 
 .modalFooter {
   display: flex;

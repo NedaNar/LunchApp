@@ -10,6 +10,7 @@ import { formatPrice, formatRating } from '../../utils/priceUtils';
 import { FREE_MEAL_DAY, FREE_MEAL_TEXT } from '../../utils/constants';
 
 export interface FoodCardProps {
+  id: string;
   title: string;
   description: string;
   price: number;
@@ -23,6 +24,7 @@ export interface FoodCardProps {
 }
 
 function FoodCard({
+  id,
   title,
   description,
   price,
@@ -103,8 +105,10 @@ function FoodCard({
           />
         </footer>
       </article>
+
       {isModalOpen && (
         <FoodModal
+          id={id}
           title={title}
           description={description}
           price={price}
