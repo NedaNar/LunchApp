@@ -27,9 +27,8 @@ export default function MainLayout() {
   return (
     <div className={styles.container}>
       <Navigation collapsed={collapsed} setCollapsed={setCollapsed} />
-
+      <LogoHorizontal className={styles.logo} title="logo" />
       <header className={styles.headerLine}>
-        <LogoHorizontal className={styles.logo} title="logo" />
         <AccountIcon
           className={styles.account}
           title="Account information"
@@ -53,11 +52,12 @@ export default function MainLayout() {
             {/* <Outlet> allows to render 'child route' elements, so components can be placed on page  */}
           </div>
         </main>
+
+        <footer className={`${styles.footer} ${collapsed ? styles['footer--collapsed'] : ''}`}>
+          <Footer />
+        </footer>
+        <ProfileCard isOpen={isModalOpen} onClose={handleCloseModal} />
       </OrderSummaryContextWrapper>
-      <footer className={`${styles.footer} ${collapsed ? styles['footer--collapsed'] : ''}`}>
-        <Footer />
-      </footer>
-      <ProfileCard isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }
