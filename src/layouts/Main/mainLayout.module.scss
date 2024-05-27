@@ -13,11 +13,17 @@
   flex-direction: column;
   transition: $transition;
   flex-grow: 1;
+  padding-top: 6.3rem;
+
+  &--collapsed {
+    padding-top: 6.3rem;
+  }
 
   @include for-tablet-landscape-up {
     display: flex;
     padding-left: 25.4rem;
     transition: $transition;
+    padding-top: 0;
 
     &--collapsed {
       display: flex;
@@ -25,6 +31,7 @@
       flex-direction: column;
       padding-left: 11.2rem;
       transition: $transition;
+      padding-top: 0;
     }
 
     &--cartExpanded {
@@ -63,7 +70,11 @@
   background-color: $color-primary-800;
   display: flex;
   align-items: center;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 
   .logo {
     position: absolute;
@@ -72,7 +83,6 @@
     transform: translate(-50%, -50%);
     width: 7.7rem;
     height: 3.8rem;
-    z-index: 99999;
   }
 
   .account {
