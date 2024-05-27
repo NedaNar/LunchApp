@@ -65,9 +65,9 @@
   }
 }
 .logo {
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 3rem;
+  top: $space-M;
   transform: translate(-50%, -50%);
   width: 7.7rem;
   height: 3.8rem;
