@@ -6,20 +6,29 @@
   min-height: 100vh;
   background-color: $color-grey-100;
 }
+
 .footer {
   margin-top: auto;
 }
+
 .content {
   max-width: 144rem;
-  margin: 0 auto;
   padding-top: 8rem;
   display: flex;
   justify-content: center;
   gap: 12.8rem;
   flex-grow: 1;
 
+  @include for-phone-only {
+    padding-top: 0;
+  }
+
   @include for-tablet-landscape-up {
     gap: $space-S;
+  }
+
+  @include for-tablet-desktop-up {
+    margin: 0 auto;
   }
 
   .image {
@@ -59,7 +68,8 @@
     align-items: center;
     text-align: center;
     justify-content: flex-start;
-    width: 39.1rem;
+    max-width: 39.1rem;
+    width: 100%;
     height: fit-content;
     background-color: $color-white;
     padding: $space-S;
@@ -70,6 +80,10 @@
 
     @include for-phone-only {
       margin: 2rem;
+    }
+
+    @include for-tablet-desktop-up {
+      width: 39.1rem;
     }
 
     .logo {
@@ -84,7 +98,7 @@
       width: 100%;
       padding-bottom: $space-S;
 
-      > * {
+      >* {
         width: 100%;
       }
     }

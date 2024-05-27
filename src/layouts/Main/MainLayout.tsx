@@ -54,7 +54,7 @@ export default function MainLayout() {
           </div>
         </main>
       </OrderSummaryContextWrapper>
-      <footer className={collapsed ? styles['footer--collapsed'] : styles.footer}>
+      <footer className={`${styles.footer} ${collapsed ? styles['footer--collapsed'] : ''}`}>
         <Footer />
       </footer>
       <ProfileCard isOpen={isModalOpen} onClose={handleCloseModal} />
