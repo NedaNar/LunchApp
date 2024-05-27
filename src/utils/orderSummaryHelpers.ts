@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { CartItem, MealItem } from '../components/OrderSummary/cartContext';
-import { Order, UserData } from '../api/apiModel';
+import { Order } from '../api/apiModel';
 import { formatCurrency } from './generalHelpers';
 
 interface ReduceAccumulator {
@@ -84,6 +84,6 @@ export function mergeUserOrders(existingOrders: Order[], items: CartItem[]) {
   return mergedOrders;
 }
 
-export function calculateNewBalance(user: UserData, totalPrice: number) {
-  return Number((user.balance - totalPrice).toFixed(2));
+export function calculateNewBalance(balance: number, totalPrice: number) {
+  return Number((balance - totalPrice).toFixed(2));
 }
