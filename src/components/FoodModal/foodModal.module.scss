@@ -16,25 +16,23 @@
     background-color: $color-white;
     border-radius: 0.8rem;
     padding: 1.6rem;
-    width: 80%;
-    max-width: 40rem;
+    width: 55.4rem;
+    overflow: auto; 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 }
+
 .foodIcon {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
-  width: 10.3rem;
-  height: 10.4rem;
-  left: -$space-XXXXS;
-  top: -0.7rem;
-
+  width: 25rem; 
+  height: 25rem; 
   background: $color-orange-gradient;
   box-shadow: $box-shadow-foodCard;
   border-radius: $border-radius-regular;
@@ -44,42 +42,44 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: $space-M;
+  @include title-S;
 
   h2 {
-    @include title-L;
+    @include title-S;
     margin: 0;
-  }
-
-  .closeButton {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+    color: $color-primary-600;
   }
 }
 
 .modalBody {
+  display: flex;
+  flex-direction: column; 
+  gap: $space-XS;
+
   .details {
     display: flex;
-    margin-bottom: $space-M;
+    gap: $space-XXS;
 
     .foodIcon {
-      margin-right: $space-M;
+      height: 15rem;
+      width: 15rem;
     }
 
     .info {
       flex: 1;
 
-      .vendor {
-        @include body-M;
-        color: $color-grey-500;
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include title-M;
+        color: $color-primary-600;
         margin-bottom: $space-XXXXS;
       }
 
-      .title {
-        @include title-M;
-        color: $color-primary-600;
+      .vendor {
+        @include body-M;
+        color: $color-grey-500;
         margin-bottom: $space-XXXXS;
       }
 
@@ -102,63 +102,65 @@
 
       .rating {
         display: flex;
-        align-items: center;
-        gap: $space-XXXXS;
-        margin-bottom: $space-XXXXS;
-
-        .ratingFigure {
-          display: flex;
-          align-items: center;
-        }
-
-        .ratingLogo {
-          width: 1.2rem;
-          height: 1.2rem;
-          stroke: #ff7f0f;
-          fill: #ff7f0f;
-        }
-
-        .ratingValue {
-          @include label-XS;
-          color: $color-primary-600;
-        }
-      }
-
-      .price {
-        @include body-S;
-        color: $color-primary-600;
-        margin-bottom: $space-XXXXS;
+        flex-direction: column;
+        gap: 1rem; 
       }
     }
   }
+
+  .price {
+    gap: 1rem;
+  }
+}
+
+.separator {
+  border: none;
+  height: 1px;
+  background-color: $color-grey-300;
+  margin: $space-XXS ;
 }
 
 .commentsSection {
-  max-height: 30rem;
-  overflow: auto;
-  overflow-x: hidden;
-
-  .separator {
-    border: 0;
-    border-bottom: 0.1rem solid $color-grey-200;
-    margin-bottom: $space-XS;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: $space-XXXS;
 
   .title {
     @include title-S;
     color: $color-primary-600;
+    margin-top: -1rem;
   }
 
   .container {
-    padding: $space-XXS 0 $space-XXXXXS;
+    display: flex;
+    flex-direction: column;
+    max-height: 15rem; 
+    overflow-y: auto; 
   }
 }
 
 .modalFooter {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: $space-XS;
+  margin-top: $space-XS;
 
-  button {
-    width: 48%;
+  .closeButton {
+    height: 2.95rem;
+    background: none;
+    border: 0.1rem solid $color-secondary-400;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: $border-radius-regular;
   }
+  .addToCartButton{
+    cursor: pointer;
+  }
+}
+
+.ratingLogo {
+  gap: 1rem; 
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: $color-secondary-400;
 }

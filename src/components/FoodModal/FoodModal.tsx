@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FocusTrap from 'focus-trap-react';
-import { Button, ButtonAppearance, ButtonSize, ButtonIcon } from '../RegularButton/Button';
+import { Button, ButtonAppearance, ButtonSize } from '../RegularButton/Button';
 import IconButton, {
   IconButtonSize,
   IconButtonType,
@@ -97,7 +97,7 @@ function FoodModal({
     if (ratings) {
       setComments(getComments(ratings, id));
     }
-  }, [ratings]);
+  }, [ratings, id]);
 
   return (
     <FocusTrap focusTrapOptions={{ initialFocus: false }}>
@@ -117,11 +117,12 @@ function FoodModal({
               <figure className={styles.foodIcon}>{getFoodIcon(picture)}</figure>
               <div className={styles.info}>
                 <p className={styles.vendor}>{vendor}</p>
-                <p className={styles.title}>{title}</p>
-                <p className={styles.description}>{description}</p>
-                <div className={styles.icons}>
-                  {isVegetarian && <PlantIcon className={styles.icon} />}
-                  {isSpicy && <ChiliIcon className={styles.icon} />}
+                <div className={styles.title}>
+                  {title}
+                  <div className={styles.icons}>
+                    {isVegetarian && <PlantIcon className={styles.icon} />}
+                    {isSpicy && <ChiliIcon className={styles.icon} />}
+                  </div>
                 </div>
                 <div className={styles.rating}>
                   {typeof rating === 'number' && (
@@ -129,9 +130,11 @@ function FoodModal({
                   )}
                   <p className={styles.ratingValue}>{formattedRating}</p>
                 </div>
-                <p className={styles.price}>
-                  Price: {weekday !== FREE_MEAL_DAY ? formattedPrice : FREE_MEAL_TEXT}
-                </p>
+                <p className={styles.description}>{description}</p>
+                <div className={styles.price}>
+                  <span>Price</span>
+                  <span>{weekday !== FREE_MEAL_DAY ? formattedPrice : FREE_MEAL_TEXT}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -142,6 +145,7 @@ function FoodModal({
               <div className={styles.container}>
                 {comments.map((comment) => (
                   <CommentItem
+                    key={comment.id}
                     users={users}
                     id={comment.id}
                     userId={comment.userId}
@@ -152,19 +156,22 @@ function FoodModal({
             </div>
           )}
           <div className={styles.modalFooter}>
-            <Button
-              text="Close"
-              appearance={ButtonAppearance.TERTIARY}
-              size={ButtonSize.SMALL}
-              onClick={handleCloseModal}
-            />
-            <Button
-              text="Add to cart"
-              appearance={ButtonAppearance.PRIMARY}
-              size={ButtonSize.SMALL}
-              icon={ButtonIcon.ADD}
-              onClick={handleAddToCart}
-            />
+            <div className={styles.closeButton}>
+              <Button
+                text="Close"
+                appearance={ButtonAppearance.TERTIARY}
+                size={ButtonSize.SMALL}
+                onClick={handleCloseModal}
+              />
+            </div>
+            <div className={styles.addToCartButton}>
+              <Button
+                text="Add to cart"
+                appearance={ButtonAppearance.PRIMARY}
+                size={ButtonSize.SMALL}
+                onClick={handleAddToCart}
+              />
+            </div>
           </div>
         </div>
       </div>
