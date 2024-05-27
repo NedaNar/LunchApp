@@ -44,7 +44,7 @@ interface ButtonProps {
   icon?: ButtonIcon;
   disabled?: boolean;
   buttonType?: ButtonType;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function Button({

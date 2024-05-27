@@ -10,9 +10,10 @@ interface NavigationItemProps {
   id: NavigationItemId;
   title: NavigationItemTitle;
   to: RoutePath;
+  onClick: () => void;
 }
 
-export default function NavigationItem({ title, to, id }: NavigationItemProps) {
+export default function NavigationItem({ title, to, id, onClick }: NavigationItemProps) {
   const location = useLocation();
   const selected = to === location.pathname;
 
@@ -36,7 +37,10 @@ export default function NavigationItem({ title, to, id }: NavigationItemProps) {
   }
 
   return (
-    <Link to={to} className={`${styles.navItem} ${selected ? styles['navItem--selected'] : ''}`}>
+    <Link
+      onClick={onClick}
+      to={to}
+      className={`${styles.navItem} ${selected ? styles['navItem--selected'] : ''}`}>
       <div className={styles.navTitle}>
         {Icon}
         <span>{title}</span>

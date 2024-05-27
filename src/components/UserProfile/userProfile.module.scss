@@ -14,7 +14,6 @@
   flex-direction: column;
   justify-content: center;
 
-
   .profileSection {
     position: relative;
     display: flex;
@@ -33,6 +32,14 @@
       width: 3.2rem;
       object-fit: cover;
       border-radius: 50%;
+    }
+
+    .account {
+      height: 3.8rem;
+      width: 3.8rem;
+      path {
+        fill: $color-grey-300;
+      }
     }
   }
 
@@ -60,7 +67,6 @@
 
     .cartOrders {
       position: relative;
-      
 
       .circle {
         position: absolute;

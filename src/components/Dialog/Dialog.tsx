@@ -1,3 +1,5 @@
+import { createPortal } from 'react-dom';
+import FocusTrap from 'focus-trap-react';
 import styles from './dialog.module.scss';
 import { Button, ButtonAppearance, ButtonSize } from '../RegularButton/Button';
 import IconButton, { IconButtonType, IconButtonIcon } from '../IconButton/IconButton';
@@ -11,6 +13,11 @@ export enum DialogIcon {
   WARNING,
 }
 
+export enum DialogSize {
+  MEDIUM = 'medium',
+  LARGE = 'large',
+}
+
 export interface DialogProps {
   title: string;
   icon?: DialogIcon;
@@ -21,6 +28,7 @@ export interface DialogProps {
   onPrimaryButtonClick: () => void;
   onClose: () => void;
   isCloseButtonVisible?: boolean;
+  size?: DialogSize;
 }
 
 function Dialog({
@@ -33,6 +41,7 @@ function Dialog({
   onClose,
   onPrimaryButtonClick,
   isCloseButtonVisible = true,
+  size = DialogSize.MEDIUM,
 }: DialogProps) {
   const showIcon = (iconType?: DialogIcon) => {
     switch (iconType) {
@@ -49,43 +58,46 @@ function Dialog({
 
   const dialogSubBodyClass = icon ? styles.dialogSubBodyCenter : styles.dialogSubBodyStart;
 
-  return (
+  return createPortal(
     <div className={styles.dialogOverlay}>
-      <dialog open className={styles.dialogWrapper}>
-        <div className={styles.dialogBody}>
-          <header className={styles.dialogHeader}>
-            <p>{title}</p>
-            {isCloseButtonVisible && (
-              <IconButton
-                type={IconButtonType.TERTIARY}
-                icon={IconButtonIcon.CLOSE}
-                onClick={onClose}
+      <FocusTrap focusTrapOptions={{ initialFocus: false }}>
+        <dialog open className={`${styles.dialogWrapper} ${styles[size]}`}>
+          <div className={styles.dialogBody}>
+            <header className={styles.dialogHeader}>
+              <p>{title}</p>
+              {isCloseButtonVisible && (
+                <IconButton
+                  type={IconButtonType.TERTIARY}
+                  icon={IconButtonIcon.CLOSE}
+                  onClick={onClose}
+                />
+              )}
+            </header>
+            <div className={dialogSubBodyClass}>
+              {showIcon(icon) && <figure>{showIcon(icon)}</figure>}
+              <p>{children}</p>
+            </div>
+          </div>
+          <footer className={styles.dialogButtonWrapper}>
+            {secondaryButton && (
+              <Button
+                text={secondaryButtonText}
+                appearance={ButtonAppearance.SECONDARY}
+                size={ButtonSize.MEDIUM}
+                onClick={() => {}}
               />
             )}
-          </header>
-          <div className={dialogSubBodyClass}>
-            <figure>{showIcon(icon)}</figure>
-            <p>{children}</p>
-          </div>
-        </div>
-        <footer className={styles.dialogButtonWrapper}>
-          {secondaryButton && (
             <Button
-              text={secondaryButtonText}
-              appearance={ButtonAppearance.SECONDARY}
+              text={primaryButtonText}
+              appearance={ButtonAppearance.PRIMARY}
               size={ButtonSize.MEDIUM}
-              onClick={() => {}}
+              onClick={onPrimaryButtonClick}
             />
-          )}
-          <Button
-            text={primaryButtonText}
-            appearance={ButtonAppearance.PRIMARY}
-            size={ButtonSize.MEDIUM}
-            onClick={onPrimaryButtonClick}
-          />
-        </footer>
-      </dialog>
-    </div>
+          </footer>
+        </dialog>
+      </FocusTrap>
+    </div>,
+    document.body
   );
 }
 

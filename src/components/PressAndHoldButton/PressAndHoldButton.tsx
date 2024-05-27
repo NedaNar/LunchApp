@@ -7,14 +7,21 @@ import CheckIcon from '../../assets/static/icons/icon_check-circle.svg?react';
 
 interface PressAndHoldButtonProps {
   disabled?: boolean;
+  setIsConfirmed: (value: boolean) => void;
+  isConfirmed: boolean;
   onConfirm: () => void;
 }
 
 const PRESS_AND_HOLD_TIMEOUT = 1500;
 
-function PressAndHoldButton({ disabled, onConfirm }: PressAndHoldButtonProps) {
+function PressAndHoldButton({
+  disabled,
+  onConfirm,
+  setIsConfirmed,
+  isConfirmed,
+}: PressAndHoldButtonProps) {
   const [isPressed, setIsPressed] = useState<boolean | undefined>(undefined);
-  const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+
   const timeout = useRef<NodeJS.Timeout>();
 
   const handleHoldStart = () => {

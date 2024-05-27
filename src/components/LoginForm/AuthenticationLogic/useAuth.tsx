@@ -1,12 +1,12 @@
 import { SessionStorageKeys } from '../../../types/sessionStorageEnums';
 
 function useAuth() {
-  const user = sessionStorage.getItem(SessionStorageKeys.TOKEN);
-
-  if (user) {
-    return true;
+  const token = sessionStorage.getItem(SessionStorageKeys.TOKEN);
+  if (token) {
+    return JSON.parse(token);
   }
-  return false;
+
+  return undefined;
 }
 
 export default useAuth;

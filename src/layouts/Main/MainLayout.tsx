@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import styles from './mainLayout.module.scss';
 import '../../styles/index.scss';
@@ -8,28 +8,12 @@ import LogoHorizontal from '../../assets/static/logo/logo_horizontal.svg?react';
 import AccountIcon from '../../assets/static/icons/icon_account.svg?react';
 import Footer from '../../components/Footer/Footer';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
-import CartContext, { CartItem } from '../../components/OrderSummary/cartContext';
+import OrderSummaryContextWrapper from '../../components/OrderSummary/OrderSummaryContextWrapper';
 
 export default function MainLayout() {
   // This const is needed in parent element for navigation state
   const [collapsed, setCollapsed] = useState(false);
-
-  // This is order summary cart
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartExpanded, setCartExpanded] = useState(true);
-
-  const cart = useMemo(
-    () => ({
-      items: cartItems,
-      setCartItems,
-      expanded: cartExpanded,
-      setExpanded: setCartExpanded,
-      addToCart: (item: CartItem) => {
-        setCartItems((prev: CartItem[]) => [...prev, item]);
-      },
-    }),
-    [cartItems, cartExpanded]
-  );
 
   return (
     <div className={styles.container}>
@@ -37,16 +21,15 @@ export default function MainLayout() {
 
       <header className={styles.headerLine}>
         <LogoHorizontal className={styles.logo} title="logo" />
-        <AccountIcon className={styles.account} title="Acount information" />
+        <AccountIcon className={styles.account} title="Account information" />
       </header>
-      <CartContext.Provider value={cart}>
+      <OrderSummaryContextWrapper cartExpanded={cartExpanded} setCartExpanded={setCartExpanded}>
         <aside className={styles.rightSide}>
           <article className={styles.userProfile}>
             <UserProfile />
           </article>
 
-          {/* <article> */}
-          <article className="order">
+          <article className={styles.order}>
             <OrderSummary />
           </article>
         </aside>
@@ -57,7 +40,7 @@ export default function MainLayout() {
             {/* <Outlet> allows to render 'child route' elements, so components can be placed on page  */}
           </div>
         </main>
-      </CartContext.Provider>
+      </OrderSummaryContextWrapper>
       <footer className={collapsed ? styles['footer--collapsed'] : styles.footer}>
         <Footer />
       </footer>

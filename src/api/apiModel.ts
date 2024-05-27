@@ -1,6 +1,6 @@
 import { DishType } from '../components/FoodCard/helpers';
 
-interface Order {
+export interface Order {
   weekDay: string;
   mealIds: number[];
 }
@@ -13,14 +13,18 @@ interface OrderHistoryItem {
 export interface LoginUserData {
   email?: string | null;
   password?: string | null;
-  userName?: string | null;
+  id?: string | null;
 }
 
 export interface UserData {
+  id: string;
+  userName: string;
+  email: string;
+  password: string;
   name: string;
   surname: string;
-  img?: string;
   balance: number;
+  img?: string;
   orders: Order[];
   orderHistory: OrderHistoryItem[];
 }
@@ -54,4 +58,30 @@ export interface RatingData {
   mealId: number;
   rating: Rating;
   id: string;
+}
+
+export function createUserData(
+  id: string,
+  userName: string,
+  email: string,
+  password: string,
+  name = '',
+  surname = '',
+  balance = 0,
+  img = '',
+  orders: Order[] = [],
+  orderHistory: OrderHistoryItem[] = []
+): UserData {
+  return {
+    id,
+    userName,
+    email,
+    password,
+    name,
+    surname,
+    balance,
+    img,
+    orders,
+    orderHistory,
+  };
 }
