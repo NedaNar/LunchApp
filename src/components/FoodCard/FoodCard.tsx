@@ -6,6 +6,8 @@ import PlantIcon from '../../assets/static/icons/icon_plant.svg?react';
 import ChiliIcon from '../../assets/static/icons/icon_chili-mild.svg?react';
 import { getFoodIcon, DishType } from './helpers';
 import FoodModal from '../FoodModal/FoodModal';
+import { formatPrice, formatRating } from '../../utils/priceUtils';
+import { FREE_MEAL_DAY, FREE_MEAL_TEXT } from '../../utils/constants';
 
 export interface FoodCardProps {
   title: string;
@@ -32,13 +34,8 @@ function FoodCard({
   weekday,
   handleAddToCart,
 }: FoodCardProps) {
-  const formattedPrice = Intl.NumberFormat('en-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  }).format(price);
-
-  const hasRating = typeof rating === 'number';
-  const formattedRating = hasRating ? rating.toFixed(1) : rating;
+  const formattedPrice = formatPrice(price);
+  const formattedRating = formatRating(rating);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -73,7 +70,7 @@ function FoodCard({
           <p className={styles.bodyM}>{description}</p>
           <div className={styles.cardSubBody}>
             <div className={styles.rating}>
-              {hasRating && (
+              {typeof rating === 'number' && (
                 <figure className={styles.ratingFigure}>
                   <SolarStarIcon className={styles.ratingLogo} />
                 </figure>
@@ -93,7 +90,9 @@ function FoodCard({
         <footer className={styles.cardFooter}>
           <div className={styles.cardFooterText}>
             <p className={styles.bodyS}>Price</p>
-            <p className={styles.titleL}>{weekday !== 'Friday' ? formattedPrice : 'Free'}</p>
+            <p className={styles.titleL}>
+              {weekday !== FREE_MEAL_DAY ? formattedPrice : FREE_MEAL_TEXT}
+            </p>
           </div>
           <Button
             text="Add to cart"

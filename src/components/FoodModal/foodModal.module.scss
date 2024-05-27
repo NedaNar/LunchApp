@@ -1,32 +1,45 @@
 @import '../../styles/tools';
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-  
-  .modalContent {
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    padding: 16px;
-    width: 80%;
-    max-width: 40rem;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 
   .modalContent {
+    background-color: $color-white;
+    border-radius: 0.8rem; 
+    padding: 1.6rem;
+    width: 80%;
+    max-width: 40rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }}
+  }
+}
+.foodIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 10.3rem;
+  height: 10.4rem;
+  left: -$space-XXXXS;
+  top: -0.7rem;
+
+  background: $color-orange-gradient;
+  box-shadow: $box-shadow-foodCard;
+  border-radius: $border-radius-regular;
+
+}
 
 .modalHeader {
   display: flex;
@@ -42,7 +55,7 @@
   .closeButton {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
     cursor: pointer;
   }
 }
@@ -83,8 +96,8 @@
         margin-bottom: $space-XXXXS;
 
         .icon {
-          width: 2rem;
-          height: 2rem;
+          width: 2rem; 
+          height: 2rem; 
         }
       }
 
@@ -100,8 +113,10 @@
         }
 
         .ratingLogo {
-          width: 1.2rem;
+          width: 1.2rem; 
           height: 1.2rem;
+          stroke: #FF7F0F; 
+          fill: #FF7F0F;
         }
 
         .ratingValue {
@@ -117,11 +132,8 @@
       }
     }
   }
-
-  .commentsSection {
-    height: auto;
-  }
 }
+
 
 .modalFooter {
   display: flex;
