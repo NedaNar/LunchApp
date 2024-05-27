@@ -16,7 +16,7 @@ function DayTabs({ onTabChange }: DayTabsProps) {
   const workdaysLong = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const workdaysShort = workdaysLong.map((day) => day.slice(0, 3));
 
-  const { isTabletPortrait } = useResizeDetector();
+  const { isTabletLandscape } = useResizeDetector();
 
   const currentDayIndex = workdaysLong.indexOf(getCurrentWeekdayName());
 
@@ -31,7 +31,7 @@ function DayTabs({ onTabChange }: DayTabsProps) {
 
   return (
     <Tabs
-      tabs={isTabletPortrait ? workdaysShort : workdaysLong}
+      tabs={isTabletLandscape ? workdaysShort : workdaysLong}
       onTabChange={handleTabChange}
       preselectedTab={currentDayIndex}
       disabledTabs={disabledTabs}

@@ -23,6 +23,7 @@
   },
   "include": [
     "src",
+    "__mocks__",
     ".eslintrc.cjs",
     "./jest.config.cjs",
     "./jest.setup.js",
