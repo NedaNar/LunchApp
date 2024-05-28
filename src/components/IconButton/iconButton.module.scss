@@ -94,4 +94,9 @@
   border: 0.15rem solid $color-white;
   border-radius: 50%;
   outline: none;
+
+  &:focus:not(:disabled) {
+    border: 0.2rem solid $color-purple-500;
+    outline: none;
+  }
 }

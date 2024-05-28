@@ -32,7 +32,7 @@ export default function DayItems({ day, items }: DayItemsProps) {
             </div>
             <div className={styles.dayItemsListItemRight}>
               <p>{day === FREE_MEEL_DAY ? 'Free' : formatCurrency(item.price)}</p>
-              <DeleteIcon onClick={() => cart.removeFromCart(item)} />
+              <DeleteIcon role="button" onClick={() => cart.removeFromCart(item)} tabIndex={0} />
             </div>
           </div>
         ))}
