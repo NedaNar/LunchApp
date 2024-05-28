@@ -20,15 +20,21 @@
 
   .details {
     display: flex;
-    gap: $space-XXS;
 
     .foodIcon {
+      margin-right: $space-XXS;
       height: 22.3rem;
       width: 22.2rem;
 
       svg {
         width: 90%;
         height: 90%;
+      }
+
+      @include for-tablet-portraitM-up {
+        margin-right: 0;
+        height: 0;
+        width: 0;
       }
     }
 
@@ -101,7 +107,7 @@
 .commentsSection {
   display: flex;
   flex-direction: column;
-  gap: $space-XXXS;
+  gap: $space-XS;
 
   .separator {
     border: none;
@@ -119,13 +125,13 @@
   .container {
     display: flex;
     flex-direction: column;
+    gap: $space-XXXS;
     max-height: 15rem;
     overflow-y: auto;
   }
 }
 
 .ratingLogo {
-  gap: 1rem;
   width: 1.5rem;
   height: 1.5rem;
   fill: $color-secondary-400;
