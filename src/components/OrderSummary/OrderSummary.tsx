@@ -23,7 +23,10 @@ import { UserData } from '../../api/apiModel';
 import { SessionStorageKeys } from '../../types/sessionStorageEnums';
 import usePatch from '../../api/useDataPatching';
 
-export default function OrderSummary() {
+interface OrderSummaryProps {
+  showCloseIcon?: boolean;
+}
+export default function OrderSummary({ showCloseIcon = true }: OrderSummaryProps) {
   const { items, expanded, setExpanded, removeAllItems, setBalance, balance } =
     useContext(cartContext);
   const { data } = useFetch<UserData[]>(Endpoint.USERS);
@@ -106,12 +109,14 @@ export default function OrderSummary() {
         className={`${styles.orderSummary} ${expanded ? styles.orderSummaryExpanded : ''} ${hide ? styles.orderSummaryHidden : ''}`}>
         <header className={styles.orderSummaryTitle}>
           <h1 className={styles.orderSummaryTitleText}>Order Summary</h1>
-          <IconButton
-            type={IconButtonType.TERTIARY}
-            size={IconButtonSize.MEDIUM}
-            icon={IconButtonIcon.CLOSE}
-            onClick={() => setExpanded(false)}
-          />
+          {showCloseIcon && (
+            <IconButton
+              type={IconButtonType.TERTIARY}
+              size={IconButtonSize.MEDIUM}
+              icon={IconButtonIcon.CLOSE}
+              onClick={() => setExpanded(false)}
+            />
+          )}
         </header>
         <section className={styles.orderSummaryList}>
           {!items.length ? (
