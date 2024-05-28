@@ -50,7 +50,7 @@ export default function OrderSummaryDialogs({
         icon={DialogIcon.WARNING}
         onPrimaryButtonClick={handleClose}
         isCloseButtonVisible>
-        You do not have enough balance available to complete this order.
+        <p>You do not have enough balance available to complete this order.</p>
       </Dialog>
     );
   }
