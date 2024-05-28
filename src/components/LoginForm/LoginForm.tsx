@@ -48,7 +48,7 @@ function LoginForm() {
 
     if (userPassword) {
       showNotification(
-        `Your password is ${userPassword}! Write it down :)`,
+        `Your password is ${userPassword}! Repeat until you remember it.`,
         NotificationType.SUCCESS
       );
     } else {
