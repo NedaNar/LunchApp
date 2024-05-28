@@ -9,7 +9,7 @@ import AccountIcon from '../../assets/static/icons/icon_account.svg?react';
 import Footer from '../../components/Footer/Footer';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
 import OrderSummaryContextWrapper from '../../components/OrderSummary/OrderSummaryContextWrapper';
-import ProfileCard from '../../components/ProfileCard/ProfileCard';
+import ProfileCardMobile from '../../components/ProfileCardMobile/ProfileCardMobile';
 
 export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -56,7 +56,7 @@ export default function MainLayout() {
         <footer className={`${styles.footer} ${collapsed ? styles['footer--collapsed'] : ''}`}>
           <Footer />
         </footer>
-        <ProfileCard isOpen={isModalOpen} onClose={handleCloseModal} />
+        <ProfileCardMobile isOpen={isModalOpen} onClose={handleCloseModal} />
       </OrderSummaryContextWrapper>
     </div>
   );

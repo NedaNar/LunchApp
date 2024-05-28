@@ -1,5 +1,5 @@
 import FocusTrap from 'focus-trap-react';
-import styles from './profileCard.module.scss';
+import styles from './profileCardMobile.module.scss';
 import UserProfile from '../UserProfile/UserProfile';
 import OrderSummary from '../OrderSummary/OrderSummary';
 import IconButton, {
@@ -13,7 +13,7 @@ interface ProfileCardProps {
   onClose: () => void;
 }
 
-export default function ProfileCard({ isOpen, onClose }: ProfileCardProps) {
+export default function ProfileCardMobile({ isOpen, onClose }: ProfileCardProps) {
   if (!isOpen) return null;
 
   return (
