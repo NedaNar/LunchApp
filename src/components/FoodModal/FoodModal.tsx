@@ -1,11 +1,4 @@
 import { useEffect, useState } from 'react';
-import FocusTrap from 'focus-trap-react';
-import { Button, ButtonAppearance, ButtonSize } from '../RegularButton/Button';
-import IconButton, {
-  IconButtonSize,
-  IconButtonType,
-  IconButtonIcon,
-} from '../IconButton/IconButton';
 import { getFoodIcon, DishType } from '../FoodCard/helpers';
 import SolarStarIcon from '../../assets/static/icons/icon_solar-star.svg?react';
 import SolarStarDuotoneIcon from '../../assets/static/icons/icon_solar-star-duotone.svg?react';
@@ -19,6 +12,7 @@ import { RatingData, UserData } from '../../api/apiModel';
 import useFetch from '../../api/useDataFetching';
 import { Endpoint } from '../../api/endpoints';
 import CommentItem from './CommentItem';
+import Dialog, { DialogSize } from '../Dialog/Dialog';
 
 export interface FoodModalProps {
   id: string;
@@ -100,82 +94,62 @@ function FoodModal({
   }, [ratings, id]);
 
   return (
-    <FocusTrap focusTrapOptions={{ initialFocus: false }}>
-      <div className={styles.modal}>
-        <div className={styles.modalContent}>
-          <div className={styles.modalHeader}>
-            <h2>Dish Details</h2>
-            <IconButton
-              type={IconButtonType.TERTIARY}
-              size={IconButtonSize.MEDIUM}
-              icon={IconButtonIcon.CLOSE}
-              onClick={handleCloseModal}
-            />
-          </div>
-          <div className={styles.modalBody}>
-            <div className={styles.details}>
-              <figure className={styles.foodIcon}>{getFoodIcon(picture)}</figure>
-              <div className={styles.info}>
-                <p className={styles.vendor}>{vendor}</p>
-                <div className={styles.title}>
-                  {title}
-                  <div className={styles.icons}>
-                    {isVegetarian && <PlantIcon className={styles.icon} />}
-                    {isSpicy && <ChiliIcon className={styles.icon} />}
-                  </div>
-                </div>
-                <div className={styles.rating}>
-                  {typeof rating === 'number' && (
-                    <div className={styles.ratingStars}>{getStarIcons(Number(rating))}</div>
-                  )}
-                  <p className={styles.ratingValue}>{formattedRating}</p>
-                </div>
-                <p className={styles.description}>{description}</p>
-                <div className={styles.price}>
-                  <span>Price</span>
-                  <span>{weekday !== FREE_MEAL_DAY ? formattedPrice : FREE_MEAL_TEXT}</span>
-                </div>
+    <Dialog
+      title="Dish dialog"
+      primaryButtonText="Add to cart"
+      onPrimaryButtonClick={handleAddToCart}
+      secondaryButton
+      secondaryButtonText="Close"
+      onSecondaryButtonClick={handleCloseModal}
+      onClose={handleCloseModal}
+      size={DialogSize.LARGE}
+      ignoreTextStyles>
+      <div className={`${styles.modalBody}`}>
+        <div className={styles.details}>
+          <figure className={styles.foodIcon}>{getFoodIcon(picture)}</figure>
+          <div className={styles.info}>
+            <p className={styles.vendor}>{vendor}</p>
+            <div className={styles.title}>
+              {title}
+              <div className={styles.icons}>
+                {isVegetarian && <PlantIcon className={styles.plantIcon} />}
+                {isSpicy && <ChiliIcon className={styles.chiliIcon} />}
               </div>
             </div>
-          </div>
-          {comments.length > 0 && (
-            <div className={styles.commentsSection}>
-              <hr className={styles.separator} />
-              <span className={styles.title}>COMMENTS ({comments.length})</span>
-              <div className={styles.container}>
-                {comments.map((comment) => (
-                  <CommentItem
-                    key={comment.id}
-                    users={users}
-                    id={comment.id}
-                    userId={comment.userId}
-                    comment={comment.comment}
-                  />
-                ))}
-              </div>
+            <div>
+              {typeof rating === 'number' && (
+                <div className={styles.ratingStars}>{getStarIcons(Number(rating))}</div>
+              )}
+              <p className={styles.ratingValue}>{formattedRating}</p>
             </div>
-          )}
-          <div className={styles.modalFooter}>
-            <div className={styles.closeButton}>
-              <Button
-                text="Close"
-                appearance={ButtonAppearance.TERTIARY}
-                size={ButtonSize.SMALL}
-                onClick={handleCloseModal}
-              />
-            </div>
-            <div className={styles.addToCartButton}>
-              <Button
-                text="Add to cart"
-                appearance={ButtonAppearance.PRIMARY}
-                size={ButtonSize.SMALL}
-                onClick={handleAddToCart}
-              />
+            <p className={styles.description}>{description}</p>
+            <div>
+              <span className={styles.price}>Price</span>
+              <span className={styles.priceValue}>
+                {weekday !== FREE_MEAL_DAY ? formattedPrice : FREE_MEAL_TEXT}
+              </span>
             </div>
           </div>
         </div>
       </div>
-    </FocusTrap>
+      {comments.length > 0 && (
+        <div className={styles.commentsSection}>
+          <hr className={styles.separator} />
+          <span className={styles.title}>COMMENTS ({comments.length})</span>
+          <div className={styles.container}>
+            {comments.map((comment) => (
+              <CommentItem
+                key={comment.id}
+                users={users}
+                id={comment.id}
+                userId={comment.userId}
+                comment={comment.comment}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </Dialog>
   );
 }
 

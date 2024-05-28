@@ -31,7 +31,7 @@ function CommentItem({ users, id, userId, comment }: CommentItemProps) {
   return (
     <div key={id} className={styles.container}>
       <div className={styles.title}>
-        {!user || (!user.img && <AccountIcon className={styles.account} />)}
+        {(!user || !user.img) && <AccountIcon className={styles.account} />}
         {user && user.img && (
           <img src={getUserImg()} alt="User avatar" referrerPolicy="no-referrer" />
         )}
