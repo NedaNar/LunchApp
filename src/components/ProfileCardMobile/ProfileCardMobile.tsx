@@ -1,4 +1,5 @@
 import FocusTrap from 'focus-trap-react';
+import { useEffect, useState } from 'react';
 import styles from './profileCardMobile.module.scss';
 import UserProfile from '../UserProfile/UserProfile';
 import OrderSummary from '../OrderSummary/OrderSummary';
@@ -7,6 +8,7 @@ import IconButton, {
   IconButtonType,
   IconButtonIcon,
 } from '../IconButton/IconButton';
+import useResizeDetector from '../../utils/useResizeDetector';
 
 interface ProfileCardProps {
   isOpen: boolean;
@@ -14,7 +16,14 @@ interface ProfileCardProps {
 }
 
 export default function ProfileCardMobile({ isOpen, onClose }: ProfileCardProps) {
-  if (!isOpen) return null;
+  const { isTabletPortrait } = useResizeDetector();
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    setShouldRender(isTabletPortrait);
+  }, [isTabletPortrait]);
+
+  if (!isOpen || !shouldRender) return null;
 
   return (
     <div

@@ -23,7 +23,6 @@ function Checkmark({ label, error = false, disabled = false, id, onCheckChange }
       className={`${styles.checkboxWrapper} ${error ? styles.error : ''} ${disabled ? styles.disabled : ''}`}>
       <label htmlFor={`${id}-checkbox`}>
         <input
-          defaultChecked={false}
           onChange={handleChange}
           type="checkbox"
           id={`${id}-checkbox`}
