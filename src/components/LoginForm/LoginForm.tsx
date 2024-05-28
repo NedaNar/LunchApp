@@ -18,6 +18,7 @@ import ToastNotification, {
 } from '../Notifications/ToastNotification/ToastNotification';
 import { NotificationType } from '../../utils/notificationUtils';
 import { Endpoint } from '../../api/endpoints';
+import Dialog from '../Dialog/Dialog';
 
 interface LoginUser {
   email: string;
@@ -27,14 +28,34 @@ interface LoginUser {
 function LoginForm() {
   const [emailInput, setEmailInput] = useState<string>('');
   const [passwordInput, setPasswordInput] = useState<string>('');
+  const [dialogEmailInput, setDialogEmailInput] = useState<string>('');
   const navigate = useNavigate();
   const toastRef = useRef<ToastRefObject>(null);
+  const [showDialog, setShowDialog] = useState(false);
 
   const { data } = useFetch<LoginUserData[]>(Endpoint.USERS);
 
-  const showNotification = (errorText: string) => {
+  const showNotification = (errorText: string, type = NotificationType.WARNING) => {
     if (toastRef.current) {
-      toastRef.current.showToast(errorText, NotificationType.WARNING);
+      toastRef.current.showToast(errorText, type);
+    }
+  };
+
+  const showPassword = () => {
+    setShowDialog(false);
+
+    const userPassword = data?.find((user) => user.email === dialogEmailInput)?.password;
+
+    if (userPassword) {
+      showNotification(
+        `Your password is ${userPassword}! Repeat until you remember it.`,
+        NotificationType.SUCCESS
+      );
+    } else {
+      showNotification(
+        `We could not find an account with this email. Please register.`,
+        NotificationType.INFO
+      );
     }
   };
 
@@ -76,6 +97,34 @@ function LoginForm() {
 
   return (
     <>
+      {showDialog && (
+        <Dialog
+          title="Reset your password"
+          primaryButtonText="Send recovery link"
+          secondaryButton
+          secondaryButtonText="Return to log in"
+          onSecondaryButtonClick={() => setShowDialog(false)}
+          onClose={() => setShowDialog(false)}
+          onPrimaryButtonClick={showPassword}>
+          <>
+            <span>
+              Enter your email address, and we&apos;ll send you a link to get back into your
+              account.
+            </span>
+            <div className={styles.resetPasswordInput}>
+              <Input
+                value={dialogEmailInput}
+                onChange={(e) => {
+                  setDialogEmailInput(e.target.value);
+                }}
+                label="Email address"
+                placeholder="example@gmail.com"
+                name="dialogEmail"
+              />
+            </div>
+          </>
+        </Dialog>
+      )}
       <div className={styles.loginFormWrapper}>
         <header className={styles.loginFormHeader}>
           <h1 className={styles.title}>Login</h1>
@@ -109,9 +158,7 @@ function LoginForm() {
                 <button
                   className={styles.forgotPasswordBtn}
                   type="button"
-                  onClick={() => {
-                    showNotification('Logic for reset password button will be added shortly');
-                  }}>
+                  onClick={() => setShowDialog(true)}>
                   Forgot Password?
                 </button>
               </div>

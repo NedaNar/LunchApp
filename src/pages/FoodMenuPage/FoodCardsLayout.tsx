@@ -156,6 +156,7 @@ function FoodCardsLayout() {
               return (
                 <FoodCard
                   key={meal.id}
+                  id={meal.id}
                   vendor={vendorName}
                   title={meal.title}
                   description={meal.description}

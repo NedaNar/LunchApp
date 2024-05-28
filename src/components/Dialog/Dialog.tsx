@@ -26,9 +26,11 @@ export interface DialogProps {
   secondaryButtonText?: string;
   primaryButtonText: string;
   onPrimaryButtonClick: () => void;
+  onSecondaryButtonClick?: () => void;
   onClose: () => void;
   isCloseButtonVisible?: boolean;
   size?: DialogSize;
+  ignoreTextStyles?: boolean;
 }
 
 function Dialog({
@@ -40,8 +42,10 @@ function Dialog({
   primaryButtonText,
   onClose,
   onPrimaryButtonClick,
+  onSecondaryButtonClick = () => {},
   isCloseButtonVisible = true,
   size = DialogSize.MEDIUM,
+  ignoreTextStyles = false,
 }: DialogProps) {
   const showIcon = (iconType?: DialogIcon) => {
     switch (iconType) {
@@ -75,7 +79,7 @@ function Dialog({
             </header>
             <div className={dialogSubBodyClass}>
               {showIcon(icon) && <figure>{showIcon(icon)}</figure>}
-              <p>{children}</p>
+              <div className={`${ignoreTextStyles ? styles.ignoreTextStyles : ''}`}>{children}</div>
             </div>
           </div>
           <footer className={styles.dialogButtonWrapper}>
@@ -84,7 +88,7 @@ function Dialog({
                 text={secondaryButtonText}
                 appearance={ButtonAppearance.SECONDARY}
                 size={ButtonSize.MEDIUM}
-                onClick={() => {}}
+                onClick={onSecondaryButtonClick}
               />
             )}
             <Button
