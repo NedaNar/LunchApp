@@ -123,7 +123,7 @@ export default function OrderSummary({ showCloseIcon = true }: OrderSummaryProps
             <EmptyCart />
           ) : (
             Object.keys(mappedMealsByDay).map((day) => (
-              <DayItems day={day} items={mappedMealsByDay[day]} />
+              <DayItems key={day} day={day} items={mappedMealsByDay[day]} />
             ))
           )}
         </section>

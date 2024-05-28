@@ -11,10 +11,6 @@
     align-items: center;
     z-index: 1000;
     animation: fadeIn 0.5s ease-in-out;
-
-    @include for-tablet-landscape-up {
-        display: none;
-    }
 }
 
 @keyframes fadeIn {

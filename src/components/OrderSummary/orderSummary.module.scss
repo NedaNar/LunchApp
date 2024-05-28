@@ -150,6 +150,11 @@ $border-radius-orderSummary: 1.2rem 0rem 0rem 1.2rem;
           & path {
             fill: $color-red-500;
           }
+
+          &:focus:not(:disabled) {
+            border: 0.2rem solid $color-purple-500;
+            outline: none;
+          }
         }
       }
 
